@@ -29,8 +29,6 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
             return danmakuRoleEnum is DanmakuRoleEnum.Partner;
         }
 
-        public int MinPlayerCountForAvailable() => 7;
-
         public bool IsGoalReached()
         {
             var heroinePlayers = _danmakuPlayerSubsystem.Players.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.Heroine));

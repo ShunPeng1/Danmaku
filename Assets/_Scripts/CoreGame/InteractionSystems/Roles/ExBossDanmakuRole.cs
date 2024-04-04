@@ -24,9 +24,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
         {
             return DanmakuRoleEnum.ExtraBoss == danmakuRoleEnum;
         }
-
-
-        public int MinPlayerCountForAvailable() => 4;
+        
 
         public bool IsGoalReached()
         {

@@ -7,7 +7,6 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
         public bool IsRevealed { get; protected set;}
         protected DanmakuPlayerSubsystem DanmakuPlayerSubsystem { get; set; }
         public bool HasRole(DanmakuRoleEnum danmakuRoleEnum);
-        public int MinPlayerCountForAvailable();
         public bool IsGoalReached();
         
         public bool CanRevealRole();

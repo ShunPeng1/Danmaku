@@ -25,7 +25,6 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
             return DanmakuRoleEnum.StageBoss == danmakuRoleEnum;
         }
 
-        public int MinPlayerCountForAvailable() => 6;
 
         public bool IsGoalReached()
         {

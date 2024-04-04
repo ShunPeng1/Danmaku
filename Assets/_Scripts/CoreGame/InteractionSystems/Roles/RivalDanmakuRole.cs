@@ -29,8 +29,6 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
             return danmakuRoleEnum is DanmakuRoleEnum.Rival ;
         }
 
-        public int MinPlayerCountForAvailable() => 8;
-
         public bool IsGoalReached()
         {
             var players = _danmakuPlayerSubsystem.Players.FindAll(

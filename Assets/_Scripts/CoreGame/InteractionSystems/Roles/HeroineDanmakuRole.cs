@@ -26,8 +26,6 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
             return DanmakuRoleEnum.Heroine == danmakuRoleEnum;
         }
 
-        public int MinPlayerCountForAvailable() => 4;
-
         public bool IsGoalReached()
         {
             var bossPlayers = _danmakuPlayerSubsystem.Players.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.StageBoss) || player.Role.HasRole(DanmakuRoleEnum.ExtraBoss));
