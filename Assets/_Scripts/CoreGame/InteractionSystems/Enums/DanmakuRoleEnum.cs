@@ -2,11 +2,11 @@
 {
     public enum DanmakuRoleEnum
     {
-        None,
         Heroine,
         StageBoss,
         ExtraBoss,
         Partner,
-        Rival
+        Rival,
+        None,
     }
 }
