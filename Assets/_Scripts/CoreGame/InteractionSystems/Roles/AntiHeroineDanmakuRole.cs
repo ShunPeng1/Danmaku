@@ -29,8 +29,8 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
 
         public bool IsGoalReached()
         {
-            var heroinePlayers = _danmakuPlayerSubsystem.PlayerRoles.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.Heroine));
-            var stageBossPlayers  = _danmakuPlayerSubsystem.PlayerRoles.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.StageBoss));
+            var heroinePlayers = _danmakuPlayerSubsystem.Players.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.Heroine));
+            var stageBossPlayers  = _danmakuPlayerSubsystem.Players.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.StageBoss));
 
             return heroinePlayers.All(heroinePlayer => !heroinePlayer.IsAlive) && stageBossPlayers.Exists(stageBossPlayer => !stageBossPlayer.IsAlive);
         }

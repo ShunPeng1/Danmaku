@@ -33,7 +33,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
 
         public bool IsGoalReached()
         {
-            var players = _danmakuPlayerSubsystem.PlayerRoles.FindAll(
+            var players = _danmakuPlayerSubsystem.Players.FindAll(
                 player => player.Role.HasRole(DanmakuRoleEnum.Heroine)  
                           || player.Role.HasRole(DanmakuRoleEnum.StageBoss) 
                           || player.Role.HasRole(DanmakuRoleEnum.ExtraBoss));
@@ -48,7 +48,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
 
         public void RevealRole()
         {
-            throw new System.NotImplementedException();
+            _isRevealed = true;
         }
     }
 }

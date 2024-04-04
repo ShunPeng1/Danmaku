@@ -6,7 +6,7 @@ namespace _Scripts.CoreGame.InteractionSystems
     {
         private int _playerCount;
         
-        public List<DanmakuPlayer> PlayerRoles { get; set; }
+        public List<DanmakuPlayer> Players { get; set; }
         
         
         public DanmakuPlayerSubsystem(int playerCount)

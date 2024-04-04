@@ -29,7 +29,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
 
         public bool IsGoalReached()
         {
-            var bossPlayers = _danmakuPlayerSubsystem.PlayerRoles.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.Heroine));
+            var bossPlayers = _danmakuPlayerSubsystem.Players.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.Heroine));
 
             return bossPlayers.All(bossPlayer => !bossPlayer.IsAlive);
         }

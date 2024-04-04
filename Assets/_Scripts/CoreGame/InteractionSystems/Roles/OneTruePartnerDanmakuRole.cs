@@ -29,7 +29,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
 
         public bool IsGoalReached()
         {
-            var players = _danmakuPlayerSubsystem.PlayerRoles.FindAll(
+            var players = _danmakuPlayerSubsystem.Players.FindAll(
                 player => player.Role.HasRole(DanmakuRoleEnum.Partner) 
                           || player.Role.HasRole(DanmakuRoleEnum.StageBoss) 
                           || player.Role.HasRole(DanmakuRoleEnum.ExtraBoss));
