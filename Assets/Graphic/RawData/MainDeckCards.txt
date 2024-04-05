@@ -1,0 +1,273 @@
+﻿Card name:1UP
+Deck:Main deck
+Season:Autumn
+Point value:2
+Card types:Healing, Action / Reaction
+Text:Choose a player. That player gains 1 life. You cannot go above your max life.
+
+OR
+
+Play this when any player is reduced to 0 life.
+That player returns to 1 life.
+Set:Base
+Artist:M. Beatriz García
+@@@
+Card name:Bomb
+Deck:Main deck
+Season:Spring
+Point value:4
+Card types:Invocation / Reaction
+Text:Activate your Spell Card.
+You can only activate one Spell Card per round.
+
+OR
+
+Play this when another player plays a Danmaku card or activates their Spell Card.
+
+Cancel that card.
+Set:Base
+Artist:M. Beatriz García
+@@@
+Card name:“Borrow”
+Deck:Main deck
+Season:Spring
+Point value:2
+Card types:Action
+Text:Choose any Item in play.
+
+You gain control of that Item.
+Set:Base
+Artist:Efe
+@@@
+Card name:Capture Spell Card
+Deck:Main deck
+Season:Winter
+Point value:4
+Card types:Invocation
+Text:Choose another player and activate their character’s Spell Card as if it were your own. You may choose a defeated player’s character.
+
+You can only activate one Spell Card per round.
+Set:Base
+Artist:Kagura
+@@@
+Card name:Focus
+Deck:Main deck
+Season:Summer
+Point value:3
+Card types:Item, Defense
+Text:You have +2 Distance.
+
+You an only activate one Defense card in play at a time.
+Set:Base
+Artist:Shiraso Famy
+@@@
+Card name:Graze
+Deck:Main deck
+Season:Spring
+Point value:1
+Card types:Reaction, Dodge
+Text:Play this when you are attacked.
+
+You avoid the attack.
+
+You may discard a Danmaku card to play this on behalf of another player.
+Set:Base
+Artist:Mieharu
+@@@
+Card name:Grimoire
+Deck:Main deck
+Season:Summer
+Point value:3
+Card types:Action
+Text:Draw two cards.
+Set:Base
+Artist:shiyun
+@@@
+Card name:Kourindou
+Title:Antique Shop
+Deck:Main deck
+Season:Winter
+Point value:3
+Card types:Action
+Text:As you play this card, you may discard any number of cards from your hand. Draw cards equal to the number of cards discarded this way plus one.
+Set:Base
+Artist:Pinlin
+@@@
+Card name:Laser Shot
+Deck:Main deck
+Season:Summer
+Point value:4
+Card types:Action, Danmaku
+Text:Attack a player, regardless of range. This attack cannot be avoided.
+
+By default you can only play one Danmaku card per round.
+Set:Base
+Artist:Freeze-Ex
+@@@
+Card name:Last Word
+Deck:Main deck
+Season:Summer
+Point value:3
+Card types:Action, Danmaku
+Text:Attack all other players, regardless of range.
+
+By default you can only play one Danmaku card per round.
+Set:Base
+Artist:Pokey
+@@@
+Card name:Master Plan
+Deck:Main deck
+Season:Autumn
+Point value:3
+Card types:Action
+Text:Resolve the current incident.
+
+Then, look at the top three cards of any deck and place them on the top or bottom of that deck in any order.
+Set:Base
+Artist:Akane
+@@@
+Card name:Melee
+Deck:Main deck
+Season:Winter
+Point value:2
+Card types:Action, Danmaku
+Text:Attack a player, regardless of range.
+
+This does not count against your Danmaku card limit.
+
+That player may then discard a Danmaku card to copy this effect.
+Set:Base
+Artist:Mieharu
+@@@
+Card name:Mini-Hakkero
+Deck:Main deck
+Season:Summer
+Point value:5
+Card types:Item, Artifact
+Text:You have +3 range.
+
+You may discard two cards to activate your Spell Card.
+
+You can only activate one Spell Card per round. You can only have one Artifact card in play at a time.
+Set:Base
+Artist:Kazu
+@@@
+Card name:Party
+Deck:Main deck
+Season:Spring
+Point value:3
+Card types:Action
+Text:Look at the cards from the top of the deck equal to the number of active players.
+
+Then, for each active player, choose one card drawn this way and place it in their hand.
+
+Then draw a card.
+Set:Base
+Artist:M. Beatriz García
+@@@
+Card name:Power
+Deck:Main deck
+Season:Spring
+Point value:2
+Card types:Item, Powerup
+Text:You have +1 Range.
+
+You can play one additional Danmaku card each round.
+
+Discard one Powerup card whenever you lose life to an attack.
+Set:Base
+Artist:M. Beatriz García
+@@@
+Card name:Seal Away
+Deck:Main deck
+Season:Spring
+Point value:2
+Card types:Action, Danmaku
+Text:Choose a player. You may force that player to discard an Item card of your choice that player controls.
+
+Then, attack that player if they are in range.
+
+By default you can only play one Danmaku card per round.
+Set:Base
+Artist:Ibuki Notsu
+@@@
+Card name:Shoot
+Deck:Main deck
+Season:Spring
+Point value:1
+Card types:Action, Danmaku
+Text:Attack a player in range.
+
+You may discard Danmaku cards to give this attack +1 Range for each card discarded.
+
+By default you can only play one Danmaku card per round.
+Set:Base
+Artist:Gina Chacón
+@@@
+Card name:Sorcerer’s Sutra Scroll
+Deck:Main deck
+Season:Autumn
+Point value:5
+Card types:Item, Artifact
+Text:When you play this card, draw a card.
+
+Draw an extra card during your draw step. Your max hand size is 7.
+
+You can only have one Artifact card in play at a time.
+Set:Base
+Artist:Inma R.
+@@@
+Card name:Spiritual Attack
+Deck:Main deck
+Season:Spring
+Point value:3
+Card types:Invocation
+Text:Activate your Spell Card.
+
+You can only activate one Spell Card per round.
+Set:Base
+Artist:Ibuki Notsu
+@@@
+Card name:Stopwatch
+Deck:Main deck
+Season:Winter
+Point value:5
+Card types:Item, Artifact
+Text:You have +1 Distance.
+
+You can play two additional Danmaku cards each round.
+
+You can only have one Artifact card in play at a time.
+Set:Base
+Artist:u_u_zan
+@@@
+Card name:Supernatural Border
+Deck:Main deck
+Season:Spring
+Point value:3
+Card types:Item, Defense, Powerup
+Text:When you are attacked, flip the top card of the deck. If it is a Spring or Summer card, you avoid that attack.
+
+You can only have one Defense card in play at a time. Discard one Powerup card whenever you lose life to an attack.
+Set:Base
+Artist:Hitsu
+@@@
+Card name:Tempest
+Deck:Main deck
+Season:Summer
+Point value:3
+Card types:Action
+Text:All players discard their hand and draw three cards.
+Set:Base
+Artist:Ibuki Notsu
+@@@
+Card name:Voile
+Title:The Magic Library
+Deck:Main deck
+Season:Autumn
+Point value:5
+Card types:Action
+Text:Draw three cards, then place a card from your hand on top of the deck.
+Set:Base
+Artist:Kazu
+@@@
