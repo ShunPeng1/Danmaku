@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e973ad77354f22a5cea5a6ea102db1, type: 3}
   m_Name: RoleScriptableData
   m_EditorClassIdentifier: 
-  RoleName: 
+  RoleName: ExBossDanmakuRole
   MinPlayerCountPrerequisite: 0
   InitialRoleEnum: 0
