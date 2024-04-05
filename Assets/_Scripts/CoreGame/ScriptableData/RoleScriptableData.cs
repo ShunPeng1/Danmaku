@@ -11,12 +11,14 @@ namespace _Scripts.CoreGame.Configurations
     [CreateAssetMenu(fileName = "RoleScriptableData", menuName = "ScriptableData/RoleScriptableData")]
     public class RoleScriptableData : ScriptableObject
     {
-        [DanmakuRoleClass]
+        [DanmakuRoleProperty]
         public string RoleName;
         public int MinPlayerCountPrerequisite;
         public DanmakuRoleEnum InitialRoleEnum;
-        
-    }
 
-    
+        public void OnValidate()
+        {
+            Debug.Log(RoleName);
+        }
+    }
 }

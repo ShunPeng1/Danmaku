@@ -12,27 +12,27 @@ namespace _Scripts.CoreGame.InteractionSystems.Setups
 
             switch (roleName)
             {
-                case "DanmakuRole":
+                case "HeroineDanmakuRole":
                     return new HeroineDanmakuRole();
-                case "DanmakuRole2":
+                case "StageBossDanmakuRole":
                     return new StageBossDanmakuRole();
-                case "DanmakuRole3":
+                case "PartnerDanmakuRole":
                     return new PartnerDanmakuRole();
-                case "DanmakuRole4":
+                case "ExBossDanmakuRole":
                     return new ExBossDanmakuRole();
-                case "DanmakuRole5":
+                case "PhantasmBossDanmakuRole":
                     return new PhantasmBossDanmakuRole();
-                case "DanmakuRole6":
+                case "FinalBossDanmakuRole":
                     return new FinalBossDanmakuRole();
-                case "DanmakuRole7":
+                case "ChallengerDanmakuRole":
                     return new ChallengerDanmakuRole();
-                case "DanmakuRole8":
+                case "AntiHeroineDanmakuRole":
                     return new AntiHeroineDanmakuRole();
-                case "DanmakuRole9":
+                case "ExMidBossDanmakuRole":
                     return new ExMidBossDanmakuRole();
-                case "DanmakuRole10":
+                case "OneTruePartnerDanmakuRole":
                     return new OneTruePartnerDanmakuRole();
-                case "DanmakuRole11":
+                case "RivalDanmakuRole":
                     return new RivalDanmakuRole();
                 default:
                     Debug.LogError("Role not found: " + roleName);
