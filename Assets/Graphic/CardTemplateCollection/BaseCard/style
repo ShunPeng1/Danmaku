@@ -1,0 +1,589 @@
+﻿mse version: 2.0.0
+game: danmaku
+short name: Basic Card
+full name: For the main deck
+icon: normal_thumb.png
+installer group: danmaku/normal cards/basic
+position hint: 001
+
+version: 2016-03-04
+depends on:
+	package: danmaku.mse-game
+	version: 2016-03-04
+depends on:
+	package: danmaku-symbols.mse-symbol-font
+	version: 2016-03-04
+
+card width: 563
+card height: 789
+card dpi: 210
+# Author: Hrusa
+############################################################## Card fields
+card style:
+	background:
+		left:	0
+		top:	0
+		width:	563
+		height:	789
+		z index: -2
+		render style: image
+		choice images:
+			normal: normal.png
+	############################# Name line
+	name:
+		left: 107
+		top : { if card.subname=="" then 29 else 40 }
+		width: 380
+		height: 64
+		alignment: "center" + { if card.subname=="" then "middle" else "bottom" } + "shrink-overflow"
+		padding left: 5
+		padding right: 5
+		allow formating: false
+		z index: 1
+		font:
+			name: Linux Biolinum
+			size: { if card.subname=="" then 42 else 38 }
+			color: rgb(0,0,0)
+	############################# Subname line
+	subname:
+		left: 107
+		top : 29
+		width: 380
+		height: 20
+		alignment: middle center shrink-overflow
+		padding bottom: 0
+		z index: 1
+		font:
+			name: Teen
+			size: 11
+			color: rgb(0,0,0)
+	############################# Image
+	image:
+		left:	38
+		top:	101
+		width:	489
+		height:	366
+		mask: mask.png
+		z index: 1
+	############################# rule text1
+	text 1:
+		left: 55
+		top: 482
+		width: 447
+		height: 245
+		font:
+			name: MPlantin
+			italic name: MPlantin-Italic
+			size: 18
+			scale down to: 6
+			color: rgb(0,0,0)
+		symbol font:
+			name: danmaku-symbols
+			size: 18
+		alignment: middle left
+		z index: 2
+		mask: textboxmask.png
+		padding left:   {if(card.l1_icon_layout=="0") then "8" else "30"}
+		padding top:    2
+		padding right:  {if(card.r1_icon_layout=="0") then "0" else "15"}
+		padding bottom: 2
+		line height soft: 1.1
+		line height hard: 1.5
+		line height line: 1.5
+	reminder choice 1:
+		z index: 4
+		render style: hidden
+		left: 256
+		top: 680
+		width: 50
+		height: 50
+		choice images:
+			one danmaku per round: /danmaku.mse-game/cardicon/danmaku.png
+			one spell card per round: /danmaku.mse-game/cardicon/spell.png
+			one defense in play: /danmaku.mse-game/cardicon/defense.png
+			one artifact in play: /danmaku.mse-game/cardicon/artifact.png
+			discard power on hit: /danmaku.mse-game/cardicon/powerup.png
+	############################# points
+	points:
+		z index: 4
+		left:	501
+		top:	25
+		width:	34
+		height:	42
+		alignment: center middle shrink-overflow
+		font:
+			name: Times New Roman
+			size: 30
+			color: rgb(255,255,255)
+	############################# Card sorting / numbering
+	card number:
+		left: 348
+		top : 735
+		width: 109
+		height: 17
+		alignment: right middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: regular
+			size: 10
+			color: rgb(255,255,255)
+	############################# Copyright stuff
+	illustrator:
+		left: 48
+		top : 735
+		width: 300
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: bold
+			size: 10
+			color: rgb(255,255,255)
+	copyright:
+		left: 48
+		top : 750
+		width: 170
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: normal
+			size: 10
+			color: rgb(255,255,255)
+############################ Set Logo
+extra card field:
+	type: choice
+	name: setlogo
+	icon: stats/rarity.png
+	position hint: 100
+	choice: base
+	editable: false
+	card list visible: true
+	card list column: 2
+	description: The symbol representing the logo of the set. To edit the symbol switch to the 'set info' tab
+	choice colors:
+		fill only: rgb(109,62,39)
+		outline only: rgb(109,62,39)
+		both: rgb(109,62,39)
+extra card style:
+	setlogo:
+		left:	460
+		top:	685
+		width:	85
+		height:	85
+		z index: 2
+		render style: image
+		mask: logo_mask.png
+		alignment: middle right
+		choice images:
+			base: 
+				{ setsymbolgen() }
+############################ Action Icon Selector
+card style:
+	l1 icon layout:
+		left:	0
+		top:	414
+		width:	73
+		height:	319
+		render style: hidden
+		popup style: in place
+		z index: 1
+		choice images:
+			0: /danmaku.mse-game/cardicon/ico_0.png
+			1: /danmaku.mse-game/cardicon/ico_1.png
+			2: /danmaku.mse-game/cardicon/ico_2.png
+			3: /danmaku.mse-game/cardicon/ico_3.png
+			4: /danmaku.mse-game/cardicon/ico_4.png
+############################ Secondary Icon Selector
+card style:
+	r1 icon layout:
+		left:	490
+		top:	414
+		width:	73
+		height:	319
+		render style: hidden
+		popup style: in place
+		z index: 1
+		choice images:
+			0: /danmaku.mse-game/cardicon/ico_0.png
+			1: /danmaku.mse-game/cardicon/ico_1.png
+			2: /danmaku.mse-game/cardicon/ico_2.png
+			3: /danmaku.mse-game/cardicon/ico_3.png
+############################ Action Icon 1
+card style:
+	Lico1:
+		left:	17
+		top:	{	if card.l1_icon_layout=="1" then 568 else if	card.l1_icon_layout=="2" then 531 else if	card.l1_icon_layout=="3" then 493 else if	card.l1_icon_layout=="4" then 476 else -400 }
+		width:	64
+		height:	64
+		visible: { if card.l1_icon_layout=="empty" then "false" else "true" }
+		z index: 2
+		render style: image
+		choice images:
+			null: /danmaku.mse-game/cardicon/filler.png
+			action: /danmaku.mse-game/cardicon/action.png
+			reaction: /danmaku.mse-game/cardicon/reaction.png
+			danmaku: /danmaku.mse-game/cardicon/danmaku.png
+			graze: /danmaku.mse-game/cardicon/graze.png
+			powerup: /danmaku.mse-game/cardicon/powerup.png
+			item: /danmaku.mse-game/cardicon/item.png
+			extended incantation: /danmaku.mse-game/cardicon/incantation.png
+			extended defense: /danmaku.mse-game/cardicon/defense.png
+			extended artifact: /danmaku.mse-game/cardicon/artifact.png
+			extended heart: /danmaku.mse-game/cardicon/heart.png
+			seasons spring: /danmaku.mse-game/cardicon/smally.png
+			seasons summer: /danmaku.mse-game/cardicon/smalls.png
+			seasons autumn: /danmaku.mse-game/cardicon/smallf.png
+			seasons winter: /danmaku.mse-game/cardicon/smallw.png
+			character sheet spell card: /danmaku.mse-game/cardicon/spell.png
+			character sheet ability: /danmaku.mse-game/cardicon/ability.png
+			bonus cog: /danmaku.mse-game/cardicon/cog.png
+			bonus yinyang: /danmaku.mse-game/cardicon/yinyang.png
+			bonus point: /danmaku.mse-game/cardicon/point.png
+			bonus blank: /danmaku.mse-game/cardicon/inblank.png
+extra card field:
+	type: choice
+	name: Lico1base
+	choice: normal
+	editable: false
+extra card style:
+	Lico1base:
+		left:	17
+		top:	{	if card.l1_icon_layout=="1" then "568" else if	card.l1_icon_layout=="2" then "531" else if	card.l1_icon_layout=="3" then "493" else if	card.l1_icon_layout=="4" then "476" else "-400" }
+		width:	64
+		height:	64
+		render style: image
+		visible: { if card.l1_icon_layout=="empty" then "false" else "true" }
+		image: { if card.Lico1=="null" then "/danmaku.mse-game/cardicon/filler.png" else "/danmaku.mse-game/cardicon/blank.png" }
+extra card field:
+	type: choice
+	name: PointIcoBase
+	choice: normal
+	editable: false
+extra card style:
+	PointIcoBase:
+		left:	486
+		top:	15
+		width:	65
+		height:	89
+		z index: 1
+		render style: image
+		image: /danmaku.mse-game/cardnum/num_b1.png
+############################ Action Icon 2
+card style:
+	Lico2:
+		left:	17
+		top:	{	if card.l1_icon_layout=="2" then "606" else if	card.l1_icon_layout=="3" then "568" else if	card.l1_icon_layout=="4" then "538" else "-400" }
+		width: 	64
+		height:	64
+		visible: { if card.l1_icon_layout=="empty" or card.l1_icon_layout=="1" then "false" else "true" }
+		z index: 2
+		render style: image
+		#mask:
+		#	{ if(card.Lico2=="set set symbol") then "seticonmask.png" }
+		choice images:
+			null: /danmaku.mse-game/cardicon/filler.png
+			action: /danmaku.mse-game/cardicon/action.png
+			reaction: /danmaku.mse-game/cardicon/reaction.png
+			danmaku: /danmaku.mse-game/cardicon/danmaku.png
+			graze: /danmaku.mse-game/cardicon/graze.png
+			powerup: /danmaku.mse-game/cardicon/powerup.png
+			item: /danmaku.mse-game/cardicon/item.png
+			extended incantation: /danmaku.mse-game/cardicon/incantation.png
+			extended defense: /danmaku.mse-game/cardicon/defense.png
+			extended artifact: /danmaku.mse-game/cardicon/artifact.png
+			extended heart: /danmaku.mse-game/cardicon/heart.png
+			seasons spring: /danmaku.mse-game/cardicon/smally.png
+			seasons summer: /danmaku.mse-game/cardicon/smalls.png
+			seasons autumn: /danmaku.mse-game/cardicon/smallf.png
+			seasons winter: /danmaku.mse-game/cardicon/smallw.png
+			character sheet spell card: /danmaku.mse-game/cardicon/spell.png
+			character sheet ability: /danmaku.mse-game/cardicon/ability.png
+			bonus cog: /danmaku.mse-game/cardicon/cog.png
+			bonus yinyang: /danmaku.mse-game/cardicon/yinyang.png
+			bonus point: /danmaku.mse-game/cardicon/point.png
+			bonus blank: /danmaku.mse-game/cardicon/inblank.png
+extra card field:
+	type: choice
+	name: Lico2base
+	choice: normal
+	editable: false
+extra card style:
+	Lico2base:
+		left:	17
+		top:	{	if card.l1_icon_layout=="2" then "606" else if	card.l1_icon_layout=="3" then "568" else if	card.l1_icon_layout=="4" then "538" else "-400" }
+		width:	64
+		height:	64
+		render style: image
+		visible: { if card.l1_icon_layout=="empty" or card.l1_icon_layout=="1" then "false" else "true" }
+		image: { if card.Lico2=="null" then "/danmaku.mse-game/cardicon/filler.png" else "/danmaku.mse-game/cardicon/blank.png" }
+############################ Action Icon 3
+card style:
+	Lico3:
+		left:	17
+		top:	{	if card.l1_icon_layout=="3" then "643" else if	card.l1_icon_layout=="4" then "600" else "-400" }
+		width:	64
+		height:	64
+		visible: { if card.l1_icon_layout=="empty" or card.l1_icon_layout=="1" or card.l1_icon_layout=="2" then "false" else "true" }
+		z index: 2
+		render style: image
+		choice images:
+			null: /danmaku.mse-game/cardicon/filler.png
+			action: /danmaku.mse-game/cardicon/action.png
+			reaction: /danmaku.mse-game/cardicon/reaction.png
+			danmaku: /danmaku.mse-game/cardicon/danmaku.png
+			graze: /danmaku.mse-game/cardicon/graze.png
+			powerup: /danmaku.mse-game/cardicon/powerup.png
+			item: /danmaku.mse-game/cardicon/item.png
+			extended incantation: /danmaku.mse-game/cardicon/incantation.png
+			extended defense: /danmaku.mse-game/cardicon/defense.png
+			extended artifact: /danmaku.mse-game/cardicon/artifact.png
+			extended heart: /danmaku.mse-game/cardicon/heart.png
+			seasons spring: /danmaku.mse-game/cardicon/smally.png
+			seasons summer: /danmaku.mse-game/cardicon/smalls.png
+			seasons autumn: /danmaku.mse-game/cardicon/smallf.png
+			seasons winter: /danmaku.mse-game/cardicon/smallw.png
+			character sheet spell card: /danmaku.mse-game/cardicon/spell.png
+			character sheet ability: /danmaku.mse-game/cardicon/ability.png
+			bonus cog: /danmaku.mse-game/cardicon/cog.png
+			bonus yinyang: /danmaku.mse-game/cardicon/yinyang.png
+			bonus point: /danmaku.mse-game/cardicon/point.png
+			bonus blank: /danmaku.mse-game/cardicon/inblank.png
+extra card field:
+	type: choice
+	name: Lico3base
+	choice: normal
+	editable: false
+extra card style:
+	Lico3base:
+		left:	17
+		top:	{	if card.l1_icon_layout=="3" then "643" else if	card.l1_icon_layout=="4" then "600" else "-400" }
+		width:	64
+		height:	64
+		render style: image
+		visible: { if card.l1_icon_layout=="empty" or card.l1_icon_layout=="1" or card.l1_icon_layout=="2" then "false" else "true" }
+		image: { if card.Lico3=="null" then "/danmaku.mse-game/cardicon/filler.png" else "/danmaku.mse-game/cardicon/blank.png" }
+############################ Action Icon 4
+card style:
+	Lico4:
+		left:	17
+		top:	{	if card.l1_icon_layout=="4" then "662" else "-400" }
+		width:	64
+		height:	64
+		visible: { if card.l1_icon_layout=="empty" or card.l1_icon_layout=="1" or card.l1_icon_layout=="2" or card.l1_icon_layout=="3" then "false" else "true" }
+		z index: 2
+		render style: image
+		choice images:
+			null: /danmaku.mse-game/cardicon/filler.png
+			action: /danmaku.mse-game/cardicon/action.png
+			reaction: /danmaku.mse-game/cardicon/reaction.png
+			danmaku: /danmaku.mse-game/cardicon/danmaku.png
+			graze: /danmaku.mse-game/cardicon/graze.png
+			powerup: /danmaku.mse-game/cardicon/powerup.png
+			item: /danmaku.mse-game/cardicon/item.png
+			extended incantation: /danmaku.mse-game/cardicon/incantation.png
+			extended defense: /danmaku.mse-game/cardicon/defense.png
+			extended artifact: /danmaku.mse-game/cardicon/artifact.png
+			extended heart: /danmaku.mse-game/cardicon/heart.png
+			seasons spring: /danmaku.mse-game/cardicon/smally.png
+			seasons summer: /danmaku.mse-game/cardicon/smalls.png
+			seasons autumn: /danmaku.mse-game/cardicon/smallf.png
+			seasons winter: /danmaku.mse-game/cardicon/smallw.png
+			character sheet spell card: /danmaku.mse-game/cardicon/spell.png
+			character sheet ability: /danmaku.mse-game/cardicon/ability.png
+			bonus cog: /danmaku.mse-game/cardicon/cog.png
+			bonus yinyang: /danmaku.mse-game/cardicon/yinyang.png
+			bonus point: /danmaku.mse-game/cardicon/point.png
+			bonus blank: /danmaku.mse-game/cardicon/inblank.png
+extra card field:
+	type: choice
+	name: Lico4base
+	choice: normal
+	editable: false
+extra card style:
+	Lico4base:
+		left:	17
+		top:	{	if card.l1_icon_layout=="4" then "662" else "-400" }
+		width:	64
+		height:	64
+		render style: image
+		visible: { if card.l1_icon_layout=="empty" or card.l1_icon_layout=="1" or card.l1_icon_layout=="2" or card.l1_icon_layout=="3" then "false" else "true" }
+		image: { if card.Lico4=="null" then "/danmaku.mse-game/cardicon/filler.png" else "/danmaku.mse-game/cardicon/blank.png" }
+		
+############################ R Action Icon 1
+card style:
+	Rico1:
+		left:	487
+		top:	{	-0+ if card.r1_icon_layout=="1" then 548 else if	card.r1_icon_layout=="2" then (531-15) else if	card.r1_icon_layout=="4" then 493 else if	card.r1_icon_layout=="3" then 486 else -400 }
+		width:	64
+		height:	64
+		visible: { if card.r1_icon_layout=="empty" then "false" else "true" }
+		z index: 2
+		render style: image
+		choice images:
+			null: /danmaku.mse-game/cardicon/filler.png
+			action: /danmaku.mse-game/cardicon/action.png
+			reaction: /danmaku.mse-game/cardicon/reaction.png
+			danmaku: /danmaku.mse-game/cardicon/danmaku.png
+			graze: /danmaku.mse-game/cardicon/graze.png
+			powerup: /danmaku.mse-game/cardicon/powerup.png
+			item: /danmaku.mse-game/cardicon/item.png
+			extended incantation: /danmaku.mse-game/cardicon/incantation.png
+			extended defense: /danmaku.mse-game/cardicon/defense.png
+			extended artifact: /danmaku.mse-game/cardicon/artifact.png
+			extended heart: /danmaku.mse-game/cardicon/heart.png
+			seasons spring: /danmaku.mse-game/cardicon/smally.png
+			seasons summer: /danmaku.mse-game/cardicon/smalls.png
+			seasons autumn: /danmaku.mse-game/cardicon/smallf.png
+			seasons winter: /danmaku.mse-game/cardicon/smallw.png
+			character sheet spell card: /danmaku.mse-game/cardicon/spell.png
+			character sheet ability: /danmaku.mse-game/cardicon/ability.png
+			bonus cog: /danmaku.mse-game/cardicon/cog.png
+			bonus yinyang: /danmaku.mse-game/cardicon/yinyang.png
+			bonus point: /danmaku.mse-game/cardicon/point.png
+			bonus blank: /danmaku.mse-game/cardicon/inblank.png
+extra card field:
+	type: choice
+	name: Rico1base
+	choice: normal
+	editable: false
+extra card style:
+	Rico1base:
+		left:	487
+		top:	{	-0+ if card.r1_icon_layout=="1" then 548 else if	card.r1_icon_layout=="2" then (531-15) else if	card.r1_icon_layout=="4" then 493 else if	card.r1_icon_layout=="3" then 486 else -400 }
+		width:	64
+		height:	64
+		render style: image
+		visible: { if card.r1_icon_layout=="empty" then "false" else "true" }
+		image: { if card.Rico1=="null" then "/danmaku.mse-game/cardicon/filler.png" else "/danmaku.mse-game/cardicon/rblank.png" }
+############################ R Action Icon 2
+card style:
+	Rico2:
+		left:	487
+		top:	{	if card.r1_icon_layout=="2" then (606-15) else if	card.r1_icon_layout=="4" then "568" else if	card.r1_icon_layout=="3" then "548" else "-400" }
+		width:	64
+		height:	64
+		visible: { if card.r1_icon_layout=="empty" or card.r1_icon_layout=="1" then "false" else "true" }
+		z index: 2
+		render style: image
+		choice images:
+			null: /danmaku.mse-game/cardicon/filler.png
+			action: /danmaku.mse-game/cardicon/action.png
+			reaction: /danmaku.mse-game/cardicon/reaction.png
+			danmaku: /danmaku.mse-game/cardicon/danmaku.png
+			graze: /danmaku.mse-game/cardicon/graze.png
+			powerup: /danmaku.mse-game/cardicon/powerup.png
+			item: /danmaku.mse-game/cardicon/item.png
+			extended incantation: /danmaku.mse-game/cardicon/incantation.png
+			extended defense: /danmaku.mse-game/cardicon/defense.png
+			extended artifact: /danmaku.mse-game/cardicon/artifact.png
+			extended heart: /danmaku.mse-game/cardicon/heart.png
+			seasons spring: /danmaku.mse-game/cardicon/smally.png
+			seasons summer: /danmaku.mse-game/cardicon/smalls.png
+			seasons autumn: /danmaku.mse-game/cardicon/smallf.png
+			seasons winter: /danmaku.mse-game/cardicon/smallw.png
+			character sheet spell card: /danmaku.mse-game/cardicon/spell.png
+			character sheet ability: /danmaku.mse-game/cardicon/ability.png
+			bonus cog: /danmaku.mse-game/cardicon/cog.png
+			bonus yinyang: /danmaku.mse-game/cardicon/yinyang.png
+			bonus point: /danmaku.mse-game/cardicon/point.png
+			bonus blank: /danmaku.mse-game/cardicon/inblank.png
+extra card field:
+	type: choice
+	name: Rico2base
+	choice: normal
+	editable: false
+extra card style:
+	Rico2base:
+		left:	487
+		top:	{	if card.r1_icon_layout=="2" then (606-15) else if	card.r1_icon_layout=="4" then "568" else if	card.r1_icon_layout=="3" then "548" else "-400" }
+		width:	64
+		height:	64
+		render style: image
+		visible: { if card.r1_icon_layout=="empty" or card.r1_icon_layout=="1" then "false" else "true" }
+		image: { if card.Rico2=="null" then "/danmaku.mse-game/cardicon/filler.png" else "/danmaku.mse-game/cardicon/rblank.png" }
+############################ R Action Icon 3
+card style:
+	Rico3:
+		left:	487
+		top:	{	if card.r1_icon_layout=="4" then "643" else if	card.r1_icon_layout=="3" then "610" else "-400" }
+		width:	64
+		height:	64
+		visible: { if card.r1_icon_layout=="empty" or card.r1_icon_layout=="1" or card.r1_icon_layout=="2" then "false" else "true" }
+		z index: 2
+		render style: image
+		choice images:
+			null: /danmaku.mse-game/cardicon/filler.png
+			action: /danmaku.mse-game/cardicon/action.png
+			reaction: /danmaku.mse-game/cardicon/reaction.png
+			danmaku: /danmaku.mse-game/cardicon/danmaku.png
+			graze: /danmaku.mse-game/cardicon/graze.png
+			powerup: /danmaku.mse-game/cardicon/powerup.png
+			item: /danmaku.mse-game/cardicon/item.png
+			extended incantation: /danmaku.mse-game/cardicon/incantation.png
+			extended defense: /danmaku.mse-game/cardicon/defense.png
+			extended artifact: /danmaku.mse-game/cardicon/artifact.png
+			extended heart: /danmaku.mse-game/cardicon/heart.png
+			seasons spring: /danmaku.mse-game/cardicon/smally.png
+			seasons summer: /danmaku.mse-game/cardicon/smalls.png
+			seasons autumn: /danmaku.mse-game/cardicon/smallf.png
+			seasons winter: /danmaku.mse-game/cardicon/smallw.png
+			character sheet spell card: /danmaku.mse-game/cardicon/spell.png
+			character sheet ability: /danmaku.mse-game/cardicon/ability.png
+			bonus cog: /danmaku.mse-game/cardicon/cog.png
+			bonus yinyang: /danmaku.mse-game/cardicon/yinyang.png
+			bonus point: /danmaku.mse-game/cardicon/point.png
+			bonus blank: /danmaku.mse-game/cardicon/inblank.png
+extra card field:
+	type: choice
+	name: Rico3base
+	choice: normal
+	editable: false
+extra card style:
+	Rico3base:
+		left:	487
+		top:	{	if card.r1_icon_layout=="4" then "643" else if	card.r1_icon_layout=="3" then "610" else "-400" }
+		width:	64
+		height:	64
+		render style: image
+		visible: { if card.r1_icon_layout=="empty" or card.r1_icon_layout=="1" or card.r1_icon_layout=="2" then "false" else "true" }
+		image: { if card.Rico3=="null" then "/danmaku.mse-game/cardicon/filler.png" else "/danmaku.mse-game/cardicon/rblank.png" }
+############################################################## Season
+card style:
+	season:
+		left:	15
+		top:	16
+		width:	91
+		height:	91
+		z index: 2
+		render style: image
+		choice images:
+			Spring: /danmaku.mse-game/cardicon/spring.png
+			Summer: /danmaku.mse-game/cardicon/summer.png
+			Autumn: /danmaku.mse-game/cardicon/autumn.png
+			Winter: /danmaku.mse-game/cardicon/winter.png
+			
+############################################################## Set logo
+extra card field:
+	type: text
+	name: touhou credit
+	editable: false
+	default: "Touhou Project © Team Shanghai Alice"
+	
+extra card style:
+	touhou credit:
+		top: 750
+		left: 225
+		width: 235
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: normal
+			size: 10
+			color: rgb(255,255,255)
+					

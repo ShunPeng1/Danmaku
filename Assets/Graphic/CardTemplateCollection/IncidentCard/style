@@ -1,0 +1,211 @@
+﻿mse version: 2.0.0
+game: danmaku
+short name: Incident
+full name: Effect for all players
+icon: incident_thumb.png
+installer group: danmaku/normal cards/incident
+position hint: 003
+
+version: 2016-03-04
+depends on:
+	package: danmaku.mse-game
+	version: 2016-03-04
+depends on:
+	package: danmaku-symbols.mse-symbol-font
+	version: 2016-03-04
+
+card width: 563
+card height: 789
+card dpi: 210
+# Author: Hrusa
+############################################################## Card fields
+card style:
+	background:
+		left:	0
+		top:	0
+		width:	563
+		height:	789
+		z index: -2
+		render style: image
+		choice images:
+			normal: incident.png
+	############################# Name line
+	name:
+		left: 107
+		top : { if card.subname=="" then 29 else 40 }
+		width: 417
+		height: 64
+		alignment: "center" + { if card.subname=="" then "middle" else "bottom" } + "shrink-overflow"
+		padding bottom: 0
+		padding right: 5
+		padding left: 5
+		allow formating: false
+		z index: 1
+		font:
+			name: Linux Biolinum
+			size: { if card.subname=="" then 44 else 40 }
+			weight: normal
+			color: rgb(0,0,0)
+	############################# Subname line
+	subname:
+		left: 107
+		top : 29
+		width: 417
+		height: 20
+		alignment: middle center shrink-overflow
+		padding bottom: 0
+		padding right: 5
+		z index: 1
+		font:
+			name: Teen
+			size: 11
+			color: rgb(0,0,0)
+	############################# Image
+	image:
+		left:	38
+		top:	101
+		width:	489
+		height:	366
+		mask: maskincident.png
+		z index: 1
+	############################# rule text1
+	rule text 1:
+		left: 55
+		top: 482
+		width: 447
+		height: 245
+		font:
+			name: MPlantin
+			italic name: MPlantin-Italic
+			size: 18
+			scale down to: 6
+			color: rgb(0,0,0)
+		symbol font:
+			name: danmaku-symbols
+			size: 18
+		alignment: middle left
+		mask: textboxmask.png
+		z index: 2
+		padding left:   8
+		padding top:    2
+		padding right:  0
+		padding bottom: 2
+		line height soft: 1.1
+		line height hard: 1.5
+		line height line: 1.5
+	############################# Card sorting / numbering
+	card number:
+		left: 348
+		top : 735
+		width: 109
+		height: 17
+		alignment: right middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: regular
+			size: 10
+			color: rgb(255,255,255)
+	############################# Copyright stuff
+	illustrator:
+		left: 48
+		top : 735
+		width: 300
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: bold
+			size: 10
+			color: rgb(255,255,255)
+	copyright:
+		left: 48
+		top : 750
+		width: 170
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: normal
+			size: 10
+			color: rgb(255,255,255)
+############################ Set Logo
+extra card field:
+	type: choice
+	name: setlogo
+	icon: stats/rarity.png
+	position hint: 100
+	choice: base
+	editable: false
+	card list visible: true
+	card list column: 2
+	description: The symbol representing the logo of the set. To edit the symbol switch to the 'set info' tab
+	choice colors:
+		fill only: rgb(109,62,39)
+		outline only: rgb(109,62,39)
+		both: rgb(109,62,39)
+#extra card field:
+#	type: choice
+#	name: setlogo
+#	choice: rika
+#	choice: core
+extra card style:
+	setlogo:
+		left:	460
+		top:	685
+		width:	85
+		height:	85
+		z index: 2
+		render style: image
+		mask: logo_mask.png
+		alignment: middle right
+		choice images:
+			base:
+				{ setsymbolgen() }
+############################################################## Season
+card style:
+	season:
+		left:	15
+		top:	16
+		width:	91
+		height:	91
+		z index: 2
+		render style: image
+		choice images:
+			Spring: /danmaku.mse-game/cardicon/spring.png
+			Summer: /danmaku.mse-game/cardicon/summer.png
+			Autumn: /danmaku.mse-game/cardicon/autumn.png
+			Winter: /danmaku.mse-game/cardicon/winter.png
+############################################################## Set info fields
+set info style:
+	symbol:
+		variation:
+			name: normal
+			border radius: 0.10
+			fill type: solid
+			fill color:   rgb(255,255,255)
+			border color: rgb(0,0,0)
+			
+############################################################## Set logo
+extra card field:
+	type: text
+	name: touhou credit
+	editable: false
+	default: "Touhou Project © Team Shanghai Alice"
+	
+extra card style:
+	touhou credit:
+		top: 750
+		left: 225
+		width: 235
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: normal
+			size: 10
+			color: rgb(255,255,255)
+					

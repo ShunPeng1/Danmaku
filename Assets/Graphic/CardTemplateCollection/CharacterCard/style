@@ -1,0 +1,483 @@
+﻿mse version: 2.0.0
+game: danmaku
+short name: Character Sheet
+full name: Character Profile Sheet
+icon: char_thumb.png
+installer group: danmaku/character cards/character card
+position hint: 007
+
+version: 2016-03-04
+depends on:
+	package: danmaku.mse-game
+	version: 2016-03-04
+depends on:
+	package: danmaku-symbols.mse-symbol-font
+	version: 2016-03-04
+
+card width: 1050
+card height: 735
+card dpi: 210
+# Author: Hrusa
+
+############################################################## Card fields
+card style:
+	background:
+		left:	0
+		top:	0
+		width:	1050
+		height:	735
+		z index: -2
+		render style: image
+		choice images:
+			normal: character.png
+	############################# Name line
+	name:
+		left: 522
+		top : 66
+		width: 484
+		height: 61
+		alignment: center middle shrink-overflow
+		padding bottom: 0
+		padding left: 6
+		padding right: 6
+		z index: 1
+		font:
+			name: Linux Biolinum
+			size: 50
+			color: rgb(0,0,0)
+	############################# subname
+	subname:
+		z index: 4
+		left:	530
+		top:	42
+		width:	470
+		height:	24
+		alignment: center middle shrink-overflow
+		font:
+			name: Linux Biolinum
+			size: 18
+			color: rgb(0,0,0)
+	############################# Image
+	image:
+		left:	43
+		top:	37
+		width:	468
+		height:	661
+		mask: mask.png
+		z index: 1
+	############################# rule text1
+	rule text 1:
+		left: 522
+		top: 136
+		width: 473
+		height: 222
+		font:
+			name: MPlantin
+			italic name: MPlantin-Italic
+			size: 19
+			scale down to: 6
+			color: rgb(0,0,0)
+		symbol font:
+			name: danmaku-symbols
+			size: 19
+		alignment: middle left
+		z index: 2
+		padding left:   6
+		padding top:    2
+		padding right:  { if(card.l2a_icon_layout == "0") then 10 else 40 }
+		padding bottom: 2
+		line height soft: 1.1
+		line height hard: 1.5
+		line height line: 1.5
+		
+	############################ SpellCard rule text2
+extra card field:
+	type: text
+	name: spelltitle
+extra card style:
+	spelltitle:
+		left: 522
+		top : 390
+		width: 483
+		height: 32
+		alignment: center middle shrink-overflow
+		padding bottom: 0
+		padding left: 4
+		padding right: 4
+		z index: 1
+		font:
+			name: Linux Biolinum
+			size: 26
+			weight: normal
+			color: rgb(0,0,0)
+extra card field:
+	type: text
+	name: spellsubtitle
+extra card style:
+	spellsubtitle:
+		left: 522
+		top : 368
+		width: 483
+		height: 23
+		alignment: center middle shrink-overflow
+		padding bottom: 0
+		padding left: 4
+		padding right: 4
+		z index: 1
+		font:
+			name: Linux Biolinum
+			size: 14
+			weight: normal
+			color: rgb(0,0,0)
+
+card style:
+	rule text 2:
+		left: 522
+		top: 436
+		width: 473
+		height: 226
+		font:
+			name: MPlantin
+			italic name: MPlantin-Italic
+			size: 19
+			scale down to: 6
+			color: rgb(0,0,0)
+		symbol font:
+			name: danmaku-symbols
+			size: 19
+		alignment: middle left
+		z index: 2
+		padding left:   6
+		padding top:    2
+		padding right:  { if(card.spell_icon_layout == "0") then 10 else 40 }
+		padding bottom: 2
+		line height soft: 1.1
+		line height hard: 1.5
+		line height line: 1.5
+	
+	############################# Card sorting / numbering
+	card number:
+		left: 890
+		top : 672
+		width: 108
+		height: 17
+		alignment: right middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: regular
+			size: 10
+			color: rgb(255,255,255)
+	############################# Copyright stuff
+	illustrator:
+		left: 524
+		top : 672
+		width: 300
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: bold
+			size: 10
+			color: rgb(255,255,255)
+	copyright:
+		left: 524
+		top : 688
+		width: 230
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: normal
+			size: 10
+			color: rgb(255,255,255)
+############################################################## TSA
+extra card field:
+	type: text
+	name: touhou credit
+	editable: false
+	default: "Touhou Project © Team Shanghai Alice"
+		
+extra card style:
+	touhou credit:
+		top: 688
+		left: 763
+		width: 235
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: normal
+			size: 10
+			color: rgb(255,255,255)
+			
+############################ Set Logo
+extra card field:
+	type: choice
+	name: setlogo
+	position hint: 100
+	choice: base
+	editable: false
+	card list visible: true
+	card list column: 2
+	description: The symbol representing the logo of the set. To edit the symbol switch to the 'set info' tab
+	choice colors:
+		fill only: rgb(109,62,39)
+		outline only: rgb(109,62,39)
+		both: rgb(109,62,39)
+extra card style:
+	setlogo:
+		left:	27
+		top:	587
+		width:	120
+		height:	120
+		z index: 2
+		render style: image
+		mask: logo_mask.png
+		alignment: middle right
+		choice images:
+			base:
+				{ setsymbolgen() }
+
+############################ Abillit Icon Selector
+card style:
+	l2a icon layout:
+		left:	958
+		top:	100
+		width:	100
+		height: 300
+		render style: hidden
+		popup style: in place
+		z index: 3
+		choice images:
+			0: ico_0.png
+			1: ico_1.png
+			2: ico_2.png
+############################ Spell Icon Selector
+card style:
+	spell icon layout:
+		left:	958
+		top:	400
+		width:	100
+		height:	300
+		render style: hidden
+		popup style: in place
+		z index: 3
+		choice images:
+			0: ico_0.png
+			1: ico_1.png
+			2: ico_2.png
+			
+############################ Action Icon 1
+card style:
+	skillico1:
+		left:	958
+		top:	{ if card.l2a_icon_layout=="1" then 210 else if card.l2a_icon_layout=="2" then 165 else -400 }
+		width:	82
+		height:	82
+		visible: { if card.l2a_icon_layout=="0" then "false" else "true" }
+		z index: 4
+		render style: image
+		choice images:
+			null: /danmaku.mse-game/cardicon/filler.png
+			action: chaction.png
+			reaction: chreaction.png
+			danmaku: chdanmaku.png
+			graze: chgraze.png
+			powerup: chpower.png
+			item: chitem.png
+			extended incantation: chincantation.png
+			extended defense: chdefense.png
+			extended artifact: chartifact.png
+			extended heart: chheart.png
+			seasons spring: chspring.png
+			seasons summer: chsummer.png
+			seasons autumn: chautumn.png
+			seasons winter: chwinter.png
+			character sheet spell card: chspell.png
+			character sheet ability: chability.png
+			bonus cog: chcog.png
+			bonus yinyang: chyinyang.png
+			bonus point: chpoint.png
+			bonus blank: chblank.png
+extra card field:
+	type: choice
+	name: skillico1base
+	choice: normal
+	editable: false
+extra card style:
+	skillico1base:
+		left: 958
+		top:	{ if card.l2a_icon_layout=="1" then 210 else if card.l2a_icon_layout=="2" then 165 else -400 }
+		width:	82
+		height:	82
+		render style: image
+		visible: { if card.l2a_icon_layout=="0" then "false" else "true" }
+		image: { if card.skillico1=="null" then "filler.png" else "chbase.png" }
+############################ Action Icon 2
+card style:
+	skillico2:
+		left:	958
+		top:	256
+		width:	82
+		height:	82
+		visible: { if (card.l2a_icon_layout=="0" or card.l2a_icon_layout=="1") then "false" else "true" }
+		z index: 4
+		render style: image
+		choice images:
+			null: /danmaku.mse-game/cardicon/filler.png
+			action: chaction.png
+			reaction: chreaction.png
+			danmaku: chdanmaku.png
+			graze: chgraze.png
+			powerup: chpower.png
+			item: chitem.png
+			extended incantation: chincantation.png
+			extended defense: chdefense.png
+			extended artifact: chartifact.png
+			extended heart: chheart.png
+			seasons spring: chspring.png
+			seasons summer: chsummer.png
+			seasons autumn: chautumn.png
+			seasons winter: chwinter.png
+			character sheet spell card: chspell.png
+			character sheet ability: chability.png
+			bonus cog: chcog.png
+			bonus yinyang: chyinyang.png
+			bonus point: chpoint.png
+			bonus blank: chblank.png
+extra card field:
+	type: choice
+	name: skillico2base
+	choice: normal
+	editable: false
+extra card style:
+	skillico2base:
+		left: 958
+		top:	256
+		width:	82
+		height:	82
+		render style: image
+		visible: { if (card.l2a_icon_layout=="0" or card.l2a_icon_layout=="1") then "false" else "true" }
+		image: { if card.skillico2=="null" then "filler.png" else "chbase.png" }
+		
+############################ Spell Icon 1
+card style:
+	spellico1:
+		left:	958
+		top: { if card.spell_icon_layout=="1" then 508 else if card.spell_icon_layout=="2" then 463 else -400 }
+		width:	82
+		height:	82
+		visible: { if card.spell_icon_layout=="0" then "false" else "true" }
+		z index: 4
+		render style: image
+		choice images:
+			null: /danmaku.mse-game/cardicon/filler.png
+			action: chaction.png
+			reaction: chreaction.png
+			danmaku: chdanmaku.png
+			graze: chgraze.png
+			powerup: chpower.png
+			item: chitem.png
+			extended incantation: chincantation.png
+			extended defense: chdefense.png
+			extended artifact: chartifact.png
+			extended heart: chheart.png
+			seasons spring: chspring.png
+			seasons summer: chsummer.png
+			seasons autumn: chautumn.png
+			seasons winter: chwinter.png
+			character sheet spell card: chspell.png
+			character sheet ability: chability.png
+			bonus cog: chcog.png
+			bonus yinyang: chyinyang.png
+			bonus point: chpoint.png
+			bonus blank: chblank.png
+extra card field:
+	type: choice
+	name: spellico1base
+	choice: normal
+	editable: false
+extra card style:
+	spellico1base:
+		left: 958
+		top: { if card.spell_icon_layout=="1" then 508 else if card.spell_icon_layout=="2" then 463 else -400 }
+		width:	82
+		height:	82
+		render style: image
+		visible: { if card.spell_icon_layout=="0" then "false" else "true" }
+		image: { if card.Rico1=="null" then "filler.png" else "chbase.png" }
+
+############################ Spell Icon 2
+card style:
+	spellico2:
+		left:	958
+		top:	554
+		width:	82
+		height:	82
+		visible: { if card.spell_icon_layout=="2" then "true" else "false" }
+		z index: 4
+		render style: image
+		choice images:
+			null: /danmaku.mse-game/cardicon/filler.png
+			action: chaction.png
+			reaction: chreaction.png
+			danmaku: chdanmaku.png
+			graze: chgraze.png
+			powerup: chpower.png
+			item: chitem.png
+			extended incantation: chincantation.png
+			extended defense: chdefense.png
+			extended artifact: chartifact.png
+			extended heart: chheart.png
+			seasons spring: chspring.png
+			seasons summer: chsummer.png
+			seasons autumn: chautumn.png
+			seasons winter: chwinter.png
+			character sheet spell card: chspell.png
+			character sheet ability: chability.png
+			bonus cog: chcog.png
+			bonus yinyang: chyinyang.png
+			bonus point: chpoint.png
+			bonus blank: chblank.png
+extra card field:
+	type: choice
+	name: spellico2base
+	choice: normal
+	editable: false
+extra card style:
+	spellico2base:
+		left: 958
+		top: 554
+		width:	82
+		height:	82
+		render style: image
+		visible: { if card.spell_icon_layout=="2" then "true" else "false" }
+		image: { if card.Rico1=="null" then "filler.png" else "chbase.png" }
+			
+############################################################## Season
+card style:
+	season:
+		left:	22
+		top:	23
+		width:	130
+		height:	129
+		z index: 2
+		render style: image
+		choice images:
+			Spring: /danmaku.mse-game/cardicon/spring.png
+			Summer: /danmaku.mse-game/cardicon/summer.png
+			Autumn: /danmaku.mse-game/cardicon/autumn.png
+			Winter: /danmaku.mse-game/cardicon/winter.png
+############################################################## Set info fields
+set info style:
+	symbol:
+		variation:
+			name: normal
+			border radius: 0.10
+			fill type: solid
+			fill color:   rgb(255,255,255)
+			border color: rgb(0,0,0)

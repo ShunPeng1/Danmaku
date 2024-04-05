@@ -1,0 +1,231 @@
+﻿mse version: 2.0.0
+game: danmaku
+short name: Role
+full name: Role Card
+icon: role_thumb.png
+installer group: danmaku/normal cards/role
+position hint: 004
+
+version: 2016-03-04
+depends on:
+	package: danmaku.mse-game
+	version: 2016-03-04
+depends on:
+	package: danmaku-symbols.mse-symbol-font
+	version: 2016-03-04
+
+card width: 563
+card height: 789
+card dpi: 210
+# Author: Hrusa
+############################################################## Card fields
+card style:
+	############################# Image
+	image:
+		left:	38
+		top:	101
+		width:	489
+		height:	366
+		z index: 1
+		mask: mask.png
+		
+############################################### Role list	
+	rolebar:
+		left: 107
+		top : { if card.subname=="" then 29 else 40 }
+		width: 380
+		height: 64
+		alignment: "center" + { if card.subname=="" then "middle" else "bottom" } + "shrink-overflow"
+		padding bottom: 0
+		padding left: 5
+		padding right: 5
+		allow formating: false
+		z index: 2
+		font:
+			name: Linux Biolinum
+			size: { if card.subname=="" then 45 else 40 }
+			color: rgb(0,0,0)
+	############################# Subname line
+	subname:
+		left: 107
+		top : 29
+		width: 380
+		height: 20
+		alignment: middle center shrink-overflow
+		padding bottom: 0
+		z index: 3
+		font:
+			name: Teen
+			size: 11
+			color: rgb(0,0,0)
+	############################# points
+	points:
+		z index: 4
+		left:	501
+		top:	25
+		width:	34
+		height:	42
+		alignment: center middle shrink-overflow
+		font:
+			name: Times New Roman
+			size: 30
+			color: rgb(255,255,255)
+	############################# Card sorting / numbering
+	card number:
+		left: 348
+		top : 735
+		width: 109
+		height: 17
+		alignment: right middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: regular
+			size: 10
+			color: rgb(255,255,255)
+	############################# Copyright stuff
+	illustrator:
+		left: 48
+		top : 735
+		width: 300
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: bold
+			size: 10
+			color: rgb(255,255,255)
+	copyright:
+		left: 48
+		top : 750
+		width: 170
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: normal
+			size: 10
+			color: rgb(255,255,255)
+
+############################################################## Season
+card style:
+	season:
+		left:	15
+		top:	16
+		width:	91
+		height:	91
+		z index: 2
+		render style: image
+		choice images:
+			Spring: /danmaku.mse-game/cardicon/spring.png
+			Summer: /danmaku.mse-game/cardicon/summer.png
+			Autumn: /danmaku.mse-game/cardicon/autumn.png
+			Winter: /danmaku.mse-game/cardicon/winter.png
+			
+############################# rule text1
+	rule text 1:
+		left: 55
+		top: 482
+		width: 447
+		height: 245
+		font:
+			name: MPlantin
+			italic name: MPlantin-Italic
+			size: 18
+			scale down to: 6
+			color: rgb(0,0,0)
+		symbol font:
+			name: danmaku-symbols
+			size: 18
+		alignment: middle left
+		mask: textboxmask.png
+		z index: 2
+		padding left:   8
+		padding top:    2
+		padding right:  0
+		padding bottom: 2
+		line height soft: 1.1
+		line height hard: 1.5
+		line height line: 1.5
+
+############################################################## Extra card fields
+card style:
+	rolekind:
+		left:	0
+		top:	0
+		width:	563
+		height:	789
+		z index: 0
+		popup style: in place
+		render style: image
+		choice images:
+			spring: role_green.png
+			summer: role_yellow.png
+			autumn: role_red.png
+			winter: role_blue.png
+			based on season: { if(card.season == "Spring") then "role_green.png" else if(card.season == "Summer") then "role_yellow.png" else if(card.season == "Autumn") then "role_red.png" else "role_blue.png" }
+extra card field:
+	type: choice
+	name: PointIcoBase
+	choice: normal
+	editable: false
+extra card style:
+	PointIcoBase:
+		left:	486
+		top:	15
+		width:	65
+		height:	89
+		z index: 1
+		render style: image
+		choice images:
+			normal: 
+				script:
+					if(card.rolekind == "based on season") then if(card.season == "Spring") then "/danmaku.mse-game/cardnum/num_g1.png" else if(card.season == "Summer") then "/danmaku.mse-game/cardnum/num_y2.png" else if(card.season == "Autumn") then "/danmaku.mse-game/cardnum/num_r2.png" else "/danmaku.mse-game/cardnum/num_b2.png" else if(card.rolekind == "spring") then "/danmaku.mse-game/cardnum/num_g1.png" else if(card.rolekind == "summer") then "/danmaku.mse-game/cardnum/num_y2.png" else if(card.rolekind == "autumn") then "/danmaku.mse-game/cardnum/num_r2.png" else "/danmaku.mse-game/cardnum/num_b2.png"
+############################################################## Set logo
+extra card field:
+	type: choice
+	name: setlogo
+	choice: base
+	editable: false
+	description: The symbol representing the logo of the set. To edit the symbol switch to the 'set info' tab
+	choice colors:
+		fill only: rgb(109,62,39)
+		outline only: rgb(109,62,39)
+		both: rgb(109,62,39)
+extra card style:
+	setlogo:
+		left:	460
+		top:	685
+		width:	85
+		height:	85
+		z index: 2
+		render style: image
+		mask: logo_mask.png
+		alignment: middle right
+		choice images:
+			base:
+				{ setsymbolgen() }
+
+############################################################## Set logo
+extra card field:
+	type: text
+	name: touhou credit
+	editable: false
+	default: "Touhou Project © Team Shanghai Alice"
+	
+extra card style:
+	touhou credit:
+		top: 750
+		left: 225
+		width: 235
+		height: 17
+		alignment: left middle shrink-overflow
+		z index: 1
+		font:
+			name: MPlantin
+			weight: normal
+			size: 10
+			color: rgb(255,255,255)
+					
