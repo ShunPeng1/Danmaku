@@ -60,34 +60,44 @@ namespace _Scripts.CoreGame.Configurations
 
             Dictionary<DanmakuRoleEnum, int> roleCountDict = new();
             
-            foreach (var roleConfig in RolesPool.Where(roleConfig => roleConfig.MinPlayerCountPrerequisite > PlayerCount))
+            foreach (var roleConfig in RolesPool.Where(roleConfig => roleConfig.MinPlayerCountPrerequisite <= PlayerCount))
             {
-                Debug.LogError($"PlayerCount must be more than or equal than {roleConfig.name}.MinPlayerCountPrerequisite");
-                
-                roleCountDict[roleConfig.InitialRoleEnum]++;
+                if (roleCountDict.ContainsKey(roleConfig.InitialRoleEnum))
+                {
+                    roleCountDict[roleConfig.InitialRoleEnum]++;
+                }
+                else
+                {
+                    roleCountDict[roleConfig.InitialRoleEnum] = 1;
+                }
             }
-
-            if (roleCountDict[DanmakuRoleEnum.Heroine] < HeroineRoleCount)
+            
+            roleCountDict.TryGetValue(DanmakuRoleEnum.Heroine, out var heroineRoleCount);
+            if (heroineRoleCount < HeroineRoleCount)
             {
                 Debug.LogError("the number of Heroine roles in RolesPool must be greater than or equal to HeroineRoleCount");
             }
             
-            if (roleCountDict[DanmakuRoleEnum.StageBoss] < StageBossRoleCount)
+            roleCountDict.TryGetValue(DanmakuRoleEnum.StageBoss, out var stageBossRoleCount);
+            if (stageBossRoleCount < StageBossRoleCount)
             {
                 Debug.LogError("the number of StageBoss roles in RolesPool must be greater than or equal to StageBossRoleCount");
             }
             
-            if (roleCountDict[DanmakuRoleEnum.ExtraBoss] < ExtraBossRoleCount)
+            roleCountDict.TryGetValue(DanmakuRoleEnum.ExtraBoss, out var extraBossRoleCount);
+            if (extraBossRoleCount < ExtraBossRoleCount)
             {
                 Debug.LogError("the number of ExtraBoss roles in RolesPool must be greater than or equal to ExtraBossRoleCount");
             }
-            
-            if (roleCountDict[DanmakuRoleEnum.Rival] < RivalRoleCount)
+
+            roleCountDict.TryGetValue(DanmakuRoleEnum.Rival, out var rivalRoleCount);
+            if (rivalRoleCount < RivalRoleCount)
             {
                 Debug.LogError("the number of Rival roles in RolesPool must be greater than or equal to RivalRoleCount");
             }
             
-            if (roleCountDict[DanmakuRoleEnum.Partner] < PartnerRoleCount)
+            roleCountDict.TryGetValue(DanmakuRoleEnum.Partner, out var partnerRoleCount);
+            if (partnerRoleCount < PartnerRoleCount)
             {
                 Debug.LogError("the number of Partner roles in RolesPool must be greater than or equal to PartnerRoleCount");
             }

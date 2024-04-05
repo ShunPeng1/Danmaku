@@ -12,21 +12,16 @@ namespace _Scripts.CoreGame.Editor
     public class DanmakuRoleDrawer : PropertyDrawer
     {
         private string[] _options;
-        private bool _isDropdownOpened = false;
-
+        
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            // Check if the dropdown button is clicked
-            if (Event.current.type == EventType.MouseDown && position.Contains(Event.current.mousePosition))
-            {
-                // Update the options when the dropdown is opened
-                var roleTypes = Assembly.GetAssembly(typeof(IDanmakuRole)).GetTypes()
-                    .Where(t => t.GetCustomAttribute<DanmakuRoleClassAttribute>() != null)
-                    .ToArray();
+            
+            // Update the options when the dropdown is opened
+            var roleTypes = Assembly.GetAssembly(typeof(IDanmakuRole)).GetTypes()
+                .Where(t => t.GetCustomAttribute<DanmakuRoleClassAttribute>() != null)
+                .ToArray();
 
-                _options = roleTypes.Select(t => t.Name).ToArray();
-                _isDropdownOpened = true;
-            }
+            _options = roleTypes.Select(t => t.Name).ToArray();
             
             _options ??= Array.Empty<string>();
             
@@ -41,12 +36,7 @@ namespace _Scripts.CoreGame.Editor
             {
                 property.stringValue = _options[selectedIndex];
             }
-
-            // Reset the flag when the dropdown is closed
-            if (_isDropdownOpened && Event.current.type == EventType.Layout)
-            {
-                _isDropdownOpened = false;
-            }
+            
         }
     }
 }

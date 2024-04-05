@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced7d20e0e654d089b6c306ae5cb053b, type: 3}
+  m_Name: 5BaseRoleDistribution
+  m_EditorClassIdentifier: 
+  PlayerCount: 5
+  HeroineRoleCount: 1
+  StageBossRoleCount: 2
+  ExtraBossRoleCount: 1
+  RivalRoleCount: 0
+  PartnerRoleCount: 1
+  RolesPool:
+  - {fileID: 11400000, guid: f34dbdce5b62bc04183d4fd6650403af, type: 2}
+  - {fileID: 11400000, guid: 15b2ba4cc8c0405409afb553e14e53ac, type: 2}
+  - {fileID: 11400000, guid: a8ac4ee4d163dd0489429ef07365e3f3, type: 2}
+  - {fileID: 11400000, guid: d02f610431b403f42a5ba446ed37f8d7, type: 2}
+  - {fileID: 11400000, guid: d02f610431b403f42a5ba446ed37f8d7, type: 2}
+  - {fileID: 11400000, guid: 2bb951eafaa227e4eb0e2f3c2b5336ff, type: 2}
+  - {fileID: 11400000, guid: 2bb951eafaa227e4eb0e2f3c2b5336ff, type: 2}
+  - {fileID: 11400000, guid: 2bb951eafaa227e4eb0e2f3c2b5336ff, type: 2}

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99e973ad77354f22a5cea5a6ea102db1, type: 3}
-  m_Name: RoleScriptableData
+  m_Name: ExMidBossRoleData
   m_EditorClassIdentifier: 
-  RoleName: ExBossDanmakuRole
-  MinPlayerCountPrerequisite: 0
-  InitialRoleEnum: 0
+  RoleName: ExMidBossDanmakuRole
+  MinPlayerCountPrerequisite: 7
+  InitialRoleEnum: 3
