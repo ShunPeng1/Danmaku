@@ -17,7 +17,7 @@ namespace _Scripts.CoreGame.Configurations
         public int RivalRoleCount = 0;
         public int PartnerRoleCount = 0;
 
-        public List<RoleConfig> RolesPool; 
+        public List<RoleScriptableData> RolesPool; 
         
         private void OnValidate()
         {
@@ -94,10 +94,10 @@ namespace _Scripts.CoreGame.Configurations
             
         }
 
-        public List<IDanmakuRole> GetRoleFromEnum(DanmakuRoleEnum danmakuRoleEnum)
+        public List<string> GetRoleFromEnum(DanmakuRoleEnum danmakuRoleEnum)
         {
             return RolesPool.Where(roleConfig => roleConfig.InitialRoleEnum == danmakuRoleEnum)
-                .Select(roleConfig => roleConfig.Role).ToList();
+                .Select(roleConfig => roleConfig.RoleName).ToList();
         }
         
     }

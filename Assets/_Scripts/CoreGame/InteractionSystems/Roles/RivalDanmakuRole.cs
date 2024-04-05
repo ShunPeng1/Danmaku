@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using _Scripts.CoreGame.InteractionSystems.Attributes;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 
 namespace _Scripts.CoreGame.InteractionSystems.Roles
 {
+    [DanmakuRoleClass]
     public class RivalDanmakuRole : IDanmakuRole
     {
         private DanmakuPlayerController _danmakuPlayerController;
@@ -41,7 +43,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
 
         public bool CanRevealRole()
         {
-            return false; // TODO: Reveal Role when heroines are dead
+            return false; // TODO: Reveal RoleName when heroines are dead
         }
 
         public void RevealRole()

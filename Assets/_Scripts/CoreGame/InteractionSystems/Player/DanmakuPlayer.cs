@@ -7,7 +7,7 @@ namespace _Scripts.CoreGame.InteractionSystems
     public class DanmakuPlayer
     {
         public IDanmakuRole Role { get; private set;}
-        public ICharacter Character { get; private set;}
+        public IDanmakuCharacter DanmakuCharacter { get; private set;}
         public bool IsAlive { get; private set; } = true;
         
         public PlayerStat Life { get; private set; }

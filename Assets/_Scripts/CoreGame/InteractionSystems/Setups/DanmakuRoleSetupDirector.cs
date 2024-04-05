@@ -58,32 +58,39 @@ namespace _Scripts.CoreGame.InteractionSystems.Setups
             var extraBossRoles = roleDistributionConfig.GetRoleFromEnum(DanmakuRoleEnum.ExtraBoss);
             var rivalRoles = roleDistributionConfig.GetRoleFromEnum(DanmakuRoleEnum.Rival);
             
-            RandomBag<IDanmakuRole> heroinesBag = new RandomBag<IDanmakuRole>(heroineRoles.ToArray(),1);
-            RandomBag<IDanmakuRole> stageBossBag = new RandomBag<IDanmakuRole>(stageBossRoles.ToArray(),1);
-            RandomBag<IDanmakuRole> partnerBag = new RandomBag<IDanmakuRole>(partnerRoles.ToArray(),1);
-            RandomBag<IDanmakuRole> extraBossBag = new RandomBag<IDanmakuRole>(extraBossRoles.ToArray(),1);
-            RandomBag<IDanmakuRole> rivalBag = new RandomBag<IDanmakuRole>(rivalRoles.ToArray(),1);
+            RandomBag<string> heroinesBag = new (heroineRoles.ToArray(),1);
+            RandomBag<string> stageBossBag = new (stageBossRoles.ToArray(),1);
+            RandomBag<string> partnerBag = new (partnerRoles.ToArray(),1);
+            RandomBag<string> extraBossBag = new (extraBossRoles.ToArray(),1);
+            RandomBag<string> rivalBag = new (rivalRoles.ToArray(),1);
             
+            List<string> roleNames = new List<string>();
             
             for (int i = 0; i < roleDistributionConfig.HeroineRoleCount; i++)
             {
-                roles.Add(heroinesBag.PopRandomItem());
+                roleNames.Add(heroinesBag.PopRandomItem());
             }
             for (int i = 0; i < roleDistributionConfig.StageBossRoleCount; i++)
             {
-                roles.Add(stageBossBag.PopRandomItem());
+                roleNames.Add(stageBossBag.PopRandomItem());
             }
             for (int i = 0; i < roleDistributionConfig.PartnerRoleCount; i++)
             {
-                roles.Add(partnerBag.PopRandomItem());
+                roleNames.Add(partnerBag.PopRandomItem());
             }
             for (int i = 0; i < roleDistributionConfig.ExtraBossRoleCount; i++)
             {
-                roles.Add(extraBossBag.PopRandomItem());
+                roleNames.Add(extraBossBag.PopRandomItem());
             }
             for (int i = 0; i < roleDistributionConfig.RivalRoleCount; i++)
             {
-                roles.Add(rivalBag.PopRandomItem());
+                roleNames.Add(rivalBag.PopRandomItem());
+            }
+
+
+            foreach (var roleName in roleNames)
+            {
+                
             }
             
             return roles;

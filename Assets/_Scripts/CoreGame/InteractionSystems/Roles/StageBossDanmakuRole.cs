@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using _Scripts.CoreGame.InteractionSystems.Attributes;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 
 namespace _Scripts.CoreGame.InteractionSystems.Roles
 {
+    [DanmakuRoleClass]
     public class StageBossDanmakuRole : IDanmakuRole
     {
         private DanmakuPlayerController _danmakuPlayerController;
