@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a921a8226154d92a5418b4bfff60ce3, type: 3}
   m_Name: BaseRoleSet
   m_EditorClassIdentifier: 
-  RoleDistributions: []
+  RoleDistributions:
+  - {fileID: 11400000, guid: 3db47c9615a2e5d458e3944858aa1298, type: 2}
+  - {fileID: 11400000, guid: dfcd8c88e7e3cbc49b15858cb1d1ca47, type: 2}
+  - {fileID: 11400000, guid: b7accc5f70b81f84d8648d9d4e4f0025, type: 2}
+  - {fileID: 11400000, guid: 86ec92a5cd12bfe44a35004308328884, type: 2}
+  - {fileID: 11400000, guid: d8854b654a5ee2640830c3a7530840f7, type: 2}
