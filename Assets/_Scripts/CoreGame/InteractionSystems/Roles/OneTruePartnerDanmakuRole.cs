@@ -5,7 +5,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
 {
     public class OneTruePartnerDanmakuRole : IDanmakuRole
     {
-        private DanmakuPlayerSubsystem _danmakuPlayerSubsystem;
+        private DanmakuPlayerController _danmakuPlayerController;
         private bool _isRevealed;
 
         bool IDanmakuRole.IsRevealed
@@ -14,10 +14,10 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
             set => _isRevealed = value;
         }
 
-        DanmakuPlayerSubsystem IDanmakuRole.DanmakuPlayerSubsystem
+        DanmakuPlayerController IDanmakuRole.DanmakuPlayerController
         {
-            get => _danmakuPlayerSubsystem;
-            set => _danmakuPlayerSubsystem = value;
+            get => _danmakuPlayerController;
+            set => _danmakuPlayerController = value;
         }
 
         public bool HasRole(DanmakuRoleEnum danmakuRoleEnum)
@@ -27,7 +27,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
 
         public bool IsGoalReached()
         {
-            var players = _danmakuPlayerSubsystem.Players.FindAll(
+            var players = _danmakuPlayerController.Players.FindAll(
                 player => player.Role.HasRole(DanmakuRoleEnum.Partner) 
                           || player.Role.HasRole(DanmakuRoleEnum.StageBoss) 
                           || player.Role.HasRole(DanmakuRoleEnum.ExtraBoss));

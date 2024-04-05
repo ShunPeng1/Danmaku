@@ -11,35 +11,44 @@ namespace _Scripts.CoreGame.InteractionSystems.Setups
     
     public class DanmakuRoleSetupDirector
     {
+        private DanmakuPlayerController _danmakuPlayerController;
         private List<DanmakuPlayer.DanmakuPlayerBuilder> _players;
         private RoleSetConfig _roleSetConfig;
         
-        public DanmakuRoleSetupDirector(List<DanmakuPlayer.DanmakuPlayerBuilder> players, RoleSetConfig roleSetConfig)
+        public DanmakuRoleSetupDirector(DanmakuPlayerController danmakuPlayerController, List<DanmakuPlayer.DanmakuPlayerBuilder> players, RoleSetConfig roleSetConfig)
         {
+            _danmakuPlayerController = danmakuPlayerController;
             _players = players;
+            _roleSetConfig = roleSetConfig;
         }
         
-        public void DistributeRoles()
+        public Dictionary<DanmakuPlayer ,IDanmakuRole> SetupRoles()
         {
             try
             {
                 List<IDanmakuRole> roles = GetRoles(_roleSetConfig.RoleDistributions[_players.Count]);
                 
-                _players.Shuffle();
-                for (int i = 0; i < _players.Count; i++)
+                roles.Shuffle();
+                
+                Dictionary<DanmakuPlayer, IDanmakuRole> playerToRoles = new ();
+                
+                for (int i = 0; i < roles.Count; i++)
                 {
+                    roles[i].DanmakuPlayerController = _danmakuPlayerController;
                     _players[i].WithDanmakuRole(roles[i]);
+                    playerToRoles.Add(_players[i].Build(), roles[i]);
                 }
+                
+                return playerToRoles;
             }
             catch (Exception e)
             {
                 Debug.LogError(e);
+                return null;
             }
         }
-        
-        
-        
-        List<IDanmakuRole> GetRoles(RoleDistributionConfig roleDistributionConfig)
+
+        private List<IDanmakuRole> GetRoles(RoleDistributionConfig roleDistributionConfig)
         {
             List<IDanmakuRole> roles = new List<IDanmakuRole>();
 
