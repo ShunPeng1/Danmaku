@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Priority_Queue;
 using Shun_Utilities;
 using UnityEngine;
@@ -55,7 +56,11 @@ namespace _Scripts.Simulation
             while (_simulationQueue.Count > 0)
             {
                 var simulationObject = _simulationQueue.Dequeue();
-                yield return StartCoroutine(ExecuteCoroutineSimulationConcurrent(simulationObject));
+                
+                if (simulationObject.IsParallel)
+                    yield return StartCoroutine(ExecuteCoroutineSimulationParallel(simulationObject));
+                else 
+                    yield return StartCoroutine(ExecuteCoroutineSimulationConcurrent(simulationObject));
             }
 
             _isExecuting = false;
@@ -69,30 +74,19 @@ namespace _Scripts.Simulation
             }
 
             yield return null;
-}
-        
+            
+        }
         IEnumerator ExecuteCoroutineSimulationParallel(SimulationPackage simulationPackage)
         {
-            List<Coroutine> runningCoroutines = new List<Coroutine>();
-
-            foreach (var enumerator in simulationPackage.ExecuteEvents)
+            foreach (var enumerator in simulationPackage.ExecuteEvents.Where(enumerator => enumerator != null))
             {
-                if (enumerator == null) continue;
-                Coroutine newCoroutine = StartCoroutine(enumerator.Invoke());
-                runningCoroutines.Add(newCoroutine);
+                StartCoroutine(enumerator.Invoke());
             }
 
-            // WaitPhase for all running coroutines to complete
-            yield return WaitAllCoroutines(runningCoroutines);
+            // Wait for all running coroutines to complete
+            yield return new WaitUntil(() => simulationPackage.IsComplete);
         }
-
-        IEnumerator WaitAllCoroutines(List<Coroutine> coroutines)
-        {
-            foreach (var coroutine in coroutines)
-            {
-                yield return coroutine;
-            }
-        }
+        
     }
 }
 
