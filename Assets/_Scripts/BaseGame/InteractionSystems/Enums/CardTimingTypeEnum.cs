@@ -9,6 +9,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Interfaces
         Instant,
         Invocation,
         Item,
+        Ability,
         None
     }
 }
