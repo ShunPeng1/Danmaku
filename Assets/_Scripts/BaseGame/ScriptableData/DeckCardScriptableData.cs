@@ -1,8 +1,7 @@
-﻿using System;
-using _Scripts.CoreGame.InteractionSystems.Interfaces;
+﻿using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using UnityEngine;
 
-namespace _Scripts.CoreGame.Configurations
+namespace _Scripts.BaseGame.ScriptableData
 {
     
     [CreateAssetMenu(fileName = "DeckCardScriptableData", menuName = "ScriptableData/DeckCardScriptableData")]
@@ -18,15 +17,5 @@ namespace _Scripts.CoreGame.Configurations
         public Sprite CardIllustration;
         
         
-    }
-
-
-    [CreateAssetMenu(fileName = "CardRuleScriptableData", menuName = "ScriptableData/CardRuleScriptableData")]
-    public class CardRuleScriptableData : ScriptableObject
-    {
-        [TextArea(3, 10)]
-        public string CardRule;
-        public CardTimingTypeEnum CardTimingType;
-        public CardEffectTypeEnum[] CardEffectTypes;
     }
 }
