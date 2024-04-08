@@ -11,13 +11,13 @@ namespace _Scripts.CoreGame.InteractionSystems.Setups
     
     public class DanmakuRoleSetupDirector
     {
-        private DanmakuPlayerController _danmakuPlayerController;
+        private DanmakuPlayerGroupModel _danmakuPlayerGroupModel;
         private List<DanmakuPlayer.DanmakuPlayerBuilder> _players;
         private RoleSetConfig _roleSetConfig;
         
-        public DanmakuRoleSetupDirector(DanmakuPlayerController danmakuPlayerController, List<DanmakuPlayer.DanmakuPlayerBuilder> players, RoleSetConfig roleSetConfig)
+        public DanmakuRoleSetupDirector(DanmakuPlayerGroupModel danmakuPlayerGroupModel, List<DanmakuPlayer.DanmakuPlayerBuilder> players, RoleSetConfig roleSetConfig)
         {
-            _danmakuPlayerController = danmakuPlayerController;
+            _danmakuPlayerGroupModel = danmakuPlayerGroupModel;
             _players = players;
             _roleSetConfig = roleSetConfig;
         }
@@ -34,7 +34,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Setups
                 
                 for (int i = 0; i < roles.Count; i++)
                 {
-                    roles[i].DanmakuPlayerController = _danmakuPlayerController;
+                    roles[i].DanmakuPlayerGroupModel = _danmakuPlayerGroupModel;
                     _players[i].WithDanmakuRole(roles[i]);
                     playerToRoles.Add(_players[i].Build(), roles[i]);
                 }

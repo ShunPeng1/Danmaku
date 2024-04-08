@@ -6,15 +6,15 @@ using _Scripts.CoreGame.InteractionSystems.Setups;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
-    public class DanmakuPlayerController
+    public class DanmakuPlayerGroupModel
     {
         private ISetupPlayerView _setupPlayerView;
         private readonly int _playerCount;
-        
+
         public List<DanmakuPlayer> Players { get; private set; }
         
         
-        public DanmakuPlayerController(ISetupPlayerView setupPlayerView, int playerCount)
+        public DanmakuPlayerGroupModel(ISetupPlayerView setupPlayerView, int playerCount)
         {
             _setupPlayerView = setupPlayerView;
             _playerCount = playerCount;

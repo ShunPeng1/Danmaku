@@ -7,7 +7,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
     [DanmakuRoleClass]
     public class AntiHeroineDanmakuRole : IDanmakuRole
     {
-        private DanmakuPlayerController _danmakuPlayerController;
+        private DanmakuPlayerGroupModel _danmakuPlayerGroupModel;
         private bool _isRevealed;
 
         bool IDanmakuRole.IsRevealed
@@ -16,10 +16,10 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
             set => _isRevealed = value;
         }
 
-        DanmakuPlayerController IDanmakuRole.DanmakuPlayerController
+        DanmakuPlayerGroupModel IDanmakuRole.DanmakuPlayerGroupModel
         {
-            get => _danmakuPlayerController;
-            set => _danmakuPlayerController = value;
+            get => _danmakuPlayerGroupModel;
+            set => _danmakuPlayerGroupModel = value;
         }
         
         public bool HasRole(DanmakuRoleEnum danmakuRoleEnum)
@@ -29,8 +29,8 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
 
         public bool IsGoalReached()
         {
-            var heroinePlayers = _danmakuPlayerController.Players.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.Heroine));
-            var stageBossPlayers  = _danmakuPlayerController.Players.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.StageBoss));
+            var heroinePlayers = _danmakuPlayerGroupModel.Players.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.Heroine));
+            var stageBossPlayers  = _danmakuPlayerGroupModel.Players.FindAll(player => player.Role.HasRole(DanmakuRoleEnum.StageBoss));
 
             return heroinePlayers.All(heroinePlayer => !heroinePlayer.IsAlive) && stageBossPlayers.Exists(stageBossPlayer => !stageBossPlayer.IsAlive);
         }

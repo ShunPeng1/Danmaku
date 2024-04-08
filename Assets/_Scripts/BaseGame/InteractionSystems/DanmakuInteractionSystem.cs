@@ -15,8 +15,8 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         private void Start()
         {
-            DanmakuPlayerController danmakuPlayerController = new DanmakuPlayerController(_setupPlayerView, 1);
-            danmakuPlayerController.SetupPlayers(_roleSetConfig);
+            DanmakuPlayerGroupModel danmakuPlayerGroupModel = new DanmakuPlayerGroupModel(_setupPlayerView, 1);
+            danmakuPlayerGroupModel.SetupPlayers(_roleSetConfig);
         }
         
     }
