@@ -73,43 +73,43 @@ namespace Shun_Utilities
 
     [Serializable]
     public class ObservableList<T> : IList<T>, IObservableList<T> {
-        private readonly IList<T> _list;
+        public readonly IList<T> List;
         public event Action<IList<T>> AnyValueChanged;
 
         public ObservableList(IList<T> initialList = null) {
-            _list = initialList ?? new List<T>();
+            List = initialList ?? new List<T>();
         }
 
         public T this[int index] {
-            get => _list[index];
+            get => List[index];
             set {
-                _list[index] = value;
+                List[index] = value;
                 Invoke();
             }
         }
 
-        public void Invoke() => AnyValueChanged?.Invoke(_list);
+        public void Invoke() => AnyValueChanged?.Invoke(List);
 
-        public int Count => _list.Count;
+        public int Count => List.Count;
 
-        public bool IsReadOnly => _list.IsReadOnly;
+        public bool IsReadOnly => List.IsReadOnly;
 
         public void Add(T item) {
-            _list.Add(item);
+            List.Add(item);
             Invoke();
         }
 
         public void Clear() {
-            _list.Clear();
+            List.Clear();
             Invoke();
         }
 
-        public bool Contains(T item) => _list.Contains(item);
+        public bool Contains(T item) => List.Contains(item);
 
-        public void CopyTo(T[] array, int arrayIndex) => _list.CopyTo(array, arrayIndex);
+        public void CopyTo(T[] array, int arrayIndex) => List.CopyTo(array, arrayIndex);
 
         public bool Remove(T item) {
-            var result = _list.Remove(item);
+            var result = List.Remove(item);
             if (result) {
                 Invoke();
             }
@@ -117,19 +117,19 @@ namespace Shun_Utilities
             return result;
         }
 
-        public IEnumerator<T> GetEnumerator() => _list.GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => _list.GetEnumerator();
+        public IEnumerator<T> GetEnumerator() => List.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => List.GetEnumerator();
 
-        public int IndexOf(T item) => _list.IndexOf(item);
+        public int IndexOf(T item) => List.IndexOf(item);
 
         public void Insert(int index, T item) {
-            _list.Insert(index, item);
+            List.Insert(index, item);
             Invoke();
         }
 
         public void RemoveAt(int index) {
-            T item = _list[index];
-            _list.RemoveAt(index);
+            T item = List[index];
+            List.RemoveAt(index);
             Invoke();
         }
     }

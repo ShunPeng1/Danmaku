@@ -17,10 +17,13 @@ namespace _Scripts.CoreGame.InteractionSystems
         public PlayerStat Range { get; private set; }
         
         public PlayerStat Power { get; private set; }
+        
+        public DanmakuCardHandModel DanmakuCardHandModel { get; private set; }
+        
 
         public DanmakuPlayerModel()
         {
-            
+            DanmakuCardHandModel = new DanmakuCardHandModel();
         }
 
         public void InitializeRole(IDanmakuRole role)

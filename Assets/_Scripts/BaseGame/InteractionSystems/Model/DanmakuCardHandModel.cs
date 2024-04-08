@@ -5,7 +5,7 @@ using Shun_Utilities;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
-    public class DanmakuCardDeckModel : IDanmakuCardHolder
+    public class DanmakuCardHandModel : IDanmakuCardHolder
     {
         public ObservableArray<IDanmakuCard> Cards { get; } = new();
 
