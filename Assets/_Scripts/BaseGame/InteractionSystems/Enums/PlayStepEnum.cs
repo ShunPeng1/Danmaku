@@ -8,6 +8,6 @@
         DrawStep,
         MainStep,
         DiscardStep,
-        
+        EndOfTurnStep
     }
 }
