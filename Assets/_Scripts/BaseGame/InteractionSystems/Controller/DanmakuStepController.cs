@@ -22,12 +22,21 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         public class Builder
         {
-            private DanmakuPlayerGroupModel _playerGroupModel;
+            private DanmakuPlayerGroupModel _playerGroupModel = new (new List<DanmakuPlayerModel>());
             private ISetupPlayerView _setupPlayerView;
             
-            public Builder WithPlayerGroupModel(DanmakuPlayerGroupModel playerGroupModel)
+            public Builder WithPlayerGroupModel(int playerCount, RoleSetConfig roleSetConfig)
             {
-                _playerGroupModel = playerGroupModel;
+                List<DanmakuPlayerModel> players = new List<DanmakuPlayerModel>();
+                
+                for (int i = 0; i < playerCount; i++)
+                {
+                    var player = new DanmakuPlayerModel();
+                    players.Add(player);   
+                }
+                
+                _playerGroupModel = new DanmakuPlayerGroupModel(players);
+
                 return this;
             }
             
@@ -40,18 +49,8 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         public void SetupPlayerGroup(int playerCount, RoleSetConfig roleSetConfig)
         {
-            List<DanmakuPlayerModel> players = new List<DanmakuPlayerModel>();
-                
-            for (int i = 0; i < playerCount; i++)
-            {
-                var player = new DanmakuPlayerModel();
-                players.Add(player);   
-            }
-                
-            _playerGroupModel = new DanmakuPlayerGroupModel(players);
-                
-            DanmakuRoleSetupDirector roleSetupDirector = new DanmakuRoleSetupDirector(_playerGroupModel, players, roleSetConfig);
-                
+            DanmakuRoleSetupDirector roleSetupDirector = new DanmakuRoleSetupDirector(_playerGroupModel, _playerGroupModel.Players, roleSetConfig);
+            
             var playerToRole = roleSetupDirector.SetupRoles();
             _setupPlayerView.SetupPlayerRoleView(playerToRole);
             
