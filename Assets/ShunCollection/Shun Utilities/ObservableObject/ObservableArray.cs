@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ShunCollection.Shun_Utilities.ObservableObject
+namespace Shun_Utilities
 {
     public interface IObservableArray<T> 
     {

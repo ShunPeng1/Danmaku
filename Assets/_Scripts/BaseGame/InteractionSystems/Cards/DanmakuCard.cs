@@ -3,14 +3,14 @@ using _Scripts.BaseGame.InteractionSystems.Interfaces;
 
 namespace _Scripts.CoreGame.InteractionSystems.Cards
 {
-    public class DanmakuBaseCard : IDanmakuBaseCard
+    public class DanmakuCard : IDanmakuCard
     {
         public DanmakuPlayerModel CardOwner { get; private set; }
         public List<IDanmakuCardRule> DanmakuCardRules { get; private set; }
         
         public bool IsHidden { get; private set; }
         
-        public DanmakuBaseCard()
+        public DanmakuCard()
         {
             
         }

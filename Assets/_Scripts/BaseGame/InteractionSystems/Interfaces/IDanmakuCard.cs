@@ -2,7 +2,7 @@
 
 namespace _Scripts.BaseGame.InteractionSystems.Interfaces
 {
-    public interface IDanmakuBaseCard
+    public interface IDanmakuCard
     {
         public void InitializeCard();
 

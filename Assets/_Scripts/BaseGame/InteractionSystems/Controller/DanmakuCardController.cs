@@ -2,6 +2,8 @@
 {
     public class DanmakuCardController
     {
+        
+        
         public DanmakuCardController()
         {
             

@@ -2,10 +2,9 @@
 {
     public interface IDanmakuCardHolder
     {
-        public void AddCard(IDanmakuBaseCard danmakuBaseCard);
-        public void RemoveCard(IDanmakuBaseCard danmakuBaseCard);
-        public void DiscardCard(IDanmakuBaseCard danmakuBaseCard);
-        public void PlayCard(IDanmakuBaseCard danmakuBaseCard);
+        public void AddCard(IDanmakuCard danmakuCard);
+        public void RemoveCard(IDanmakuCard danmakuCard);
+        public void MoveCard(IDanmakuCard danmakuCard, IDanmakuCardHolder targetHolder);
         public void ShuffleHolder();
         
     }

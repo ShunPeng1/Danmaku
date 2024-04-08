@@ -3,7 +3,8 @@ using _Scripts.CoreGame.Configurations;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using _Scripts.CoreGame.InteractionSystems.Roles;
 using _Scripts.CoreGame.InteractionSystems.Setups;
-using ShunCollection.Shun_Utilities.ObservableObject;
+using Shun_Utilities;
+
 
 namespace _Scripts.CoreGame.InteractionSystems
 {

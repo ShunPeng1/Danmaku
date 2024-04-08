@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShunCollection.Shun_Utilities.ObservableObject
+namespace Shun_Utilities
 {
     public interface IObservableData<T>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
-using ShunCollection.Shun_Utilities.ObservableObject;
+using Shun_Utilities;
 using UnityEngine;
 
 namespace _Scripts.CoreGame.InteractionSystems.Stats
