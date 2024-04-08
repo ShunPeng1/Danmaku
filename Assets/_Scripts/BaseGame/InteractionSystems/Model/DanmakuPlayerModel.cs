@@ -4,7 +4,7 @@ using _Scripts.CoreGame.InteractionSystems.Stats;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
-    public class DanmakuPlayer
+    public class DanmakuPlayerModel
     {
         public IDanmakuRole Role { get; private set;}
         public IDanmakuCharacter DanmakuCharacter { get; private set;}
@@ -18,7 +18,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         public PlayerStat Power { get; private set; }
 
-        private DanmakuPlayer()
+        private DanmakuPlayerModel()
         {
             
         }
@@ -33,9 +33,9 @@ namespace _Scripts.CoreGame.InteractionSystems
                 return this;
             }
 
-            public DanmakuPlayer Build()
+            public DanmakuPlayerModel Build()
             {
-                return new DanmakuPlayer
+                return new DanmakuPlayerModel
                 {
                     Role = _role
                 };

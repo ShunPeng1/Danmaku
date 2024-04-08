@@ -11,23 +11,23 @@ namespace _Scripts.CoreGame.InteractionSystems
         private ISetupPlayerView _setupPlayerView;
         private readonly int _playerCount;
 
-        public List<DanmakuPlayer> Players { get; private set; }
+        public List<DanmakuPlayerModel> Players { get; private set; }
         
         
         public DanmakuPlayerGroupModel(ISetupPlayerView setupPlayerView, int playerCount)
         {
             _setupPlayerView = setupPlayerView;
             _playerCount = playerCount;
-            Players = new List<DanmakuPlayer>();
+            Players = new List<DanmakuPlayerModel>();
         }
         
         public void SetupPlayers(RoleSetConfig roleSetConfig)
         {
-            List<DanmakuPlayer.DanmakuPlayerBuilder> playerBuilders = new List<DanmakuPlayer.DanmakuPlayerBuilder>();
+            List<DanmakuPlayerModel.DanmakuPlayerBuilder> playerBuilders = new List<DanmakuPlayerModel.DanmakuPlayerBuilder>();
             
             for (int i = 0; i < _playerCount; i++)
             {
-                var playerBuilder = new DanmakuPlayer.DanmakuPlayerBuilder();
+                var playerBuilder = new DanmakuPlayerModel.DanmakuPlayerBuilder();
                 playerBuilders.Add(playerBuilder);   
             }
             

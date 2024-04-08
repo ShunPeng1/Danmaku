@@ -5,7 +5,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Interfaces
 {
     public interface ISetupPlayerView
     {
-        public void SetupPlayerRoleView(Dictionary<DanmakuPlayer,IDanmakuRole> playerToRoles);
+        public void SetupPlayerRoleView(Dictionary<DanmakuPlayerModel,IDanmakuRole> playerToRoles);
         
         
     }

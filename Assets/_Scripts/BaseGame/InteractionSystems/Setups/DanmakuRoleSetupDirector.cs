@@ -12,17 +12,17 @@ namespace _Scripts.CoreGame.InteractionSystems.Setups
     public class DanmakuRoleSetupDirector
     {
         private DanmakuPlayerGroupModel _danmakuPlayerGroupModel;
-        private List<DanmakuPlayer.DanmakuPlayerBuilder> _players;
+        private List<DanmakuPlayerModel.DanmakuPlayerBuilder> _players;
         private RoleSetConfig _roleSetConfig;
         
-        public DanmakuRoleSetupDirector(DanmakuPlayerGroupModel danmakuPlayerGroupModel, List<DanmakuPlayer.DanmakuPlayerBuilder> players, RoleSetConfig roleSetConfig)
+        public DanmakuRoleSetupDirector(DanmakuPlayerGroupModel danmakuPlayerGroupModel, List<DanmakuPlayerModel.DanmakuPlayerBuilder> players, RoleSetConfig roleSetConfig)
         {
             _danmakuPlayerGroupModel = danmakuPlayerGroupModel;
             _players = players;
             _roleSetConfig = roleSetConfig;
         }
         
-        public Dictionary<DanmakuPlayer ,IDanmakuRole> SetupRoles()
+        public Dictionary<DanmakuPlayerModel ,IDanmakuRole> SetupRoles()
         {
             try
             {
@@ -30,7 +30,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Setups
                 
                 roles.Shuffle();
                 
-                Dictionary<DanmakuPlayer, IDanmakuRole> playerToRoles = new ();
+                Dictionary<DanmakuPlayerModel, IDanmakuRole> playerToRoles = new ();
                 
                 for (int i = 0; i < roles.Count; i++)
                 {
