@@ -12,6 +12,7 @@ namespace _Scripts.BaseGame.ScriptableData
         public string CardTitle;
         public CardDeckEnum CardDeck;
         public CardExpansionEnum CardExpansion;
+        public CardSeasonEnum CardSeason;
         public int PointValue;
         public CardRuleScriptableData[] CardRulesScriptableData;
         

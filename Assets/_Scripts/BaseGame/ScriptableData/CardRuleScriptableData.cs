@@ -35,7 +35,15 @@ namespace _Scripts.BaseGame.ScriptableData
             string[] ruleTexts = new string[CardRuleValueWithIcons.Length];
             for (int i = 0; i < CardRuleValueWithIcons.Length; i++)
             {
-                ruleTexts[i] = $"{CardRuleValueWithIcons[i].Value} {CardRuleValueWithIcons[i].CardRuleTextIconEnum}";
+                if (CardRuleValueWithIcons[i].Value <= 0)
+                {
+                    ruleTexts[i] = $"{CardRuleValueWithIcons[i].CardRuleTextIconEnum}";
+                }
+                else
+                {
+                    ruleTexts[i] = $"{CardRuleValueWithIcons[i].Value} {CardRuleValueWithIcons[i].CardRuleTextIconEnum}";
+
+                }
             }
             
             object[] intValueObjects = new object[CardRuleValueWithIcons.Length];

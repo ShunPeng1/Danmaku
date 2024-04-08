@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7731c8f16ab409da5c0d6b8b5889748, type: 3}
+  m_Name: 1_1Up_CardData
+  m_EditorClassIdentifier: 
+  CardName: 1UP
+  CardTitle: 
+  CardDeck: 0
+  CardExpansion: 0
+  CardSeason: 2
+  PointValue: 2
+  CardRulesScriptableData:
+  - {fileID: 11400000, guid: f754df355b6a8c044ad1d9cd5630da8d, type: 2}
+  - {fileID: 11400000, guid: 2d1c8c4e102548e4099c30176c29df0c, type: 2}
+  CardIllustration: {fileID: 0}
+  ArtistName: "2 C\xE1i art \u0111\u1EC3 sau "
