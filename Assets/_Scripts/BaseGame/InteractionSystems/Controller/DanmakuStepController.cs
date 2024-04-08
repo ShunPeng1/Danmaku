@@ -10,12 +10,13 @@ namespace _Scripts.CoreGame.InteractionSystems
     {
 	    ISetupPlayerView _setupPlayerView;
         
-        
         DanmakuPlayerGroupModel _playerGroupModel;
-            
 
-        private DanmakuStepController(DanmakuPlayerGroupModel playerGroupModel, ISetupPlayerView setupPlayerView)
+        private DanmakuSessionController _sessionController;
+
+        private DanmakuStepController(DanmakuSessionController sessionController, DanmakuPlayerGroupModel playerGroupModel, ISetupPlayerView setupPlayerView)
         {
+            _sessionController = sessionController;
             _playerGroupModel = playerGroupModel;
             _setupPlayerView = setupPlayerView;
         }
@@ -40,9 +41,9 @@ namespace _Scripts.CoreGame.InteractionSystems
                 return this;
             }
             
-            public DanmakuStepController Build(ISetupPlayerView setupPlayerView)
+            public DanmakuStepController Build(DanmakuSessionController sessionController, ISetupPlayerView setupPlayerView)
             {
-                return new DanmakuStepController(_playerGroupModel, setupPlayerView);
+                return new DanmakuStepController(sessionController, _playerGroupModel, setupPlayerView);
             }
             
         }

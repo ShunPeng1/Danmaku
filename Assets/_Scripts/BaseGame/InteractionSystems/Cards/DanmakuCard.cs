@@ -29,32 +29,32 @@ namespace _Scripts.CoreGame.InteractionSystems.Cards
 
         public void RevealCard()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void PlayCard(IDanmakuCardRule danmakuCardRule)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void DiscardCard()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void DrawCard(DanmakuPlayerModel danmakuPlayerModel)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void SetCardOwner(DanmakuPlayerModel danmakuPlayerModel)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void ShowCard(DanmakuPlayerModel showToPlayerModel)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
