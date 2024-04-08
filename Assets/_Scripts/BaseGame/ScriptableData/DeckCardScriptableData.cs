@@ -1,4 +1,5 @@
-﻿using _Scripts.CoreGame.InteractionSystems.Interfaces;
+﻿using System;
+using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using UnityEngine;
 
 namespace _Scripts.BaseGame.ScriptableData
@@ -15,7 +16,10 @@ namespace _Scripts.BaseGame.ScriptableData
         public CardRuleScriptableData[] CardRulesScriptableData;
         
         public Sprite CardIllustration;
+        public string ArtistName;
         
         
+
     }
+
 }
