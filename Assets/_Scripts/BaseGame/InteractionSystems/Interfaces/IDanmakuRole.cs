@@ -7,6 +7,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
     {
         public bool IsRevealed { get; protected set;}
         public DanmakuPlayerGroupModel DanmakuPlayerGroupModel { get; set; }
+        public DanmakuPlayerModel MyPlayerModel { get; set; }
         public bool HasRole(DanmakuRoleEnum danmakuRoleEnum);
         public bool IsGoalReached();
         

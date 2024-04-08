@@ -18,28 +18,14 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         public PlayerStat Power { get; private set; }
 
-        private DanmakuPlayerModel()
+        public DanmakuPlayerModel()
         {
             
         }
 
-        public class DanmakuPlayerBuilder
+        public void InitializeRole(IDanmakuRole role)
         {
-            private IDanmakuRole _role;
-
-            public DanmakuPlayerBuilder WithDanmakuRole(IDanmakuRole role)
-            {
-                _role = role;
-                return this;
-            }
-
-            public DanmakuPlayerModel Build()
-            {
-                return new DanmakuPlayerModel
-                {
-                    Role = _role
-                };
-            }
+            Role = role;
         }
         
     }

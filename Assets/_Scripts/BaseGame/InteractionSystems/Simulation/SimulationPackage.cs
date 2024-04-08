@@ -42,18 +42,15 @@ namespace _Scripts.Simulation
         public class SimulationPackageBuilder
         {
             private readonly List<Func<IEnumerator>> _executeEvents = new();
-            private readonly float _priority;
-            private readonly bool _isParallel;
-
-            public SimulationPackageBuilder(float priority, bool isParallel = false)
+            
+            public SimulationPackageBuilder()
             {
-                _priority = priority;
-                _isParallel = isParallel;
+                
             }
             
-            public SimulationPackage Build()
+            public SimulationPackage Build(float priority, bool isParallel = false)
             {
-                return new SimulationPackage(_priority, _isParallel, _executeEvents);
+                return new SimulationPackage(priority, isParallel, _executeEvents);
             }
             
             public void AddToPackage(float waitTime)

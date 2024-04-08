@@ -8,6 +8,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
     public class HeroineDanmakuRole : IDanmakuRole 
     {
         private DanmakuPlayerGroupModel _danmakuPlayerGroupModel;
+        private DanmakuPlayerModel _myPlayerModel;
 
         private bool IsRevealed { get; set;}
 
@@ -22,7 +23,13 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
             get => _danmakuPlayerGroupModel;
             set => _danmakuPlayerGroupModel = value;
         }
-        
+
+        DanmakuPlayerModel IDanmakuRole.MyPlayerModel
+        {
+            get => _myPlayerModel;
+            set => _myPlayerModel = value;
+        }
+
         public bool HasRole(DanmakuRoleEnum danmakuRoleEnum)
         {
             return DanmakuRoleEnum.Heroine == danmakuRoleEnum;
