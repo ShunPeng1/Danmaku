@@ -37,8 +37,9 @@ namespace _Scripts.CoreGame.InteractionSystems
 
             var playerSubController = new DanmakuPlayerSubController(InteractionController);
             playerSubController.StartupReveal();
+            playerSubController.StartupDraw();
             playerSubController.StartGame();
-            
+
             InteractionController.SetSubController(setupSubController, playerSubController);
 
         }

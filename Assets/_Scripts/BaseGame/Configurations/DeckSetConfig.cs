@@ -1,4 +1,5 @@
-﻿using _Scripts.BaseGame.ScriptableData;
+﻿using System.Collections.Generic;
+using _Scripts.BaseGame.ScriptableData;
 using UnityEngine;
 
 namespace _Scripts.CoreGame.Configurations
@@ -8,16 +9,16 @@ namespace _Scripts.CoreGame.Configurations
     {
         [SerializeField] private DeckCard[] _deckCardsData;
         
-        public DeckCardScriptableData[] DeckCardsData
+        public List<DeckCardScriptableData> DeckCardsData
         {
             get
             {
-                var deckCardsData = new DeckCardScriptableData[_deckCardsData.Length];
+                var deckCardsData = new List<DeckCardScriptableData>();
                 for (var i = 0; i < _deckCardsData.Length; i++)
                 {
                     for (var j = 0; j < _deckCardsData[i].Amount; j++)
                     {
-                        deckCardsData[i] = _deckCardsData[i].DeckCardData;
+                        deckCardsData.Add(_deckCardsData[i].DeckCardData);
                     }
                 }
                 return deckCardsData;

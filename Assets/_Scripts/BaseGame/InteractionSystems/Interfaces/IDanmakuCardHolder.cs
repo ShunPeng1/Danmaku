@@ -4,7 +4,9 @@
     {
         public void AddCard(IDanmakuCard danmakuCard);
         public void AddCardAt(IDanmakuCard danmakuCard, int index);
-
+        
+        public IDanmakuCard PopCardFront();
+        public IDanmakuCard PopCardBack();
         public void RemoveCard(IDanmakuCard danmakuCard);
         
         public void RemoveCardAt(int index);

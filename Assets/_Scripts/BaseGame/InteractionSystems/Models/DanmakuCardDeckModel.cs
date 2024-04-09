@@ -24,6 +24,38 @@ namespace _Scripts.CoreGame.InteractionSystems
             Cards.Insert(index, danmakuCard);
         }
 
+        public IDanmakuCard PopCardFront()
+        {
+            for (var index = 0; index < Cards.Count; index++)
+            {
+                var card = Cards[index];
+                
+                if (card != null)
+                {
+                    Cards.RemoveAt(index);
+                    return card;
+                }
+            }
+            
+            return null;
+        }
+
+        public IDanmakuCard PopCardBack()
+        {
+            for (var index = Cards.Count - 1; index >= 0; index--)
+            {
+                var card = Cards[index];
+                
+                if (card != null)
+                {
+                    Cards.RemoveAt(index);
+                    return card;
+                }
+            }
+            
+            return null;
+        }
+
         public void RemoveCard(IDanmakuCard danmakuCard)
         {
             Cards.Remove(danmakuCard);

@@ -37,6 +37,18 @@ namespace _Scripts.CoreGame.InteractionSystems
             }
         }
         
+        public void StartupDraw()
+        {
+            foreach (var player in PlayerGroupModel.Players)
+            {
+                for (int i = 0; i < player.HandSize.Get(); i++)
+                {
+                    DrawCard(player);
+                }
+                
+            }
+        }
+        
         public void StartGame()
         {
             var heroinePlayer = PlayerGroupModel.Players.FirstOrDefault(player => player.Role.HasRole(DanmakuRoleEnum.Heroine));
@@ -49,6 +61,8 @@ namespace _Scripts.CoreGame.InteractionSystems
             {
                 SetPlayerTurn(PlayerGroupModel.Players[0]);
             }
+            
+            
             
         }
         
@@ -75,7 +89,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                     PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.EndOfTurnStep;
                     break;
                 case PlayStepEnum.EndOfTurnStep:
-                    
+                    SetPlayerNextTurn();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -95,5 +109,15 @@ namespace _Scripts.CoreGame.InteractionSystems
             var nextPlayerModel = PlayerGroupModel.SetNextPlayerTurn();
             DanmakuTurnBaseView.SetPlayerCurrentTurn(nextPlayerModel);
         }
+
+        private void DrawCard(DanmakuPlayerModel player)
+        {
+            var card = BoardModel.MainDeckModel.PopCardFront();
+            player.CardHandModel.AddCard(card);
+            
+            var playerHandView = SetupPlayerView.GetPlayerView(player).CardHandView;
+            playerHandView.DrawCard(card);
+        }
+        
     }
 }

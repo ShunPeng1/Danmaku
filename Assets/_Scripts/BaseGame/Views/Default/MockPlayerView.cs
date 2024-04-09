@@ -1,4 +1,7 @@
-﻿namespace _Scripts.BaseGame.Views.Default
+﻿using _Scripts.CoreGame.InteractionSystems;
+using UnityEngine;
+
+namespace _Scripts.BaseGame.Views.Default
 {
     public class MockPlayerView : DanmakuPlayerBaseView
     {
@@ -6,5 +9,6 @@
         {
             
         }
+
     }
 }

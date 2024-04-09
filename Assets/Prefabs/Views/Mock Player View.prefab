@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4724919715382875107}
   - component: {fileID: 3304500905984708964}
   - component: {fileID: 4089621876144088146}
+  - component: {fileID: 6018302903750506468}
   m_Layer: 0
   m_Name: Mock Player View
   m_TagString: Untagged
@@ -46,8 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roleView: {fileID: 4089621876144088146}
-  _cardHandView: {fileID: 0}
-  _cardDeckView: {fileID: 0}
+  _cardHandView: {fileID: 6018302903750506468}
 --- !u!114 &4089621876144088146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,5 +58,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23db766e94644c128717e46541d23658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6018302903750506468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819306044062546246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb1be2631b34a1088f83561ab1b5e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

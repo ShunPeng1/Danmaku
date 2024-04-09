@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _Scripts.CoreGame.InteractionSystems;
+using UnityEngine;
 
 namespace _Scripts.BaseGame.Views
 {
@@ -8,15 +9,14 @@ namespace _Scripts.BaseGame.Views
         private DanmakuRoleBaseView _roleView;
         [SerializeField]
         private DanmakuCardHandBaseView _cardHandView;
-        [SerializeField]
-        private DanmakuCardDeckBaseView _cardDeckView;
+        
         
         public DanmakuRoleBaseView RoleView => _roleView;
         public DanmakuCardHandBaseView CardHandView => _cardHandView;
-        public DanmakuCardDeckBaseView CardDeckView => _cardDeckView;   
+        
         
         public abstract void InitializeView();
-        
-        
+
+
     }
 }

@@ -19,7 +19,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         public PlayerStat Power { get; private set; }
         
-        public DanmakuCardHandModel DanmakuCardHandModel { get; private set; }
+        public DanmakuCardHandModel CardHandModel { get; private set; }
         
 
         public DanmakuPlayerModel(int playerId)
@@ -31,7 +31,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             Range = new PlayerStat(1);
             Power = new PlayerStat(1);
         
-            DanmakuCardHandModel = new DanmakuCardHandModel();
+            CardHandModel = new DanmakuCardHandModel();
         }
 
         public void InitializeRole(IDanmakuRole role)

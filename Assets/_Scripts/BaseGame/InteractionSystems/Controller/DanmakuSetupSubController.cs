@@ -116,7 +116,6 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         public void SetupStartingStats(StartupStatsConfig startupStatsConfig)
         {
-            
             foreach (var player in _playerGroupModel.Players)
             {
                 player.InitializeStats(
@@ -126,10 +125,8 @@ namespace _Scripts.CoreGame.InteractionSystems
                     new PlayerStat(startupStatsConfig.StartingRange, startupStatsConfig.MinRange),
                     new PlayerStat(startupStatsConfig.StartingPower, startupStatsConfig.MinPower, startupStatsConfig.MaxPower)
                 );
-
+                
             }
-            
-            
         }
         
         public DanmakuPlayerGroupModel GetPlayerGroupModel()
