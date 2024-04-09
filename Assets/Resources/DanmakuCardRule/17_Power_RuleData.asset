@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
+  m_Name: 17_Power_RuleData
+  m_EditorClassIdentifier: 
+  CardRule: 'You have +{0}.
+
+    You can play additional {1} card each round.
+
+    Discard
+    {2} card whenever you lose life to an attack.'
+  CardTimingType: 4
+  CardEffectTypes: 03000000
+  CardRuleValueWithIcons:
+  - Value: 1
+    CardRuleTextIconEnum: 1
+  - Value: 1
+    CardRuleTextIconEnum: 4
+  - Value: 1
+    CardRuleTextIconEnum: 9

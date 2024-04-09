@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7731c8f16ab409da5c0d6b8b5889748, type: 3}
-  m_Name: 14_Party_CardData
+  m_Name: 15_Power_CardData
   m_EditorClassIdentifier: 
-  CardName: Party
+  CardName: Power
   CardTitle: 
   CardDeck: 0
   CardExpansion: 0
   CardSeason: 0
-  PointValue: 3
+  PointValue: 2
   CardRulesScriptableData:
-  - {fileID: 11400000, guid: bf7ad26aa0aa36240a05a47234b317ed, type: 2}
+  - {fileID: 11400000, guid: 643125269e00e194d81e074dcefb998b, type: 2}
   CardIllustration: {fileID: 0}
   ArtistName: "M. Beatriz Garc\xEDa"
