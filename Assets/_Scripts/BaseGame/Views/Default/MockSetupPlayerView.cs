@@ -9,25 +9,34 @@ namespace _Scripts.BaseGame.Views.Default
 {
     public class MockSetupPlayerView : DanmakuSetupPlayerBaseView
     {
-        public override IEnumerator SetupPlayerRoleView(Dictionary<DanmakuPlayerModel, IDanmakuRole> playerToRole)
+        public override void SetupPlayerRoleView(Dictionary<DanmakuPlayerModel, IDanmakuRole> playerToRole)
         {
             foreach (var (player, role) in playerToRole)
             {
                 Debug.Log($"Player {player.PlayerId} has role {role.GetType()}");
             }
             
-            yield break;
         }
 
-        public override IEnumerator SetupCardDeckRoleView(DanmakuCardDeckModel cardDeckModel)
+        public override void SetupCardDeckRoleView(DanmakuCardDeckModel cardDeckModel)
         {
             
-            yield break;
+            
         }
 
-        public override IEnumerator SetupPlayerHandView(DanmakuPlayerModel playerModel, DanmakuCardHandModel cardHandModel)
+        public override void SetupPlayerHandView(DanmakuPlayerModel playerModel, DanmakuCardHandModel cardHandModel)
         {
-            yield break;
+            
+        }
+
+        public override void SetupCardDeck(DanmakuCardDeckModel mainDeckModel, DanmakuCardDeckModel discardDeckModel,
+            DanmakuCardDeckModel incidentDeckModel)
+        {
+            Debug.Log("Setting up card decks");
+            foreach (var danmakuCard in mainDeckModel.Cards)
+            {
+                Debug.Log("Main deck card: " + danmakuCard.GetType());
+            }
         }
     }
 }

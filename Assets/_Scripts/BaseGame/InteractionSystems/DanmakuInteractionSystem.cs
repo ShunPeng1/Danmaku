@@ -13,6 +13,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         [Header("Configurations")]
         [SerializeField] private int _playerCount;
         [SerializeField] private RoleSetConfig _roleSetConfig;
+        [SerializeField] private DeckSetConfig _deckSetConfig;
         
         [Header("Controller")]
         public DanmakuInteractionController InteractionController;
@@ -23,11 +24,12 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             InteractionController = new DanmakuInteractionController(_setupPlayerView);
      
-            DanmakuSetupSubController.Builder builder = new DanmakuSetupSubController.Builder(InteractionController, _setupPlayerView.SetupPlayerView);
-            SetupSubController = builder.WithPlayerGroupModel(_playerCount, _roleSetConfig)
+            
+            SetupSubController =  new DanmakuSetupSubController.Builder(InteractionController, _setupPlayerView.SetupPlayerView)
+                .WithPlayerGroup(_playerCount, _roleSetConfig)
+                .WithCardDeck(_deckSetConfig)
                 .Build();
 
-            
             
             SessionSubController = new DanmakuSessionSubController();
             

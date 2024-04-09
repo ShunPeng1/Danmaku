@@ -4,8 +4,8 @@
     {
         
         public void InitializeCard();
-        public void IsPlayable();
-        public void PlayCard();
+        public bool CanExecuteRule(IDanmakuTargeter[] targeters, IDanmakuTargetable[] targetables);
+        public void ExecuteRule(IDanmakuTargeter[] targeters, IDanmakuTargetable[] targetables);
         
     }
 }

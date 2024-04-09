@@ -16,6 +16,8 @@ namespace _Scripts.BaseGame.InteractionSystems.Interfaces
         
         public void ShowCard(DanmakuPlayerModel showToPlayerModel);
         
+        public string PrintDebug();
+        
         
     }
 }

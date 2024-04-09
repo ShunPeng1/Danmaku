@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
+using _Scripts.BaseGame.InteractionSystems.Setups;
 using _Scripts.BaseGame.Views;
 using _Scripts.BaseGame.Views.Default;
 using _Scripts.CoreGame.Configurations;
@@ -33,9 +34,9 @@ namespace _Scripts.CoreGame.InteractionSystems
                 new List<DanmakuPlayerModel>(){new DanmakuPlayerModel(0)}
                 );
             private DanmakuBoardModel _boardModel = new DanmakuBoardModel(
-                new List<IDanmakuCard>(){ },
-                new List<IDanmakuCard>(){ },
-                new List<IDanmakuCard>(){ }
+                new DanmakuCardDeckModel(new List<IDanmakuCard>(){}),
+                new DanmakuCardDeckModel(new List<IDanmakuCard>(){}),
+                new DanmakuCardDeckModel(new List<IDanmakuCard>(){})
                 );
             private DanmakuSetupPlayerBaseView _setupPlayerView;
             
@@ -44,7 +45,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 _interactionController = interactionController;
                 _setupPlayerView = setupPlayerView;
             }
-            public Builder WithPlayerGroupModel(int playerCount, RoleSetConfig roleSetConfig)
+            public Builder WithPlayerGroup(int playerCount, RoleSetConfig roleSetConfig)
             {
                 List<DanmakuPlayerModel> players = new List<DanmakuPlayerModel>();
 
@@ -60,9 +61,8 @@ namespace _Scripts.CoreGame.InteractionSystems
                 DanmakuRoleSetupDirector roleSetupDirector = new DanmakuRoleSetupDirector(_playerGroupModel, _playerGroupModel.Players, roleSetConfig);
             
                 var playerToRole = roleSetupDirector.SetupRoles();
-                _setupPlayerView.StartCoroutine(_setupPlayerView.SetupPlayerRoleView(playerToRole));
+                _setupPlayerView.SetupPlayerRoleView(playerToRole);
 
-                Debug.Log("Continue this after the coroutine is done");
                 return this;
             }
             
@@ -72,9 +72,29 @@ namespace _Scripts.CoreGame.InteractionSystems
                 List<IDanmakuCard> discardDeck = new ();
                 List<IDanmakuCard> incidentDeck = new ();
                 
+                DanmakuCardDeckModel mainDeckModel = new DanmakuCardDeckModel(mainDeck);
+                DanmakuCardDeckModel discardDeckModel = new DanmakuCardDeckModel(discardDeck);
+                DanmakuCardDeckModel incidentDeckModel = new DanmakuCardDeckModel(incidentDeck);
                 
+
+                DanmakuCardRuleFactory cardFactory = new ();
+                foreach (var deckCardData in deckSetConfig.DeckCardsData)
+                {
+                    List<DanmakuCardRuleModel> cardRules = new ();
+                    foreach (var cardRuleData in deckCardData.CardRulesScriptableData)
+                    {
+                        var cardRule = cardFactory.GetIDanmakuCardRule(cardRuleData);
+                        var cardRuleModel = new DanmakuCardRuleModel(cardRuleData, cardRule);
+                        cardRules.Add(cardRuleModel);
+                    }
+
+                    var mainDeckCardModel = new DanmakuMainDeckCardModel(deckCardData, cardRules, mainDeckModel);
+                }
+
+                _boardModel = new DanmakuBoardModel(mainDeckModel, discardDeckModel, incidentDeckModel);
                 
-                _boardModel = new DanmakuBoardModel(mainDeck, discardDeck, incidentDeck);
+                _setupPlayerView.SetupCardDeck(mainDeckModel, discardDeckModel, incidentDeckModel);
+                
                 return this;
             }
             

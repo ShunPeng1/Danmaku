@@ -11,11 +11,11 @@ namespace _Scripts.CoreGame.InteractionSystems
         public DanmakuCardDeckModel DiscardIncidentDeckModel { get; protected set;}
         
         
-        public DanmakuBoardModel(List<IDanmakuCard> mainDeck, List<IDanmakuCard> discardDeck, List<IDanmakuCard> incidentDeck)
+        public DanmakuBoardModel(DanmakuCardDeckModel mainDeck, DanmakuCardDeckModel discardDeck, DanmakuCardDeckModel incidentDeck)
         {
-            MainDeckModel = new DanmakuCardDeckModel(mainDeck);
-            DiscardDeckModel = new DanmakuCardDeckModel(discardDeck);
-            IncidentDeckModel = new DanmakuCardDeckModel(incidentDeck);
+            MainDeckModel = mainDeck;
+            DiscardDeckModel = discardDeck;
+            IncidentDeckModel = incidentDeck;
         }
         
     }
