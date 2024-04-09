@@ -14,7 +14,7 @@ namespace _Scripts.BaseGame.ScriptableData
 
         public void OnValidate()
         {
-            Debug.Log(RoleName);
+            //Debug.Log(RoleName);
         }
     }
 }
