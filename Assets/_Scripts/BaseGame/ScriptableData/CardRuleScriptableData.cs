@@ -17,7 +17,7 @@ namespace _Scripts.BaseGame.ScriptableData
         public CardEffectTypeEnum[] CardEffectTypes;
         public CardRuleValueWithIcon[] CardRuleValueWithIcons;
         
-        [ShowInInspector][ReadOnly][TextArea(3, 10)]
+        [ShowInInspector][ReadOnly][TextArea(10,20)]
         private string _finalRuleText;
         
         
@@ -32,20 +32,31 @@ namespace _Scripts.BaseGame.ScriptableData
         {   
             if (CardRuleValueWithIcons == null || CardRuleValueWithIcons.Length == 0)
             {
+                _finalRuleText = CardRule;
                 return;
             }
             
             string[] ruleTexts = new string[CardRuleValueWithIcons.Length];
             for (int i = 0; i < CardRuleValueWithIcons.Length; i++)
             {
-                if (CardRuleValueWithIcons[i].Value <= 0)
+                if (CardRuleValueWithIcons[i].CardRuleTextIconEnum == CardRuleTextIconEnum.Empty)
+                {
+                    ruleTexts[i] = $"{CardRuleValueWithIcons[i].Value}";
+                }
+                else if (CardRuleValueWithIcons[i].Value < 0)
                 {
                     ruleTexts[i] = $"{CardRuleValueWithIcons[i].CardRuleTextIconEnum}";
                 }
                 else
                 {
-                    ruleTexts[i] = $"{CardRuleValueWithIcons[i].Value} {CardRuleValueWithIcons[i].CardRuleTextIconEnum}";
-
+                    if (CardRuleValueWithIcons[i].CardRuleTextIconEnum == CardRuleTextIconEnum.Card && CardRuleValueWithIcons[i].Value > 1)
+                    {
+                        ruleTexts[i] = $"{CardRuleValueWithIcons[i].Value} {CardRuleValueWithIcons[i].CardRuleTextIconEnum}s";
+                    }
+                    else
+                    {
+                        ruleTexts[i] = $"{CardRuleValueWithIcons[i].Value} {CardRuleValueWithIcons[i].CardRuleTextIconEnum}";
+                    }
                 }
             }
             

@@ -26,5 +26,11 @@
         Autumn,
         Winter,
         
+        // Other
+        Card,
+        
+        
+        // Placeholder
+        Empty,
     }
 }
