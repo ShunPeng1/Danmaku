@@ -38,5 +38,15 @@ namespace _Scripts.BaseGame.Views.Default
                 Debug.Log("Main deck card: " + danmakuCard.GetType());
             }
         }
+
+        public override void SetupCardDeckRoleView(DanmakuCardDeckModel cardDeckModel)
+        {
+            
+        }
+
+        public override void SetupPlayerHandView(DanmakuPlayerModel playerModel, DanmakuCardHandModel cardHandModel)
+        {
+            
+        }
     }
 }
