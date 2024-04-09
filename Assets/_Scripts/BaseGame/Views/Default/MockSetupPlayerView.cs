@@ -9,8 +9,10 @@ namespace _Scripts.BaseGame.Views.Default
 {
     public class MockSetupPlayerView : DanmakuSetupPlayerBaseView
     {
+
         public override void SetupPlayerRoleView(Dictionary<DanmakuPlayerModel, IDanmakuRole> playerToRole)
         {
+            var players = new List<DanmakuPlayerModel>(playerToRole.Keys);
             foreach (var (player, role) in playerToRole)
             {
                 Debug.Log($"Player {player.PlayerId} has role {role.GetType()}");

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using _Scripts.BaseGame.Views.Default;
 using _Scripts.CoreGame.InteractionSystems;
 using _Scripts.CoreGame.InteractionSystems.Roles;
 using UnityEngine;
@@ -7,22 +9,20 @@ namespace _Scripts.BaseGame.Views
 {
     public class DanmakuInteractionViewRepo : MonoBehaviour
     {
+        [Header("Serialized Views")]
         [SerializeField] private DanmakuSetupPlayerBaseView _setupPlayerView;
-        [SerializeField] private DanmakuPlayerBaseView _playerView;
-        [SerializeField] private DanmakuRoleBaseView _roleView;
-        [SerializeField] private DanmakuCardBaseView _cardView;
-        [SerializeField] private DanmakuCardHandBaseView _cardHandView;
-        [SerializeField] private DanmakuCardDeckBaseView _cardDeckView;
-        [SerializeField] private DanmakuCardBaseView _cardDiscardView;
+        [SerializeField] private DanmakuTurnBaseView _turnView;
+        [SerializeField] private DanmakuBoardBaseView _boardView;
         
-        public DanmakuSetupPlayerBaseView SetupPlayerView => _setupPlayerView ? _setupPlayerView : (_setupPlayerView = GetComponent<DanmakuSetupPlayerBaseView>());
-        public DanmakuPlayerBaseView PlayerView => _playerView ? _playerView : (_playerView = GetComponent<DanmakuPlayerBaseView>());
-        public DanmakuRoleBaseView RoleView => _roleView ? _roleView : (_roleView = GetComponent<DanmakuRoleBaseView>());
-        public DanmakuCardBaseView CardView => _cardView ? _cardView : (_cardView = GetComponent<DanmakuCardBaseView>());
-        public DanmakuCardHandBaseView CardHandView => _cardHandView ? _cardHandView : (_cardHandView = GetComponent<DanmakuCardHandBaseView>());
-        public DanmakuCardDeckBaseView CardDeckView => _cardDeckView ? _cardDeckView : (_cardDeckView = GetComponent<DanmakuCardDeckBaseView>());
-        public DanmakuCardBaseView CardDiscardView => _cardDiscardView ? _cardDiscardView : (_cardDiscardView = GetComponent<DanmakuCardBaseView>());
+        public DanmakuSetupPlayerBaseView SetupPlayerView => _setupPlayerView ? _setupPlayerView : (_setupPlayerView = gameObject.AddComponent<MockSetupPlayerView>());
+        public DanmakuTurnBaseView TurnView => _turnView ? _turnView : (_turnView = gameObject.AddComponent<MockTurnView>());
+        public DanmakuBoardBaseView BoardView => _boardView ? _boardView : (_boardView = gameObject.AddComponent<MockBoardView>());
         
         
+        private void Awake()
+        {
+            
+        }
+
     }
 }
