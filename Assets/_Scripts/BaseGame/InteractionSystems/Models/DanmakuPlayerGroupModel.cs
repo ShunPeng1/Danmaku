@@ -22,6 +22,11 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             Players = currentPlayer;
             PlayerCount = currentPlayer.Count;
+            CurrentPlayerTurnIndex = new ObservableData<int>(0);
+            CurrentPlayerTurn = new ObservableData<DanmakuPlayerModel>(Players[0]);
+            CurrentPlayStepEnum = new ObservableData<PlayStepEnum>(PlayStepEnum.StartOfTurnStep);
+            
+            
         }
         
         

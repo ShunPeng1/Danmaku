@@ -6,6 +6,7 @@ namespace _Scripts.CoreGame.InteractionSystems
 {
     public class DanmakuPlayerModel
     {
+        public int PlayerId { get; private set; }
         public IDanmakuRole Role { get; private set;}
         public IDanmakuCharacter DanmakuCharacter { get; private set;}
         public bool IsAlive { get; private set; } = true;
@@ -21,8 +22,15 @@ namespace _Scripts.CoreGame.InteractionSystems
         public DanmakuCardHandModel DanmakuCardHandModel { get; private set; }
         
 
-        public DanmakuPlayerModel()
+        public DanmakuPlayerModel(int playerId)
         {
+            PlayerId = playerId;
+            Life = new PlayerStat(1);
+            HandSize = new PlayerStat(1);
+            Distance = new PlayerStat(1);
+            Range = new PlayerStat(1);
+            Power = new PlayerStat(1);
+        
             DanmakuCardHandModel = new DanmakuCardHandModel();
         }
 

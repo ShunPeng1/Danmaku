@@ -1,38 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Scripts.BaseGame.Views;
 using _Scripts.CoreGame.Configurations;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using _Scripts.CoreGame.InteractionSystems.Setups;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
-    public class DanmakuStepController
+    public class DanmakuStepSubController
     {
-	    ISetupPlayerView _setupPlayerView;
+        DanmakuInteractionController _interactionController;
+        DanmakuSetupPlayerBaseView _setupPlayerViewRepo;
         
         DanmakuPlayerGroupModel _playerGroupModel;
-
-        private DanmakuSessionController _sessionController;
-
-        private DanmakuStepController(DanmakuSessionController sessionController, DanmakuPlayerGroupModel playerGroupModel, ISetupPlayerView setupPlayerView)
+        
+        private DanmakuStepSubController(DanmakuInteractionController danmakuInteractionController, DanmakuPlayerGroupModel playerGroupModel, DanmakuSetupPlayerBaseView setupPlayerViewRepo)
         {
-            _sessionController = sessionController;
+            _interactionController = danmakuInteractionController;
             _playerGroupModel = playerGroupModel;
-            _setupPlayerView = setupPlayerView;
+            _setupPlayerViewRepo = setupPlayerViewRepo;
         }
         
         public class Builder
         {
-            private DanmakuPlayerGroupModel _playerGroupModel = new (new List<DanmakuPlayerModel>());
-            private ISetupPlayerView _setupPlayerView;
+            private DanmakuPlayerGroupModel _playerGroupModel = new (new List<DanmakuPlayerModel>(){new DanmakuPlayerModel(0)});
             
+            private DanmakuSetupPlayerBaseView _setupPlayerView;
+            public Builder()
+            {
+                
+            }
             public Builder WithPlayerGroupModel(int playerCount, RoleSetConfig roleSetConfig)
             {
                 List<DanmakuPlayerModel> players = new List<DanmakuPlayerModel>();
-                
+
                 for (int i = 0; i < playerCount; i++)
                 {
-                    var player = new DanmakuPlayerModel();
+                    var player = new DanmakuPlayerModel(i);
                     players.Add(player);   
                 }
                 
@@ -41,19 +45,19 @@ namespace _Scripts.CoreGame.InteractionSystems
                 return this;
             }
             
-            public DanmakuStepController Build(DanmakuSessionController sessionController, ISetupPlayerView setupPlayerView)
+            public DanmakuStepSubController Build(DanmakuInteractionController interactionController , DanmakuSetupPlayerBaseView setupPlayerView)
             {
-                return new DanmakuStepController(sessionController, _playerGroupModel, setupPlayerView);
+                return new DanmakuStepSubController(interactionController, _playerGroupModel, setupPlayerView);
             }
             
         }
         
-        public void SetupPlayerGroup(int playerCount, RoleSetConfig roleSetConfig)
+        public void SetupPlayerRole(RoleSetConfig roleSetConfig)
         {
             DanmakuRoleSetupDirector roleSetupDirector = new DanmakuRoleSetupDirector(_playerGroupModel, _playerGroupModel.Players, roleSetConfig);
             
             var playerToRole = roleSetupDirector.SetupRoles();
-            _setupPlayerView.SetupPlayerRoleView(playerToRole);
+            _setupPlayerViewRepo.SetupPlayerRoleView(playerToRole);
             
         }
         

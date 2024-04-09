@@ -4,14 +4,14 @@ using _Scripts.CoreGame.InteractionSystems.Interfaces;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
-    public class DanmakuSessionController
+    public class DanmakuSessionSubController
     {
         
-        
-        public DanmakuSessionController()
+        public  DanmakuSessionSubController()
         {
             
         }
+        
             
     }
 }
