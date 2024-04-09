@@ -28,8 +28,28 @@ namespace _Scripts.CoreGame.InteractionSystems
             
             
         }
-        
-        
 
+        public void SetCurrentTurnPlayer(DanmakuPlayerModel player)
+        {
+            CurrentPlayerTurn.Value = player;
+            CurrentPlayerTurnIndex.Value = Players.IndexOf(player);
+            CurrentPlayStepEnum.Value = PlayStepEnum.SetupStep;
+        }
+        
+        public DanmakuPlayerModel SetNextPlayerTurn()
+        {
+            int nextIndex = CurrentPlayerTurnIndex.Value + 1;
+            if (nextIndex >= PlayerCount)
+            {
+                nextIndex = 0;
+            }
+            CurrentPlayerTurn.Value = Players[nextIndex];
+            CurrentPlayerTurnIndex.Value = nextIndex;
+            CurrentPlayStepEnum.Value = PlayStepEnum.SetupStep;
+
+            return CurrentPlayerTurn.Value;
+        }
+
+        
     }
 }

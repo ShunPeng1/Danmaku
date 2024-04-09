@@ -38,6 +38,15 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             Role = role;
         }
-        
+                
+        public void InitializeStats(PlayerStat life, PlayerStat handSize, PlayerStat distance, PlayerStat range, PlayerStat power)
+        {
+            Life = life;
+            HandSize = handSize;
+            Distance = distance;
+            Range = range;
+            Power = power;
+        }
+
     }
 }

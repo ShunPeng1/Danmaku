@@ -1,50 +1,79 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using _Scripts.BaseGame.Views;
 using _Scripts.CoreGame.InteractionSystems.DanmakuGameState;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
+using _Scripts.CoreGame.InteractionSystems.Stats;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
     public class DanmakuPlayerSubController
     {
-        private DanmakuPlayerGroupModel _playerGroupModel;
+        private DanmakuInteractionController _danmakuInteractionController;
+        private DanmakuPlayerGroupModel PlayerGroupModel => _danmakuInteractionController.PlayerGroupModel;
+        private DanmakuBoardModel BoardModel => _danmakuInteractionController.BoardModel;
         
-        public  DanmakuPlayerSubController()
+        private DanmakuSetupPlayerBaseView SetupPlayerView => _danmakuInteractionController.InteractionViewRepo.SetupPlayerView;
+        private DanmakuTurnBaseView DanmakuTurnBaseView => _danmakuInteractionController.InteractionViewRepo.TurnView;
+        
+        public  DanmakuPlayerSubController(DanmakuInteractionController danmakuInteractionController)
         {
-            
+            _danmakuInteractionController = danmakuInteractionController;
+        }
+        
+        
+        public void StartupReveal()
+        {
+            var startPlayer = PlayerGroupModel.Players.FirstOrDefault(player => player.Role.HasRole(DanmakuRoleEnum.Heroine));
+
+            if (startPlayer != null)
+            {
+                startPlayer.Role.RevealRole();
+
+                SetupPlayerView.GetPlayerView(startPlayer).RoleView.RevealRole();
+            }
         }
         
         public void StartGame()
         {
-            _playerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.SetupStep;
-            _playerGroupModel.CurrentPlayerTurnIndex.Value = 0;
-            _playerGroupModel.CurrentPlayerTurn.Value = _playerGroupModel.Players[0];
+            var heroinePlayer = PlayerGroupModel.Players.FirstOrDefault(player => player.Role.HasRole(DanmakuRoleEnum.Heroine));
+
+            if (heroinePlayer != null)
+            {
+                SetPlayerTurn(heroinePlayer);
+            }
+            else // if no heroine player, start with first player
+            {
+                SetPlayerTurn(PlayerGroupModel.Players[0]);
+            }
+            
         }
         
         public void StartPlayerNextStep()
         {
-            switch (_playerGroupModel.CurrentPlayStepEnum.Value)
+            switch (PlayerGroupModel.CurrentPlayStepEnum.Value)
             {
                 case PlayStepEnum.SetupStep:
-                    _playerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.StartOfTurnStep;
+                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.StartOfTurnStep;
                     break;
                 case PlayStepEnum.StartOfTurnStep:
-                    _playerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.IncidentStep;
+                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.IncidentStep;
                     break;
                 case PlayStepEnum.IncidentStep:
-                    _playerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DrawStep;
+                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DrawStep;
                     break;
                 case PlayStepEnum.DrawStep:
-                    _playerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.MainStep;
+                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.MainStep;
                     break;
                 case PlayStepEnum.MainStep:
-                    _playerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DiscardStep;
+                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DiscardStep;
                     break;
                 case PlayStepEnum.DiscardStep:
-                    _playerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.EndOfTurnStep;
+                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.EndOfTurnStep;
                     break;
                 case PlayStepEnum.EndOfTurnStep:
-                    StartPlayerTurn();
+                    
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -52,13 +81,17 @@ namespace _Scripts.CoreGame.InteractionSystems
             
         }
 
-        private void StartPlayerTurn()
+        private void SetPlayerTurn(DanmakuPlayerModel startingPlayer)
         {
-            _playerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.SetupStep;
-            _playerGroupModel.CurrentPlayerTurnIndex.Value++;
-            _playerGroupModel.CurrentPlayerTurn.Value = _playerGroupModel.Players[0];
-        }
+            PlayerGroupModel.SetCurrentTurnPlayer(startingPlayer);
+            DanmakuTurnBaseView.SetPlayerCurrentTurn(startingPlayer);
 
-            
+        }
+        
+        private void SetPlayerNextTurn()
+        {
+            var nextPlayerModel = PlayerGroupModel.SetNextPlayerTurn();
+            DanmakuTurnBaseView.SetPlayerCurrentTurn(nextPlayerModel);
+        }
     }
 }

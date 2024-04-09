@@ -14,24 +14,31 @@ namespace _Scripts.CoreGame.InteractionSystems
         [SerializeField] private int _playerCount;
         [SerializeField] private RoleSetConfig _roleSetConfig;
         [SerializeField] private DeckSetConfig _deckSetConfig;
+        [SerializeField] private StartupStatsConfig _startupStatsConfig;
         
         [Header("Controller")]
         public DanmakuInteractionController InteractionController;
-        public DanmakuSetupSubController SetupSubController;
+        
         
         private void Awake()
         {
             InteractionController = new DanmakuInteractionController(_setupPlayerView);
      
             
-            SetupSubController =  new DanmakuSetupSubController.Builder(InteractionController, _setupPlayerView.SetupPlayerView)
-                .WithPlayerGroup(_playerCount, _roleSetConfig)
+            var setupSubController =  new DanmakuSetupSubController.Builder(InteractionController, _setupPlayerView.SetupPlayerView)
+                .WithPlayerCount(_playerCount)
+                .WithPlayerRoles(_roleSetConfig)
                 .WithCardDeck(_deckSetConfig)
                 .Build();
             
+            setupSubController.SetupStartingStats(_startupStatsConfig);
+
+            var playerSubController = new DanmakuPlayerSubController(InteractionController);
+            playerSubController.StartupReveal();
+            playerSubController.StartGame();
             
-            InteractionController.SetSubController(SetupSubController);
-            
+            InteractionController.SetSubController(setupSubController);
+
         }
         
         private void Start()

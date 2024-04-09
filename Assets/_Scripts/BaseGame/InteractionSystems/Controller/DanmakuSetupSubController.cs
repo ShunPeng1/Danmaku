@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.InteractionSystems.Setups;
 using _Scripts.BaseGame.Views;
@@ -7,6 +8,7 @@ using _Scripts.BaseGame.Views.Default;
 using _Scripts.CoreGame.Configurations;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using _Scripts.CoreGame.InteractionSystems.Setups;
+using _Scripts.CoreGame.InteractionSystems.Stats;
 using UnityEngine;
 
 namespace _Scripts.CoreGame.InteractionSystems
@@ -45,7 +47,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 _interactionController = interactionController;
                 _setupPlayerView = setupPlayerView;
             }
-            public Builder WithPlayerGroup(int playerCount, RoleSetConfig roleSetConfig)
+            public Builder WithPlayerCount(int playerCount)
             {
                 List<DanmakuPlayerModel> players = new List<DanmakuPlayerModel>();
 
@@ -56,8 +58,13 @@ namespace _Scripts.CoreGame.InteractionSystems
                 }
                 
                 _playerGroupModel = new DanmakuPlayerGroupModel(players);
+                _setupPlayerView.CreatePlayerViews(players);
                 
-                
+                return this;
+            }
+
+            public Builder WithPlayerRoles(RoleSetConfig roleSetConfig)
+            {
                 DanmakuRoleSetupDirector roleSetupDirector = new DanmakuRoleSetupDirector(_playerGroupModel, _playerGroupModel.Players, roleSetConfig);
             
                 var playerToRole = roleSetupDirector.SetupRoles();
@@ -106,7 +113,23 @@ namespace _Scripts.CoreGame.InteractionSystems
             }
             
         }
-        
-        
+
+        public void SetupStartingStats(StartupStatsConfig startupStatsConfig)
+        {
+            
+            foreach (var player in _playerGroupModel.Players)
+            {
+                player.InitializeStats(
+                    new PlayerStat(startupStatsConfig.StartingHealth, 0, startupStatsConfig.MaxHealth),
+                    new PlayerStat(startupStatsConfig.StartingHandSize, 0, startupStatsConfig.MaxHandSize),
+                    new PlayerStat(startupStatsConfig.StartingDistant, startupStatsConfig.MinDistant),
+                    new PlayerStat(startupStatsConfig.StartingRange, startupStatsConfig.MinRange),
+                    new PlayerStat(startupStatsConfig.StartingPower, startupStatsConfig.MinPower, startupStatsConfig.MaxPower)
+                );
+
+            }
+            
+            
+        }
     }
 }

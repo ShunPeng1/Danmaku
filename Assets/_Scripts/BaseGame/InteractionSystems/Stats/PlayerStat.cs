@@ -11,7 +11,7 @@ namespace _Scripts.CoreGame.InteractionSystems.Stats
         private int _minValue;
         private int _maxValue;
 
-        public PlayerStat(int value, int minValue = 0, int maxValue = Int32.MinValue)
+        public PlayerStat(int value, int minValue = 0, int maxValue = Int32.MaxValue)
         {
             _value = new ObservableData<int>(value);
             _minValue = minValue;
