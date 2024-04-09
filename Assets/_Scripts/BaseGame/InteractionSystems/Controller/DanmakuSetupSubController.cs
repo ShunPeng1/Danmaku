@@ -89,6 +89,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                     }
 
                     var mainDeckCardModel = new DanmakuMainDeckCardModel(deckCardData, cardRules, mainDeckModel);
+                    mainDeck.Add(mainDeckCardModel);
                 }
 
                 _boardModel = new DanmakuBoardModel(mainDeckModel, discardDeckModel, incidentDeckModel);

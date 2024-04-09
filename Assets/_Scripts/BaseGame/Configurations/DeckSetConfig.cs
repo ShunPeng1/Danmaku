@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Scripts.CoreGame.Configurations
 {
-    [CreateAssetMenu(fileName = "DeckSetConfig", menuName = "CoreGame/Configurations/DeckSetConfig")]
+    [CreateAssetMenu(fileName = "DeckSetConfig", menuName = "Configurations/DeckSetConfig")]
     public class DeckSetConfig : ScriptableObject
     {
         [SerializeField] private DeckCard[] _deckCardsData;

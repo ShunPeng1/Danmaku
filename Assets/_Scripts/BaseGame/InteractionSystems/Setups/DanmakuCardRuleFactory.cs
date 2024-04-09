@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.ScriptableData;
 using _Scripts.CoreGame.InteractionSystems.CardRules;
+using UnityEngine;
 
 namespace _Scripts.BaseGame.InteractionSystems.Setups
 {
@@ -16,11 +17,13 @@ namespace _Scripts.BaseGame.InteractionSystems.Setups
         
         public IDanmakuCardRule GetIDanmakuCardRule(CardRuleScriptableData cardRuleData)
         {
-            if (_cardRuleFactories.TryGetValue(cardRuleData.CardRule, out var factory))
+            if (_cardRuleFactories.TryGetValue(cardRuleData.CardRuleName, out var factory))
             {
                 return factory();
             }
-            throw new ArgumentException($"CardRule {cardRuleData.CardRuleName} not found");
+            
+            Debug.LogError($"CardRule {cardRuleData.CardRuleName} not found");
+            return null;
         }
     }
 }

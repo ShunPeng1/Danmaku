@@ -2249,17 +2249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
 --- !u!114 &322223098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6136,6 +6125,7 @@ MonoBehaviour:
   _setupPlayerView: {fileID: 1684432775}
   _playerCount: 4
   _roleSetConfig: {fileID: 11400000, guid: c450b1abc5bc8e74a80aa32c6a4d4680, type: 2}
+  _deckSetConfig: {fileID: 11400000, guid: b7088ecc9d1fefb4cb47bdd26689ff44, type: 2}
 --- !u!4 &1684432773
 Transform:
   m_ObjectHideFlags: 0
@@ -6175,7 +6165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f090570f13a4e8fbbabf6fe545440a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _setupPlayerView: {fileID: 0}
+  _setupPlayerView: {fileID: 1684432774}
   _playerView: {fileID: 0}
   _roleView: {fileID: 0}
   _cardView: {fileID: 0}

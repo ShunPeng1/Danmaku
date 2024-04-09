@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7731c8f16ab409da5c0d6b8b5889748, type: 3}
+  m_Name: 0_Mock_CardData
+  m_EditorClassIdentifier: 
+  CardName: Mock Card
+  CardTitle: 
+  CardDeck: 0
+  CardExpansion: 0
+  CardSeason: 0
+  PointValue: 0
+  CardRulesScriptableData:
+  - {fileID: 11400000, guid: 68270cef868bf76438e6aec2766baab9, type: 2}
+  CardIllustration: {fileID: 0}
+  ArtistName: 

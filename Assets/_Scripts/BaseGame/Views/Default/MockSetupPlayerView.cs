@@ -35,7 +35,7 @@ namespace _Scripts.BaseGame.Views.Default
             Debug.Log("Setting up card decks");
             foreach (var danmakuCard in mainDeckModel.Cards)
             {
-                Debug.Log("Main deck card: " + danmakuCard.GetType());
+                Debug.Log("Main deck card: " + danmakuCard.PrintDebug());
             }
         }
 
