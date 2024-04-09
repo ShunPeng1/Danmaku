@@ -6102,6 +6102,86 @@ MonoBehaviour:
   boneID: 311
   ikEnabled: 0
   ikWeight: 1
+--- !u!1 &1684432771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684432773}
+  - component: {fileID: 1684432772}
+  - component: {fileID: 1684432775}
+  - component: {fileID: 1684432774}
+  m_Layer: 0
+  m_Name: Danmaku Game
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1684432772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684432771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee2a1ded9414127b35cced4edab877e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _setupPlayerView: {fileID: 1684432775}
+  _playerCount: 4
+  _roleSetConfig: {fileID: 11400000, guid: c450b1abc5bc8e74a80aa32c6a4d4680, type: 2}
+--- !u!4 &1684432773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684432771}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.30890536, y: 1.1863391, z: -0.6863746}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1684432774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684432771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1145180e5254963bc3b9fad5f5fd6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1684432775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684432771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f090570f13a4e8fbbabf6fe545440a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _setupPlayerView: {fileID: 0}
+  _playerView: {fileID: 0}
+  _roleView: {fileID: 0}
+  _cardView: {fileID: 0}
+  _cardHandView: {fileID: 0}
+  _cardDeckView: {fileID: 0}
+  _cardDiscardView: {fileID: 0}
 --- !u!114 &1689794818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11149,3 +11229,4 @@ SceneRoots:
   - {fileID: 2045886474}
   - {fileID: 7462623261045703966}
   - {fileID: 1864329504}
+  - {fileID: 1684432773}

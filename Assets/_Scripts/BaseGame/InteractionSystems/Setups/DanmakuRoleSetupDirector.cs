@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using _Scripts.CoreGame.Configurations;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using _Scripts.CoreGame.InteractionSystems.Roles;
@@ -26,7 +27,9 @@ namespace _Scripts.CoreGame.InteractionSystems.Setups
         {
             try
             {
-                List<IDanmakuRole> roles = GetRoles(_roleSetConfig.RoleDistributions[_players.Count]);
+                RoleDistributionConfig roleDistribution = _roleSetConfig.RoleDistributions.FirstOrDefault(x => x.PlayerCount == _players.Count);
+                
+                List<IDanmakuRole> roles = GetRoles(roleDistribution);
                 
                 roles.Shuffle();
                 
@@ -59,39 +62,59 @@ namespace _Scripts.CoreGame.InteractionSystems.Setups
             var extraBossRoles = roleDistributionConfig.GetRoleFromEnum(DanmakuRoleEnum.ExtraBoss);
             var rivalRoles = roleDistributionConfig.GetRoleFromEnum(DanmakuRoleEnum.Rival);
             
-            RandomBag<string> heroinesBag = new (heroineRoles.ToArray(),1);
-            RandomBag<string> stageBossBag = new (stageBossRoles.ToArray(),1);
-            RandomBag<string> partnerBag = new (partnerRoles.ToArray(),1);
-            RandomBag<string> extraBossBag = new (extraBossRoles.ToArray(),1);
-            RandomBag<string> rivalBag = new (rivalRoles.ToArray(),1);
             
             List<string> roleNames = new List<string>();
+
+            if (heroineRoles.Count > 0)
+            {
+                RandomBag<string> heroinesBag = new (heroineRoles.ToArray(),1);
+                for (int i = 0; i < roleDistributionConfig.HeroineRoleCount; i++)
+                {
+                    roleNames.Add(heroinesBag.PopRandomItem());
+                }
+            }
             
-            for (int i = 0; i < roleDistributionConfig.HeroineRoleCount; i++)
+            if (stageBossRoles.Count > 0)
             {
-                roleNames.Add(heroinesBag.PopRandomItem());
+                RandomBag<string> stageBossBag = new (stageBossRoles.ToArray(),1);
+                for (int i = 0; i < roleDistributionConfig.StageBossRoleCount; i++)
+                {
+                    roleNames.Add(stageBossBag.PopRandomItem());
+                }
             }
-            for (int i = 0; i < roleDistributionConfig.StageBossRoleCount; i++)
+            
+            if (partnerRoles.Count > 0)
             {
-                roleNames.Add(stageBossBag.PopRandomItem());
+                RandomBag<string> partnerBag = new (partnerRoles.ToArray(),1);
+                for (int i = 0; i < roleDistributionConfig.PartnerRoleCount; i++)
+                {
+                    roleNames.Add(partnerBag.PopRandomItem());
+                }
             }
-            for (int i = 0; i < roleDistributionConfig.PartnerRoleCount; i++)
+            
+            if (extraBossRoles.Count > 0)
             {
-                roleNames.Add(partnerBag.PopRandomItem());
+                RandomBag<string> extraBossBag = new (extraBossRoles.ToArray(),1);
+                for (int i = 0; i < roleDistributionConfig.ExtraBossRoleCount; i++)
+                {
+                    roleNames.Add(extraBossBag.PopRandomItem());
+                }
             }
-            for (int i = 0; i < roleDistributionConfig.ExtraBossRoleCount; i++)
+            
+            if (rivalRoles.Count > 0)
             {
-                roleNames.Add(extraBossBag.PopRandomItem());
-            }
-            for (int i = 0; i < roleDistributionConfig.RivalRoleCount; i++)
-            {
-                roleNames.Add(rivalBag.PopRandomItem());
+                RandomBag<string> rivalBag = new (rivalRoles.ToArray(),1);
+                for (int i = 0; i < roleDistributionConfig.RivalRoleCount; i++)
+                {
+                    roleNames.Add(rivalBag.PopRandomItem());
+                }
             }
 
-
+            var roleFactory = new DanmakuRoleFactory();
             foreach (var roleName in roleNames)
             {
-                
+                var role = roleFactory.CreateRole(roleName);
+                roles.Add(role);
             }
             
             return roles;

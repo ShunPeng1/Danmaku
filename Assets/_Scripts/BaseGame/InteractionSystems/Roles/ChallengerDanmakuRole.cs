@@ -11,6 +11,11 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
         private bool _isRevealed;
         private DanmakuPlayerModel _myPlayerModel;
 
+        public ChallengerDanmakuRole()
+        {
+            _isRevealed = false;
+        }
+        
         bool IDanmakuRole.IsRevealed
         {
             get => _isRevealed;

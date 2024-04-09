@@ -10,6 +10,11 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
         private DanmakuPlayerGroupModel _danmakuPlayerGroupModel;
         private DanmakuPlayerModel _myPlayerModel;
 
+        public HeroineDanmakuRole()
+        {
+            IsRevealed = false;
+        }
+        
         private bool IsRevealed { get; set;}
 
         bool IDanmakuRole.IsRevealed
