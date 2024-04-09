@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3783b909629478db9128655c29fcf21, type: 3}
-  m_Name: Base Game Deck Set
+  m_Name: BaseGameDeckSet
   m_EditorClassIdentifier: 
   _deckCardsData:
   - DeckCardData: {fileID: 11400000, guid: 3de9b6de6f44bc246b0fd7bd94a21065, type: 2}
