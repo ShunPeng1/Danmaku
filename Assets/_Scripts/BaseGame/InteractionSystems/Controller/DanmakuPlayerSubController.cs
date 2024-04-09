@@ -29,9 +29,11 @@ namespace _Scripts.CoreGame.InteractionSystems
 
             if (startPlayer != null)
             {
-                startPlayer.Role.RevealRole();
+                var role = startPlayer.Role.RevealRole();
 
-                SetupPlayerView.GetPlayerView(startPlayer).RoleView.RevealRole();
+                var playerView = SetupPlayerView.GetPlayerView(startPlayer);
+                var roleView = playerView.RoleView;
+                roleView.RevealRole(role);
             }
         }
         

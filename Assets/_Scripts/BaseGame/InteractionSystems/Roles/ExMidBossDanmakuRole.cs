@@ -56,9 +56,10 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
             return false;
         }
 
-        public void RevealRole()
+        public IDanmakuRole RevealRole()
         {
             _isRevealed = true;
+            return this;
         }
     }
 }

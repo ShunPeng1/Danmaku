@@ -11,9 +11,9 @@ namespace _Scripts.BaseGame.Views
         [SerializeField]
         private DanmakuCardDeckBaseView _cardDeckView;
         
-        public DanmakuRoleBaseView RoleView { get; set; }
-        public DanmakuCardHandBaseView CardHandView { get; set; }
-        public DanmakuCardDeckBaseView CardDeckView { get; set; }        
+        public DanmakuRoleBaseView RoleView => _roleView;
+        public DanmakuCardHandBaseView CardHandView => _cardHandView;
+        public DanmakuCardDeckBaseView CardDeckView => _cardDeckView;   
         
         public abstract void InitializeView();
         

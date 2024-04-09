@@ -58,9 +58,10 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
             return false; // TODO: Reveal RoleName when heroines are dead
         }
 
-        public void RevealRole()
+        public IDanmakuRole RevealRole()
         {
             _isRevealed = true;
+            return this;
         }
     }
 }

@@ -12,15 +12,14 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
 
         public HeroineDanmakuRole()
         {
-            IsRevealed = false;
+            _isRevealed = false;
         }
-        
-        private bool IsRevealed { get; set;}
 
+        private bool _isRevealed;
         bool IDanmakuRole.IsRevealed
         {
-            get => IsRevealed;
-            set => IsRevealed = value;
+            get => _isRevealed;
+            set => _isRevealed = value;
         }
 
         DanmakuPlayerGroupModel IDanmakuRole.DanmakuPlayerGroupModel
@@ -52,9 +51,10 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
             return true; // TODO: Implement the reveal role logic
         }
 
-        public void RevealRole()
+        public IDanmakuRole RevealRole()
         {
-            IsRevealed = true;
+            _isRevealed = true;
+            return this;
         }
     }
     

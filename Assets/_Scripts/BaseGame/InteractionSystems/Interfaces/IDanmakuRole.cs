@@ -12,6 +12,6 @@ namespace _Scripts.CoreGame.InteractionSystems.Roles
         public bool IsGoalReached();
         
         public bool CanRevealRole();
-        public void RevealRole();
+        public IDanmakuRole RevealRole();
     }
 }

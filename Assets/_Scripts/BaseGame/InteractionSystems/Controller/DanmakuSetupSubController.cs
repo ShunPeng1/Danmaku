@@ -131,5 +131,15 @@ namespace _Scripts.CoreGame.InteractionSystems
             
             
         }
+        
+        public DanmakuPlayerGroupModel GetPlayerGroupModel()
+        {
+            return _playerGroupModel;
+        }
+        
+        public DanmakuBoardModel GetBoardModel()
+        {
+            return _boardModel;
+        }
     }
 }

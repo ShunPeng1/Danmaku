@@ -24,7 +24,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             PlayerGroupModel = playerGroupModel;
         }
 
-        public void SetSubController(DanmakuSetupSubController danmakuStepSubController)
+        public void SetSubController(DanmakuSetupSubController danmakuStepSubController, DanmakuPlayerSubController danmakuPlayerSubController)
         {
             DanmakuStepSubController = danmakuStepSubController;
         }

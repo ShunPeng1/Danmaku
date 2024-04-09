@@ -6103,6 +6103,8 @@ GameObject:
   - component: {fileID: 1684432772}
   - component: {fileID: 1684432775}
   - component: {fileID: 1684432774}
+  - component: {fileID: 1684432777}
+  - component: {fileID: 1684432776}
   m_Layer: 0
   m_Name: Danmaku Game
   m_TagString: Untagged
@@ -6126,6 +6128,7 @@ MonoBehaviour:
   _playerCount: 4
   _roleSetConfig: {fileID: 11400000, guid: c450b1abc5bc8e74a80aa32c6a4d4680, type: 2}
   _deckSetConfig: {fileID: 11400000, guid: b7088ecc9d1fefb4cb47bdd26689ff44, type: 2}
+  _startupStatsConfig: {fileID: 11400000, guid: 5e96a99a593a4bd46a7f469d559a9d3b, type: 2}
 --- !u!4 &1684432773
 Transform:
   m_ObjectHideFlags: 0
@@ -6153,6 +6156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1145180e5254963bc3b9fad5f5fd6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerViewPrefab: {fileID: 3304500905984708964, guid: 2145e5bd1f6ca0e4ba17aceed3663fc1, type: 3}
 --- !u!114 &1684432775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6166,12 +6170,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _setupPlayerView: {fileID: 1684432774}
-  _playerView: {fileID: 0}
-  _roleView: {fileID: 0}
-  _cardView: {fileID: 0}
-  _cardHandView: {fileID: 0}
-  _cardDeckView: {fileID: 0}
-  _cardDiscardView: {fileID: 0}
+  _turnView: {fileID: 1684432777}
+  _boardView: {fileID: 1684432776}
+--- !u!114 &1684432776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684432771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4144f7f7ad134cde874778e9bea0ab96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1684432777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684432771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d84a83f24514aeb9a81088ccd5b75eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1689794818
 MonoBehaviour:
   m_ObjectHideFlags: 0

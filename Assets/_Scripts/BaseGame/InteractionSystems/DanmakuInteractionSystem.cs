@@ -32,12 +32,14 @@ namespace _Scripts.CoreGame.InteractionSystems
                 .Build();
             
             setupSubController.SetupStartingStats(_startupStatsConfig);
+            
+            InteractionController.SetupModels(setupSubController.GetBoardModel(),setupSubController.GetPlayerGroupModel());
 
             var playerSubController = new DanmakuPlayerSubController(InteractionController);
             playerSubController.StartupReveal();
             playerSubController.StartGame();
             
-            InteractionController.SetSubController(setupSubController);
+            InteractionController.SetSubController(setupSubController, playerSubController);
 
         }
         
