@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
   m_Name: 4_Bomb_2RuleData
   m_EditorClassIdentifier: 
-  CardRule: 'Activate your {0} card.
+  CardRule: 'Play this when another player plays {0} card or activates their {1}
+    Card.
 
-    You can only activate {1} card per round.'
-  CardTimingType: 3
+    Cancel that card.'
+  CardTimingType: 1
   CardEffectTypes: 
   CardRuleValueWithIcons:
-  - Value: 0
-    CardRuleTextIconEnum: 6
+  - Value: 1
+    CardRuleTextIconEnum: 4
   - Value: 1
     CardRuleTextIconEnum: 6

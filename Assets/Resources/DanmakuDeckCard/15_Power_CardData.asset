@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7731c8f16ab409da5c0d6b8b5889748, type: 3}
-  m_Name: 2_Bomb_CardData
+  m_Name: 15_Power_CardData
   m_EditorClassIdentifier: 
-  CardName: Bomb
+  CardName: Power
   CardTitle: 
   CardDeck: 0
   CardExpansion: 0
   CardSeason: 0
-  PointValue: 4
+  PointValue: 2
   CardRulesScriptableData:
-  - {fileID: 11400000, guid: c28d7ec30ddbc5844a43ea8d283f53cd, type: 2}
-  - {fileID: 11400000, guid: 72e79df03b78f414a93424119f214ff2, type: 2}
+  - {fileID: 11400000, guid: 643125269e00e194d81e074dcefb998b, type: 2}
   CardIllustration: {fileID: 0}
-  ArtistName: 
+  ArtistName: "M. Beatriz Garc\xEDa"

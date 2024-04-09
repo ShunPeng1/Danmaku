@@ -10,16 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
-  m_Name: 2_1Up_2RuleData
+  m_Name: 24_Tempest_RuleData
   m_EditorClassIdentifier: 
-  CardRule: 'Play this when any player is reduced to {0}.
-
-    That player returns
-    to {1}.'
-  CardTimingType: 1
-  CardEffectTypes: 01000000
-  CardRuleValueWithIcons:
-  - Value: 0
-    CardRuleTextIconEnum: 0
-  - Value: 1
-    CardRuleTextIconEnum: 0
+  CardRule: All players discard their hand and draw three cards.
+  CardTimingType: 0
+  CardEffectTypes: 
+  CardRuleValueWithIcons: []

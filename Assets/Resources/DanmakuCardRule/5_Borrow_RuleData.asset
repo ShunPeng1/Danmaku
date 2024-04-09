@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
-  m_Name: 2_1Up_2RuleData
+  m_Name: 5_Borrow_RuleData
   m_EditorClassIdentifier: 
-  CardRule: 'Play this when any player is reduced to {0}.
+  CardRule: 'Choose any {0} in play.
 
-    That player returns
-    to {1}.'
-  CardTimingType: 1
-  CardEffectTypes: 01000000
+    You gain control of that {1}.'
+  CardTimingType: 0
+  CardEffectTypes: 
   CardRuleValueWithIcons:
-  - Value: 0
-    CardRuleTextIconEnum: 0
   - Value: 1
-    CardRuleTextIconEnum: 0
+    CardRuleTextIconEnum: 10
+  - Value: 1
+    CardRuleTextIconEnum: 10
