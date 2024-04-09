@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
   m_Name: 10_Kourindou_RuleData
   m_EditorClassIdentifier: 
+  CardRuleName: 
   CardRule: As you play this card, you may discard any number of cards from your
-    hand. Draw cards equal to the number of cards discarded this way plus one.
+    hand. Draw cards equal to the number of cards discarded this way plus {0}.
   CardTimingType: 0
   CardEffectTypes: 
-  CardRuleValueWithIcons: []
+  CardRuleValueWithIcons:
+  - Value: 1
+    CardRuleTextIconEnum: 15

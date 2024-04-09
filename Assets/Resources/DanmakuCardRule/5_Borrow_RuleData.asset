@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
   m_Name: 5_Borrow_RuleData
   m_EditorClassIdentifier: 
+  CardRuleName: 
   CardRule: 'Choose any {0} in play.
 
     You gain control of that {1}.'
@@ -20,5 +21,5 @@ MonoBehaviour:
   CardRuleValueWithIcons:
   - Value: 1
     CardRuleTextIconEnum: 10
-  - Value: 1
+  - Value: -1
     CardRuleTextIconEnum: 10

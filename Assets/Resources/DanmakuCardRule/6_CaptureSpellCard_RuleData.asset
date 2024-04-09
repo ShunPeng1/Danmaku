@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
   m_Name: 6_CaptureSpellCard_RuleData
   m_EditorClassIdentifier: 
+  CardRuleName: 
   CardRule: "Choose another player and activate their character\u2019s {0} Card as
     if it were your own. You may choose a defeated player\u2019s character.\r\nYou
     can only activate {1} Card per round."
   CardTimingType: 3
   CardEffectTypes: 
   CardRuleValueWithIcons:
-  - Value: 0
+  - Value: -1
     CardRuleTextIconEnum: 6
   - Value: 1
     CardRuleTextIconEnum: 6
