@@ -2,17 +2,19 @@
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.ScriptableData;
 
-namespace _Scripts.CoreGame.InteractionSystems.Cards
+using Shun_Utilities;
+
+namespace _Scripts.CoreGame.InteractionSystems
 {
-    public class DanmakuCard : IDanmakuCard
+    public class DanmakuMainDeckCardModel : IDanmakuCard
     {
         public DeckCardScriptableData DeckCardScriptableData { get; private set; }
-        public IDanmakuCardHolder CardHolder { get; private set; }
+        public ObservableData<IDanmakuCardHolder> CardHolder { get; private set; }
         public List<IDanmakuCardRule> DanmakuCardRules { get; private set; }
         
         public bool IsHidden { get; private set; }
         
-        public DanmakuCard(DeckCardScriptableData deckCardScriptableData)
+        public DanmakuMainDeckCardModel(DeckCardScriptableData deckCardScriptableData)
         {
             DeckCardScriptableData = deckCardScriptableData;
         }

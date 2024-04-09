@@ -101,15 +101,13 @@ namespace Shun_Utilities
         /// </summary>
         /// <typeparam name="T">The list element type.</typeparam>
         /// <param name="list">The list to shuffle.</param>
-        public static void Shuffle<T>(this List<T> list)
+        public static void Shuffle<T>(this IList<T> list)
         {
             var count = list.Count;
             for (int i1 = 0; i1 < count; i1++)
             {
                 var i2 = UnityEngine.Random.Range(0, count);
-                var element = list[i1];
-                list[i1] = list[i2];
-                list[i2] = element;
+                (list[i1], list[i2]) = (list[i2], list[i1]);
             }
         }
 

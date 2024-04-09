@@ -7,37 +7,42 @@ namespace _Scripts.CoreGame.InteractionSystems
 {
     public class DanmakuCardDeckModel : IDanmakuCardHolder
     {
-        public ObservableArray<IDanmakuCard> Cards { get; } = new();
+        public ObservableList<IDanmakuCard> Cards { get; }
+        
+        public DanmakuCardDeckModel(List<IDanmakuCard> cards)
+        {
+            Cards = new ObservableList<IDanmakuCard>(cards);
+        }
 
         public void AddCard(IDanmakuCard danmakuCard)
         {
-            Cards.TryAdd(danmakuCard);
+            Cards.Add(danmakuCard);
         }
 
         public void AddCardAt(IDanmakuCard danmakuCard, int index)
         {
-            Cards.TryAddAt(index, danmakuCard);
+            Cards.Insert(index, danmakuCard);
         }
 
         public void RemoveCard(IDanmakuCard danmakuCard)
         {
-            Cards.TryRemove(danmakuCard);
+            Cards.Remove(danmakuCard);
         }
 
         public void RemoveCardAt(int index)
         {
-            Cards.TryRemoveAt(index);
+            Cards.RemoveAt(index);
         }
 
         public void MoveCard(IDanmakuCard danmakuCard, IDanmakuCardHolder targetHolder)
         {
-            Cards.TryRemove(danmakuCard);
+            Cards.Remove(danmakuCard);
             targetHolder.AddCard(danmakuCard);
         }
 
         public void ShuffleHolder()
         {
-            Cards.Items.Shuffle();
+            Cards.List.Shuffle();
         }
     }
 }
