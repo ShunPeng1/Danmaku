@@ -6,7 +6,7 @@ namespace _Scripts.CoreGame.InteractionSystems
 {
     public class DanmakuInteractionController
     {
-        public DanmakuStepSubController DanmakuStepSubController { get; private set; }
+        public DanmakuSetupSubController DanmakuSetupSubController { get; private set; }
         private DanmakuInteractionViewRepo _interactionViewRepo;
 
         public DanmakuInteractionController(DanmakuInteractionViewRepo danmakuInteractionViewRepo)
@@ -15,21 +15,21 @@ namespace _Scripts.CoreGame.InteractionSystems
             
         }
 
-        public void SetSubController(DanmakuStepSubController danmakuStepSubController)
+        public void SetSubController(DanmakuSetupSubController danmakuSetupSubController)
         {
-            DanmakuStepSubController = danmakuStepSubController;
+            DanmakuSetupSubController = danmakuSetupSubController;
             
         }
 
         public void Setup(RoleSetConfig roleSetConfig)
         {
-            DanmakuStepSubController.SetupPlayerRole(roleSetConfig);
+            DanmakuSetupSubController.SetupPlayerRole(roleSetConfig);
             
         }
         
         public void StartGame()
         {
-            DanmakuStepSubController.StartGame();
+            
         }
         
     }

@@ -15,5 +15,15 @@ namespace _Scripts.BaseGame.Views.Default
                 Debug.Log($"Player {player.PlayerId} has role {role.GetType()}");
             }
         }
+
+        public override void SetupCardDeckRoleView(DanmakuCardDeckModel cardDeckModel)
+        {
+            
+        }
+
+        public override void SetupPlayerHandView(DanmakuPlayerModel playerModel, DanmakuCardHandModel cardHandModel)
+        {
+            
+        }
     }
 }

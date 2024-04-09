@@ -16,28 +16,28 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         [Header("Controller")]
         public DanmakuInteractionController InteractionController;
-        public DanmakuSessionSubController SessionSubController;
-        public DanmakuStepSubController StepSubController;
+        public DanmakuPlayerSubController PlayerSubController;
+        public DanmakuSetupSubController SetupSubController;
         
         private void Awake()
         {
             InteractionController = new DanmakuInteractionController(_setupPlayerView);
             
-            DanmakuStepSubController.Builder builder = new DanmakuStepSubController.Builder();
-            StepSubController = builder.WithPlayerGroupModel(_playerCount, _roleSetConfig)
+            DanmakuSetupSubController.Builder builder = new DanmakuSetupSubController.Builder();
+            SetupSubController = builder.WithPlayerGroupModel(_playerCount, _roleSetConfig)
                 .Build(InteractionController, _setupPlayerView.SetupPlayerView);
             
             
-            SessionSubController = new DanmakuSessionSubController();
+            PlayerSubController = new DanmakuPlayerSubController();
             
-            InteractionController.SetSubController(StepSubController);
+            InteractionController.SetSubController(SetupSubController);
             
         }
         
         private void Start()
         {
-            StepSubController.SetupPlayerRole(_roleSetConfig);
-            StepSubController.StartGame();
+            SetupSubController.SetupPlayerRole(_roleSetConfig);
+           
         }
         
     }
