@@ -70,9 +70,6 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             switch (PlayerGroupModel.CurrentPlayStepEnum.Value)
             {
-                case PlayStepEnum.SetupStep:
-                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.StartOfTurnStep;
-                    break;
                 case PlayStepEnum.StartOfTurnStep:
                     PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.IncidentStep;
                     break;
@@ -86,9 +83,6 @@ namespace _Scripts.CoreGame.InteractionSystems
                     PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DiscardStep;
                     break;
                 case PlayStepEnum.DiscardStep:
-                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.EndOfTurnStep;
-                    break;
-                case PlayStepEnum.EndOfTurnStep:
                     SetPlayerNextTurn();
                     break;
                 default:

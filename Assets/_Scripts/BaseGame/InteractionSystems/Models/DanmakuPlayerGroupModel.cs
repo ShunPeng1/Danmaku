@@ -33,7 +33,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             CurrentPlayerTurn.Value = player;
             CurrentPlayerTurnIndex.Value = Players.IndexOf(player);
-            CurrentPlayStepEnum.Value = PlayStepEnum.SetupStep;
+            CurrentPlayStepEnum.Value = PlayStepEnum.StartOfTurnStep;
         }
         
         public DanmakuPlayerModel SetNextPlayerTurn()
@@ -45,7 +45,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             }
             CurrentPlayerTurn.Value = Players[nextIndex];
             CurrentPlayerTurnIndex.Value = nextIndex;
-            CurrentPlayStepEnum.Value = PlayStepEnum.SetupStep;
+            CurrentPlayStepEnum.Value = PlayStepEnum.StartOfTurnStep;
 
             return CurrentPlayerTurn.Value;
         }

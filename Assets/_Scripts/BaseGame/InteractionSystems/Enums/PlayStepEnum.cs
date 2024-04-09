@@ -2,12 +2,10 @@
 {
     public enum PlayStepEnum
     {
-        SetupStep,
         StartOfTurnStep,
         IncidentStep,
         DrawStep,
         MainStep,
         DiscardStep,
-        EndOfTurnStep
     }
 }
