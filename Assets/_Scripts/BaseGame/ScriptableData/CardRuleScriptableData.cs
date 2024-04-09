@@ -1,4 +1,5 @@
 ﻿using System;
+using _Scripts.CoreGame.InteractionSystems.Attributes;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace _Scripts.BaseGame.ScriptableData
     [CreateAssetMenu(fileName = "CardRuleScriptableData", menuName = "ScriptableData/CardRuleScriptableData")]
     public class CardRuleScriptableData : ScriptableObject
     {
+        [DanmakuClassRuleProperty]
         public string CardRuleName;
         [TextArea(3, 10)]
         public string CardRule;
