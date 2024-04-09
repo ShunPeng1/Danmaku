@@ -39,14 +39,6 @@ namespace _Scripts.BaseGame.Views.Default
             }
         }
 
-        public override void SetupCardDeckRoleView(DanmakuCardDeckModel cardDeckModel)
-        {
-            
-        }
-
-        public override void SetupPlayerHandView(DanmakuPlayerModel playerModel, DanmakuCardHandModel cardHandModel)
-        {
-            
-        }
+        
     }
 }

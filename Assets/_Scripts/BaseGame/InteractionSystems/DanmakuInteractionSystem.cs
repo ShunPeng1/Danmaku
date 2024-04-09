@@ -17,7 +17,6 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         [Header("Controller")]
         public DanmakuInteractionController InteractionController;
-        public DanmakuSessionSubController SessionSubController;
         public DanmakuSetupSubController SetupSubController;
         
         private void Awake()
@@ -29,9 +28,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 .WithPlayerGroup(_playerCount, _roleSetConfig)
                 .WithCardDeck(_deckSetConfig)
                 .Build();
-
             
-            SessionSubController = new DanmakuSessionSubController();
             
             InteractionController.SetSubController(SetupSubController);
             
