@@ -1,0 +1,35 @@
+Hello~~~! I'm Savlietion, thank you very much for using my model and watching the readme.
+It was a bit of a bumpy ride, but I learned and grew a lot about MMD. I made two models at the same time
+PLEASE DO NOT USE IT MAKE TENSHION MMD
+
+
+Modeling：Savlietion
+
+Original: ZUN  Team Shanghai Alice
+
+Tools used: blender (main) PmxEditor
+
+Please note that since this is a newbie MMD modeling, there may be a lot of rough places.
+---------- ---------- ----------
+About secondary distribution and commercialization
+
+The use of this work for profit (such as the use of models on video sites) is permitted.
+Secondary distribution for profit is not permitted, and the original URL must be included with the distribution.
+
+---------- ---------- ----------
+Contact information:
+twitter: @Savlietion_Yuki
+---------- ---------- ----------
+Lastly, thank you again for reading and using this site!
+2022/12/5
+
+2022/12/7 Ver1.10 update Fixed chest and hand physics
+2022/12/10 Ver1.20 Repaired chin
+2022/12/11 Ver1.21 The mouth shape through the mold has been repaired
+2022/12/12 Ver1.25 Hair and bow collision repair, dress hole repair
+2022/12/15 Ver1.26 Second revision
+2022/12/18 Ver1.28 Updated with material
+2022/12/24 Ver1.30 Completely corrected normals
+2023/1/18 Ver1.32 Hair update Finger and hair weights updated Finger IK issue addressed and skirt off issue Updated skirt mapping Eyes Bow mapping not blending with hat
+
+2023/4/12 Ver2.0 
