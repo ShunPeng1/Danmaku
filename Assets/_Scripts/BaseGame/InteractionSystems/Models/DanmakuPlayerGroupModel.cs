@@ -24,30 +24,9 @@ namespace _Scripts.CoreGame.InteractionSystems
             PlayerCount = currentPlayer.Count;
             CurrentPlayerTurnIndex = new ObservableData<int>(0);
             CurrentPlayerTurn = new ObservableData<DanmakuPlayerModel>(Players[0]);
-            CurrentPlayStepEnum = new ObservableData<PlayStepEnum>(PlayStepEnum.StartOfTurnStep);
+            CurrentPlayStepEnum = new ObservableData<PlayStepEnum>(PlayStepEnum.InitiateStep);
             
             
-        }
-
-        public void SetCurrentTurnPlayer(DanmakuPlayerModel player)
-        {
-            CurrentPlayerTurn.Value = player;
-            CurrentPlayerTurnIndex.Value = Players.IndexOf(player);
-            CurrentPlayStepEnum.Value = PlayStepEnum.StartOfTurnStep;
-        }
-        
-        public DanmakuPlayerModel SetNextPlayerTurn()
-        {
-            int nextIndex = CurrentPlayerTurnIndex.Value + 1;
-            if (nextIndex >= PlayerCount)
-            {
-                nextIndex = 0;
-            }
-            CurrentPlayerTurn.Value = Players[nextIndex];
-            CurrentPlayerTurnIndex.Value = nextIndex;
-            CurrentPlayStepEnum.Value = PlayStepEnum.StartOfTurnStep;
-
-            return CurrentPlayerTurn.Value;
         }
 
         
