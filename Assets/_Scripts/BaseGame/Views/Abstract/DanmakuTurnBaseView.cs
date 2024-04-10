@@ -8,6 +8,7 @@ namespace _Scripts.BaseGame.Views
     {
         
         public abstract void SetPlayerCurrentTurn(DanmakuPlayerModel playerModel);
-        
+
+        public abstract void EndPlayerStep(DanmakuPlayerModel value, DanmakuPlayerModel danmakuPlayerModel);
     }
 }

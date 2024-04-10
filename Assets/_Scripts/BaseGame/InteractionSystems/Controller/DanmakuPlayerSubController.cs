@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Scripts.BaseGame.Views;
-using _Scripts.CoreGame.InteractionSystems.DanmakuGameState;
+using _Scripts.CoreGame.InteractionSystems.GameSteps;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using _Scripts.CoreGame.InteractionSystems.Stats;
 
@@ -16,10 +16,13 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         private DanmakuSetupPlayerBaseView SetupPlayerView => _danmakuInteractionController.InteractionViewRepo.SetupPlayerView;
         private DanmakuTurnBaseView DanmakuTurnBaseView => _danmakuInteractionController.InteractionViewRepo.TurnView;
+
+        private DanmakuPlayerStepContext _currentStepContext; 
         
         public  DanmakuPlayerSubController(DanmakuInteractionController danmakuInteractionController)
         {
             _danmakuInteractionController = danmakuInteractionController;
+            _currentStepContext = new DanmakuPlayerStepContext();
         }
         
         
@@ -55,42 +58,114 @@ namespace _Scripts.CoreGame.InteractionSystems
             
         }
         
-        public void StartPlayerNextStep()
+        public void StartPlayerStep()
         {
+            DanmakuPlayerModel currentPlayer = PlayerGroupModel.CurrentPlayerTurn.Value;
             switch (PlayerGroupModel.CurrentPlayStepEnum.Value)
             {
-                case PlayStepEnum.StartOfTurnStep:
-                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.IncidentStep;
+                case PlayStepEnum.InitiateStep:
+                    _currentStepContext.SetStep(new DanmakuInitiatePlayerStep(),currentPlayer);
+                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.InitiateStep;
                     break;
                 case PlayStepEnum.IncidentStep:
-                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DrawStep;
+                    _currentStepContext.SetStep(new DanmakuIncidentPlayerStep(),currentPlayer);
+                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.IncidentStep;
                     break;
                 case PlayStepEnum.DrawStep:
-                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.MainStep;
+                    _currentStepContext.SetStep(new DanmakuDrawPlayerStep(),currentPlayer);
+                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DrawStep;
                     break;
                 case PlayStepEnum.MainStep:
+                    _currentStepContext.SetStep(new DanmakuMainPlayerStep(),currentPlayer);
+                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.MainStep;
+                    break;
+                case PlayStepEnum.DiscardStep:
+                    _currentStepContext.SetStep(new DanmakuDiscardPlayerStep(),currentPlayer);
                     PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DiscardStep;
+                    return; // No need to execute a step after setting the next player's turn
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            _currentStepContext.ExecuteStep(PlayerGroupModel.CurrentPlayerTurn.Value);
+        }
+        
+        public bool CanEndPlayerStep()
+        {
+            return _currentStepContext.CanEndStep(PlayerGroupModel.CurrentPlayerTurn.Value);
+        }
+        
+        public void EndPlayerStep()
+        {
+            if (!_currentStepContext.CanEndStep(PlayerGroupModel.CurrentPlayerTurn.Value))
+            {
+                return;
+            }
+            
+            
+            switch (PlayerGroupModel.CurrentPlayStepEnum.Value)
+            {
+                case PlayStepEnum.InitiateStep:
+                    SetPlayerStep(PlayStepEnum.IncidentStep);
+                    break;
+                case PlayStepEnum.IncidentStep:
+                    SetPlayerStep(PlayStepEnum.DrawStep);
+                    break;
+                case PlayStepEnum.DrawStep:
+                    SetPlayerStep(PlayStepEnum.MainStep);
+                    break;
+                case PlayStepEnum.MainStep:
+                    SetPlayerStep(PlayStepEnum.DiscardStep);
                     break;
                 case PlayStepEnum.DiscardStep:
                     SetPlayerNextTurn();
-                    break;
+                    return; // No need to execute a step after setting the next player's turn
                 default:
                     throw new ArgumentOutOfRangeException();
             }
             
         }
 
+        private void SetPlayerStep(PlayStepEnum playStepEnum)
+        {
+            PlayerGroupModel.CurrentPlayStepEnum.Value = playStepEnum;
+            DanmakuTurnBaseView.EndPlayerStep(PlayerGroupModel.CurrentPlayerTurn.Value,PlayerGroupModel.CurrentPlayerTurn.Value);
+        }
+        
         private void SetPlayerTurn(DanmakuPlayerModel startingPlayer)
         {
-            PlayerGroupModel.SetCurrentTurnPlayer(startingPlayer);
+            SetCurrentTurnPlayer(startingPlayer);
             DanmakuTurnBaseView.SetPlayerCurrentTurn(startingPlayer);
-
+            
+            SetPlayerStep(PlayStepEnum.InitiateStep);
         }
         
         private void SetPlayerNextTurn()
         {
-            var nextPlayerModel = PlayerGroupModel.SetNextPlayerTurn();
+            var nextPlayerModel = SetNextPlayerTurn();
             DanmakuTurnBaseView.SetPlayerCurrentTurn(nextPlayerModel);
+            
+            SetPlayerStep(PlayStepEnum.InitiateStep);
+        }
+
+
+        private void SetCurrentTurnPlayer(DanmakuPlayerModel player)
+        {
+            PlayerGroupModel.CurrentPlayerTurn.Value = player;
+            PlayerGroupModel.CurrentPlayerTurnIndex.Value = PlayerGroupModel.Players.IndexOf(player);
+        }
+
+        private DanmakuPlayerModel SetNextPlayerTurn()
+        {
+            int nextIndex = PlayerGroupModel.CurrentPlayerTurnIndex.Value + 1;
+            if (nextIndex >= PlayerGroupModel.PlayerCount)
+            {
+                nextIndex = 0;
+            }
+            PlayerGroupModel.CurrentPlayerTurn.Value = PlayerGroupModel.Players[nextIndex];
+            PlayerGroupModel.CurrentPlayerTurnIndex.Value = nextIndex;
+
+            return PlayerGroupModel.CurrentPlayerTurn.Value;
         }
 
         

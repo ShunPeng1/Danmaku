@@ -9,5 +9,10 @@ namespace _Scripts.BaseGame.Views.Default
         {
             Debug.Log("Current Player Turn "+ playerModel.PlayerId);
         }
+
+        public override void EndPlayerStep(DanmakuPlayerModel value, DanmakuPlayerModel danmakuPlayerModel)
+        {
+            Debug.Log("End Player Step "+ value.PlayerId);
+        }
     }
 }
