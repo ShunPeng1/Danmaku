@@ -1,4 +1,6 @@
-﻿using _Scripts.BaseGame.Views;
+﻿using System.Collections.Generic;
+using _Scripts.BaseGame.InteractionSystems.Interfaces;
+using _Scripts.BaseGame.Views;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
@@ -27,15 +29,30 @@ namespace _Scripts.CoreGame.InteractionSystems
                 
             }
         }
-        
-        
-        private void DrawCard(DanmakuPlayerModel player)
+
+
+        public void DrawCard(DanmakuPlayerModel player)
         {
             var card = BoardModel.MainDeckModel.PopCardFront();
             player.CardHandModel.AddCard(card);
             
             var playerHandView = SetupPlayerView.GetPlayerView(player).CardHandView;
             playerHandView.DrawCard(card);
+        }
+        
+        public void DrawCards(DanmakuPlayerModel player, int count)
+        {
+            var cards = new List<IDanmakuCard>();
+
+            for (int i = 0; i < count; i++)
+            {
+                var card = BoardModel.MainDeckModel.PopCardFront();
+                cards.Add(card);
+                player.CardHandModel.AddCard(card);
+            }
+            
+            var playerHandView = SetupPlayerView.GetPlayerView(player).CardHandView;
+            playerHandView.DrawCards(cards);
         }
         
     }

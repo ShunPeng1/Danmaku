@@ -9,6 +9,7 @@ using _Scripts.CoreGame.Configurations;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using _Scripts.CoreGame.InteractionSystems.Setups;
 using _Scripts.CoreGame.InteractionSystems.Stats;
+using Shun_Utilities;
 using UnityEngine;
 
 namespace _Scripts.CoreGame.InteractionSystems
@@ -99,6 +100,9 @@ namespace _Scripts.CoreGame.InteractionSystems
                     mainDeck.Add(mainDeckCardModel);
                 }
 
+                mainDeck.Shuffle();
+                incidentDeck.Shuffle();
+                
                 _boardModel = new DanmakuBoardModel(mainDeckModel, discardDeckModel, incidentDeckModel);
                 
                 _setupPlayerView.SetupCardDeck(mainDeckModel, discardDeckModel, incidentDeckModel);

@@ -52,9 +52,9 @@ namespace _Scripts.CoreGame.InteractionSystems
             PlayerStat distance, 
             PlayerStat range, 
             PlayerStat power,
+            PlayerStat cardDrawIncomeCount,
             PlayerStat danmakuCardPlayedCount,
-            PlayerStat danmakuSpellCardPlayedCount,
-            PlayerStat cardDrawIncomeCount)
+            PlayerStat spellCardPlayedCount)
         {
             Life = life;
             HandSize = handSize;
@@ -62,9 +62,10 @@ namespace _Scripts.CoreGame.InteractionSystems
             Range = range;
             Power = power;
             
-            DanmakuCardPlayedCount = danmakuCardPlayedCount;
-            SpellCardPlayedCount = danmakuSpellCardPlayedCount;
+            
             CardDrawIncomeCount = cardDrawIncomeCount;
+            DanmakuCardPlayedCount = danmakuCardPlayedCount;
+            SpellCardPlayedCount = spellCardPlayedCount;
             
         }
 

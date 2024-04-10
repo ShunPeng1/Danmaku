@@ -22,7 +22,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         public  DanmakuPlayerSubController(DanmakuInteractionController danmakuInteractionController)
         {
             _danmakuInteractionController = danmakuInteractionController;
-            _currentStepContext = new DanmakuPlayerStepContext();
+            _currentStepContext = new DanmakuPlayerStepContext(_danmakuInteractionController);
         }
         
         
@@ -66,29 +66,24 @@ namespace _Scripts.CoreGame.InteractionSystems
             {
                 case PlayStepEnum.InitiateStep:
                     _currentStepContext.SetStep(new DanmakuInitiatePlayerStep(),currentPlayerModel, currentPlayerView);
-                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.InitiateStep;
                     break;
                 case PlayStepEnum.IncidentStep:
                     _currentStepContext.SetStep(new DanmakuIncidentPlayerStep(),currentPlayerModel, currentPlayerView);
-                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.IncidentStep;
                     break;
                 case PlayStepEnum.DrawStep:
                     _currentStepContext.SetStep(new DanmakuDrawPlayerStep(),currentPlayerModel, currentPlayerView);
-                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DrawStep;
                     break;
                 case PlayStepEnum.MainStep:
                     _currentStepContext.SetStep(new DanmakuMainPlayerStep(),currentPlayerModel, currentPlayerView);
-                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.MainStep;
                     break;
                 case PlayStepEnum.DiscardStep:
                     _currentStepContext.SetStep(new DanmakuDiscardPlayerStep(),currentPlayerModel, currentPlayerView);
-                    PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DiscardStep;
-                    return; // No need to execute a step after setting the next player's turn
+                    break; 
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            _currentStepContext.ExecuteStep();
+            
+            _currentStepContext.ExecuteStep(EndPlayerStep);
         }
         
         public bool CanEndPlayerStep()
@@ -121,11 +116,12 @@ namespace _Scripts.CoreGame.InteractionSystems
                     break;
                 case PlayStepEnum.DiscardStep:
                     SetPlayerNextTurn();
-                    return; // No need to execute a step after setting the next player's turn
+                    break; // No need to execute a step after setting the next player's turn
                 default:
                     throw new ArgumentOutOfRangeException();
             }
             
+            StartPlayerStep();
         }
 
         private void SetPlayerStep(PlayStepEnum playStepEnum)

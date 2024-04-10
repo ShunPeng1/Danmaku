@@ -1,17 +1,21 @@
-﻿using _Scripts.BaseGame.Views;
+﻿using System;
+using _Scripts.BaseGame.Views;
+using UnityEngine;
 
 namespace _Scripts.CoreGame.InteractionSystems.GameSteps
 {
     public class DanmakuMainPlayerStep : IDanmakuPlayerStep
     {
-        public bool CanEndStep(DanmakuPlayerModel playerModel, DanmakuPlayerBaseView playerView)
+        public bool CanEndStep(DanmakuInteractionController interactionController, DanmakuPlayerModel playerModel, DanmakuPlayerBaseView playerView)
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
-        public void Execute(DanmakuPlayerModel playerModel, DanmakuPlayerBaseView playerView)
+        public void Execute(DanmakuInteractionController interactionController, DanmakuPlayerModel playerModel, DanmakuPlayerBaseView playerView, Action finishExecuteCallback = null)
         {
-            throw new System.NotImplementedException();
+            Debug.Log(playerModel.PlayerId + " Main Step Executed!");
+            
+            finishExecuteCallback?.Invoke();
         }
     }
 }
