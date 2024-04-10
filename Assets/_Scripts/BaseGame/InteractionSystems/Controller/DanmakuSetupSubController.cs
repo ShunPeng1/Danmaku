@@ -123,7 +123,10 @@ namespace _Scripts.CoreGame.InteractionSystems
                     new PlayerStat(startupStatsConfig.StartingHandSize, 0, startupStatsConfig.MaxHandSize),
                     new PlayerStat(startupStatsConfig.StartingDistant, startupStatsConfig.MinDistant),
                     new PlayerStat(startupStatsConfig.StartingRange, startupStatsConfig.MinRange),
-                    new PlayerStat(startupStatsConfig.StartingPower, startupStatsConfig.MinPower, startupStatsConfig.MaxPower)
+                    new PlayerStat(startupStatsConfig.StartingPower, startupStatsConfig.MinPower, startupStatsConfig.MaxPower),
+                    new PlayerStat(startupStatsConfig.CardDrawPerTurn, startupStatsConfig.MinCardDrawPerTurn, startupStatsConfig.MaxCardDrawPerTurn),
+                    new PlayerStat(0,0, startupStatsConfig.MaxDanmakuCardPlayedPerTurn),
+                    new PlayerStat(0, 0, startupStatsConfig.MaxSpellCardPlayedPerTurn)
                 );
                 
             }

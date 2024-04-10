@@ -22,6 +22,16 @@ namespace _Scripts.CoreGame.InteractionSystems.Stats
         {
             return _value.Value;
         }
+        
+        public int GetMaxValue()
+        {
+            return _maxValue;
+        }
+        
+        public int GetMinValue()
+        {
+            return _minValue;
+        }
 
         public void Set(int value)
         {
@@ -34,6 +44,34 @@ namespace _Scripts.CoreGame.InteractionSystems.Stats
                 value = _maxValue;
             }
             _value.Value = value;
+        }
+        
+        public void SetMaxValue(int value, bool setToMaxIfGreater = false)
+        {
+            _maxValue = value;
+            if (setToMaxIfGreater)
+            {
+                Set(value);
+            }
+        }
+        
+        public void SetMinValue(int value, bool setToMinIfLess = false)
+        {
+            _minValue = value;
+            if (setToMinIfLess)
+            {
+                Set(value);
+            }
+        }
+        
+        public bool IsGreaterOrEqualToMax(int value)
+        {
+            return value >= _maxValue;
+        }
+        
+        public bool IsLessOrEqualToMin(int value)
+        {
+            return value <= _minValue;
         }
 
         public void Increase(int value)

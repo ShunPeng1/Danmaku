@@ -48,61 +48,63 @@ namespace _Scripts.CoreGame.InteractionSystems
             if (heroinePlayer != null)
             {
                 SetPlayerTurn(heroinePlayer);
+                StartPlayerStep();
             }
             else // if no heroine player, start with first player
             {
                 SetPlayerTurn(PlayerGroupModel.Players[0]);
+                StartPlayerStep();
             }
-            
-            
             
         }
         
         public void StartPlayerStep()
         {
-            DanmakuPlayerModel currentPlayer = PlayerGroupModel.CurrentPlayerTurn.Value;
+            DanmakuPlayerModel currentPlayerModel = PlayerGroupModel.CurrentPlayerTurn.Value;
+            DanmakuPlayerBaseView currentPlayerView = SetupPlayerView.GetPlayerView(currentPlayerModel);
             switch (PlayerGroupModel.CurrentPlayStepEnum.Value)
             {
                 case PlayStepEnum.InitiateStep:
-                    _currentStepContext.SetStep(new DanmakuInitiatePlayerStep(),currentPlayer);
+                    _currentStepContext.SetStep(new DanmakuInitiatePlayerStep(),currentPlayerModel, currentPlayerView);
                     PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.InitiateStep;
                     break;
                 case PlayStepEnum.IncidentStep:
-                    _currentStepContext.SetStep(new DanmakuIncidentPlayerStep(),currentPlayer);
+                    _currentStepContext.SetStep(new DanmakuIncidentPlayerStep(),currentPlayerModel, currentPlayerView);
                     PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.IncidentStep;
                     break;
                 case PlayStepEnum.DrawStep:
-                    _currentStepContext.SetStep(new DanmakuDrawPlayerStep(),currentPlayer);
+                    _currentStepContext.SetStep(new DanmakuDrawPlayerStep(),currentPlayerModel, currentPlayerView);
                     PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DrawStep;
                     break;
                 case PlayStepEnum.MainStep:
-                    _currentStepContext.SetStep(new DanmakuMainPlayerStep(),currentPlayer);
+                    _currentStepContext.SetStep(new DanmakuMainPlayerStep(),currentPlayerModel, currentPlayerView);
                     PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.MainStep;
                     break;
                 case PlayStepEnum.DiscardStep:
-                    _currentStepContext.SetStep(new DanmakuDiscardPlayerStep(),currentPlayer);
+                    _currentStepContext.SetStep(new DanmakuDiscardPlayerStep(),currentPlayerModel, currentPlayerView);
                     PlayerGroupModel.CurrentPlayStepEnum.Value = PlayStepEnum.DiscardStep;
                     return; // No need to execute a step after setting the next player's turn
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            _currentStepContext.ExecuteStep(PlayerGroupModel.CurrentPlayerTurn.Value);
+            _currentStepContext.ExecuteStep();
         }
         
         public bool CanEndPlayerStep()
         {
-            return _currentStepContext.CanEndStep(PlayerGroupModel.CurrentPlayerTurn.Value);
+            return _currentStepContext.CanEndStep();
         }
         
         public void EndPlayerStep()
         {
-            if (!_currentStepContext.CanEndStep(PlayerGroupModel.CurrentPlayerTurn.Value))
+            if (!_currentStepContext.CanEndStep())
             {
                 return;
             }
             
-            
+            DanmakuTurnBaseView.EndPlayerStep(PlayerGroupModel.CurrentPlayerTurn.Value,PlayerGroupModel.CurrentPlayStepEnum.Value);
+
             switch (PlayerGroupModel.CurrentPlayStepEnum.Value)
             {
                 case PlayStepEnum.InitiateStep:
@@ -128,8 +130,8 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         private void SetPlayerStep(PlayStepEnum playStepEnum)
         {
-            PlayerGroupModel.CurrentPlayStepEnum.Value = playStepEnum;
-            DanmakuTurnBaseView.EndPlayerStep(PlayerGroupModel.CurrentPlayerTurn.Value,PlayerGroupModel.CurrentPlayerTurn.Value);
+            PlayerGroupModel.CurrentPlayStepEnum.Value = playStepEnum; 
+            DanmakuTurnBaseView.StartPlayerStep(PlayerGroupModel.CurrentPlayerTurn.Value,PlayerGroupModel.CurrentPlayStepEnum.Value);
         }
         
         private void SetPlayerTurn(DanmakuPlayerModel startingPlayer)

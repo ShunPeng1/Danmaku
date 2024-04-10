@@ -1,4 +1,5 @@
 ﻿using _Scripts.CoreGame.InteractionSystems;
+using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using UnityEngine;
 
 namespace _Scripts.BaseGame.Views.Default
@@ -10,9 +11,14 @@ namespace _Scripts.BaseGame.Views.Default
             Debug.Log("Current Player Turn "+ playerModel.PlayerId);
         }
 
-        public override void EndPlayerStep(DanmakuPlayerModel value, DanmakuPlayerModel danmakuPlayerModel)
+        public override void EndPlayerStep(DanmakuPlayerModel danmakuPlayerModel, PlayStepEnum playStepEnum)
         {
-            Debug.Log("End Player Step "+ value.PlayerId);
+            Debug.Log("End Player "+ danmakuPlayerModel.PlayerId + " Step "+ playStepEnum.ToString());
+        }
+
+        public override void StartPlayerStep(DanmakuPlayerModel danmakuPlayerModel, PlayStepEnum playStepEnum)
+        {
+            Debug.Log("Start Player "+ danmakuPlayerModel.PlayerId + " Step "+ playStepEnum.ToString());
         }
     }
 }

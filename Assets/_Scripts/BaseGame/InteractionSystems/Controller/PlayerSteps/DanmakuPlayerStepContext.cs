@@ -1,25 +1,29 @@
-﻿namespace _Scripts.CoreGame.InteractionSystems.GameSteps
+﻿using _Scripts.BaseGame.Views;
+
+namespace _Scripts.CoreGame.InteractionSystems.GameSteps
 {
     public class DanmakuPlayerStepContext
     {
         private IDanmakuPlayerStep _step;
-        private DanmakuPlayerModel _player;
+        private DanmakuPlayerModel _playerModel;
+        private DanmakuPlayerBaseView _playerView;
 
 
-        public void SetStep(IDanmakuPlayerStep step, DanmakuPlayerModel player)
+        public void SetStep(IDanmakuPlayerStep step, DanmakuPlayerModel playerModel, DanmakuPlayerBaseView playerView)
         {
             _step = step;
-            _player = player;
+            _playerModel = playerModel;
+            _playerView = playerView;
         }
 
-        public bool CanEndStep(DanmakuPlayerModel player)
+        public bool CanEndStep()
         {
-            return _step.CanEndStep(player);
+            return _step.CanEndStep(_playerModel, _playerView);
         }
         
-        public void ExecuteStep(DanmakuPlayerModel player)
+        public void ExecuteStep()
         {
-            _step.Execute(player);
+            _step.Execute(_playerModel, _playerView);
         }
     }
 }

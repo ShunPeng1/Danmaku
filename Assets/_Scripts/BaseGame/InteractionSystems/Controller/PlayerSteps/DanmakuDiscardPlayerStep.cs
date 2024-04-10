@@ -1,15 +1,17 @@
-﻿namespace _Scripts.CoreGame.InteractionSystems.GameSteps
+﻿using _Scripts.BaseGame.Views;
+
+namespace _Scripts.CoreGame.InteractionSystems.GameSteps
 {
     public class DanmakuDiscardPlayerStep : IDanmakuPlayerStep
     {
-        public bool CanEndStep(DanmakuPlayerModel player)
+        public bool CanEndStep(DanmakuPlayerModel playerModel, DanmakuPlayerBaseView playerView)
         {
-            return player.CardHandModel.Cards.Count <= player.HandSize.Get();
+            return playerModel.CardHandModel.Cards.Count <= playerModel.HandSize.Get();
         }
 
-        public void Execute(DanmakuPlayerModel player)
+        public void Execute(DanmakuPlayerModel playerModel, DanmakuPlayerBaseView playerView)
         {
-            if (player.CardHandModel.Cards.Count > player.HandSize.Get())
+            if (playerModel.CardHandModel.Cards.Count > playerModel.HandSize.Get())
             {
                 
             }
