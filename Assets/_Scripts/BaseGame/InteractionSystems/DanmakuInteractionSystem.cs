@@ -32,15 +32,20 @@ namespace _Scripts.CoreGame.InteractionSystems
                 .Build();
             
             setupSubController.SetupStartingStats(_startupStatsConfig);
-            
-            InteractionController.SetupModels(setupSubController.GetBoardModel(),setupSubController.GetPlayerGroupModel());
 
+            InteractionController.SetSetupSubController(setupSubController);
+            InteractionController.SetupModels(setupSubController.GetBoardModel(),setupSubController.GetPlayerGroupModel());
+            
+            var boardController = new DanmakuBoardController(InteractionController);
+            InteractionController.SetBoardController(boardController);
+            
             var playerSubController = new DanmakuPlayerSubController(InteractionController);
+            InteractionController.SetPlayerSubController(playerSubController);
+            
             playerSubController.StartupReveal();
-            playerSubController.StartupDraw();
+            boardController.StartupDraw();
             playerSubController.StartGame();
 
-            InteractionController.SetSubController(setupSubController, playerSubController);
 
         }
         

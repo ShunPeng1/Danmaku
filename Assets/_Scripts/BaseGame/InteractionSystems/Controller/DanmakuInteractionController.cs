@@ -7,6 +7,9 @@ namespace _Scripts.CoreGame.InteractionSystems
     public class DanmakuInteractionController
     {
         public DanmakuSetupSubController DanmakuStepSubController { get; private set; }
+        public DanmakuPlayerSubController DanmakuPlayerSubController { get; private set; }
+        public DanmakuBoardController DanmakuBoardController { get; private set; }
+        
         public DanmakuInteractionViewRepo InteractionViewRepo { get; private set; }
 
         public DanmakuBoardModel BoardModel { get; private set; }
@@ -24,16 +27,21 @@ namespace _Scripts.CoreGame.InteractionSystems
             PlayerGroupModel = playerGroupModel;
         }
 
-        public void SetSubController(DanmakuSetupSubController danmakuStepSubController, DanmakuPlayerSubController danmakuPlayerSubController)
+        public void SetSetupSubController(DanmakuSetupSubController danmakuStepSubController)
         {
             DanmakuStepSubController = danmakuStepSubController;
         }
         
-        
-        public void StartGame()
+        public void SetPlayerSubController(DanmakuPlayerSubController danmakuPlayerSubController)
         {
-            
+            DanmakuPlayerSubController = danmakuPlayerSubController;
         }
+        
+        public void SetBoardController(DanmakuBoardController danmakuBoardController)
+        {
+            DanmakuBoardController = danmakuBoardController;
+        }
+        
         
     }
 }

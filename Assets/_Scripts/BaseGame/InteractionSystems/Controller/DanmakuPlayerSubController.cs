@@ -37,17 +37,6 @@ namespace _Scripts.CoreGame.InteractionSystems
             }
         }
         
-        public void StartupDraw()
-        {
-            foreach (var player in PlayerGroupModel.Players)
-            {
-                for (int i = 0; i < player.HandSize.Get(); i++)
-                {
-                    DrawCard(player);
-                }
-                
-            }
-        }
         
         public void StartGame()
         {
@@ -104,14 +93,6 @@ namespace _Scripts.CoreGame.InteractionSystems
             DanmakuTurnBaseView.SetPlayerCurrentTurn(nextPlayerModel);
         }
 
-        private void DrawCard(DanmakuPlayerModel player)
-        {
-            var card = BoardModel.MainDeckModel.PopCardFront();
-            player.CardHandModel.AddCard(card);
-            
-            var playerHandView = SetupPlayerView.GetPlayerView(player).CardHandView;
-            playerHandView.DrawCard(card);
-        }
         
     }
 }
