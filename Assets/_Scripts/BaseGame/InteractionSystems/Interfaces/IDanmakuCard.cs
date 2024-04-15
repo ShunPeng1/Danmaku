@@ -1,4 +1,5 @@
-﻿using _Scripts.CoreGame.InteractionSystems;
+﻿using System.Collections.Generic;
+using _Scripts.CoreGame.InteractionSystems;
 
 namespace _Scripts.BaseGame.InteractionSystems.Interfaces
 {
@@ -8,7 +9,7 @@ namespace _Scripts.BaseGame.InteractionSystems.Interfaces
 
         public void HideCard();
         public void RevealCard();
-        public void PlayCard(IDanmakuCardRule danmakuCardRule);
+        public void ExecuteCard(IDanmakuCardRule cardRule, List<IDanmakuActivator> activators, List<IDanmakuTargetable> targetables);
         public void DiscardCard();
         
         public void DrawCard(DanmakuPlayerModel danmakuPlayerModel);

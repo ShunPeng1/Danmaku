@@ -1,6 +1,6 @@
 ﻿namespace _Scripts.BaseGame.InteractionSystems.Interfaces
 {
-    public interface IDanmakuTargeter
+    public interface IDanmakuActivator
     {
         
     }
