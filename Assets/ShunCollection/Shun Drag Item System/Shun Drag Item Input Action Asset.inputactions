@@ -1,0 +1,54 @@
+{
+    "name": "Shun Drag Item Input Action Asset",
+    "maps": [
+        {
+            "name": "DragItemControls",
+            "id": "74fce243-01d3-4a91-bbd5-842fcb9d5a00",
+            "actions": [
+                {
+                    "name": "Drag",
+                    "type": "Button",
+                    "id": "ae91a7af-b99d-496f-8aab-fd427f922f1a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ScreenPosition",
+                    "type": "Value",
+                    "id": "b3006e8a-5026-45b4-aab3-646bdcc55fa8",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3284d808-d256-4b86-8f62-ff461a304fbd",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4fd32c3a-8796-4ba1-a454-a3d433bb8fd6",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScreenPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
