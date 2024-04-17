@@ -11,39 +11,23 @@ namespace _Scripts.BaseGame.Views
     public class DanmakuInteractionViewRepo : MonoBehaviour
     {
         [Header("Serialized Views")]
-        [ShowInInspector] private DanmakuSetupPlayerBaseView _setupPlayerView;
-        [ShowInInspector] private DanmakuTurnBaseView _turnView;
-        [ShowInInspector] private DanmakuBoardBaseView _boardView;
-        
-        public DanmakuSetupPlayerBaseView SetupPlayerView => _setupPlayerView ? _setupPlayerView : (_setupPlayerView = gameObject.AddComponent<MockSetupPlayerView>());
-        public DanmakuTurnBaseView TurnView => _turnView ? _turnView : (_turnView = gameObject.AddComponent<MockTurnView>());
-        public DanmakuBoardBaseView BoardView => _boardView ? _boardView : (_boardView = gameObject.AddComponent<MockBoardView>());
-        
+        [ShowInInspector, ReadOnly] public DanmakuSetupPlayerBaseView SetupPlayerView;
+        [ShowInInspector, ReadOnly] public DanmakuTurnBaseView TurnView;
+        [ShowInInspector, ReadOnly] public DanmakuBoardBaseView BoardView;
         
         private void Awake()
         {
             InitializeViews();
         }
 
-        private void OnValidate()
-        {
-            InitializeViews();
-        }
-
         private void InitializeViews()
         {
-            if (_setupPlayerView == null)
-            {
-                _setupPlayerView = gameObject.GetComponentInChildren<DanmakuSetupPlayerBaseView>();
-            }
-            if (_turnView == null)
-            {
-                _turnView = gameObject.GetComponentInChildren<DanmakuTurnBaseView>();
-            }
-            if (_boardView == null)
-            {
-                _boardView = gameObject.GetComponentInChildren<DanmakuBoardBaseView>();
-            }
+            SetupPlayerView = gameObject.GetComponentInChildren<DanmakuSetupPlayerBaseView>();
+       
+            TurnView = gameObject.GetComponentInChildren<DanmakuTurnBaseView>();
+       
+            BoardView = gameObject.GetComponentInChildren<DanmakuBoardBaseView>();
+        
         }
     }
 }

@@ -10,13 +10,19 @@ namespace _Scripts.BaseGame.Views
     public abstract class DanmakuBoardBaseView : MonoBehaviour
     {
         
-        [ShowInInspector] protected DanmakuInteractionViewRepo InteractionViewRepo;
-        [ShowInInspector] protected DanmakuCardDeckBaseView MainDeckView;
-        [ShowInInspector] protected DanmakuCardDeckBaseView DiscardDeckView;
-        [ShowInInspector] protected DanmakuCardDeckBaseView IncidentDeckView;
-
-        
+        [ShowInInspector, ReadOnly] public DanmakuInteractionViewRepo InteractionViewRepo;
+        [ShowInInspector, ReadOnly] public DanmakuCardDeckBaseView MainDeckView;
+        [ShowInInspector, ReadOnly] public DanmakuCardDeckBaseView DiscardDeckView;
+        [ShowInInspector, ReadOnly] public DanmakuCardDeckBaseView IncidentDeckView;
         private void Awake()
+        {
+            InitializeViews();
+            InitializeInherit();
+        }
+
+        protected abstract void InitializeInherit();
+
+        private void InitializeViews()
         {
             InteractionViewRepo = transform.parent.GetComponent<DanmakuInteractionViewRepo>();
             

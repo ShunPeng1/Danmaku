@@ -10,18 +10,23 @@ namespace _Scripts.BaseGame.Views.Basics
     public class VRBoardView : DanmakuBoardBaseView
     {
         [Header("Prefabs")]
-        [SerializeField] private DanmakuMainDeckCardBaseView _mainDeckPrefab;
+        [SerializeField] private DanmakuMainDeckCardBaseView _mainDeckCardPrefab;
 
         [Header("Transforms")]
         [SerializeField] private Transform _mainDeckHolder;
         [SerializeField] private Transform _discardDeckHolder;
 
 
+        protected override void InitializeInherit()
+        {
+            
+        }
+
         public override void DrawCardFromMainDeck(DanmakuPlayerModel playerModel, DanmakuMainDeckCardModel card)
         {
             var handView = InteractionViewRepo.SetupPlayerView.GetPlayerView(playerModel).CardHandView;
 
-            var cardView = Instantiate(_mainDeckPrefab, _mainDeckHolder);
+            var cardView = Instantiate(_mainDeckCardPrefab, _mainDeckHolder);
             cardView.SetCardModel(card);
 
             handView.AddCard(cardView, card);
@@ -39,7 +44,7 @@ namespace _Scripts.BaseGame.Views.Basics
 
         public override void DiscardCardToDiscardDeck(DanmakuPlayerModel playerModel, DanmakuMainDeckCardModel card)
         {
-            var cardView = Instantiate(_mainDeckPrefab, _mainDeckHolder);
+            var cardView = Instantiate(_mainDeckCardPrefab, _mainDeckHolder);
             cardView.SetCardModel((DanmakuMainDeckCardModel)card);
 
             cardView.transform.DOMove(_discardDeckHolder.position, 0.5f).OnComplete(() => { Destroy(cardView.gameObject); });

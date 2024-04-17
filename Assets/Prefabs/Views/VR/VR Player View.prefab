@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardHandTransform: {fileID: 7405343019184758219}
-  _addCardMoveDuration: 0.5
+  _addCardMoveDuration: 1
   _addCardMoveDelay: 0.2
   _tweenEase: 1
 --- !u!1 &8433757709521045676

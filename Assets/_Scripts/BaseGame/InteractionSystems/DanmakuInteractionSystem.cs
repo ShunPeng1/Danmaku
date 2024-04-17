@@ -8,7 +8,7 @@ namespace _Scripts.CoreGame.InteractionSystems
     public class DanmakuInteractionSystem : MonoBehaviour
     {
         [Header("Views")]
-        [SerializeField] private DanmakuInteractionViewRepo _setupPlayerView;
+        [SerializeField] private DanmakuInteractionViewRepo _interactionViewRepo;
         
         [Header("Configurations")]
         [SerializeField] private int _playerCount;
@@ -20,12 +20,12 @@ namespace _Scripts.CoreGame.InteractionSystems
         public DanmakuInteractionController InteractionController;
         
         
-        private void Awake()
+        private void Start()
         {
-            InteractionController = new DanmakuInteractionController(_setupPlayerView);
+            InteractionController = new DanmakuInteractionController(_interactionViewRepo);
      
             
-            var setupSubController =  new DanmakuSetupSubController.Builder(InteractionController, _setupPlayerView.SetupPlayerView)
+            var setupSubController =  new DanmakuSetupSubController.Builder(InteractionController, _interactionViewRepo.SetupPlayerView)
                 .WithPlayerCount(_playerCount)
                 .WithPlayerRoles(_roleSetConfig)
                 .WithCardDeck(_deckSetConfig)
@@ -49,10 +49,6 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         }
         
-        private void Start()
-        {
-
-        }
         
     }
 }

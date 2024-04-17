@@ -7,6 +7,6 @@ namespace _Scripts.BaseGame.Views
     public abstract class DanmakuCardDeckBaseView : MonoBehaviour
     {
         [SerializeField] private ViewHolderTypeEnum _holderTypeEnum;
-        public ViewHolderTypeEnum HolderTypeEnum { get; set; }
+        public ViewHolderTypeEnum HolderTypeEnum => _holderTypeEnum;
     }
 }

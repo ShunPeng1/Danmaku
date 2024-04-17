@@ -8,6 +8,11 @@ namespace _Scripts.BaseGame.Views.Default
 {
     public class MockBoardView : DanmakuBoardBaseView
     {
+        protected override void InitializeInherit()
+        {
+            
+        }
+
         public override void DrawCardFromMainDeck(DanmakuPlayerModel playerModel, DanmakuMainDeckCardModel card)
         {
             var handView = InteractionViewRepo.SetupPlayerView.GetPlayerView(playerModel).CardHandView;

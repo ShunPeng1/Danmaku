@@ -1,6 +1,8 @@
-﻿namespace _Scripts.BaseGame.Views
+﻿using UnityEngine;
+
+namespace _Scripts.BaseGame.Views
 {
-    public class DanmakuItemBoardBaseView
+    public class DanmakuItemBoardBaseView : MonoBehaviour
     {
         
     }
