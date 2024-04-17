@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3737666963692029523}
   - component: {fileID: 5340517242060494823}
   - component: {fileID: 3180889528700399845}
-  - component: {fileID: -3064620946869735802}
+  - component: {fileID: 3427128746323981711}
   m_Layer: 0
   m_Name: VR Card
   m_TagString: Untagged
@@ -107,7 +107,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 6.1232336e-17}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3064620946869735802
+--- !u!114 &3427128746323981711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1314030508674949549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822b265e5de8410aa259e9384718ff75, type: 3}
+  m_Script: {fileID: 11500000, guid: d1819cc807fa4bc7893b5ed904337477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _cardNameText: {fileID: 4736921338004060181}
