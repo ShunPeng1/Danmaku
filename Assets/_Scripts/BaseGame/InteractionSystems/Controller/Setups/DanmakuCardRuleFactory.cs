@@ -23,7 +23,7 @@ namespace _Scripts.BaseGame.InteractionSystems.Setups
             }
             
             Debug.LogError($"CardRule {cardRuleData.CardRuleName} not found");
-            return null;
+            return new MockCardRule(cardRuleData);
         }
     }
 }

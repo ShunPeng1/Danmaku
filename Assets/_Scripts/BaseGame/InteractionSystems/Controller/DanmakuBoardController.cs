@@ -36,23 +36,27 @@ namespace _Scripts.CoreGame.InteractionSystems
             var card = BoardModel.MainDeckModel.PopCardFront();
             player.CardHandModel.AddCard(card);
             
-            var playerHandView = SetupPlayerView.GetPlayerView(player).CardHandView;
-            playerHandView.DrawCard(card);
+            var boardView = _danmakuInteractionController.InteractionViewRepo.BoardView;
+            boardView.DrawCardFromMainDeck(player, (DanmakuMainDeckCardModel) card);
+            
+            //var playerHandView = SetupPlayerView.GetPlayerView(player).CardHandView;
+            //playerHandView.AddCard(card);
         }
         
         public void DrawCards(DanmakuPlayerModel player, int count)
         {
-            var cards = new List<IDanmakuCard>();
+            var cards = new List<DanmakuMainDeckCardModel>();
 
             for (int i = 0; i < count; i++)
             {
                 var card = BoardModel.MainDeckModel.PopCardFront();
-                cards.Add(card);
+                cards.Add((DanmakuMainDeckCardModel) card);
                 player.CardHandModel.AddCard(card);
             }
             
-            var playerHandView = SetupPlayerView.GetPlayerView(player).CardHandView;
-            playerHandView.DrawCards(cards);
+            var boardView = _danmakuInteractionController.InteractionViewRepo.BoardView;
+            boardView.DrawCardFromMainDeck(player, cards);
+
         }
         
     }

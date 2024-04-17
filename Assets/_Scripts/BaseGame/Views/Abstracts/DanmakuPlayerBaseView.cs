@@ -1,20 +1,21 @@
-﻿using _Scripts.CoreGame.InteractionSystems;
+﻿using System;
+using _Scripts.CoreGame.InteractionSystems;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _Scripts.BaseGame.Views
 {
     public abstract class DanmakuPlayerBaseView : MonoBehaviour
     {
-        [SerializeField]
-        private DanmakuRoleBaseView _roleView;
-        [SerializeField]
-        private DanmakuCardHandBaseView _cardHandView;
+        [ShowInInspector, ReadOnly] public DanmakuRoleBaseView RoleView;
+        [ShowInInspector, ReadOnly] public DanmakuCardHandBaseView CardHandView;
         
-        
-        public DanmakuRoleBaseView RoleView => _roleView;
-        public DanmakuCardHandBaseView CardHandView => _cardHandView;
-        
-        
+        private void Awake()
+        {
+            RoleView = transform.GetComponentInChildren<DanmakuRoleBaseView>();
+            CardHandView = transform.GetComponentInChildren<DanmakuCardHandBaseView>();
+        }
+
         public abstract void InitializeView();
 
 
