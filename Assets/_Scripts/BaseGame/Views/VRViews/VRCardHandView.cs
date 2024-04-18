@@ -19,10 +19,11 @@ namespace _Scripts.BaseGame.Views.Basics
         
         public override void AddCard(DanmakuMainDeckCardBaseView cardView,IDanmakuCard card)
         {
-            cardView.transform.DOMove(_cardHandTransform.position, 0.5f).OnComplete(()=>
+            cardView.transform.DOMove(_cardHandTransform.position, _addCardMoveDuration).OnComplete(()=>
             {
                 cardView.transform.SetParent(_cardHandTransform);
             });
+            cardView.transform.DORotate(_cardHandTransform.rotation.eulerAngles, _addCardMoveDuration);
             CardToView.Add(card, cardView);
         }
 
@@ -35,10 +36,7 @@ namespace _Scripts.BaseGame.Views.Basics
         {
             foreach (var (card, view) in cardToView)
             {
-                view.transform.DOMove(_cardHandTransform.position, _addCardMoveDuration)
-                    .SetEase(_tweenEase);
-                CardToView.Add(card, view);
-
+                AddCard(view, card);
                 yield return new WaitForSeconds(_addCardMoveDelay);
             }
         }

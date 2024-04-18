@@ -42,6 +42,8 @@ namespace _Scripts.BaseGame.Views
             }
             
         }
+
+        public abstract Dictionary<DanmakuPlayerModel, DanmakuPlayerBaseView> CreatePlayerViews(List<DanmakuPlayerModel> playerModels);
         
         public abstract void DrawCardFromMainDeck(DanmakuPlayerModel playerModel, DanmakuMainDeckCardModel card);
         public abstract void DrawCardFromMainDeck(DanmakuPlayerModel playerModel, List<DanmakuMainDeckCardModel> cards);

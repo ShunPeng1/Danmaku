@@ -176,7 +176,6 @@ Transform:
   m_Children:
   - {fileID: 7444556712932402706}
   - {fileID: 8078661044093379516}
-  - {fileID: 3745079973195210692}
   - {fileID: 6117349635116113641}
   m_Father: {fileID: 3507866757889583767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -360,7 +359,7 @@ Transform:
   - {fileID: 6977969798873581842}
   - {fileID: 3119784476020286481}
   - {fileID: 6458148761576739866}
-  m_Father: {fileID: 1065824141522831207}
+  m_Father: {fileID: 3507866757889583767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2830055884960864799
 GameObject:
@@ -779,6 +778,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 756605989536879655}
   - {fileID: 3871073362688214373}
   m_Father: {fileID: 1065824141522831207}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -813,6 +813,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3745079973195210692}
   - {fileID: 1065824141522831207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -833,9 +834,10 @@ MonoBehaviour:
   DiscardDeckView: {fileID: 0}
   IncidentDeckView: {fileID: 0}
   _mainDeckCardPrefab: {fileID: 3427128746323981711, guid: 2b46f372f17f243409d40a95ed756b05, type: 3}
+  _playerPrefab: {fileID: 3304500905984708964, guid: 874693e2150d59844b7f8031d113f5ee, type: 3}
   _playerStandingPositionMap: {fileID: 8442218467585881827}
-  _mainDeckHolder: {fileID: 7775919086567581431}
-  _discardDeckHolder: {fileID: 3871073362688214373}
+  _topDrawMainDeck: {fileID: 5191964601988855109}
+  _topDiscardMainDeck: {fileID: 756605989536879655}
 --- !u!114 &8442218467585881827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,6 +1044,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5191964601988855109}
   - {fileID: 7775919086567581431}
   m_Father: {fileID: 1065824141522831207}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1107,6 +1110,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3745079973195210692}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &8587015351213670139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5191964601988855109}
+  m_Layer: 0
+  m_Name: Top Card Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5191964601988855109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8587015351213670139}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.604, y: 1.177, z: -0.297}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8078661044093379516}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8805690597405959353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 756605989536879655}
+  m_Layer: 0
+  m_Name: Top Card Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &756605989536879655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8805690597405959353}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.289, y: 1.177, z: -0.308}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7444556712932402706}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9200362185236406960
 GameObject:
   m_ObjectHideFlags: 0

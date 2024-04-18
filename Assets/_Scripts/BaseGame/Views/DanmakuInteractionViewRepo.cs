@@ -29,19 +29,12 @@ namespace _Scripts.BaseGame.Views
             TurnView = gameObject.GetComponentInChildren<DanmakuTurnBaseView>();
             BoardView = gameObject.GetComponentInChildren<DanmakuBoardBaseView>();
         }
-        
-        protected readonly Dictionary<DanmakuPlayerModel,DanmakuPlayerBaseView> PlayerModelToViews = new();
+
+        protected Dictionary<DanmakuPlayerModel, DanmakuPlayerBaseView> PlayerModelToViews;
         
         public virtual void CreatePlayerViews(List<DanmakuPlayerModel> playerModels)
         {
-            foreach (var playerModel in playerModels)
-            {
-                var playerView = Instantiate(_playerViewPrefab, transform);
-                playerView.name = $"PlayerView_{playerModel.PlayerId}";
-                PlayerModelToViews.Add(playerModel, playerView);
-                
-                playerView.InitializeView();
-            }
+            PlayerModelToViews = BoardView.CreatePlayerViews(playerModels);
         }
         
         public virtual DanmakuPlayerBaseView GetPlayerView(DanmakuPlayerModel boardModel)

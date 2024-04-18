@@ -13,6 +13,21 @@ namespace _Scripts.BaseGame.Views.Default
             
         }
 
+        public override Dictionary<DanmakuPlayerModel, DanmakuPlayerBaseView> CreatePlayerViews(List<DanmakuPlayerModel> playerModels)
+        {
+            var playerModelToViews = new Dictionary<DanmakuPlayerModel, DanmakuPlayerBaseView>();
+            foreach (var playerModel in playerModels)
+            {
+                var playerView = new GameObject("Mock Player View").AddComponent<MockPlayerView>();
+                playerView.name = $"PlayerView_{playerModel.PlayerId}";
+                playerModelToViews.Add(playerModel, playerView);
+                
+                playerView.InitializeView();
+            }
+            
+            return playerModelToViews;
+        }
+
         public override void DrawCardFromMainDeck(DanmakuPlayerModel playerModel, DanmakuMainDeckCardModel card)
         {
             var handView = InteractionViewRepo.GetPlayerView(playerModel).CardHandView;
