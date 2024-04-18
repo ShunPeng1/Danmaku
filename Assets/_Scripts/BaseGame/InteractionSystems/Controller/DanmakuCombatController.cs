@@ -6,10 +6,10 @@ namespace _Scripts.CoreGame.InteractionSystems
 {
     public class DanmakuCombatController
     {
-        DanmakuInteractionController _danmakuInteractionController;
-        DanmakuBoardModel BoardModel => _danmakuInteractionController.BoardModel;
+        private readonly DanmakuInteractionController _danmakuInteractionController;
+        private DanmakuBoardModel BoardModel => _danmakuInteractionController.BoardModel;
         
-        private Stack<CardExecution> _playedCards = new (); 
+        private readonly Stack<CardExecution> _playedCards = new (); 
         
         public DanmakuCombatController(DanmakuInteractionController danmakuInteractionController)
         {

@@ -31,16 +31,11 @@ namespace _Scripts.CoreGame.InteractionSystems
             
             InteractionController.SetupStartingStats(_startupStatsConfig);
             
+            InteractionController.StartupReveal();
             
-            var boardController = new DanmakuBoardController(InteractionController);
-            InteractionController.SetBoardController(boardController);
+            InteractionController.StartGame();
             
-            var playerSubController = new DanmakuPlayerController(InteractionController);
-            InteractionController.SetPlayerSubController(playerSubController);
-            
-            playerSubController.StartupReveal();
-            boardController.StartupDraw();
-            playerSubController.StartGame();
+            InteractionController.StartPlayerStep();
 
 
         }

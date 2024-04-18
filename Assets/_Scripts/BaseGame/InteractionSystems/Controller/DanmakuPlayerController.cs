@@ -10,7 +10,7 @@ namespace _Scripts.CoreGame.InteractionSystems
 {
     public class DanmakuPlayerController
     {
-        private DanmakuInteractionController _danmakuInteractionController;
+        private readonly DanmakuInteractionController _danmakuInteractionController;
         
         // Views
         private DanmakuInteractionViewRepo InteractionViewRepo => _danmakuInteractionController.InteractionViewRepo;
