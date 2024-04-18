@@ -8,7 +8,6 @@ namespace Shun_Drag_Item_System
     /// This class is the place holder of a drag item in item place region.
     /// This can be used to move, animations,...
     /// </summary>
-    [RequireComponent(typeof(Collider2D))]
     public class BaseDragItemHolder : MonoBehaviour
     {
         [HideInInspector] public BaseDragItemRegion DragItemRegion;
@@ -19,6 +18,14 @@ namespace Shun_Drag_Item_System
         public BaseDragItem DragItem
         {
             get { return _dragItem; }
+        }
+        
+        protected virtual void Awake()
+        {
+            if (GetComponent<Collider>() == null && GetComponent<Collider2D>() == null)
+            {
+                Debug.LogWarning("BaseDragItem requires either a Collider or a Collider2D component", this);
+            }
         }
         
         public void InitializeRegion(BaseDragItemRegion dragItemRegion, int indexInRegion)

@@ -12,9 +12,10 @@ namespace Shun_Drag_Item_System
     {
         [SerializeField] private bool _is2D = true;
         
-        protected Vector3 MouseWorldPosition;
+        protected Vector3 CastOriginWorldPosition;
+        protected Vector3 CastDirection;
         protected RaycastHit2D[] RayCastHit2Ds;
-        protected RaycastHit [] RayCastHits3Ds;
+        protected RaycastHit [] RayCastHit3Ds;
     
         [Header("Hover Objects")]
         protected List<IMouseHoverable> LastHoverMouseInteractableGameObjects = new();
@@ -62,12 +63,40 @@ namespace Shun_Drag_Item_System
 
         #region CAST
         
+        private void UpdateMousePosition(Vector2 value)
+        {
+            if (_is2D)
+            {
+                CastOriginWorldPosition = Camera.main.ScreenToWorldPoint(value);
+                CastDirection = Vector3.zero;
+            }
+            else
+            {
+                CastOriginWorldPosition = Camera.main.ScreenToWorldPoint(value);
+
+                Ray ray = Camera.main.ScreenPointToRay(value);
+                CastDirection = ray.direction;
+                
+                //Debug.Log("Ray "+ ray.direction + ray.origin + ray.GetPoint(10));
+            }
+            
+            //Debug.Log("Cast Orginial World Position "+CastOriginWorldPosition + " Cast Direction " + CastDirection + " From "+ value);
+            //Debug.DrawRay(CastOriginWorldPosition, CastDirection, Color.red);
+        }
 
         protected virtual void CastMouse()
         {
-            RayCastHit2Ds = Physics2D.RaycastAll(MouseWorldPosition, Vector2.zero);
+            if (_is2D)
+            {
+                RayCastHit2Ds = Physics2D.RaycastAll(CastOriginWorldPosition, CastDirection);
+            }
+            else
+            {
+                Ray ray = new Ray(CastOriginWorldPosition, CastDirection);
+                RayCastHit3Ds = Physics.RaycastAll(ray);
+            }
         }
-
+        
         #endregion
     
 
@@ -100,46 +129,97 @@ namespace Shun_Drag_Item_System
 
         protected virtual IMouseHoverable FindFirstIMouseInteractableInMouseCast()
         {
-            foreach (var hit in RayCastHit2Ds)
+            if (_is2D)
             {
-                var characterItemButton = hit.transform.gameObject.GetComponent<BaseDragItemOverlayButton>();
-                if (characterItemButton != null && characterItemButton.IsHoverable)
+                foreach (var hit in RayCastHit2Ds)
                 {
-                    //Debug.Log("Mouse find "+ gameObject.name);
-                    return characterItemButton;
-                }
+                    var characterItemButton = hit.transform.gameObject.GetComponent<BaseDragItemOverlayButton>();
+                    if (characterItemButton != null && characterItemButton.IsHoverable)
+                    {
+                        //Debug.Log("Mouse find "+ gameObject.name);
+                        return characterItemButton;
+                    }
             
-                var characterItemGameObject = hit.transform.gameObject.GetComponent<BaseDragItem>();
-                if (characterItemGameObject != null && characterItemGameObject.IsDraggable)
-                {
-                    //Debug.Log("Mouse find "+ gameObject.name);
-                    return characterItemGameObject;
+                    var characterItemGameObject = hit.transform.gameObject.GetComponent<BaseDragItem>();
+                    if (characterItemGameObject != null && characterItemGameObject.IsDraggable)
+                    {
+                        //Debug.Log("Mouse find "+ gameObject.name);
+                        return characterItemGameObject;
+                    }
                 }
-            }
 
-            return null;
+                return null;
+            }
+            else
+            {
+                foreach (var hit in RayCastHit3Ds)
+                {
+                    var characterItemButton = hit.transform.gameObject.GetComponent<BaseDragItemOverlayButton>();
+                    if (characterItemButton != null && characterItemButton.IsHoverable)
+                    {
+                        //Debug.Log("Mouse find "+ gameObject.name);
+                        return characterItemButton;
+                    }
+            
+                    var characterItemGameObject = hit.transform.gameObject.GetComponent<BaseDragItem>();
+                    if (characterItemGameObject != null && characterItemGameObject.IsDraggable)
+                    {
+                        //Debug.Log("Mouse find "+ gameObject.name);
+                        return characterItemGameObject;
+                    }
+                }
+
+                return null;
+                
+            }
         }
     
         protected virtual List<IMouseHoverable> FindAllIMouseInteractableInMouseCast()
         {
-            List<IMouseHoverable> mouseInteractableGameObjects = new(); 
-            foreach (var hit in RayCastHit2Ds)
-            {
-                var characterItemButton = hit.transform.gameObject.GetComponent<BaseDragItemOverlayButton>();
-                if (characterItemButton != null && characterItemButton.IsHoverable)
-                {
-                    mouseInteractableGameObjects.Add(characterItemButton);
-                }
-            
-                var characterItemGameObject = hit.transform.gameObject.GetComponent<BaseDragItem>();
-                if (characterItemGameObject != null && characterItemGameObject.IsDraggable)
-                {
-                    //Debug.Log("Mouse find "+ gameObject.name);
-                    mouseInteractableGameObjects.Add(characterItemGameObject);
-                }
-            }
+            List<IMouseHoverable> mouseInteractableGameObjects = new();
 
-            return mouseInteractableGameObjects;
+            if (_is2D)
+            {
+
+                foreach (var hit in RayCastHit2Ds)
+                {
+                    var characterItemButton = hit.transform.gameObject.GetComponent<BaseDragItemOverlayButton>();
+                    if (characterItemButton != null && characterItemButton.IsHoverable)
+                    {
+                        mouseInteractableGameObjects.Add(characterItemButton);
+                    }
+
+                    var characterItemGameObject = hit.transform.gameObject.GetComponent<BaseDragItem>();
+                    if (characterItemGameObject != null && characterItemGameObject.IsDraggable)
+                    {
+                        //Debug.Log("Mouse find "+ gameObject.name);
+                        mouseInteractableGameObjects.Add(characterItemGameObject);
+                    }
+                }
+
+                return mouseInteractableGameObjects;
+            }
+            else
+            {
+                foreach (var hit in RayCastHit3Ds)
+                {
+                    var characterItemButton = hit.transform.gameObject.GetComponent<BaseDragItemOverlayButton>();
+                    if (characterItemButton != null && characterItemButton.IsHoverable)
+                    {
+                        mouseInteractableGameObjects.Add(characterItemButton);
+                    }
+
+                    var characterItemGameObject = hit.transform.gameObject.GetComponent<BaseDragItem>();
+                    if (characterItemGameObject != null && characterItemGameObject.IsDraggable)
+                    {
+                        //Debug.Log("Mouse find "+ gameObject.name);
+                        mouseInteractableGameObjects.Add(characterItemGameObject);
+                    }
+                }
+
+                return mouseInteractableGameObjects;
+                
+            }
         }
     
         #endregion
@@ -147,18 +227,37 @@ namespace Shun_Drag_Item_System
     
         protected virtual TResult FindFirstInMouseCast<TResult>()
         {
-            foreach (var hit in RayCastHit2Ds)
+            if (_is2D)
             {
-                var result = hit.transform.gameObject.GetComponent<TResult>();
-                if (result != null)
-                {
-                    //Debug.Log("Mouse find "+ gameObject.name);
-                    return result;
-                }
-            }
 
-            //Debug.Log("Mouse cannot find "+ typeof(TResult));
-            return default;
+                foreach (var hit in RayCastHit2Ds)
+                {
+                    var result = hit.transform.gameObject.GetComponent<TResult>();
+                    if (result != null)
+                    {
+                        //Debug.Log("Mouse find "+ gameObject.name);
+                        return result;
+                    }
+                }
+
+                //Debug.Log("Mouse cannot find "+ typeof(TResult));
+                return default;
+            }
+            else
+            {
+                foreach (var hit in RayCastHit3Ds)
+                {
+                    var result = hit.transform.gameObject.GetComponent<TResult>();
+                    if (result != null)
+                    {
+                        //Debug.Log("Mouse find "+ gameObject.name);
+                        return result;
+                    }
+                }
+
+                //Debug.Log("Mouse cannot find "+ typeof(TResult));
+                return default;
+            }
         }
 
     
@@ -183,7 +282,7 @@ namespace Shun_Drag_Item_System
             }
             
             // Successfully detach item
-            ItemOffset = DraggingItem.transform.position - MouseWorldPosition;
+            ItemOffset = DraggingItem.transform.position - CastOriginWorldPosition;
             IsDraggingItem = true;
 
             DraggingItem.StartDrag();
@@ -196,7 +295,7 @@ namespace Shun_Drag_Item_System
         {
             if (!IsDraggingItem) return; 
         
-            DraggingItem.transform.position = MouseWorldPosition + ItemOffset;
+            DraggingItem.transform.position = CastOriginWorldPosition + ItemOffset;
         
         }
 
@@ -347,10 +446,11 @@ namespace Shun_Drag_Item_System
 
             
             var value = context.ReadValue<Vector2>();
-            MouseWorldPosition = Camera.main.ScreenToWorldPoint(value);
-     
-            
+
+            UpdateMousePosition(value);
+                        
             if (IsDraggingItem) DragItem();
         }
+
     }
 }

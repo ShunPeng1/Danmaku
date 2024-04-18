@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 
 namespace Shun_Drag_Item_System
 {
-    [RequireComponent(typeof(Collider2D))]
     public class BaseDragItem : MonoBehaviour, IMouseDraggable, IMouseHoverable
     {
         public Action<BaseDragItem> OnDestroy { get; set; }
@@ -21,6 +20,13 @@ namespace Shun_Drag_Item_System
         
         [SerializeField] protected bool ActivateOnValidate = false;
 
+        protected virtual void Awake()
+        {
+            if (GetComponent<Collider>() == null && GetComponent<Collider2D>() == null)
+            {
+                Debug.LogWarning("BaseDragItem requires either a Collider or a Collider2D component", this);
+            }
+        }
         
         public virtual bool StartDrag()
         {
