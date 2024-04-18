@@ -22,24 +22,20 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         private void Start()
         {
-            InteractionController = new DanmakuInteractionController(_interactionViewRepo);
-     
             
-            var setupSubController =  new DanmakuSetupSubController.Builder(InteractionController, _interactionViewRepo.SetupPlayerView)
+            InteractionController =  new DanmakuInteractionController.Builder(_interactionViewRepo)
                 .WithPlayerCount(_playerCount)
                 .WithPlayerRoles(_roleSetConfig)
                 .WithCardDeck(_deckSetConfig)
                 .Build();
             
-            setupSubController.SetupStartingStats(_startupStatsConfig);
-
-            InteractionController.SetSetupSubController(setupSubController);
-            InteractionController.SetupModels(setupSubController.GetBoardModel(),setupSubController.GetPlayerGroupModel());
+            InteractionController.SetupStartingStats(_startupStatsConfig);
+            
             
             var boardController = new DanmakuBoardController(InteractionController);
             InteractionController.SetBoardController(boardController);
             
-            var playerSubController = new DanmakuPlayerSubController(InteractionController);
+            var playerSubController = new DanmakuPlayerController(InteractionController);
             InteractionController.SetPlayerSubController(playerSubController);
             
             playerSubController.StartupReveal();

@@ -833,7 +833,7 @@ MonoBehaviour:
   DiscardDeckView: {fileID: 0}
   IncidentDeckView: {fileID: 0}
   _mainDeckCardPrefab: {fileID: 3427128746323981711, guid: 2b46f372f17f243409d40a95ed756b05, type: 3}
-  _playerStandingPositionMap: {fileID: 0}
+  _playerStandingPositionMap: {fileID: 8442218467585881827}
   _mainDeckHolder: {fileID: 7775919086567581431}
   _discardDeckHolder: {fileID: 3871073362688214373}
 --- !u!114 &8442218467585881827

@@ -26,7 +26,7 @@ namespace _Scripts.BaseGame.Views.Basics
 
         public override void DrawCardFromMainDeck(DanmakuPlayerModel playerModel, DanmakuMainDeckCardModel card)
         {
-            var handView = InteractionViewRepo.SetupPlayerView.GetPlayerView(playerModel).CardHandView;
+            var handView = InteractionViewRepo.GetPlayerView(playerModel).CardHandView;
 
             var cardView = Instantiate(_mainDeckCardPrefab, _mainDeckHolder);
             cardView.SetCardModel(card);
@@ -58,6 +58,16 @@ namespace _Scripts.BaseGame.Views.Basics
             {
                 DiscardCardToDiscardDeck(playerModel, card);
             }
+        }
+
+        public override void SetupMainDeck(DanmakuCardDeckModel mainDeckModel, DanmakuCardDeckModel discardDeckModel)
+        {
+            
+        }
+
+        public override void SetupIncidentDeck(DanmakuCardDeckModel incidentDeckModel)
+        {
+            
         }
     }
 }

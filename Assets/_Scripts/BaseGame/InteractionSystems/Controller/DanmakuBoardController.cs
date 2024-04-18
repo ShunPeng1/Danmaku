@@ -6,11 +6,15 @@ namespace _Scripts.CoreGame.InteractionSystems
 {
     public class DanmakuBoardController
     {
-        private DanmakuInteractionController _danmakuInteractionController;
+        private readonly DanmakuInteractionController _danmakuInteractionController;
+        
+        // Views
+        private DanmakuInteractionViewRepo InteractionViewRepo => _danmakuInteractionController.InteractionViewRepo;
+        
+        // Models
         private DanmakuPlayerGroupModel PlayerGroupModel => _danmakuInteractionController.PlayerGroupModel;
         private DanmakuBoardModel BoardModel => _danmakuInteractionController.BoardModel;
         
-        private DanmakuSetupPlayerBaseView SetupPlayerView => _danmakuInteractionController.InteractionViewRepo.SetupPlayerView;
         
         public DanmakuBoardController(DanmakuInteractionController danmakuInteractionController)
         {

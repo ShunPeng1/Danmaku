@@ -8,18 +8,22 @@ using _Scripts.CoreGame.InteractionSystems.Stats;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
-    public class DanmakuPlayerSubController
+    public class DanmakuPlayerController
     {
         private DanmakuInteractionController _danmakuInteractionController;
+        
+        // Views
+        private DanmakuInteractionViewRepo InteractionViewRepo => _danmakuInteractionController.InteractionViewRepo;
+        private DanmakuTurnBaseView DanmakuTurnBaseView => _danmakuInteractionController.InteractionViewRepo.TurnView;
+
+        // Models
         private DanmakuPlayerGroupModel PlayerGroupModel => _danmakuInteractionController.PlayerGroupModel;
         private DanmakuBoardModel BoardModel => _danmakuInteractionController.BoardModel;
         
-        private DanmakuSetupPlayerBaseView SetupPlayerView => _danmakuInteractionController.InteractionViewRepo.SetupPlayerView;
-        private DanmakuTurnBaseView DanmakuTurnBaseView => _danmakuInteractionController.InteractionViewRepo.TurnView;
-
-        private DanmakuPlayerStepContext _currentStepContext; 
         
-        public  DanmakuPlayerSubController(DanmakuInteractionController danmakuInteractionController)
+        private readonly DanmakuPlayerStepContext _currentStepContext; 
+        
+        public DanmakuPlayerController(DanmakuInteractionController danmakuInteractionController)
         {
             _danmakuInteractionController = danmakuInteractionController;
             _currentStepContext = new DanmakuPlayerStepContext(_danmakuInteractionController);
@@ -34,7 +38,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             {
                 var role = startPlayer.Role.RevealRole();
 
-                var playerView = SetupPlayerView.GetPlayerView(startPlayer);
+                var playerView = InteractionViewRepo.GetPlayerView(startPlayer);
                 var roleView = playerView.RoleView;
                 roleView.RevealRole(role);
             }
@@ -61,7 +65,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         public void StartPlayerStep()
         {
             DanmakuPlayerModel currentPlayerModel = PlayerGroupModel.CurrentPlayerTurn.Value;
-            DanmakuPlayerBaseView currentPlayerView = SetupPlayerView.GetPlayerView(currentPlayerModel);
+            DanmakuPlayerBaseView currentPlayerView = InteractionViewRepo.GetPlayerView(currentPlayerModel);
             switch (PlayerGroupModel.CurrentPlayStepEnum.Value)
             {
                 case PlayStepEnum.InitiateStep:

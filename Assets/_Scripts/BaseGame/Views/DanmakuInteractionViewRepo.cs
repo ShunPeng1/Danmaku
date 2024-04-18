@@ -11,9 +11,13 @@ namespace _Scripts.BaseGame.Views
     public class DanmakuInteractionViewRepo : MonoBehaviour
     {
         [Header("Serialized Views")]
-        [ShowInInspector, ReadOnly] public DanmakuSetupPlayerBaseView SetupPlayerView;
         [ShowInInspector, ReadOnly] public DanmakuTurnBaseView TurnView;
         [ShowInInspector, ReadOnly] public DanmakuBoardBaseView BoardView;
+        
+        
+        [Header("Prefabs")]
+        [SerializeField] private DanmakuPlayerBaseView _playerViewPrefab;
+
         
         private void Awake()
         {
@@ -22,12 +26,46 @@ namespace _Scripts.BaseGame.Views
 
         private void InitializeViews()
         {
-            SetupPlayerView = gameObject.GetComponentInChildren<DanmakuSetupPlayerBaseView>();
-       
             TurnView = gameObject.GetComponentInChildren<DanmakuTurnBaseView>();
-       
             BoardView = gameObject.GetComponentInChildren<DanmakuBoardBaseView>();
+        }
         
+        protected readonly Dictionary<DanmakuPlayerModel,DanmakuPlayerBaseView> PlayerModelToViews = new();
+        
+        public virtual void CreatePlayerViews(List<DanmakuPlayerModel> playerModels)
+        {
+            foreach (var playerModel in playerModels)
+            {
+                var playerView = Instantiate(_playerViewPrefab, transform);
+                playerView.name = $"PlayerView_{playerModel.PlayerId}";
+                PlayerModelToViews.Add(playerModel, playerView);
+                
+                playerView.InitializeView();
+            }
+        }
+        
+        public virtual DanmakuPlayerBaseView GetPlayerView(DanmakuPlayerModel boardModel)
+        {
+            return PlayerModelToViews[boardModel];
+        }
+
+        public void SetupPlayerRoleView(Dictionary<DanmakuPlayerModel, IDanmakuRole> playerToRole)
+        {
+            foreach (var playerRole in playerToRole)
+            {
+                var playerView = GetPlayerView(playerRole.Key);
+                playerView.SetupRole(playerRole.Value);
+            }
+        }
+
+        public void SetupMainDeck(DanmakuCardDeckModel drawMainDeckModel, DanmakuCardDeckModel discardMainDeckModel)
+        {
+            BoardView.SetupMainDeck(drawMainDeckModel, discardMainDeckModel);
+        }
+
+        public void SetupIncidentDeck(DanmakuCardDeckModel incidentDeckModel)
+        {
+            BoardView.SetupIncidentDeck(incidentDeckModel);
         }
     }
 }
