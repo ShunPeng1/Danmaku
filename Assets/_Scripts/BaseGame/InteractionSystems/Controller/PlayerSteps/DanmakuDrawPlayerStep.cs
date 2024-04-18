@@ -17,7 +17,7 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
 
             for (int i = playerModel.CardDrawIncomeCount.Get(), j = 0; j < i; j++)
             {
-                interactionController.DanmakuBoardController.DrawCard(playerModel);
+                interactionController.BoardController.DrawCard(playerModel);
             }
             
             finishExecuteCallback?.Invoke();

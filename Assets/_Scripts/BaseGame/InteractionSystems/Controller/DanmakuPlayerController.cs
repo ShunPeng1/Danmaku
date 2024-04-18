@@ -14,7 +14,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         // Views
         private DanmakuInteractionViewRepo InteractionViewRepo => _danmakuInteractionController.InteractionViewRepo;
-        private DanmakuTurnBaseView DanmakuTurnBaseView => _danmakuInteractionController.InteractionViewRepo.TurnView;
+        private DanmakuTurnBaseView TurnBaseView => _danmakuInteractionController.InteractionViewRepo.TurnView;
 
         // Models
         private DanmakuPlayerGroupModel PlayerGroupModel => _danmakuInteractionController.PlayerGroupModel;
@@ -102,7 +102,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 return;
             }
             
-            DanmakuTurnBaseView.EndPlayerStep(PlayerGroupModel.CurrentPlayerTurn.Value,PlayerGroupModel.CurrentPlayStepEnum.Value);
+            TurnBaseView.EndPlayerStep(PlayerGroupModel.CurrentPlayerTurn.Value,PlayerGroupModel.CurrentPlayStepEnum.Value);
 
             switch (PlayerGroupModel.CurrentPlayStepEnum.Value)
             {
@@ -131,13 +131,13 @@ namespace _Scripts.CoreGame.InteractionSystems
         private void SetPlayerStep(PlayStepEnum playStepEnum)
         {
             PlayerGroupModel.CurrentPlayStepEnum.Value = playStepEnum; 
-            DanmakuTurnBaseView.StartPlayerStep(PlayerGroupModel.CurrentPlayerTurn.Value,PlayerGroupModel.CurrentPlayStepEnum.Value);
+            TurnBaseView.StartPlayerStep(PlayerGroupModel.CurrentPlayerTurn.Value,PlayerGroupModel.CurrentPlayStepEnum.Value);
         }
         
         private void SetPlayerTurn(DanmakuPlayerModel startingPlayer)
         {
             SetCurrentTurnPlayer(startingPlayer);
-            DanmakuTurnBaseView.SetPlayerCurrentTurn(startingPlayer);
+            TurnBaseView.SetPlayerCurrentTurn(startingPlayer);
             
             SetPlayerStep(PlayStepEnum.InitiateStep);
         }
@@ -145,7 +145,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         private void SetPlayerNextTurn()
         {
             var nextPlayerModel = SetNextPlayerTurn();
-            DanmakuTurnBaseView.SetPlayerCurrentTurn(nextPlayerModel);
+            TurnBaseView.SetPlayerCurrentTurn(nextPlayerModel);
             
             SetPlayerStep(PlayStepEnum.InitiateStep);
         }

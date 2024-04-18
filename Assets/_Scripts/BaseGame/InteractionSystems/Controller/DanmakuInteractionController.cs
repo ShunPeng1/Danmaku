@@ -15,9 +15,9 @@ namespace _Scripts.CoreGame.InteractionSystems
         public DanmakuInteractionViewRepo InteractionViewRepo { get; private set; }
         
         // Controllers
-        public DanmakuPlayerController DanmakuPlayerController { get; private set; }
-        public DanmakuBoardController DanmakuBoardController { get; private set; }
-        public DanmakuCombatController DanmakuCombatController { get; private set; }
+        public DanmakuPlayerController PlayerController { get; private set; }
+        public DanmakuBoardController BoardController { get; private set; }
+        public DanmakuCombatController CombatController { get; private set; }
         
         // Models
         public DanmakuBoardModel BoardModel { get; private set; }
@@ -31,9 +31,9 @@ namespace _Scripts.CoreGame.InteractionSystems
             
             // Controllers
             
-            var boardController = new DanmakuBoardController(this);
-            var playerSubController = new DanmakuPlayerController(this);
-            var combatController = new DanmakuCombatController(this);
+            BoardController = new DanmakuBoardController(this);
+            PlayerController = new DanmakuPlayerController(this);
+            CombatController = new DanmakuCombatController(this);
         }
         
         public class Builder
@@ -145,17 +145,17 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         public void StartupReveal()
         {
-            DanmakuPlayerController.StartupReveal();
+            PlayerController.StartupReveal();
         }
         
         public void StartGame()
         {
-            DanmakuPlayerController.StartGame();
+            PlayerController.StartGame();
         }
         
         public void StartPlayerStep()
         {
-            DanmakuPlayerController.StartPlayerStep();
+            PlayerController.StartPlayerStep();
         }
         
     }
