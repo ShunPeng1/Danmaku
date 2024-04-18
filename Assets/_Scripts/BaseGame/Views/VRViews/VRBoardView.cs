@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
+using _Scripts.BaseGame.Views.Positions;
 using _Scripts.CoreGame.InteractionSystems;
 using DG.Tweening;
 using UnityEngine;
@@ -13,9 +14,10 @@ namespace _Scripts.BaseGame.Views.Basics
         [SerializeField] private DanmakuMainDeckCardBaseView _mainDeckCardPrefab;
 
         [Header("Transforms")]
+        [SerializeField] private PlayerStandingPositionMap _playerStandingPositionMap;
         [SerializeField] private Transform _mainDeckHolder;
         [SerializeField] private Transform _discardDeckHolder;
-
+        
 
         protected override void InitializeInherit()
         {
