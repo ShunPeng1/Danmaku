@@ -82,6 +82,8 @@ namespace Shun_Drag_Item_System
         
         public void RemoveItemFromRegion()
         {
+            if (_dragItem == null) return;
+            
             DragItemRegion.RemoveItem(_dragItem);
         }
     }
