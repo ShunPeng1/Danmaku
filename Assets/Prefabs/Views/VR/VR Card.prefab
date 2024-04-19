@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -1411314175621758913}
   - component: {fileID: 4999763397764468572}
   - component: {fileID: 3427128746323981711}
+  - component: {fileID: -8551514028361361059}
   m_Layer: 0
   m_Name: VR Card
   m_TagString: Untagged
@@ -301,6 +302,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardNameText: {fileID: 4736921338004060181}
+--- !u!114 &-8551514028361361059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314030508674949549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c05c80e261c13d43b429d6fa0a7f820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDraggable: 1
+  IsHoverable: 1
+  ActivateOnValidate: 0
 --- !u!1 &8930220237942395144
 GameObject:
   m_ObjectHideFlags: 0

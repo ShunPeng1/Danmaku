@@ -74,5 +74,15 @@ namespace Shun_Drag_Item_System
         {
             _dragItem = null;
         }
+
+        public void AddItemToRegion(BaseDragItem dragItem)
+        {
+            DragItemRegion.AddItem(dragItem,this);
+        }
+        
+        public void RemoveItemFromRegion()
+        {
+            DragItemRegion.RemoveItem(_dragItem);
+        }
     }
 }
