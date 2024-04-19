@@ -11,6 +11,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         public IDanmakuCharacter DanmakuCharacter { get; private set;}
         public bool IsAlive { get; private set; } = true;
         
+        // Stats
         public PlayerStat Life { get; private set; }
         public PlayerStat HandSize { get; private set; }
 
@@ -19,8 +20,13 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         public PlayerStat Power { get; private set; }
         
+        // Card Hand and Items Board
         public DanmakuCardHandModel CardHandModel { get; private set; }
         
+        // Turn Stats
+        public PlayerStat CardDrawIncomeCount { get; private set; }
+        public PlayerStat DanmakuCardPlayedCount { get; private set; }
+        public PlayerStat SpellCardPlayedCount { get; private set; }
 
         public DanmakuPlayerModel(int playerId)
         {
@@ -32,6 +38,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             Power = new PlayerStat(1);
         
             CardHandModel = new DanmakuCardHandModel();
+            
         }
 
         public void InitializeRole(IDanmakuRole role)
@@ -39,13 +46,27 @@ namespace _Scripts.CoreGame.InteractionSystems
             Role = role;
         }
                 
-        public void InitializeStats(PlayerStat life, PlayerStat handSize, PlayerStat distance, PlayerStat range, PlayerStat power)
+        public void InitializeStats(
+            PlayerStat life, 
+            PlayerStat handSize, 
+            PlayerStat distance, 
+            PlayerStat range, 
+            PlayerStat power,
+            PlayerStat cardDrawIncomeCount,
+            PlayerStat danmakuCardPlayedCount,
+            PlayerStat spellCardPlayedCount)
         {
             Life = life;
             HandSize = handSize;
             Distance = distance;
             Range = range;
             Power = power;
+            
+            
+            CardDrawIncomeCount = cardDrawIncomeCount;
+            DanmakuCardPlayedCount = danmakuCardPlayedCount;
+            SpellCardPlayedCount = spellCardPlayedCount;
+            
         }
 
     }

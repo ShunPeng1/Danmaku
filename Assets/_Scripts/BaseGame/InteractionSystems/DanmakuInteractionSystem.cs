@@ -8,7 +8,7 @@ namespace _Scripts.CoreGame.InteractionSystems
     public class DanmakuInteractionSystem : MonoBehaviour
     {
         [Header("Views")]
-        [SerializeField] private DanmakuInteractionViewRepo _setupPlayerView;
+        [SerializeField] private DanmakuInteractionViewRepo _interactionViewRepo;
         
         [Header("Configurations")]
         [SerializeField] private int _playerCount;
@@ -20,34 +20,26 @@ namespace _Scripts.CoreGame.InteractionSystems
         public DanmakuInteractionController InteractionController;
         
         
-        private void Awake()
+        private void Start()
         {
-            InteractionController = new DanmakuInteractionController(_setupPlayerView);
-     
             
-            var setupSubController =  new DanmakuSetupSubController.Builder(InteractionController, _setupPlayerView.SetupPlayerView)
+            InteractionController =  new DanmakuInteractionController.Builder(_interactionViewRepo)
                 .WithPlayerCount(_playerCount)
                 .WithPlayerRoles(_roleSetConfig)
                 .WithCardDeck(_deckSetConfig)
                 .Build();
             
-            setupSubController.SetupStartingStats(_startupStatsConfig);
+            InteractionController.SetupStartingStats(_startupStatsConfig);
             
-            InteractionController.SetupModels(setupSubController.GetBoardModel(),setupSubController.GetPlayerGroupModel());
+            InteractionController.StartupReveal();
+            
+            InteractionController.StartGame();
+            
+            InteractionController.StartPlayerStep();
 
-            var playerSubController = new DanmakuPlayerSubController(InteractionController);
-            playerSubController.StartupReveal();
-            playerSubController.StartupDraw();
-            playerSubController.StartGame();
-
-            InteractionController.SetSubController(setupSubController, playerSubController);
 
         }
         
-        private void Start()
-        {
-
-        }
         
     }
 }

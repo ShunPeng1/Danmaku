@@ -23,3 +23,8 @@ MonoBehaviour:
   StartingPower: 1
   MinPower: 0
   MaxPower: 999999999
+  CardDrawPerTurn: 2
+  MinCardDrawPerTurn: 0
+  MaxCardDrawPerTurn: 999999999
+  MaxDanmakuCardPlayedPerTurn: 1
+  MaxSpellCardPlayedPerTurn: 1

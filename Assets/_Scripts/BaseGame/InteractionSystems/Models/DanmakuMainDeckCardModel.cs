@@ -11,11 +11,11 @@ namespace _Scripts.CoreGame.InteractionSystems
     {
         public DeckCardScriptableData DeckCardScriptableData { get; private set; }
         public ObservableData<IDanmakuCardHolder> CardHolder { get; private set; }
-        public List<DanmakuCardRuleModel> CardRuleModels { get; private set; }
+        public List<DanmakuCardRuleBase> CardRuleModels { get; private set; }
         
         public bool IsHidden { get; private set; }
         
-        public DanmakuMainDeckCardModel(DeckCardScriptableData deckCardScriptableData, List<DanmakuCardRuleModel> cardRuleModels, IDanmakuCardHolder cardHolder )
+        public DanmakuMainDeckCardModel(DeckCardScriptableData deckCardScriptableData, List<DanmakuCardRuleBase> cardRuleModels, IDanmakuCardHolder cardHolder )
         {
             DeckCardScriptableData = deckCardScriptableData;
             CardRuleModels = cardRuleModels;
@@ -37,10 +37,11 @@ namespace _Scripts.CoreGame.InteractionSystems
             
         }
 
-        public void PlayCard(IDanmakuCardRule danmakuCardRule)
+        public void ExecuteCard(IDanmakuCardRule cardRule, List<IDanmakuActivator> activators, List<IDanmakuTargetable> targetables)
         {
-            
+            cardRule.ExecuteRule(activators, targetables);
         }
+        
 
         public void DiscardCard()
         {

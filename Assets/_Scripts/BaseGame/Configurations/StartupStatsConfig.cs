@@ -20,6 +20,16 @@ namespace _Scripts.CoreGame.Configurations
         public int StartingPower;
         public int MinPower;
         public int MaxPower;
+        
+        public int CardDrawPerTurn;
+        public int MinCardDrawPerTurn;
+        public int MaxCardDrawPerTurn;
+        
+        public int MaxDanmakuCardPlayedPerTurn;
+        
+        public int MaxSpellCardPlayedPerTurn;
+        
+        
 
     }
 }
