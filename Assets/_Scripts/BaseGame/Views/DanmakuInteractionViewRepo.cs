@@ -15,10 +15,6 @@ namespace _Scripts.BaseGame.Views
         [ShowInInspector, ReadOnly] public DanmakuBoardBaseView BoardView;
         
         
-        [Header("Prefabs")]
-        [SerializeField] private DanmakuPlayerBaseView _playerViewPrefab;
-
-        
         private void Awake()
         {
             InitializeViews();

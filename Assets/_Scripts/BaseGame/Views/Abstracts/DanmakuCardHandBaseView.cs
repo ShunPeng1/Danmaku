@@ -15,7 +15,8 @@ namespace _Scripts.BaseGame.Views
 
         public abstract void RemoveCard(IDanmakuCard card);
         public abstract void RemoveCard(IDanmakuCard[] card);
-
-
+        
+        public abstract void AllowCardPlay();
+        public abstract void DisallowCardPlay();
     }
 }

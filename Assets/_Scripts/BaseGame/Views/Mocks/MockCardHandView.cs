@@ -40,5 +40,15 @@ namespace _Scripts.BaseGame.Views.Default
                 RemoveCard(c);
             }
         }
+
+        public override void AllowCardPlay()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void DisallowCardPlay()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

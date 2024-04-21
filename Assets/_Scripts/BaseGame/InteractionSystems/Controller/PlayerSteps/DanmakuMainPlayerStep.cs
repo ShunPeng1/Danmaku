@@ -14,8 +14,9 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
         public void Execute(DanmakuInteractionController interactionController, DanmakuPlayerModel playerModel, DanmakuPlayerBaseView playerView, Action finishExecuteCallback = null)
         {
             Debug.Log(playerModel.PlayerId + " Main Step Executed!");
+        
+            playerView.StartMainStep(finishExecuteCallback);
             
-            finishExecuteCallback?.Invoke();
         }
     }
 }
