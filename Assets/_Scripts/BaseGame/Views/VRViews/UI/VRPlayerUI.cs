@@ -1,18 +1,19 @@
 ﻿using System;
+using BNG;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 namespace _Scripts.BaseGame.Views.Basics.UI
 {
-    public class PlayerUI : MonoBehaviour
+    public class VRPlayerUI : MonoBehaviour
     {
         [SerializeField] private Button _endStepButton;
         
         public void SetOneTimeButtonAction(Action action)
         {
-            _endStepButton.onClick.AddListener(() =>
+            _endStepButton.onButtonDown.AddListener(() =>
             {
-                _endStepButton.onClick.RemoveAllListeners();
+                _endStepButton.onButtonDown.RemoveAllListeners();
                 action?.Invoke();
             });
         }

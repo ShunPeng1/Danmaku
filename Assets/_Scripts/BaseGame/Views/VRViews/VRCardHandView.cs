@@ -83,8 +83,8 @@ namespace _Scripts.BaseGame.Views.Basics
         {
             foreach (var snapZone in _snapZones)
             {
-                snapZone.CanDropItem = true;
-                snapZone.CanRemoveItem = true;
+                //snapZone.CanDropItem = true;
+                //snapZone.CanRemoveItem = true;
             }
         }
 
@@ -92,8 +92,8 @@ namespace _Scripts.BaseGame.Views.Basics
         {
             foreach (var snapZoneInteractor in _snapZones)
             {
-                snapZoneInteractor.CanDropItem = false;
-                snapZoneInteractor.CanRemoveItem = false;
+                //snapZoneInteractor.CanDropItem = false;
+                //snapZoneInteractor.CanRemoveItem = false;
             }
         }
 

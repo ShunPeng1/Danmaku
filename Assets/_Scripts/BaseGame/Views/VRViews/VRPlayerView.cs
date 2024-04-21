@@ -6,7 +6,7 @@ namespace _Scripts.BaseGame.Views.Basics
 {
     public class VRPlayerView : DanmakuPlayerBaseView
     {
-        [SerializeField] private PlayerUI _playerInformationUI;
+        [SerializeField] private VRPlayerUI _vrPlayerInformationUI;
         public override void InitializeView()
         {
             
@@ -20,7 +20,7 @@ namespace _Scripts.BaseGame.Views.Basics
         public override void StartMainStep(System.Action finishExecuteCallback)
         {
             CardHandView.AllowCardPlay();
-            _playerInformationUI.SetOneTimeButtonAction(() =>
+            _vrPlayerInformationUI.SetOneTimeButtonAction(() =>
             {
                 CardHandView.DisallowCardPlay();
                 finishExecuteCallback?.Invoke();

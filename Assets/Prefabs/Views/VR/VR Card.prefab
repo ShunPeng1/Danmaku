@@ -166,16 +166,16 @@ MonoBehaviour:
   BeingHeld: 0
   GrabButton: 0
   Grabtype: 0
-  GrabPhysics: 0
+  GrabPhysics: 3
   GrabMechanic: 0
   GrabSpeed: 10
   RemoteGrabbable: 1
   RemoteGrabMechanic: 0
-  RemoteGrabDistance: 2
+  RemoteGrabDistance: 3
   ThrowForceMultiplier: 1.5
   ThrowForceMultiplierAngular: 1.125
   BreakDistance: 0.5
-  HideHandGraphics: 0
+  HideHandGraphics: 1
   ParentToHands: 1
   ParentHandModel: 0
   SnapHandModel: 1
@@ -216,7 +216,8 @@ MonoBehaviour:
   SecondaryLookOffset: {x: 0, y: 0, z: 0}
   SecondaryLookAtTransform: {fileID: 0}
   LocalOffsetTransform: {fileID: 0}
-  GrabPoints: []
+  GrabPoints:
+  - {fileID: 1963501488315418945}
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
