@@ -13,6 +13,9 @@ TagManager:
   - UI
   - 
   - 
+  - Restricted
+  - Player
+  - Grabbable
   - 
   - 
   - 
@@ -22,9 +25,6 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - Card
   - 
   - 
   - 
