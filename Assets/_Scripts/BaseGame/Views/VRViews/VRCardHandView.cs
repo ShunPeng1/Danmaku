@@ -25,25 +25,26 @@ namespace _Scripts.BaseGame.Views.Basics
         [SerializeField] private float _addCardMoveDelay = 0.2f;
         [SerializeField] private Ease _tweenEase = Ease.Linear;
 
-        private void Awake()
-        {
-            CreateSnapZone();
-        }
+        
         
 
         public override void AddCard(DanmakuMainDeckCardBaseView cardView,IDanmakuCard card)
         {
-             var snapZone = _snapZones[^1];
+            var snapZone = CreateSnapZone();
+             
+            var rigidbody = cardView.GetComponent<Rigidbody>();
+            
+            rigidbody.isKinematic = true;
             
             cardView.transform.DOMove(snapZone.transform.position, _addCardMoveDuration).OnComplete(()=>
             {
-                cardView.transform.SetParent(snapZone.transform);
+                rigidbody.isKinematic = false;
                 snapZone.GrabGrabbable(cardView.GetComponent<Grabbable>());
                 
             });
             cardView.transform.DORotate(snapZone.transform.rotation.eulerAngles, _addCardMoveDuration);
             CardToView.Add(card, cardView);
-            CreateSnapZone();
+            
         }
 
         public override void AddCard(Dictionary<IDanmakuCard, DanmakuMainDeckCardBaseView> cardToView)
@@ -96,7 +97,7 @@ namespace _Scripts.BaseGame.Views.Basics
             }
         }
 
-        private SnapZone CreateSnapZone()
+        private SnapZone CreateSnapZone(Grabbable startingItem = null)
         {
             var snapZone = Instantiate(_snapZonePrefab, _snapZoneStartingTransform);
             snapZone.transform.position = _snapZoneStartingTransform.position;
@@ -106,7 +107,8 @@ namespace _Scripts.BaseGame.Views.Basics
             
             snapZone.CanDropItem = true;
             snapZone.CanRemoveItem = true;
-            
+
+            snapZone.StartingItem = startingItem;
             
             _snapZones.Add(snapZone);
             
