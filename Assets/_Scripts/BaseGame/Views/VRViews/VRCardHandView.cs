@@ -30,21 +30,17 @@ namespace _Scripts.BaseGame.Views.Basics
 
         public override void AddCard(DanmakuMainDeckCardBaseView cardView,IDanmakuCard card)
         {
-            var snapZone = CreateSnapZone();
-             
-            var rigidbody = cardView.GetComponent<Rigidbody>();
-            
-            rigidbody.isKinematic = true;
-            
-            cardView.transform.DOMove(snapZone.transform.position, _addCardMoveDuration).OnComplete(()=>
-            {
-                rigidbody.isKinematic = false;
-                snapZone.GrabGrabbable(cardView.GetComponent<Grabbable>());
-                
-            });
-            cardView.transform.DORotate(snapZone.transform.rotation.eulerAngles, _addCardMoveDuration);
             CardToView.Add(card, cardView);
-            
+
+            // Move card to snap zone
+            var snapZone = CreateSnapZone();
+
+            var vrCardView = (VRMainDeckCardView)cardView;
+            vrCardView.TweenMove(snapZone.transform.position, snapZone.transform.rotation.eulerAngles, _addCardMoveDuration, _tweenEase,
+                () =>
+                {
+                    snapZone.GrabGrabbable(cardView.GetComponent<Grabbable>());
+                });
         }
 
         public override void AddCard(Dictionary<IDanmakuCard, DanmakuMainDeckCardBaseView> cardToView)

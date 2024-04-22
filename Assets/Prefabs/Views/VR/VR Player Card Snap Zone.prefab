@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 152848849319418900}
   - component: {fileID: 7941856175961008902}
   m_Layer: 0
-  m_Name: VR Card Snap Zone
+  m_Name: VR Player Card Snap Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,8 +79,6 @@ MonoBehaviour:
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
   LastSnapTime: 0
-  OnlyAllowNames: []
-  ExcludeTransformNames: []
   SoundOnSnap: {fileID: 0}
   SoundOnUnsnap: {fileID: 0}
   OnSnapEvent:
