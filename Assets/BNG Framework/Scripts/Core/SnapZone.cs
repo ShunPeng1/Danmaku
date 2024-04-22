@@ -58,18 +58,8 @@ namespace BNG {
         [HideInInspector]
         public float LastSnapTime;
 
-        [Header("Filtering")]
-        /// <summary>
-        /// If not empty, can only snap objects if transform name contains one of these strings
-        /// </summary>
-        [Tooltip("If not empty, can only snap objects if transform name contains one of these strings")]
-        public List<string> OnlyAllowNames;
-
-        /// <summary>
-        /// Do not allow snapping if transform contains one of these names
-        /// </summary>
-        [Tooltip("Do not allow snapping if transform contains one of these names")]
-        public List<string> ExcludeTransformNames;
+        [Header("Filtering")] 
+        public ISnapZoneFilter SnapZoneFilter;
 
         [Header("Audio")]
         public AudioClip SoundOnSnap;
@@ -117,7 +107,7 @@ namespace BNG {
 
         void Update() {
 
-            ClosestGrabbable = getClosestGrabbable();
+            ClosestGrabbable = GetClosestGrabbable();
 
             // Can we grab something
             if (HeldItem == null && ClosestGrabbable != null) {
@@ -153,75 +143,55 @@ namespace BNG {
             }
         }
 
-        Grabbable getClosestGrabbable() {
-
+        
+        protected virtual Grabbable GetClosestGrabbable()
+        {
             Grabbable closest = null;
             float lastDistance = 9999f;
 
-            if (gZone == null || gZone.NearbyGrabbables == null) {
+            if (gZone == null || gZone.NearbyGrabbables == null)
+            {
                 return null;
             }
-
-            foreach (var g in gZone.NearbyGrabbables) {
-
+            
+            foreach (var g in gZone.NearbyGrabbables)
+            {
                 // Collider may have been disabled
-                if (g.Key == null) {
+                if (g.Key == null)
+                {
                     continue;
                 }
 
                 float dist = Vector3.Distance(transform.position, g.Value.transform.position);
-                if (dist < lastDistance) {
-
+                if (dist < lastDistance)
+                {
                     //  Not allowing secondary grabbables such as slides
-                    if (g.Value.OtherGrabbableMustBeGrabbed != null) {
+                    if (g.Value.OtherGrabbableMustBeGrabbed != null)
+                    {
                         continue;
                     }
 
                     // Don't allow SnapZones in SnapZones
-                    if (g.Value.GetComponent<SnapZone>() != null) {
+                    if (g.Value.GetComponent<SnapZone>() != null)
+                    {
                         continue;
                     }
 
                     // Don't allow InvalidSnapObjects to snap
-                    if (g.Value.CanBeSnappedToSnapZone == false) {
+                    if (g.Value.CanBeSnappedToSnapZone == false)
+                    {
                         continue;
                     }
 
                     // Must contain transform name
-                    if (OnlyAllowNames != null && OnlyAllowNames.Count > 0) {
-                        string transformName = g.Value.transform.name;
-                        bool matchFound = false;
-                        for (int x = 0; x < OnlyAllowNames.Count; x++) {
-                            string name = OnlyAllowNames[x];
-                            if (transformName.Contains(name)) {
-                                matchFound = true;
-                            }
-                        }
-
-                        // Not a valid match
-                        if (!matchFound) {
-                            continue;
-                        }
-                    }
-
-                    // Check for name exclusion
-                    if (ExcludeTransformNames != null) {
-                        string transformName = g.Value.transform.name;
-                        bool matchFound = false;
-                        for (int x = 0; x < ExcludeTransformNames.Count; x++) {
-                            // Not a valid match
-                            if (transformName.Contains(ExcludeTransformNames[x])) {
-                                matchFound = true;
-                            }
-                        }
-                        // Exclude this
-                        if (matchFound) {
-                            continue;
-                        }
+                    if (SnapZoneFilter != null && !SnapZoneFilter.CheckSnappable(g.Value))
+                    {
+                        continue;
                     }
 
                     // Only valid to snap if being held or recently dropped
-                    if (g.Value.BeingHeld || (Time.time - g.Value.LastDropTime < MaxDropTime)) {
+                    if (g.Value.BeingHeld || (Time.time - g.Value.LastDropTime < MaxDropTime))
+                    {
                         closest = g.Value;
                         lastDistance = dist;
                     }
@@ -230,7 +200,7 @@ namespace BNG {
 
             return closest;
         }
-
+        
         public virtual void GrabGrabbable(Grabbable grab) {
 
             // Grab is already in Snap Zone
