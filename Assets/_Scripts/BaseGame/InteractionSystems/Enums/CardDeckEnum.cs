@@ -4,6 +4,6 @@
     {
         MainDeck,
         LunaticDeck,
-        
+        CharacterDeck,
     }
 }

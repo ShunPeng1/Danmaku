@@ -29,6 +29,7 @@ public class Model_Anim_Controller : MonoBehaviour
         if (isDefeated)
         {
             _animator.SetBool("isDefeated", isDefeated);
+            
         }
     }
 }
