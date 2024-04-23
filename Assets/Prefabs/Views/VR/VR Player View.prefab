@@ -1280,6 +1280,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4588569624234502970}
     m_Modifications:
+    - target: {fileID: 152848849319418900, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 519329611999198712, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: SnapZoneFilter
+      value: 
+      objectReference: {fileID: 6531890245708065102}
     - target: {fileID: 4773704565409939693, guid: 1defdf9538e43e045a61762b9309c0b6,
         type: 3}
       propertyPath: m_Size.x
@@ -1370,6 +1390,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VR Player Card Snap Zone
       objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1378,6 +1403,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3265746600115964606}
+    - targetCorrespondingSourceObject: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6531890245708065102}
   m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
 --- !u!4 &7314612173004319449 stripped
 Transform:
@@ -1408,3 +1437,16 @@ MonoBehaviour:
   _floatAxis: {x: 0, y: 1, z: 0}
   _floatSpeed: 0.5
   _floatRange: 0.1
+--- !u!114 &6531890245708065102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451578865832072036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5664a123624f15b3ebc6586b88e315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isActivated: 1

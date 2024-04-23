@@ -93,15 +93,16 @@ namespace _Scripts.CoreGame.InteractionSystems
                 DanmakuCardRuleFactory cardFactory = new ();
                 foreach (var deckCardData in deckSetConfig.DeckCardsData)
                 {
-                    List<DanmakuCardRuleBase> cardRules = new ();
+                    List<DanmakuCardRuleBase> cardRules = new();
+                    var mainDeckCardModel = new DanmakuMainDeckCardModel(deckCardData, cardRules, mainDeckModel);
+
                     foreach (var cardRuleData in deckCardData.CardRulesScriptableData)
                     {
-                        var cardRule = cardFactory.GetIDanmakuCardRule(cardRuleData);
+                        var cardRule = cardFactory.CreateIDanmakuCardRule(cardRuleData, mainDeckCardModel);
                         
                         cardRules.Add(cardRule);
                     }
 
-                    var mainDeckCardModel = new DanmakuMainDeckCardModel(deckCardData, cardRules, mainDeckModel);
                     mainDeck.Add(mainDeckCardModel);
                 }
 

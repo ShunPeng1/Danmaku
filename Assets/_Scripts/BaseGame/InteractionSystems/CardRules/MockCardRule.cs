@@ -10,8 +10,7 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
     [DanmakuCardRuleClass]
     public class MockCardRule : DanmakuCardRuleBase
     {
-        
-        public MockCardRule(CardRuleScriptableData cardRuleData) : base(cardRuleData)
+        public MockCardRule(CardRuleScriptableData cardRuleData, IDanmakuCard card) : base(cardRuleData, card)
         {
         }
         
@@ -20,17 +19,19 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
             Debug.Log("MockCardRule InitializeCard");
         }
 
-        public override bool CanExecuteRule(List<IDanmakuActivator> activators, List<IDanmakuTargetable> targetables)
+        public override List<List<IDanmakuTargetable>> GetAnyValidTargetables()
         {
-            Debug.Log("MockCardRule CanExecuteRule");
+            return null;
+        }
+
+        public override bool CanExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables)
+        {
             return true;
         }
 
-        public override void ExecuteRule(List<IDanmakuActivator> activators, List<IDanmakuTargetable> targetables)
+        public override void ExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables)
         {
-            
             Debug.Log("MockCardRule ExecuteRule");
         }
-        
     }
 }
