@@ -20,10 +20,10 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             public IDanmakuCard Card;
             public IDanmakuCardRule DanmakuCardRule;
-            public List<IDanmakuActivator> Activator;
+            public IDanmakuActivator Activator;
             public List<IDanmakuTargetable> Targetable;
             
-            public CardExecution(IDanmakuCard card, IDanmakuCardRule danmakuCardRule, List<IDanmakuActivator> activator, List<IDanmakuTargetable> targetable)
+            public CardExecution(IDanmakuCard card, IDanmakuCardRule danmakuCardRule, IDanmakuActivator activator, List<IDanmakuTargetable> targetable)
             {
                 Card = card;
                 DanmakuCardRule = danmakuCardRule;

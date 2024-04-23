@@ -8,20 +8,26 @@ namespace _Scripts.CoreGame.InteractionSystems
     public class DanmakuCardDeckModel : IDanmakuCardHolder
     {
         public ObservableList<IDanmakuCard> Cards { get; }
-        
+        public DanmakuPlayerModel Owner { get; }
+
         public DanmakuCardDeckModel(List<IDanmakuCard> cards)
         {
             Cards = new ObservableList<IDanmakuCard>(cards);
+            Owner = null;
         }
 
         public void AddCard(IDanmakuCard danmakuCard)
         {
             Cards.Add(danmakuCard);
+            danmakuCard.SetCardHolder(this);
+            
         }
 
         public void AddCardAt(IDanmakuCard danmakuCard, int index)
         {
             Cards.Insert(index, danmakuCard);
+            danmakuCard.SetCardHolder(this);
+
         }
 
         public IDanmakuCard PopCardFront()

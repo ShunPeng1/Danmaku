@@ -59,7 +59,7 @@ namespace BNG {
         public float LastSnapTime;
 
         [Header("Filtering")] 
-        public ISnapZoneFilter SnapZoneFilter;
+        public SnapZoneFilter SnapZoneFilter;
 
         [Header("Audio")]
         public AudioClip SoundOnSnap;

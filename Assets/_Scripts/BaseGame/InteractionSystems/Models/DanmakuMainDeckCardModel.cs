@@ -10,16 +10,16 @@ namespace _Scripts.CoreGame.InteractionSystems
     public class DanmakuMainDeckCardModel : IDanmakuCard
     {
         public DeckCardScriptableData DeckCardScriptableData { get; private set; }
-        public ObservableData<IDanmakuCardHolder> CardHolder { get; private set; }
-        public List<DanmakuCardRuleBase> CardRuleModels { get; private set; }
+        private readonly ObservableData<IDanmakuCardHolder> _cardHolder;
+        private readonly List<DanmakuCardRuleBase> _cardRuleModels;
         
         public bool IsHidden { get; private set; }
         
         public DanmakuMainDeckCardModel(DeckCardScriptableData deckCardScriptableData, List<DanmakuCardRuleBase> cardRuleModels, IDanmakuCardHolder cardHolder )
         {
             DeckCardScriptableData = deckCardScriptableData;
-            CardRuleModels = cardRuleModels;
-            CardHolder = new ObservableData<IDanmakuCardHolder>(cardHolder);
+            _cardRuleModels = cardRuleModels;
+            _cardHolder = new ObservableData<IDanmakuCardHolder>(cardHolder);
         }
         
         public void InitializeCard()
@@ -31,17 +31,48 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             
         }
+        
+        public bool IsPlayable()
+        {
+            foreach (var rule in _cardRuleModels)
+            {
+                var activator = rule.GetAnyValidActivator();
+                var listTargetables = rule.GetAnyValidTargetables();
+
+                // Check if there are any valid activators and targetables
+                
+                if (listTargetables == null)
+                {
+                    if (rule.CanExecuteRule(activator))
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    foreach (var targetables in listTargetables)
+                    {
+                        if (rule.CanExecuteRule(activator, targetables))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            
+            }
+
+            return false;
+        }
 
         public void RevealCard()
         {
             
         }
 
-        public void ExecuteCard(IDanmakuCardRule cardRule, List<IDanmakuActivator> activators, List<IDanmakuTargetable> targetables)
+        public void ExecuteCard(IDanmakuCardRule cardRule, IDanmakuActivator activators, List<IDanmakuTargetable> targetables)
         {
             cardRule.ExecuteRule(activators, targetables);
         }
-        
 
         public void DiscardCard()
         {
@@ -53,9 +84,14 @@ namespace _Scripts.CoreGame.InteractionSystems
             
         }
 
-        public void SetCardOwner(DanmakuPlayerModel danmakuPlayerModel)
+        public void SetCardHolder(IDanmakuCardHolder danmakuPlayerModel)
         {
-            
+            _cardHolder.Value = danmakuPlayerModel;
+        }
+        
+        public DanmakuPlayerModel GetCardOwner()
+        {
+            return _cardHolder.Value.Owner;
         }
 
         public void ShowCard(DanmakuPlayerModel showToPlayerModel)
@@ -65,7 +101,7 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         public string PrintDebug()
         {
-            var cardRuleNames = string.Join(", ", CardRuleModels.Select(rule => rule.CardRuleScriptableData.CardRuleName));
+            var cardRuleNames = string.Join(", ", _cardRuleModels.Select(rule => rule.CardRuleScriptableData.CardRuleName));
             return DeckCardScriptableData.CardName + ": " + cardRuleNames;
         }
     }

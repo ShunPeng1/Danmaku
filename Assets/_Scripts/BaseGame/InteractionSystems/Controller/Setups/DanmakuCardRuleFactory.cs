@@ -10,20 +10,20 @@ namespace _Scripts.BaseGame.InteractionSystems.Setups
 {
     public class DanmakuCardRuleFactory
     {
-        private readonly Dictionary<string, Func<CardRuleScriptableData, DanmakuCardRuleBase>> _cardRuleFactories = new()
+        private readonly Dictionary<string, Func<CardRuleScriptableData, IDanmakuCard, DanmakuCardRuleBase>> _cardRuleFactories = new()
             {
-                {"MockCardRule", (cardRuleData) => new MockCardRule(cardRuleData)}
+                {"MockCardRule", (cardRuleData, card) => new MockCardRule(cardRuleData,card)}
             };
         
-        public DanmakuCardRuleBase GetIDanmakuCardRule(CardRuleScriptableData cardRuleData)
+        public DanmakuCardRuleBase CreateIDanmakuCardRule(CardRuleScriptableData cardRuleData, IDanmakuCard card)
         {
             if (_cardRuleFactories.TryGetValue(cardRuleData.CardRuleName, out var factory))
             {
-                return factory(cardRuleData);
+                return factory(cardRuleData, card);
             }
             
             Debug.LogError($"CardRule {cardRuleData.CardRuleName} not found");
-            return new MockCardRule(cardRuleData);
+            return new MockCardRule(cardRuleData, card);
         }
     }
 }

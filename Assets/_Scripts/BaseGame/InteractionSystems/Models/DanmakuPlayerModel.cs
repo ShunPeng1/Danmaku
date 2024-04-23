@@ -1,10 +1,11 @@
-﻿using _Scripts.CoreGame.InteractionSystems.Interfaces;
+﻿using _Scripts.BaseGame.InteractionSystems.Interfaces;
+using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using _Scripts.CoreGame.InteractionSystems.Roles;
 using _Scripts.CoreGame.InteractionSystems.Stats;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
-    public class DanmakuPlayerModel
+    public class DanmakuPlayerModel : IDanmakuActivator
     {
         public int PlayerId { get; private set; }
         public IDanmakuRole Role { get; private set;}
@@ -37,7 +38,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             Range = new PlayerStat(1);
             Power = new PlayerStat(1);
         
-            CardHandModel = new DanmakuCardHandModel();
+            CardHandModel = new DanmakuCardHandModel(this);
             
         }
 

@@ -9,14 +9,28 @@ namespace _Scripts.CoreGame.InteractionSystems
     {
         public ObservableArray<IDanmakuCard> Cards { get; } = new();
 
+        public DanmakuPlayerModel Owner { get; private set; }
+        
+        public DanmakuCardHandModel(DanmakuPlayerModel owner)
+        {
+            Owner = owner;
+        }
+
         public void AddCard(IDanmakuCard danmakuCard)
         {
-            Cards.TryAdd(danmakuCard);
+            if (Cards.TryAdd(danmakuCard))
+            {
+                danmakuCard.SetCardHolder(this);
+            }
+            
         }
 
         public void AddCardAt(IDanmakuCard danmakuCard, int index)
         {
-            Cards.TryAddAt(index, danmakuCard);
+            if (Cards.TryAddAt(index, danmakuCard))
+            {
+                danmakuCard.SetCardHolder(this);
+            }
         }
 
         public IDanmakuCard PopCardFront()
