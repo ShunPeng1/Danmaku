@@ -23,8 +23,12 @@ public class Model_Anim_Controller : MonoBehaviour
     {
         _animator.SetTrigger("Attack");
     }
-    public void OnDestroy()
+    public void OnTakingDamage(bool isDefeated)
     {
-        _animator.SetTrigger("Defeat");
+        _animator.SetTrigger("Damaged");
+        if (isDefeated)
+        {
+            _animator.SetBool("isDefeated", isDefeated);
+        }
     }
 }
