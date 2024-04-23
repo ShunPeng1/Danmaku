@@ -833,8 +833,10 @@ MonoBehaviour:
   MainDeckView: {fileID: 0}
   DiscardDeckView: {fileID: 0}
   IncidentDeckView: {fileID: 0}
-  _mainDeckCardPrefab: {fileID: 3427128746323981711, guid: 2b46f372f17f243409d40a95ed756b05, type: 3}
-  _playerPrefab: {fileID: 3304500905984708964, guid: 874693e2150d59844b7f8031d113f5ee, type: 3}
+  _mainDeckCardPrefab: {fileID: 3427128746323981711, guid: 2b46f372f17f243409d40a95ed756b05,
+    type: 3}
+  _playerPrefab: {fileID: 5609845302170694324, guid: 874693e2150d59844b7f8031d113f5ee,
+    type: 3}
   _playerStandingPositionMap: {fileID: 8442218467585881827}
   _topDrawMainDeck: {fileID: 5191964601988855109}
   _topDiscardMainDeck: {fileID: 756605989536879655}

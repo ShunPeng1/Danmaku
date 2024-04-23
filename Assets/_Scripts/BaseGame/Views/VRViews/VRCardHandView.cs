@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
+using BNG;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -10,12 +11,13 @@ namespace _Scripts.BaseGame.Views.Basics
 {
     public class VRCardHandView : DanmakuCardHandBaseView
     {
-        [Header("Socket")]
-        [SerializeField] private XRSocketInteractor _socketInteractorPrefab;
-        [SerializeField] private Transform _socketStartingTransform;
-        [SerializeField] private Vector3 _socketOffset;
-        [SerializeField] private Transform _cardHandTransform;
-        private List<XRSocketInteractor> _socketInteractors = new();
+        [Header("Snap Zone Settings")]
+        
+        [SerializeField] private SnapZone _snapZonePrefab;
+        [SerializeField] private Transform _snapZoneStartingTransform;
+        [SerializeField] private Vector3 _snapZoneOffset = new Vector3(0.3f, 0, 0);
+        
+        private List<SnapZone> _snapZones = new();
         
         
         [Header("Tween Settings")]
@@ -23,32 +25,22 @@ namespace _Scripts.BaseGame.Views.Basics
         [SerializeField] private float _addCardMoveDelay = 0.2f;
         [SerializeField] private Ease _tweenEase = Ease.Linear;
 
-        private void Awake()
-        {
-            CreateSocketInteractors();
-        }
-
-        public void InitializeSocketInteractors(int socketCount)
-        {
-            _socketInteractors = new List<XRSocketInteractor>();
-            for (int i = 0; i < socketCount; i++)
-            {
-                var socketInteractor = Instantiate(_socketInteractorPrefab, _cardHandTransform);
-                _socketInteractors.Add(socketInteractor);
-            }
-        }
+        
+        
 
         public override void AddCard(DanmakuMainDeckCardBaseView cardView,IDanmakuCard card)
         {
-             var socket = CreateSocketInteractors();
-            
-            cardView.transform.DOMove(socket.transform.position, _addCardMoveDuration).OnComplete(()=>
-            {
-                cardView.transform.SetParent(_cardHandTransform);
-                socket.socketActive = true;
-            });
-            cardView.transform.DORotate(socket.transform.rotation.eulerAngles, _addCardMoveDuration);
             CardToView.Add(card, cardView);
+
+            // Move card to snap zone
+            var snapZone = CreateSnapZone();
+
+            var vrCardView = (VRMainDeckCardView)cardView;
+            vrCardView.TweenMove(snapZone.transform.position, snapZone.transform.rotation.eulerAngles, _addCardMoveDuration, _tweenEase,
+                () =>
+                {
+                    snapZone.GrabGrabbable(cardView.GetComponent<Grabbable>());
+                });
         }
 
         public override void AddCard(Dictionary<IDanmakuCard, DanmakuMainDeckCardBaseView> cardToView)
@@ -82,18 +74,41 @@ namespace _Scripts.BaseGame.Views.Basics
                 
             }
         }
-        
-        private XRSocketInteractor CreateSocketInteractors()
+
+        public override void AllowCardPlay()
         {
-            var newSocketInteractors = Instantiate(_socketInteractorPrefab, _socketStartingTransform);
-            newSocketInteractors.transform.position = _socketStartingTransform.position;
-            newSocketInteractors.transform.localPosition += _socketOffset * _socketInteractors.Count;
-            newSocketInteractors.transform.rotation = _socketStartingTransform.rotation;
-            newSocketInteractors.socketActive = false;
+            foreach (var snapZone in _snapZones)
+            {
+                //snapZone.CanDropItem = true;
+                //snapZone.CanRemoveItem = true;
+            }
+        }
+
+        public override void DisallowCardPlay()
+        {
+            foreach (var snapZoneInteractor in _snapZones)
+            {
+                //snapZoneInteractor.CanDropItem = false;
+                //snapZoneInteractor.CanRemoveItem = false;
+            }
+        }
+
+        private SnapZone CreateSnapZone(Grabbable startingItem = null)
+        {
+            var snapZone = Instantiate(_snapZonePrefab, _snapZoneStartingTransform);
+            snapZone.transform.position = _snapZoneStartingTransform.position;
+            snapZone.transform.localPosition += _snapZoneOffset * _snapZones.Count;
+            snapZone.transform.rotation = _snapZoneStartingTransform.rotation;
             
-            _socketInteractors.Add(newSocketInteractors);
             
-            return newSocketInteractors;
+            snapZone.CanDropItem = true;
+            snapZone.CanRemoveItem = true;
+
+            snapZone.StartingItem = startingItem;
+            
+            _snapZones.Add(snapZone);
+            
+            return snapZone;
         }
     }
 }

@@ -33,10 +33,10 @@ namespace _Scripts.CoreGame.InteractionSystems
             
             InteractionController.StartupReveal();
             
+            InteractionController.StartupDraw();
+            
             InteractionController.StartGame();
             
-            InteractionController.StartPlayerStep();
-
 
         }
         

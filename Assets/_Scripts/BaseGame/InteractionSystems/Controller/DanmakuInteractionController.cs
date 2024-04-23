@@ -157,6 +157,10 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             PlayerController.StartPlayerStep();
         }
-        
+
+        public void StartupDraw()
+        {
+            BoardController.StartupDraw();
+        }
     }
 }
