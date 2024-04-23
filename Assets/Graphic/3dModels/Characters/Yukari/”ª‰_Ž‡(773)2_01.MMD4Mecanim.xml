@@ -140,10 +140,10 @@
     <vertexScaleByHeightFlag>false</vertexScaleByHeightFlag>
     <vertexScaleByHeight>158</vertexScaleByHeight>
     <waitProcessExitting>false</waitProcessExitting>
-    <pmxAssetPath>Assets/Graphic/3dModels/Yukari/”ª‰_Ž‡(773)2_01.pmx</pmxAssetPath>
+    <pmxAssetPath>Assets/Graphic/3dModels/Characters/Yukari/”ª‰_Ž‡(773)2_01.pmx</pmxAssetPath>
     <vmdAssetPathList />
     <fbxOutputPath>Assets/Graphic/3dModels/Yukari/”ª‰_Ž‡(773)2_01.fbx</fbxOutputPath>
-    <fbxAssetPath>Assets/Graphic/3dModels/Yukari/Yukari_model.fbx</fbxAssetPath>
+    <fbxAssetPath>Assets/Graphic/3dModels/Characters/Yukari/Yukari_model.fbx</fbxAssetPath>
     <bulletPhysicsVersion>_275</bulletPhysicsVersion>
     <useWineFlag>false</useWineFlag>
     <wine>Manual</wine>
