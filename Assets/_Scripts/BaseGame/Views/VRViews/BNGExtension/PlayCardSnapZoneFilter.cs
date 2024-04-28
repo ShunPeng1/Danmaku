@@ -36,7 +36,7 @@ namespace _Scripts.BaseGame.Views.Basics.BNGExtension
                 return false;
             }
             
-            bool isPlayable = cardView.CardModel.IsPlayable();
+            bool isPlayable = cardView.IsPlayable;
             
             return isPlayable;
         }

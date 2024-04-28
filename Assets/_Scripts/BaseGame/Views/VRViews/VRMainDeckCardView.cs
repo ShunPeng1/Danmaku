@@ -10,6 +10,8 @@ namespace _Scripts.BaseGame.Views.Basics
     {
         [SerializeField] private TMP_Text _cardNameText;
 
+        public bool IsPlayable { get; private set; }
+        
         private Grabbable _grabbable;
         private Rigidbody _rigidbody;
         
@@ -43,7 +45,15 @@ namespace _Scripts.BaseGame.Views.Basics
                 onComplete?.Invoke();
             });
         }
-        
-        
+
+        public override void CheckPlayable()
+        {
+            IsPlayable = CardModel.IsPlayable();
+        }
+
+        public override void SetNotPlayable()
+        {
+            IsPlayable = false;
+        }
     }
 }

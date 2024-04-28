@@ -77,6 +77,11 @@ namespace _Scripts.BaseGame.Views.Basics
 
         public override void AllowCardPlay()
         {
+            foreach (var (card, view) in CardToView)
+            {
+                view.CheckPlayable();
+            }
+            
             foreach (var snapZone in _snapZones)
             {
                 //snapZone.CanDropItem = true;
@@ -86,6 +91,11 @@ namespace _Scripts.BaseGame.Views.Basics
 
         public override void DisallowCardPlay()
         {
+            foreach (var (card, view) in CardToView)
+            {
+                view.SetNotPlayable();
+            }
+            
             foreach (var snapZoneInteractor in _snapZones)
             {
                 //snapZoneInteractor.CanDropItem = false;

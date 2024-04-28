@@ -11,5 +11,8 @@ namespace _Scripts.BaseGame.Views
         {
             CardModel = cardModel;
         }
+
+        public abstract void CheckPlayable();
+        public abstract void SetNotPlayable();
     }
 }

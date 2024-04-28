@@ -15,8 +15,8 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules.CombatUltility
             int attackerIndex = groupModel.Players.FindIndex(playerModel => playerModel == attackerPlayer);
             int targetIndex = groupModel.Players.FindIndex(playerModel => playerModel == targetedPlayer);
 
-            int rightDistance = 0;
-            for (int i = attackerIndex+1; i <= targetIndex; i = (i+1)%groupModel.PlayerCount)
+            int rightDistance = 1;
+            for (int i =(attackerIndex+1)%groupModel.PlayerCount; i != targetIndex && i != attackerIndex; i = (i+1)%groupModel.PlayerCount)
             {
                 if (groupModel.Players[i].IsAlive)
                 {
@@ -24,8 +24,8 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules.CombatUltility
                 }
             }
             
-            int leftDistance = 0;
-            for (int i = attackerIndex-1; i >= targetIndex; i = (i-1+groupModel.PlayerCount)%groupModel.PlayerCount)
+            int leftDistance = 1;
+            for (int i = (attackerIndex-1+groupModel.PlayerCount)%groupModel.PlayerCount; i != targetIndex && i != attackerIndex; i = (i-1+groupModel.PlayerCount)%groupModel.PlayerCount)
             {
                 if (groupModel.Players[i].IsAlive)
                 {
