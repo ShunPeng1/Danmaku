@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
   m_Name: 1_1Up_Action_RuleData
   m_EditorClassIdentifier: 
+  CardRuleName: Action1UpRule
   CardRule: "Choose a player. That player gains {0}. You cannot go above your max
     life.\r "
   CardTimingType: 0

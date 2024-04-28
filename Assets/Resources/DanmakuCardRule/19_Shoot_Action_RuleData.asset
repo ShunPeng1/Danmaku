@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
   m_Name: 19_Shoot_Action_RuleData
   m_EditorClassIdentifier: 
+  CardRuleName: ActionShootRule
   CardRule: 'Attack a player in range.
 
     You may discard Danmaku cards to give
