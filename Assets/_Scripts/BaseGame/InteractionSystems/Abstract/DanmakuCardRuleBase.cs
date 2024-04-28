@@ -23,7 +23,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             return Card.GetCardOwner();
         }
-        public abstract List<List<IDanmakuTargetable>> GetAnyValidTargetables();
+        public abstract List<List<IDanmakuTargetable>> GetAnyValidTargetables(IDanmakuActivator danmakuActivator);
 
         public abstract bool CanExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables = null);
         public abstract void ExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables = null);

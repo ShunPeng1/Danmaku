@@ -20,7 +20,9 @@ namespace _Scripts.BaseGame.InteractionSystems.Setups
             
             _cardRuleFactories = new Dictionary<string, Func<CardRuleScriptableData, IDanmakuCard, DanmakuCardRuleBase>>
             {
-                {"MockCardRule", (cardRuleData, card) => new MockCardRule(cardRuleData,card, _interactionController)}
+                {nameof(MockCardRule), (cardRuleData, card) => new MockCardRule(cardRuleData,card, _interactionController)},
+                {nameof(Action1UpRule), (cardRuleData, card) => new Action1UpRule(cardRuleData,card, _interactionController)},
+                {nameof(ActionShootRule), (cardRuleData, card) => new ActionShootRule(cardRuleData,card, _interactionController)}
             };
         }
         

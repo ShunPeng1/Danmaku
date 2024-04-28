@@ -19,7 +19,7 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
             Debug.Log("MockCardRule InitializeCard");
         }
 
-        public override List<List<IDanmakuTargetable>> GetAnyValidTargetables()
+        public override List<List<IDanmakuTargetable>> GetAnyValidTargetables(IDanmakuActivator danmakuActivator)
         {
             return null;
         }

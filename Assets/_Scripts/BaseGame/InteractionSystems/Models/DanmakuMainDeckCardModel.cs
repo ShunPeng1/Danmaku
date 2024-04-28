@@ -37,7 +37,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             foreach (var rule in _cardRuleModels)
             {
                 var activator = rule.GetAnyValidActivator();
-                var listTargetables = rule.GetAnyValidTargetables();
+                var listTargetables = rule.GetAnyValidTargetables(activator);
 
                 // Check if there are any valid activators and targetables
                 

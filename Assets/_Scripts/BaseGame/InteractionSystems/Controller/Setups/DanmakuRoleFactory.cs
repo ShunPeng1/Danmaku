@@ -9,17 +9,17 @@ namespace _Scripts.CoreGame.InteractionSystems.Setups
     {
         private readonly Dictionary<string, Func<IDanmakuRole>> _roleFactories = new()
         {
-            { "HeroineDanmakuRole", () => new HeroineDanmakuRole() },
-            { "StageBossDanmakuRole", () => new StageBossDanmakuRole() },
-            { "PartnerDanmakuRole", () => new PartnerDanmakuRole() },
-            { "ExBossDanmakuRole", () => new ExBossDanmakuRole() },
-            { "PhantasmBossDanmakuRole", () => new PhantasmBossDanmakuRole() },
-            { "FinalBossDanmakuRole", () => new FinalBossDanmakuRole() },
-            { "ChallengerDanmakuRole", () => new ChallengerDanmakuRole() },
-            { "AntiHeroineDanmakuRole", () => new AntiHeroineDanmakuRole() },
-            { "ExMidBossDanmakuRole", () => new ExMidBossDanmakuRole() },
-            { "OneTruePartnerDanmakuRole", () => new OneTruePartnerDanmakuRole() },
-            { "RivalDanmakuRole", () => new RivalDanmakuRole() }
+            { nameof(HeroineDanmakuRole), () => new HeroineDanmakuRole() },
+            { nameof(StageBossDanmakuRole), () => new StageBossDanmakuRole() },
+            { nameof(PartnerDanmakuRole), () => new PartnerDanmakuRole() },
+            { nameof(ExBossDanmakuRole), () => new ExBossDanmakuRole() },
+            { nameof(PhantasmBossDanmakuRole), () => new PhantasmBossDanmakuRole() },
+            { nameof(FinalBossDanmakuRole), () => new FinalBossDanmakuRole() },
+            { nameof(ChallengerDanmakuRole), () => new ChallengerDanmakuRole() },
+            { nameof(AntiHeroineDanmakuRole), () => new AntiHeroineDanmakuRole() },
+            { nameof(ExMidBossDanmakuRole), () => new ExMidBossDanmakuRole() },
+            { nameof(OneTruePartnerDanmakuRole), () => new OneTruePartnerDanmakuRole() },
+            { nameof(RivalDanmakuRole), () => new RivalDanmakuRole() }
         };
 
         public IDanmakuRole CreateRole(string roleName)

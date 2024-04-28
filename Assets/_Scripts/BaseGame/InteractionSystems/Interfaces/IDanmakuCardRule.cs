@@ -8,7 +8,7 @@ namespace _Scripts.BaseGame.InteractionSystems.Interfaces
         public void InitializeCard();
         
         public abstract IDanmakuActivator GetAnyValidActivator();
-        public abstract List<List<IDanmakuTargetable>> GetAnyValidTargetables();
+        public abstract List<List<IDanmakuTargetable>> GetAnyValidTargetables(IDanmakuActivator danmakuActivator);
         public bool CanExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables);
         public void ExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables);
         

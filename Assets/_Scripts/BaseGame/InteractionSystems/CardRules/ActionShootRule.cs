@@ -7,12 +7,12 @@ using _Scripts.CoreGame.InteractionSystems.CardRules.CombatUltility;
 namespace _Scripts.CoreGame.InteractionSystems.CardRules
 {
     [DanmakuCardRuleClass]
-    public class Action1UpRule : DanmakuCardRuleBase
+    public class ActionShootRule : DanmakuCardRuleBase
     {
-        public Action1UpRule(CardRuleScriptableData cardRuleData, IDanmakuCard card, DanmakuInteractionController interactionController) : base(cardRuleData, card, interactionController)
+        public ActionShootRule(CardRuleScriptableData cardRuleData, IDanmakuCard card, DanmakuInteractionController interactionController) : base(cardRuleData, card, interactionController)
         {
         }
-        
+
         public override void InitializeCard()
         {
             
@@ -20,14 +20,19 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
 
         public override List<List<IDanmakuTargetable>> GetAnyValidTargetables(IDanmakuActivator danmakuActivator)
         {
+            if (danmakuActivator is not DanmakuPlayerModel attackerPlayer)
+            {
+                return null;
+            }
+            
             List<List<IDanmakuTargetable>> allPossibleTargetables = new ();
-            foreach (var playerModel in InteractionController.PlayerGroupModel.Players)
+            foreach (var targetPlayerModel in InteractionController.PlayerGroupModel.Players)
             {
                 List<IDanmakuTargetable> targetables = new ();
 
-                if (LifeCombatUtility.CanHeal(playerModel))
+                if (AttackCombatUtility.CanAttackInRange(InteractionController.PlayerGroupModel, attackerPlayer, targetPlayerModel))
                 {
-                    targetables.Add(playerModel);
+                    targetables.Add(targetPlayerModel);
                     allPossibleTargetables.Add(targetables);
                 }            
             }
@@ -43,21 +48,19 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
                 return false;
             }
             
-            return targetables[0] is DanmakuPlayerModel playerModel && LifeCombatUtility.CanHeal(playerModel);
+            return targetables[0] is DanmakuPlayerModel playerModel && AttackCombatUtility.CanAttackInRange(InteractionController.PlayerGroupModel, activator as DanmakuPlayerModel, playerModel);
         }
 
         public override void ExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables = null)
         {
-            if (targetables is not { Count: 1 } || CardRuleScriptableData.CardRuleValueWithIcons.Length != 1)
+            if (targetables is not { Count: 1 })
             {
                 return;
             }
             
-            var healAmount = CardRuleScriptableData.CardRuleValueWithIcons[0].Value;
-            
-            if (targetables[0] is DanmakuPlayerModel playerModel)
+            if (activator is DanmakuPlayerModel attackerPlayerModel && targetables[0] is DanmakuPlayerModel targetedPlayerModel)
             {
-                playerModel.Life.Increase(healAmount);
+                AttackCombatUtility.AttackPlayer(attackerPlayerModel, targetedPlayerModel);
             }
         }
     }
