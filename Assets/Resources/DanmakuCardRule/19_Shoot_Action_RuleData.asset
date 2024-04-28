@@ -10,12 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
-  m_Name: 24_Tempest_RuleData
+  m_Name: 19_Shoot_Action_RuleData
   m_EditorClassIdentifier: 
-  CardRuleName: 
-  CardRule: All players discard their hand and draw {0}.
+  CardRule: 'Attack a player in range.
+
+    You may discard Danmaku cards to give
+    this attack +{0} for each card discarded.
+
+    By default you can only play {1}
+    card per round.'
   CardTimingType: 0
-  CardEffectTypes: 
+  CardEffectTypes: 00000000
   CardRuleValueWithIcons:
-  - Value: 3
-    CardRuleTextIconEnum: 15
+  - Value: 1
+    CardRuleTextIconEnum: 1
+  - Value: 1
+    CardRuleTextIconEnum: 4

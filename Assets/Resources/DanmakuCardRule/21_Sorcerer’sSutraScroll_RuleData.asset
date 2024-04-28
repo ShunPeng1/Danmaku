@@ -10,19 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
-  m_Name: 19_Shoot_RuleData
+  m_Name: "21_Sorcerer\u2019sSutraScroll_RuleData"
   m_EditorClassIdentifier: 
-  CardRule: 'Attack a player in range.
+  CardRuleName: 
+  CardRule: 'When you play this card, draw {0} .
 
-    You may discard Danmaku cards to give
-    this attack +{0} for each card discarded.
+    Draw an extra card during your
+    draw step. Your max hand size is {1}.
 
-    By default you can only play
-    {1} card per round.'
-  CardTimingType: 0
-  CardEffectTypes: 00000000
+    You can only have {2} card in play
+    at a time.'
+  CardTimingType: 4
+  CardEffectTypes: 04000000
   CardRuleValueWithIcons:
+  - Value: 0
+    CardRuleTextIconEnum: 15
+  - Value: 7
+    CardRuleTextIconEnum: 16
   - Value: 1
-    CardRuleTextIconEnum: 1
-  - Value: 1
-    CardRuleTextIconEnum: 4
+    CardRuleTextIconEnum: 8

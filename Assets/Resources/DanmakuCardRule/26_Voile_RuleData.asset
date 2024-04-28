@@ -10,15 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
-  m_Name: 21_SpiritualAttack_RuleData
+  m_Name: 26_Voile_RuleData
   m_EditorClassIdentifier: 
-  CardRule: 'Activate your {0} Card.
-
-    You can only activate {1} Card per round.'
-  CardTimingType: 3
+  CardRuleName: 
+  CardRule: Draw {0}, then place a card from your hand on top of the deck.
+  CardTimingType: 0
   CardEffectTypes: 
   CardRuleValueWithIcons:
-  - Value: 1
-    CardRuleTextIconEnum: 6
-  - Value: 1
-    CardRuleTextIconEnum: 6
+  - Value: 3
+    CardRuleTextIconEnum: 15
