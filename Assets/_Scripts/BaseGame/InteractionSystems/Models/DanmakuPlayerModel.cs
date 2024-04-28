@@ -5,7 +5,7 @@ using _Scripts.CoreGame.InteractionSystems.Stats;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
-    public class DanmakuPlayerModel : IDanmakuActivator
+    public class DanmakuPlayerModel : IDanmakuActivator, IDanmakuTargetable
     {
         public int PlayerId { get; private set; }
         public IDanmakuRole Role { get; private set;}

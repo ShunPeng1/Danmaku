@@ -8,11 +8,13 @@ namespace _Scripts.CoreGame.InteractionSystems
     {
         public IDanmakuCard Card { get;}
         public CardRuleScriptableData CardRuleScriptableData { get; private set; }
+        protected DanmakuInteractionController InteractionController { get; private set; }
         
-        public DanmakuCardRuleBase(CardRuleScriptableData cardRuleData, IDanmakuCard card)
+        public DanmakuCardRuleBase(CardRuleScriptableData cardRuleData, IDanmakuCard card, DanmakuInteractionController interactionController)
         {
             CardRuleScriptableData = cardRuleData;
             Card = card;
+            InteractionController = interactionController;
         }
         
         public abstract void InitializeCard();

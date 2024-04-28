@@ -10,7 +10,7 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
     [DanmakuCardRuleClass]
     public class MockCardRule : DanmakuCardRuleBase
     {
-        public MockCardRule(CardRuleScriptableData cardRuleData, IDanmakuCard card) : base(cardRuleData, card)
+        public MockCardRule(CardRuleScriptableData cardRuleData, IDanmakuCard card, DanmakuInteractionController interactionController) : base(cardRuleData, card, interactionController)
         {
         }
         

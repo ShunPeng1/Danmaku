@@ -69,9 +69,19 @@ namespace _Scripts.CoreGame.InteractionSystems.Stats
             return value >= _maxValue;
         }
         
+        public bool IsGreaterOrEqualToMax()
+        {
+            return _value.Value <= _minValue;
+        }
+        
         public bool IsLessOrEqualToMin(int value)
         {
             return value <= _minValue;
+        }
+        
+        public bool IsLessOrEqualToMin()
+        {
+            return _value.Value <= _minValue;
         }
 
         public void Increase(int value)

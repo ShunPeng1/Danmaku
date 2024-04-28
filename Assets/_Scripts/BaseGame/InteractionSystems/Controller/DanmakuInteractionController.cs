@@ -36,6 +36,16 @@ namespace _Scripts.CoreGame.InteractionSystems
             CombatController = new DanmakuCombatController(this);
         }
         
+        private void UpdatePlayerGroupModel(DanmakuPlayerGroupModel playerGroupModel)
+        {
+            PlayerGroupModel = playerGroupModel;
+        }
+        
+        private void UpdateBoardModel(DanmakuBoardModel boardModel)
+        {
+            BoardModel = boardModel;
+        }
+        
         public class Builder
         {
             private DanmakuInteractionViewRepo _viewRepo;
@@ -48,10 +58,12 @@ namespace _Scripts.CoreGame.InteractionSystems
                 new DanmakuCardDeckModel(new List<IDanmakuCard>(){})
                 );
             
+            private DanmakuInteractionController _interactionController;
             
             public Builder(DanmakuInteractionViewRepo viewRepo)
             {
                 _viewRepo = viewRepo;
+                _interactionController = new DanmakuInteractionController(viewRepo, _playerGroupModel, _boardModel);
             }
             public Builder WithPlayerCount(int playerCount)
             {
@@ -89,8 +101,9 @@ namespace _Scripts.CoreGame.InteractionSystems
                 DanmakuCardDeckModel discardDeckModel = new DanmakuCardDeckModel(discardDeck);
                 DanmakuCardDeckModel incidentDeckModel = new DanmakuCardDeckModel(incidentDeck);
                 
+                _boardModel = new DanmakuBoardModel(mainDeckModel, discardDeckModel, incidentDeckModel);
 
-                DanmakuCardRuleFactory cardFactory = new ();
+                DanmakuCardRuleFactory cardFactory = new (_interactionController);
                 foreach (var deckCardData in deckSetConfig.DeckCardsData)
                 {
                     List<DanmakuCardRuleBase> cardRules = new();
@@ -109,7 +122,6 @@ namespace _Scripts.CoreGame.InteractionSystems
                 mainDeck.Shuffle();
                 incidentDeck.Shuffle();
                 
-                _boardModel = new DanmakuBoardModel(mainDeckModel, discardDeckModel, incidentDeckModel);
                 
                 _viewRepo.SetupMainDeck(mainDeckModel, discardDeckModel);
                 _viewRepo.SetupIncidentDeck(incidentDeckModel);
@@ -120,7 +132,9 @@ namespace _Scripts.CoreGame.InteractionSystems
             
             public DanmakuInteractionController Build()
             {
-                return new DanmakuInteractionController(_viewRepo, _playerGroupModel, _boardModel);
+                _interactionController.UpdatePlayerGroupModel(_playerGroupModel);
+                _interactionController.UpdateBoardModel(_boardModel);
+                return _interactionController;
             }
             
         }
