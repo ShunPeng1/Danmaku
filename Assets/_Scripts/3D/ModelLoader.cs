@@ -3,33 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Model_Loader : MonoBehaviour
+public class ModelLoader : MonoBehaviour
 {
     [SerializeField]
-    RuntimeAnimatorController controller;
+    RuntimeAnimatorController _controller;
 
     [SerializeField] //serialized for testing only
-    CharacterCardScriptableData characterData;
+    CharacterCardScriptableData _characterData;
 
     private void Start()
     {
         //testing only
-        LoadModel(characterData);
+        LoadModel(_characterData);
     }
 
     // Update is called once per frame
     public void LoadModel(CharacterCardScriptableData characterCardScriptableData)
     {
-        characterData = characterCardScriptableData;
-        GameObject modelPrefab = characterData.ModelData;
+        _characterData = characterCardScriptableData;
+        GameObject modelPrefab = _characterData.ModelData;
         if (modelPrefab != null )
         {
             GameObject loadedprefab = Instantiate(modelPrefab);
             Animator animator = loadedprefab.GetComponent<Animator>();
             if (animator != null )
             {
-                animator.runtimeAnimatorController = controller;
-                loadedprefab.AddComponent<Model_Anim_Controller>();
+                animator.runtimeAnimatorController = _controller;
+                loadedprefab.AddComponent<ModelAnimController>();
             }
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Model_Anim_Controller : MonoBehaviour
+public class ModelAnimController : MonoBehaviour
 {
     Animator _animator;
     // Start is called before the first frame update
