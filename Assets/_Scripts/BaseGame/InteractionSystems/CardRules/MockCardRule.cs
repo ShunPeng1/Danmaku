@@ -19,9 +19,9 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
             Debug.Log("MockCardRule InitializeCard");
         }
 
-        public override List<List<IDanmakuTargetable>> GetAnyValidTargetables(IDanmakuActivator danmakuActivator)
+        public override List<TargetableQueryResult> GetAnyValidTargetables(IDanmakuActivator danmakuActivator)
         {
-            return null;
+            return new List<TargetableQueryResult>();
         }
 
         public override bool CanExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables)

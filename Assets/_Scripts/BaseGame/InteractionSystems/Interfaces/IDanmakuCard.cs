@@ -10,6 +10,7 @@ namespace _Scripts.BaseGame.InteractionSystems.Interfaces
         public void HideCard();
         
         public bool IsPlayable();
+        public List<RuleTargetablesQueryResult> GetPlayableRules();
         public void RevealCard();
         public void ExecuteCard(IDanmakuCardRule cardRule, IDanmakuActivator activator, List<IDanmakuTargetable> targetables);
         public void DiscardCard();

@@ -18,9 +18,9 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
             
         }
 
-        public override List<List<IDanmakuTargetable>> GetAnyValidTargetables(IDanmakuActivator danmakuActivator)
+        public override List<TargetableQueryResult> GetAnyValidTargetables(IDanmakuActivator danmakuActivator)
         {
-            List<List<IDanmakuTargetable>> allPossibleTargetables = new ();
+            List<TargetableQueryResult> allPossibleTargetables = new ();
             foreach (var playerModel in InteractionController.PlayerGroupModel.Players)
             {
                 List<IDanmakuTargetable> targetables = new ();
@@ -28,12 +28,11 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
                 if (LifeCombatUtility.CanHeal(playerModel))
                 {
                     targetables.Add(playerModel);
-                    allPossibleTargetables.Add(targetables);
+                    allPossibleTargetables.Add(new TargetableQueryResult(TargetableTypeEnum.Player, targetables));
                 }            
             }
             
             return allPossibleTargetables;
-            
         }
 
         public override bool CanExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables = null)
