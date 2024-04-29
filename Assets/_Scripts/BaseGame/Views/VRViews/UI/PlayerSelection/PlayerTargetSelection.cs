@@ -10,10 +10,10 @@ namespace _Scripts.BaseGame.Views.Basics.UI.PlayerSelection
 
         
         [Header("Prefabs")]
-        [SerializeField] private PlayerSelectionButton _playerSelectionButtonPrefab;
+        [SerializeField] private PlayerTargetSelectionButton _playerTargetSelectionButtonPrefab;
         
         
-        private List<PlayerSelectionButton> _playerSelectionButtons = new();
+        private List<PlayerTargetSelectionButton> _playerSelectionButtons = new();
         
         public void Initialize()
         {

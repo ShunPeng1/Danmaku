@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6970111053199137207}
+  - component: {fileID: 4082758771044673230}
   m_Layer: 5
   m_Name: Player Selection Icon Button
   m_TagString: Untagged
@@ -38,6 +39,18 @@ RectTransform:
   m_AnchoredPosition: {x: -419, y: 10}
   m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4082758771044673230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375131913214191844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee59a8223afb45b8952190c59d97586d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6026252853970494873
 GameObject:
   m_ObjectHideFlags: 0
