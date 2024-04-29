@@ -2078,6 +2078,8 @@ MonoBehaviour:
   _deckSetConfig: {fileID: 11400000, guid: b7088ecc9d1fefb4cb47bdd26689ff44, type: 2}
   _startupStatsConfig: {fileID: 11400000, guid: 5e96a99a593a4bd46a7f469d559a9d3b,
     type: 2}
+  _characterSetConfig: {fileID: 11400000, guid: 677490a7b55a818438d17c7090fb23bf,
+    type: 2}
 --- !u!4 &1684432773
 Transform:
   m_ObjectHideFlags: 0

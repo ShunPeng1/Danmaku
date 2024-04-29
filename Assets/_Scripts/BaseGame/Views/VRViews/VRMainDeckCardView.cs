@@ -28,7 +28,7 @@ namespace _Scripts.BaseGame.Views.Basics
 
         private void Start()
         {
-            _cardNameText.text = CardModel.DeckCardScriptableData.CardName;
+            _cardNameText.text = CardModel.DeckCardData.CardName;
         }
 
         public void TweenMove(Vector3 moveTo, Vector3 rotateTo, float duration, Ease ease = Ease.InOutCubic, Action onComplete = null)

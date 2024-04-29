@@ -52,18 +52,16 @@ namespace _Scripts.CoreGame.InteractionSystems
             private DanmakuPlayerGroupModel _playerGroupModel = new (
                 new List<DanmakuPlayerModel>(){new DanmakuPlayerModel(0)}
                 );
-            private DanmakuBoardModel _boardModel = new DanmakuBoardModel(
-                new DanmakuCardDeckModel(new List<IDanmakuCard>(){}),
-                new DanmakuCardDeckModel(new List<IDanmakuCard>(){}),
-                new DanmakuCardDeckModel(new List<IDanmakuCard>(){})
-                );
+            private DanmakuBoardModel.Builder _boardModelBuilder = new(
+                new DanmakuCardDeckModel(new List<IDanmakuCard>(){}
+                ));
             
             private DanmakuInteractionController _interactionController;
             
             public Builder(DanmakuInteractionViewRepo viewRepo)
             {
                 _viewRepo = viewRepo;
-                _interactionController = new DanmakuInteractionController(viewRepo, _playerGroupModel, _boardModel);
+                _interactionController = new DanmakuInteractionController(viewRepo, _playerGroupModel, _boardModelBuilder.Build());
             }
             public Builder WithPlayerCount(int playerCount)
             {
@@ -91,17 +89,34 @@ namespace _Scripts.CoreGame.InteractionSystems
                 return this;
             }
             
+            public Builder WithCharacterSet(CharacterSetConfig characterSetConfig)
+            {
+                
+                List<IDanmakuCard> characterCards = new();
+                DanmakuCardDeckModel characterDeckModel = new DanmakuCardDeckModel(characterCards);
+                
+                foreach (var characterCardData in characterSetConfig.CharacterCardsData)
+                {
+                    var rules = new List<DanmakuCardRuleBase>();
+                    var card = new DanmakuCharacterCardModel(characterCardData, rules, characterDeckModel);
+                    
+                    characterCards.Add(card);
+                }
+                
+                _boardModelBuilder.SetCharacterDeck(characterDeckModel);
+                
+                _viewRepo.SetupCharacterDeck(characterDeckModel);
+
+                return this;
+            }
+            
             public Builder WithCardDeck(DeckSetConfig deckSetConfig)
             {
                 List<IDanmakuCard> mainDeck = new ();
-                List<IDanmakuCard> discardDeck = new ();
-                List<IDanmakuCard> incidentDeck = new ();
                 
                 DanmakuCardDeckModel mainDeckModel = new DanmakuCardDeckModel(mainDeck);
-                DanmakuCardDeckModel discardDeckModel = new DanmakuCardDeckModel(discardDeck);
-                DanmakuCardDeckModel incidentDeckModel = new DanmakuCardDeckModel(incidentDeck);
                 
-                _boardModel = new DanmakuBoardModel(mainDeckModel, discardDeckModel, incidentDeckModel);
+                _boardModelBuilder = new DanmakuBoardModel.Builder(mainDeckModel);
 
                 DanmakuCardRuleFactory cardFactory = new (_interactionController);
                 foreach (var deckCardData in deckSetConfig.DeckCardsData)
@@ -120,11 +135,8 @@ namespace _Scripts.CoreGame.InteractionSystems
                 }
 
                 mainDeck.Shuffle();
-                incidentDeck.Shuffle();
                 
-                
-                _viewRepo.SetupMainDeck(mainDeckModel, discardDeckModel);
-                _viewRepo.SetupIncidentDeck(incidentDeckModel);
+                _viewRepo.SetupMainDeck(mainDeckModel);
                 
                 return this;
             }
@@ -133,7 +145,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             public DanmakuInteractionController Build()
             {
                 _interactionController.UpdatePlayerGroupModel(_playerGroupModel);
-                _interactionController.UpdateBoardModel(_boardModel);
+                _interactionController.UpdateBoardModel(_boardModelBuilder.Build());
                 return _interactionController;
             }
             
