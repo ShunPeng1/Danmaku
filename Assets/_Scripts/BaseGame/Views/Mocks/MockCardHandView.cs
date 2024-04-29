@@ -10,7 +10,7 @@ namespace _Scripts.BaseGame.Views.Default
 
         public override void AddCard(DanmakuMainDeckCardBaseView cardView, IDanmakuCard card)
         {
-            Debug.Log("Draw card: "+ ((DanmakuMainDeckCardModel)card).DeckCardScriptableData.CardName);
+            Debug.Log("Draw card: "+ ((DanmakuMainDeckCardModel)card).DeckCardData.CardName);
             CardToView.Add(card, cardView);
         }
 
@@ -24,7 +24,7 @@ namespace _Scripts.BaseGame.Views.Default
 
         public override void RemoveCard(IDanmakuCard card)
         {
-            Debug.Log("Remove card: "+ ((DanmakuMainDeckCardModel)card).DeckCardScriptableData.CardName);
+            Debug.Log("Remove card: "+ ((DanmakuMainDeckCardModel)card).DeckCardData.CardName);
 
             if (CardToView.ContainsKey(card))
             {

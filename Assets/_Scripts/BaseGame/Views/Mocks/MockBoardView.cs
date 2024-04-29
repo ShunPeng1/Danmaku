@@ -53,12 +53,17 @@ namespace _Scripts.BaseGame.Views.Default
             
         }
 
-        public override void SetupMainDeck(DanmakuCardDeckModel mainDeckModel, DanmakuCardDeckModel discardDeckModel)
+        public override void SetupMainDeck(DanmakuCardDeckModel mainDeckModel)
         {
             
         }
 
         public override void SetupIncidentDeck(DanmakuCardDeckModel incidentDeckModel)
+        {
+            
+        }
+
+        public override void SetupCharacterDeck(DanmakuCardDeckModel characterDeckModel)
         {
             
         }

@@ -77,14 +77,19 @@ namespace _Scripts.BaseGame.Views.Basics
             }
         }
 
-        public override void SetupMainDeck(DanmakuCardDeckModel mainDeckModel, DanmakuCardDeckModel discardDeckModel)
+        public override void SetupMainDeck(DanmakuCardDeckModel mainDeckModel)
         {
-            
+            Debug.Log("Setting up main deck "+mainDeckModel.Cards.Count);
         }
 
         public override void SetupIncidentDeck(DanmakuCardDeckModel incidentDeckModel)
         {
-            
+            Debug.Log("Setting up incident deck "+incidentDeckModel.Cards.Count);
+        }
+
+        public override void SetupCharacterDeck(DanmakuCardDeckModel characterDeckModel)
+        {
+            Debug.Log("Setting up character deck "+characterDeckModel.Cards.Count);
         }
     }
 }

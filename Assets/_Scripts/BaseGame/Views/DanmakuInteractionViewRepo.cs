@@ -47,14 +47,21 @@ namespace _Scripts.BaseGame.Views
             }
         }
 
-        public void SetupMainDeck(DanmakuCardDeckModel drawMainDeckModel, DanmakuCardDeckModel discardMainDeckModel)
+        public void SetupMainDeck(DanmakuCardDeckModel drawMainDeckModel)
         {
-            BoardView.SetupMainDeck(drawMainDeckModel, discardMainDeckModel);
+            BoardView.SetupMainDeck(drawMainDeckModel);
         }
 
         public void SetupIncidentDeck(DanmakuCardDeckModel incidentDeckModel)
         {
             BoardView.SetupIncidentDeck(incidentDeckModel);
         }
+
+        public void SetupCharacterDeck(DanmakuCardDeckModel characterDeckModel)
+        {
+            BoardView.SetupCharacterDeck(characterDeckModel);
+        }
+        
+        
     }
 }

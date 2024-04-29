@@ -9,15 +9,14 @@ namespace _Scripts.CoreGame.InteractionSystems
 {
     public class DanmakuMainDeckCardModel : IDanmakuCard
     {
-        public DeckCardScriptableData DeckCardScriptableData { get; private set; }
+        public DeckCardScriptableData DeckCardData { get; private set; }
         private readonly ObservableData<IDanmakuCardHolder> _cardHolder;
         private readonly List<DanmakuCardRuleBase> _cardRuleModels;
         
-        public bool IsHidden { get; private set; }
         
-        public DanmakuMainDeckCardModel(DeckCardScriptableData deckCardScriptableData, List<DanmakuCardRuleBase> cardRuleModels, IDanmakuCardHolder cardHolder )
+        public DanmakuMainDeckCardModel(DeckCardScriptableData deckCardData, List<DanmakuCardRuleBase> cardRuleModels, IDanmakuCardHolder cardHolder )
         {
-            DeckCardScriptableData = deckCardScriptableData;
+            DeckCardData = deckCardData;
             _cardRuleModels = cardRuleModels;
             _cardHolder = new ObservableData<IDanmakuCardHolder>(cardHolder);
         }
@@ -109,7 +108,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         public string PrintDebug()
         {
             var cardRuleNames = string.Join(", ", _cardRuleModels.Select(rule => rule.CardRuleScriptableData.CardRuleName));
-            return DeckCardScriptableData.CardName + ": " + cardRuleNames;
+            return DeckCardData.CardName + ": " + cardRuleNames;
         }
     }
 }

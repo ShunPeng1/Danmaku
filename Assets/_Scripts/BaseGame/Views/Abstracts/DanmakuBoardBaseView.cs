@@ -50,7 +50,8 @@ namespace _Scripts.BaseGame.Views
         
         public abstract void DiscardCardToDiscardDeck(DanmakuPlayerModel playerModel, DanmakuMainDeckCardModel card);
         public abstract void DiscardCardsToDiscardDeck(DanmakuPlayerModel playerModel, List<DanmakuMainDeckCardModel> cards);
-        public abstract void SetupMainDeck(DanmakuCardDeckModel mainDeckModel, DanmakuCardDeckModel discardDeckModel);
+        public abstract void SetupMainDeck(DanmakuCardDeckModel mainDeckModel);
         public abstract void SetupIncidentDeck(DanmakuCardDeckModel incidentDeckModel);
+        public abstract void SetupCharacterDeck(DanmakuCardDeckModel characterDeckModel);
     }
 }

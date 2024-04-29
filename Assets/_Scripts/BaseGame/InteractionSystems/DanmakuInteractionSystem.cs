@@ -15,6 +15,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         [SerializeField] private RoleSetConfig _roleSetConfig;
         [SerializeField] private DeckSetConfig _deckSetConfig;
         [SerializeField] private StartupStatsConfig _startupStatsConfig;
+        [SerializeField] private CharacterSetConfig _characterSetConfig;
         
         [Header("Controller")]
         public DanmakuInteractionController InteractionController;
@@ -27,6 +28,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 .WithPlayerCount(_playerCount)
                 .WithPlayerRoles(_roleSetConfig)
                 .WithCardDeck(_deckSetConfig)
+                .WithCharacterSet(_characterSetConfig)
                 .Build();
             
             InteractionController.SetupStartingStats(_startupStatsConfig);
