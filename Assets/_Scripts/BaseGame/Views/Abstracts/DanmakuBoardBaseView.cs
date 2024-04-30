@@ -53,5 +53,6 @@ namespace _Scripts.BaseGame.Views
         public abstract void SetupMainDeck(DanmakuCardDeckModel mainDeckModel);
         public abstract void SetupIncidentDeck(DanmakuCardDeckModel incidentDeckModel);
         public abstract void SetupCharacterDeck(DanmakuCardDeckModel characterDeckModel);
+        public abstract void DrawCharacterCardsForSelection(DanmakuPlayerModel player, List<DanmakuCharacterCardModel> characterCards);
     }
 }

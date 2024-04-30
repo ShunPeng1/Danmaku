@@ -2074,6 +2074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactionViewRepo: {fileID: 1684432775}
   _playerCount: 4
+  _eachPlayerCharacterChoiceCount: 2
   _roleSetConfig: {fileID: 11400000, guid: c450b1abc5bc8e74a80aa32c6a4d4680, type: 2}
   _deckSetConfig: {fileID: 11400000, guid: b7088ecc9d1fefb4cb47bdd26689ff44, type: 2}
   _startupStatsConfig: {fileID: 11400000, guid: 5e96a99a593a4bd46a7f469d559a9d3b,
@@ -21405,7 +21406,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.8, z: -2.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2093207351262977546}
   - {fileID: 8320362179860763721}

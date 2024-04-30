@@ -91,7 +91,6 @@ namespace _Scripts.CoreGame.InteractionSystems
             
             public Builder WithCharacterSet(CharacterSetConfig characterSetConfig)
             {
-                
                 List<IDanmakuCard> characterCards = new();
                 DanmakuCardDeckModel characterDeckModel = new DanmakuCardDeckModel(characterCards);
                 
@@ -102,6 +101,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                     
                     characterCards.Add(card);
                 }
+                characterCards.Shuffle();
                 
                 _boardModelBuilder.SetCharacterDeck(characterDeckModel);
                 
@@ -179,15 +179,16 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             PlayerController.StartGame();
         }
-        
-        public void StartPlayerStep()
-        {
-            PlayerController.StartPlayerStep();
-        }
 
         public void StartupDraw()
         {
             BoardController.StartupDraw();
         }
+        
+        public void StartDrawCharacter(int eachPlayerCharacterChoiceCount)
+        {
+            BoardController.StartDrawCharacter(eachPlayerCharacterChoiceCount);
+        }
+        
     }
 }

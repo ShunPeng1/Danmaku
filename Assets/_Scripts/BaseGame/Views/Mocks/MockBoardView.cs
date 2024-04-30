@@ -67,5 +67,10 @@ namespace _Scripts.BaseGame.Views.Default
         {
             
         }
+
+        public override void DrawCharacterCardsForSelection(DanmakuPlayerModel player, List<DanmakuCharacterCardModel> characterCards)
+        {
+            
+        }
     }
 }

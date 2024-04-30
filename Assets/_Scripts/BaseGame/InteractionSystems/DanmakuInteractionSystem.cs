@@ -12,6 +12,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         [Header("Configurations")]
         [SerializeField] private int _playerCount;
+        [SerializeField] private int _eachPlayerCharacterChoiceCount = 2;
         [SerializeField] private RoleSetConfig _roleSetConfig;
         [SerializeField] private DeckSetConfig _deckSetConfig;
         [SerializeField] private StartupStatsConfig _startupStatsConfig;
@@ -30,6 +31,8 @@ namespace _Scripts.CoreGame.InteractionSystems
                 .WithCardDeck(_deckSetConfig)
                 .WithCharacterSet(_characterSetConfig)
                 .Build();
+            
+            InteractionController.StartDrawCharacter(_eachPlayerCharacterChoiceCount);
             
             InteractionController.SetupStartingStats(_startupStatsConfig);
             

@@ -12,12 +12,15 @@ namespace _Scripts.BaseGame.Views.Basics
     {
         [Header("Prefabs")]
         [SerializeField] private DanmakuMainDeckCardBaseView _mainDeckCardPrefab;
+        [SerializeField] private DanmakuCharacterCardBaseView _characterCardPrefab;
         [SerializeField] private DanmakuPlayerBaseView _playerPrefab;
         
         [Header("Transforms")]
         [SerializeField] private PlayerStandingPositionMap _playerStandingPositionMap;
         [SerializeField] private Transform _topDrawMainDeck;
         [SerializeField] private Transform _topDiscardMainDeck;
+        [SerializeField] private Transform _topDrawCharacterDeck;
+        [SerializeField] private Transform _topDiscardCharacterDeck;
         
 
         protected override void InitializeInherit()
@@ -90,6 +93,22 @@ namespace _Scripts.BaseGame.Views.Basics
         public override void SetupCharacterDeck(DanmakuCardDeckModel characterDeckModel)
         {
             Debug.Log("Setting up character deck "+characterDeckModel.Cards.Count);
+        }
+
+        public override void DrawCharacterCardsForSelection(DanmakuPlayerModel player, List<DanmakuCharacterCardModel> characterCards)
+        {
+            var playerView = InteractionViewRepo.GetPlayerView(player);
+            List<DanmakuCharacterCardBaseView> characterCardViews = new List<DanmakuCharacterCardBaseView>(); 
+            foreach (var characterCard in characterCards)
+            {
+                DanmakuCharacterCardBaseView cardView = Instantiate(_characterCardPrefab, _topDrawCharacterDeck);
+                cardView.SetCardModel(characterCard);
+                
+                characterCardViews.Add(cardView);
+            }
+            
+            playerView.SetupCharacterSelection(characterCardViews);
+            
         }
     }
 }
