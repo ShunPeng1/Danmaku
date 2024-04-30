@@ -62,6 +62,19 @@ namespace _Scripts.CoreGame.InteractionSystems
             boardView.DrawCardFromMainDeck(player, cards);
 
         }
-        
+
+        public void StartDrawCharacter(int eachPlayerCharacterChoiceCount)
+        {
+            foreach (var player in PlayerGroupModel.Players)
+            {
+                List<DanmakuCharacterCardModel> characterCards = new List<DanmakuCharacterCardModel>();
+                for (int i = 0; i < eachPlayerCharacterChoiceCount; i++)
+                {
+                    characterCards.Add((DanmakuCharacterCardModel) BoardModel.CharacterDeckModel.PopCardFront());
+                }
+                
+                InteractionViewRepo.BoardView.DrawCharacterCardsForSelection(player, characterCards);
+            }
+        }
     }
 }

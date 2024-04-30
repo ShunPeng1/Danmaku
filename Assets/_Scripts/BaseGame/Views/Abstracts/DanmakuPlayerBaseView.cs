@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using _Scripts.BaseGame.Views.Basics;
 using _Scripts.CoreGame.InteractionSystems;
 using _Scripts.CoreGame.InteractionSystems.Roles;
 using Sirenix.OdinInspector;
@@ -10,11 +12,13 @@ namespace _Scripts.BaseGame.Views
     {
         [ShowInInspector, ReadOnly] public DanmakuRoleBaseView RoleView;
         [ShowInInspector, ReadOnly] public DanmakuCardHandBaseView CardHandView;
+        [ShowInInspector, ReadOnly] public DanmakuCardSelectionBaseView CardSelectionView;
         
         private void Awake()
         {
             RoleView = transform.GetComponentInChildren<DanmakuRoleBaseView>();
             CardHandView = transform.GetComponentInChildren<DanmakuCardHandBaseView>();
+            CardSelectionView = transform.GetComponentInChildren<DanmakuCardSelectionBaseView>();
         }
 
         public abstract void InitializeView();
@@ -28,5 +32,7 @@ namespace _Scripts.BaseGame.Views
             CardHandView.DisallowCardPlay();
             finishExecuteCallback?.Invoke();
         }
+
+        public abstract void SetupCharacterSelection(List<DanmakuCharacterCardBaseView> characterCardViews);
     }
 }
