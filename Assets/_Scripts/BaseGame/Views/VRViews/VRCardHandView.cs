@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
+using _Scripts.BaseGame.Views.Positions;
 using BNG;
 using DG.Tweening;
 using UnityEngine;
@@ -12,13 +13,8 @@ namespace _Scripts.BaseGame.Views.Basics
     public class VRCardHandView : DanmakuCardHandBaseView
     {
         [Header("Snap Zone Settings")]
-        
-        [SerializeField] private SnapZone _snapZonePrefab;
-        [SerializeField] private Transform _snapZoneStartingTransform;
-        [SerializeField] private Vector3 _snapZoneOffset = new Vector3(0.3f, 0, 0);
-        
-        private List<SnapZone> _snapZones = new();
-        
+        [SerializeField] private SnapZoneCoordinator _snapZoneCoordinator;
+
         
         [Header("Tween Settings")]
         [SerializeField] private float _addCardMoveDuration = 0.5f;
@@ -26,14 +22,12 @@ namespace _Scripts.BaseGame.Views.Basics
         [SerializeField] private Ease _tweenEase = Ease.Linear;
 
         
-        
-
         public override void AddCard(DanmakuMainDeckCardBaseView cardView,IDanmakuCard card)
         {
             CardToView.Add(card, cardView);
 
             // Move card to snap zone
-            var snapZone = CreateSnapZone();
+            var snapZone = _snapZoneCoordinator.CreateSnapZone();
 
             var vrCardView = (VRMainDeckCardView)cardView;
             vrCardView.TweenMove(snapZone.transform.position, snapZone.transform.rotation.eulerAngles, _addCardMoveDuration, _tweenEase,
@@ -82,11 +76,6 @@ namespace _Scripts.BaseGame.Views.Basics
                 view.CheckPlayable();
             }
             
-            foreach (var snapZone in _snapZones)
-            {
-                //snapZone.CanDropItem = true;
-                //snapZone.CanRemoveItem = true;
-            }
         }
 
         public override void DisallowCardPlay()
@@ -96,29 +85,7 @@ namespace _Scripts.BaseGame.Views.Basics
                 view.SetNotPlayable();
             }
             
-            foreach (var snapZoneInteractor in _snapZones)
-            {
-                //snapZoneInteractor.CanDropItem = false;
-                //snapZoneInteractor.CanRemoveItem = false;
-            }
         }
 
-        private SnapZone CreateSnapZone(Grabbable startingItem = null)
-        {
-            var snapZone = Instantiate(_snapZonePrefab, _snapZoneStartingTransform);
-            snapZone.transform.position = _snapZoneStartingTransform.position;
-            snapZone.transform.localPosition += _snapZoneOffset * _snapZones.Count;
-            snapZone.transform.rotation = _snapZoneStartingTransform.rotation;
-            
-            
-            snapZone.CanDropItem = true;
-            snapZone.CanRemoveItem = true;
-
-            snapZone.StartingItem = startingItem;
-            
-            _snapZones.Add(snapZone);
-            
-            return snapZone;
-        }
     }
 }
