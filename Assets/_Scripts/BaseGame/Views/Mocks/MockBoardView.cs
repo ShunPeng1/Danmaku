@@ -72,5 +72,15 @@ namespace _Scripts.BaseGame.Views.Default
         {
             
         }
+
+        public override void AddSessionToPlayer(DanmakuPlayerModel player, DanmakuSession session)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void RemoveSessionFromPlayer(DanmakuPlayerModel player, DanmakuSession session)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

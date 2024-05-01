@@ -1,4 +1,5 @@
-﻿using _Scripts.BaseGame.Views;
+﻿using System.Collections;
+using _Scripts.BaseGame.Views;
 using _Scripts.CoreGame.Configurations;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using UnityEngine;
@@ -22,7 +23,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         public DanmakuInteractionController InteractionController;
         
         
-        private void Start()
+        private IEnumerator Start()
         {
             
             InteractionController =  new DanmakuInteractionController.Builder(_interactionViewRepo)
@@ -32,13 +33,24 @@ namespace _Scripts.CoreGame.InteractionSystems
                 .WithCharacterSet(_characterSetConfig)
                 .Build();
             
+            yield return null;
+            
             InteractionController.StartDrawCharacter(_eachPlayerCharacterChoiceCount);
+            
+            
+            yield return null;
             
             InteractionController.SetupStartingStats(_startupStatsConfig);
             
+            yield return null;
+            
             InteractionController.StartupReveal();
             
+            yield return null;
+            
             InteractionController.StartupDraw();
+            
+            yield return null;
             
             InteractionController.StartGame();
             

@@ -13,7 +13,8 @@ namespace _Scripts.BaseGame.Views
         [Header("Serialized Views")]
         [ShowInInspector, ReadOnly] public DanmakuTurnBaseView TurnView;
         [ShowInInspector, ReadOnly] public DanmakuBoardBaseView BoardView;
-        
+        [ShowInInspector, ReadOnly] protected Dictionary<DanmakuPlayerModel, DanmakuPlayerBaseView> PlayerModelToViews;
+
         
         private void Awake()
         {
@@ -26,8 +27,6 @@ namespace _Scripts.BaseGame.Views
             BoardView = gameObject.GetComponentInChildren<DanmakuBoardBaseView>();
         }
 
-        protected Dictionary<DanmakuPlayerModel, DanmakuPlayerBaseView> PlayerModelToViews;
-        
         public virtual void CreatePlayerViews(List<DanmakuPlayerModel> playerModels)
         {
             PlayerModelToViews = BoardView.CreatePlayerViews(playerModels);

@@ -1,25 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Scripts.BaseGame.Views.Abstracts;
+using _Scripts.BaseGame.Views.Basics.BNGExtension;
+using _Scripts.CoreGame.InteractionSystems;
 using BNG;
 using UnityEngine;
 
 namespace _Scripts.BaseGame.Views.Basics.UI
 {
-    public class VRPlayCardHandler : MonoBehaviour
+    public class VRSessionHandler : DanmakuSessionBaseHandler
     {
         [SerializeField] private TargetSelectionCanvas _targetSelectionCanvas;
         [SerializeField] private SnapZone _playCardSnapZone;
+        [SerializeField] private PlayCardSnapZoneFilter _playCardSnapZoneFilter;
         private VRMainDeckCardView _playingCard;
-
-        private void Awake()
+        private DanmakuSession _currentSession;
+        
+        
+        private new void Awake()
         {
+            base.Awake();
+            
             _playCardSnapZone.OnSnapEvent.AddListener(SetPlayingCard);
             _playCardSnapZone.OnDetachEvent.AddListener(UnsetPlayingCard);
+        }
+        
+        public override void SetCurrentSession(DanmakuSession session)
+        {
+            _currentSession = session;
+            _playCardSnapZoneFilter.AddMustIncludeFilter(session.CardFilter);
+            
+        }
+        
+        public override void UnsetCurrentSession()
+        {
+            _playCardSnapZoneFilter.RemoveMustIncludeFilter(_currentSession.CardFilter);
+            _currentSession = null;
         }
 
         public void SetPlayingCard(Grabbable grabbable)
         {
             _playingCard = grabbable.GetComponent<VRMainDeckCardView>();
+            
+            
             
             var playableRules = _playingCard.CardModel.GetPlayableRules();
             
@@ -46,7 +69,6 @@ namespace _Scripts.BaseGame.Views.Basics.UI
         
         private void UnsetPlayingCard(Grabbable arg0)
         {
-            
             _playingCard = null;
             
             // Destroy all target selection views
@@ -54,6 +76,11 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             Debug.Log("Unset playing card");
         }
 
+        public override void AddCardsToSelection(List<DanmakuCardBaseView> cardViews)
+        {
+            CardSelectionView.ShowSelection();
+            CardSelectionView.AddCardsToSelection(cardViews);
+        }
         
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
+using _Scripts.BaseGame.Views.Abstracts;
 using _Scripts.BaseGame.Views.Positions;
 using _Scripts.CoreGame.InteractionSystems;
 using DG.Tweening;
@@ -95,10 +96,11 @@ namespace _Scripts.BaseGame.Views.Basics
             Debug.Log("Setting up character deck "+characterDeckModel.Cards.Count);
         }
 
+        
         public override void DrawCharacterCardsForSelection(DanmakuPlayerModel player, List<DanmakuCharacterCardModel> characterCards)
         {
             var playerView = InteractionViewRepo.GetPlayerView(player);
-            List<DanmakuCharacterCardBaseView> characterCardViews = new List<DanmakuCharacterCardBaseView>(); 
+            List<DanmakuCardBaseView> characterCardViews = new (); 
             foreach (var characterCard in characterCards)
             {
                 DanmakuCharacterCardBaseView cardView = Instantiate(_characterCardPrefab, _topDrawCharacterDeck);
@@ -107,8 +109,19 @@ namespace _Scripts.BaseGame.Views.Basics
                 characterCardViews.Add(cardView);
             }
             
-            playerView.SetupCharacterSelection(characterCardViews);
-            
+            playerView.SessionHandler.AddCardsToSelection(characterCardViews);
+        }
+
+        public override void AddSessionToPlayer(DanmakuPlayerModel player, DanmakuSession session)
+        {
+            var playerView = InteractionViewRepo.GetPlayerView(player);
+            playerView.AddSession(session);
+        }
+
+        public override void RemoveSessionFromPlayer(DanmakuPlayerModel player, DanmakuSession session)
+        {
+            var playerView = InteractionViewRepo.GetPlayerView(player);
+            playerView.RemoveSession(session);
         }
     }
 }

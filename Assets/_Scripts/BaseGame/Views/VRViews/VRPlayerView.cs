@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using _Scripts.BaseGame.Views.Basics.UI;
+using _Scripts.CoreGame.InteractionSystems;
 using _Scripts.CoreGame.InteractionSystems.Roles;
 using UnityEngine;
 
@@ -18,7 +20,7 @@ namespace _Scripts.BaseGame.Views.Basics
             
         }
         
-        public override void StartMainStep(System.Action finishExecuteCallback)
+        public override void StartMainStep(Action finishExecuteCallback)
         {
             CardHandView.AllowCardPlay();
             _vrPlayerInformationUI.SetOneTimeButtonAction(() =>
@@ -27,10 +29,15 @@ namespace _Scripts.BaseGame.Views.Basics
                 finishExecuteCallback?.Invoke();
             });
         }
-
-        public override void SetupCharacterSelection(List<DanmakuCharacterCardBaseView> characterCardViews)
+        
+        public override void AddSession(DanmakuSession session)
         {
-            CardSelectionView.ShowCharacterCardsSelection(characterCardViews);
+            SessionHandler.SetCurrentSession(session);
+        }
+
+        public override void RemoveSession(DanmakuSession session)
+        {
+            SessionHandler.UnsetCurrentSession();
         }
     }
 }

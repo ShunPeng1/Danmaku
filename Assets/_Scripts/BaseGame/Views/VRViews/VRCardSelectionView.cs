@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _Scripts.BaseGame.Views.Abstracts;
 using _Scripts.BaseGame.Views.Positions;
 using BNG;
 using DG.Tweening;
@@ -18,15 +19,18 @@ namespace _Scripts.BaseGame.Views.Basics
         [SerializeField] private Ease _tweenEase = Ease.InOutCubic;
         
         
-        public void SetActiveParent(bool isActive)
+        public override void ShowSelection()
         {
-            _selectionView.SetActive(isActive);
+            _selectionView.SetActive(true);
         }
 
-        public override void ShowCharacterCardsSelection(List<DanmakuCharacterCardBaseView> characterCardViews)
+        public override void HideSelection()
         {
-            SetActiveParent(true);
-            
+            _selectionView.SetActive(false);
+        }
+
+        public override void AddCardsToSelection(List<DanmakuCardBaseView> characterCardViews)
+        {
             List<Grabbable> grabbables = characterCardViews.Select(characterCardView => characterCardView.GetComponent<Grabbable>()).ToList();
 
             var snapZones = _snapZoneCoordinator.CreateSnapZones(characterCardViews.Count);
@@ -46,6 +50,5 @@ namespace _Scripts.BaseGame.Views.Basics
 
             }
         }
-        
     }
 }

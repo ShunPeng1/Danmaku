@@ -24,9 +24,15 @@ namespace _Scripts.BaseGame.Views.Default
             finishExecuteCallback?.Invoke();
         }
 
-        public override void SetupCharacterSelection(List<DanmakuCharacterCardBaseView> characterCardViews)
+        public override void AddSession(DanmakuSession session)
         {
             
         }
+
+        public override void RemoveSession(DanmakuSession session)
+        {
+            
+        }
+        
     }
 }
