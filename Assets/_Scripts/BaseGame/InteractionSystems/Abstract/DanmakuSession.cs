@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Scripts.BaseGame.Views.Abstracts;
 using BNG;
 using Shun_State_Machine;
 using Shun_Utilities;
@@ -22,17 +23,18 @@ namespace _Scripts.CoreGame.InteractionSystems
         public Countdown Countdown { get; private set; }
         
         public Action ForceEndFunction { get; private set; }
-        public Func<Grabbable, bool> CardFilter { get; private set; }
+        public Func<DanmakuCardBaseView, bool> CardFilter { get; private set; }
 
         protected DanmakuSession(DanmakuInteractionController danmakuInteractionController,
             PlayerSessionKindEnum playerSessionKindEnum, List<DanmakuPlayerModel> playingPlayerModel,
-            Countdown countdown, Action forceEndFunction, Func<Grabbable, bool> cardFilter)
+            Countdown countdown, Action forceEndFunction, Func<DanmakuCardBaseView, bool> cardFilter)
         {
             DanmakuInteractionController = danmakuInteractionController;
             PlayerSessionKindEnum = playerSessionKindEnum;
             PlayingPlayerModel = playingPlayerModel;
             Countdown = countdown;
             ForceEndFunction = forceEndFunction;
+            CardFilter = cardFilter;
         }
         
         public class Builder
@@ -44,7 +46,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             private bool _isLoop = false;
             private Action _setPlayingCardFunction = delegate {  }; // Do nothing
 
-            private Func<Grabbable, bool> _cardFilter = delegate { return true;}; // Allow all cards by default
+            private Func<DanmakuCardBaseView, bool> _cardFilter = delegate { return true;}; // Allow all cards by default
             
             private Countdown _countdown;
             
@@ -79,7 +81,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 return this;
             }
             
-            public Builder WithCardFilter(Func<Grabbable, bool> cardFilter)
+            public Builder WithCardFilter(Func<DanmakuCardBaseView, bool> cardFilter)
             {
                 _cardFilter = cardFilter;
                 return this;

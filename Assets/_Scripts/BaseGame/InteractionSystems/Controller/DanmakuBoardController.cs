@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.Views;
+using _Scripts.BaseGame.Views.Basics;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
@@ -68,7 +69,8 @@ namespace _Scripts.CoreGame.InteractionSystems
             
             var session = new DanmakuSession.Builder()
                 .WithPlayingPlayerModel(PlayerGroupModel.Players)
-                //.WithCardFilter()
+                .WithCardFilter((cardView) => cardView is DanmakuCharacterCardBaseView) // Only allow character cards
+                .WithPlayerSessionKindEnum(PlayerSessionKindEnum.AllPlayed)
                 .Build(_danmakuInteractionController);
 
             

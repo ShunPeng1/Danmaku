@@ -15,7 +15,7 @@ namespace _Scripts.BaseGame.Views.Basics.UI
         [SerializeField] private PlayCardSnapZoneFilter _playCardSnapZoneFilter;
         private VRMainDeckCardView _playingCard;
         private DanmakuSession _currentSession;
-        
+        private Func<Grabbable, bool> _grabbableFilter;
         
         private new void Awake()
         {
@@ -28,17 +28,32 @@ namespace _Scripts.BaseGame.Views.Basics.UI
         
         public override void SetCurrentSession(DanmakuSession session)
         {
-            _currentSession = session;
-            _playCardSnapZoneFilter.AddMustIncludeFilter(session.CardFilter);
+            if (_currentSession != null)
+            {
+                UnsetCurrentSession();
+            }
             
+            _currentSession = session;
+            _grabbableFilter = ConvertFilter(_currentSession.CardFilter);
+            _playCardSnapZoneFilter.AddMustIncludeFilter(_grabbableFilter);
         }
         
         public override void UnsetCurrentSession()
         {
-            _playCardSnapZoneFilter.RemoveMustIncludeFilter(_currentSession.CardFilter);
+            _playCardSnapZoneFilter.RemoveMustIncludeFilter(_grabbableFilter);
             _currentSession = null;
         }
 
+        private Func<Grabbable, bool> ConvertFilter(Func<DanmakuCardBaseView, bool> cardBaseViewFilter)
+        {
+            return (grabbable) =>
+            {
+                var cardView = grabbable.GetComponent<DanmakuCardBaseView>();
+                return cardBaseViewFilter(cardView);
+            };
+        }
+        
+        
         public void SetPlayingCard(Grabbable grabbable)
         {
             _playingCard = grabbable.GetComponent<VRMainDeckCardView>();
