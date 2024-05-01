@@ -65,6 +65,13 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         public void StartDrawCharacter(int eachPlayerCharacterChoiceCount)
         {
+            
+            var session = new DanmakuSession.Builder()
+                .WithPlayingPlayerModel(PlayerGroupModel.Players)
+                //.WithCardFilter()
+                .Build(_danmakuInteractionController);
+
+            
             foreach (var player in PlayerGroupModel.Players)
             {
                 List<DanmakuCharacterCardModel> characterCards = new List<DanmakuCharacterCardModel>();
@@ -74,7 +81,10 @@ namespace _Scripts.CoreGame.InteractionSystems
                 }
                 
                 InteractionViewRepo.BoardView.DrawCharacterCardsForSelection(player, characterCards);
+                
             }
+            
+            InteractionViewRepo.BoardView.AddSessionToPlayer(session);
         }
     }
 }

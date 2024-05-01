@@ -54,7 +54,7 @@ namespace _Scripts.BaseGame.Views
         public abstract void SetupIncidentDeck(DanmakuCardDeckModel incidentDeckModel);
         public abstract void SetupCharacterDeck(DanmakuCardDeckModel characterDeckModel);
         public abstract void DrawCharacterCardsForSelection(DanmakuPlayerModel player, List<DanmakuCharacterCardModel> characterCards);
-        public abstract void AddSessionToPlayer(DanmakuPlayerModel player, DanmakuSession session);
-        public abstract void RemoveSessionFromPlayer(DanmakuPlayerModel player, DanmakuSession session);
+        public abstract void AddSessionToPlayer(DanmakuSession session);
+        public abstract void RemoveSessionFromPlayer(DanmakuSession session);
     }
 }

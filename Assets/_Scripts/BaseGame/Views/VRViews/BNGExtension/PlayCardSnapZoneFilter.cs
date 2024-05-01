@@ -1,4 +1,5 @@
 ﻿using System;
+using _Scripts.CoreGame.InteractionSystems;
 using BNG;
 using UnityEngine;
 
@@ -6,13 +7,20 @@ namespace _Scripts.BaseGame.Views.Basics.BNGExtension
 {
     public class PlayCardSnapZoneFilter : SnapZoneFilter
     {
-        
+        DanmakuPlayerModel _currentPlayerOwner;
         [SerializeField] private bool _isActivated = true;
 
         private void Awake()
         {
-            AddMustIncludeFilter(IncludeIsPlayableCard);
+            //AddMustIncludeFilter(IncludeIsPlayableCard);
             AddMustExcludeFilter(ExcludeIsTweeningCard);
+            AddMustExcludeFilter(ExcludeNotOwnedByPlayer);
+        }
+        
+        
+        public void SetOwner(DanmakuPlayerModel playerModel)
+        {
+            _currentPlayerOwner = playerModel;
         }
 
         private bool ExcludeIsTweeningCard(Grabbable arg)
@@ -39,6 +47,19 @@ namespace _Scripts.BaseGame.Views.Basics.BNGExtension
             bool isPlayable = cardView.IsPlayable;
             
             return isPlayable;
+        }
+        
+        private bool ExcludeNotOwnedByPlayer(Grabbable grabbable)
+        {
+            var cardView = grabbable.GetComponent<VRMainDeckCardView>();
+            if (cardView == null)
+            {
+                return false;
+            }
+            
+            var cardOwner = cardView.CardModel.GetCardOwner();
+            
+            return cardOwner == null || cardOwner != _currentPlayerOwner;
         }
 
         public void SetActivated(bool isActivated)
@@ -71,5 +92,6 @@ namespace _Scripts.BaseGame.Views.Basics.BNGExtension
             
             return true;
         }
+
     }
 }

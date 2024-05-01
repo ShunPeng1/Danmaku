@@ -22,7 +22,7 @@ namespace _Scripts.BaseGame.Views.Default
                 playerView.name = $"PlayerView_{playerModel.PlayerId}";
                 playerModelToViews.Add(playerModel, playerView);
                 
-                playerView.InitializeView();
+                playerView.InitializeView(playerModel);
             }
             
             return playerModelToViews;
@@ -73,14 +73,14 @@ namespace _Scripts.BaseGame.Views.Default
             
         }
 
-        public override void AddSessionToPlayer(DanmakuPlayerModel player, DanmakuSession session)
+        public override void AddSessionToPlayer(DanmakuSession session)
         {
-            throw new System.NotImplementedException();
+            
         }
 
-        public override void RemoveSessionFromPlayer(DanmakuPlayerModel player, DanmakuSession session)
+        public override void RemoveSessionFromPlayer(DanmakuSession session)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

@@ -39,7 +39,7 @@ namespace _Scripts.BaseGame.Views.Basics
                 playerView.name = $"PlayerView_{playerModel.PlayerId}";
                 playerModelToViews.Add(playerModel, playerView);
                 
-                playerView.InitializeView();
+                playerView.InitializeView(playerModel);
             }
             
             return playerModelToViews;
@@ -112,16 +112,23 @@ namespace _Scripts.BaseGame.Views.Basics
             playerView.SessionHandler.AddCardsToSelection(characterCardViews);
         }
 
-        public override void AddSessionToPlayer(DanmakuPlayerModel player, DanmakuSession session)
+        public override void AddSessionToPlayer(DanmakuSession session)
         {
-            var playerView = InteractionViewRepo.GetPlayerView(player);
-            playerView.AddSession(session);
+            foreach (var player in session.PlayingPlayerModel)
+            {
+                var playerView = InteractionViewRepo.GetPlayerView(player);
+                playerView.AddSession(session);
+            }
         }
 
-        public override void RemoveSessionFromPlayer(DanmakuPlayerModel player, DanmakuSession session)
+        public override void RemoveSessionFromPlayer(DanmakuSession session)
         {
-            var playerView = InteractionViewRepo.GetPlayerView(player);
-            playerView.RemoveSession(session);
+            foreach (var player in session.PlayingPlayerModel)
+            {
+                var playerView = InteractionViewRepo.GetPlayerView(player);
+                playerView.RemoveSession(session);
+            }
         }
+        
     }
 }

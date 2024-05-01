@@ -23,6 +23,7 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             
             _playCardSnapZone.OnSnapEvent.AddListener(SetPlayingCard);
             _playCardSnapZone.OnDetachEvent.AddListener(UnsetPlayingCard);
+            _playCardSnapZoneFilter.SetOwner(PlayerView.PlayerModel);
         }
         
         public override void SetCurrentSession(DanmakuSession session)

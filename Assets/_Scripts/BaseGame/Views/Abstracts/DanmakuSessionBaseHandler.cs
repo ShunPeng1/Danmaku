@@ -11,11 +11,13 @@ namespace _Scripts.BaseGame.Views
     public class DanmakuSessionBaseHandler : MonoBehaviour
     {
         [ShowInInspector, ReadOnly] public DanmakuCardSelectionBaseView CardSelectionView;
+        [ShowInInspector, ReadOnly] public DanmakuPlayerBaseView PlayerView;
         
         protected DanmakuSession CurrentSession;
 
         protected void Awake()
         {
+            PlayerView = transform.GetComponentInParent<DanmakuPlayerBaseView>();
             CardSelectionView = transform.GetComponentInChildren<DanmakuCardSelectionBaseView>();
         }
 

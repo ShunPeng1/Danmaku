@@ -10,9 +10,10 @@ namespace _Scripts.BaseGame.Views.Basics
     public class VRPlayerView : DanmakuPlayerBaseView
     {
         [SerializeField] private VRPlayerUI _vrPlayerInformationUI;
-        public override void InitializeView()
+        
+        public override void InitializeView(DanmakuPlayerModel playerModel)
         {
-            
+            PlayerModel = playerModel;
         }
 
         public override void SetupRole(IDanmakuRole playerRoleValue)
