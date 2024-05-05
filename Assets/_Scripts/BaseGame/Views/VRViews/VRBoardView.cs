@@ -116,7 +116,7 @@ namespace _Scripts.BaseGame.Views.Basics
         {
             foreach (var player in session.PlayingPlayerModel)
             {
-                var playerView = InteractionViewRepo.GetPlayerView(player);
+                var playerView = InteractionViewRepo.GetPlayerView((DanmakuPlayerModel)player);
                 playerView.AddSession(session);
             }
         }
@@ -125,7 +125,7 @@ namespace _Scripts.BaseGame.Views.Basics
         {
             foreach (var player in session.PlayingPlayerModel)
             {
-                var playerView = InteractionViewRepo.GetPlayerView(player);
+                var playerView = InteractionViewRepo.GetPlayerView((DanmakuPlayerModel)player);
                 playerView.RemoveSession(session);
             }
         }

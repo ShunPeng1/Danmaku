@@ -10,20 +10,21 @@ namespace _Scripts.BaseGame.Views
 {
     public class DanmakuSessionBaseHandler : MonoBehaviour
     {
-        [ShowInInspector, ReadOnly] public DanmakuCardSelectionBaseView CardSelectionView;
         [ShowInInspector, ReadOnly] public DanmakuPlayerBaseView PlayerView;
+        [ShowInInspector, ReadOnly] public DanmakuCardShowcaseBaseView CardShowcaseView;
+        [ShowInInspector, ReadOnly] public DanmakuSessionMenuBaseHandler MenuHandler;
         
         protected DanmakuSession CurrentSession;
 
         protected void Awake()
         {
             PlayerView = transform.GetComponentInParent<DanmakuPlayerBaseView>();
-            CardSelectionView = transform.GetComponentInChildren<DanmakuCardSelectionBaseView>();
+            CardShowcaseView = transform.GetComponentInChildren<DanmakuCardShowcaseBaseView>();
         }
 
         private void Start()
         {
-            CardSelectionView.HideSelection();
+            CardShowcaseView.Hide();
             
         }
 
@@ -39,8 +40,10 @@ namespace _Scripts.BaseGame.Views
 
         public virtual void AddCardsToSelection(List<DanmakuCardBaseView> cardViews)
         {
-            CardSelectionView.ShowSelection();
-            CardSelectionView.AddCardsToSelection(cardViews);
+            CardShowcaseView.Show();
+            CardShowcaseView.AddCardsToShowcase(cardViews);
         }
+        
+        
     }
 }

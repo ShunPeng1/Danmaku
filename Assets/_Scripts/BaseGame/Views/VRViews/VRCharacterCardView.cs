@@ -28,12 +28,12 @@ namespace _Scripts.BaseGame.Views.Basics
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        
-        public override void SetCardModel(DanmakuCharacterCardModel characterCard)
+        private void Start()
         {
-            _characterCardModel = characterCard;
-            _cardNameText.text = characterCard.CharacterCardData.CardName;
+            DanmakuCharacterCardModel characterCardModel = (DanmakuCharacterCardModel)CardModel;
+            _cardNameText.text = characterCardModel.CharacterCardData.CardName;
         }
+        
         
         public void TweenMove(Vector3 moveTo, Vector3 rotateTo, float duration, Ease ease = Ease.InOutCubic, Action onComplete = null)
         {

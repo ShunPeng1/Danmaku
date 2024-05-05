@@ -1,4 +1,5 @@
 ﻿using System;
+using _Scripts.CoreGame.InteractionSystems;
 using BNG;
 using DG.Tweening;
 using TMPro;
@@ -28,7 +29,8 @@ namespace _Scripts.BaseGame.Views.Basics
 
         private void Start()
         {
-            _cardNameText.text = CardModel.DeckCardData.CardName;
+            DanmakuMainDeckCardModel mainDeckCardModel = (DanmakuMainDeckCardModel)CardModel;
+            _cardNameText.text = mainDeckCardModel.DeckCardData.CardName;
         }
 
         public void TweenMove(Vector3 moveTo, Vector3 rotateTo, float duration, Ease ease = Ease.InOutCubic, Action onComplete = null)

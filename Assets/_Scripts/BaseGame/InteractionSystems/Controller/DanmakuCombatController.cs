@@ -9,35 +9,19 @@ namespace _Scripts.CoreGame.InteractionSystems
         private readonly DanmakuInteractionController _danmakuInteractionController;
         private DanmakuBoardModel BoardModel => _danmakuInteractionController.BoardModel;
         
-        private readonly Stack<CardExecution> _playedCards = new (); 
+        private readonly Stack<DanmakuCardExecutionParameter> _playedCards = new (); 
         
         public DanmakuCombatController(DanmakuInteractionController danmakuInteractionController)
         {
             _danmakuInteractionController = danmakuInteractionController;
         }
         
-        public class CardExecution
-        {
-            public IDanmakuCard Card;
-            public IDanmakuCardRule DanmakuCardRule;
-            public IDanmakuActivator Activator;
-            public List<IDanmakuTargetable> Targetable;
-            
-            public CardExecution(IDanmakuCard card, IDanmakuCardRule danmakuCardRule, IDanmakuActivator activator, List<IDanmakuTargetable> targetable)
-            {
-                Card = card;
-                DanmakuCardRule = danmakuCardRule;
-                Activator = activator;
-                Targetable = targetable;
-            }
-            
-        } 
 
-        public void AddCardExecution(CardExecution cardExecution)
+        public void AddCardExecution(DanmakuCardExecutionParameter danmakuCardExecutionParameter)
         {
-            _playedCards.Push(cardExecution);
+            _playedCards.Push(danmakuCardExecutionParameter);
             
-            cardExecution.Card.RevealCard();
+            danmakuCardExecutionParameter.Card.RevealCard();
         }
         
         

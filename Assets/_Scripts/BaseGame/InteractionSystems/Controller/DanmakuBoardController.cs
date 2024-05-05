@@ -2,6 +2,7 @@
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.Views;
 using _Scripts.BaseGame.Views.Basics;
+using Shun_Utilities;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
@@ -66,11 +67,15 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         public void StartDrawCharacter(int eachPlayerCharacterChoiceCount)
         {
+            var menus = new ObservableList<DanmakuSessionMenu>();
             
             var session = new DanmakuSession.Builder()
-                .WithPlayingPlayerModel(PlayerGroupModel.Players)
-                .WithCardFilter((cardView) => cardView is DanmakuCharacterCardBaseView) // Only allow character cards
-                .WithPlayerSessionKindEnum(PlayerSessionKindEnum.AllPlayed)
+                .WithPlayingPlayerModel(PlayerGroupModel.Players.ConvertAll(player => (IDanmakuActivator) player))
+                .WithPlayerSessionKindEnum(EndSessionKindEnum.AllPlayed)
+                .WithPlayingSessionMenus(menus)
+                .WithCountDownTime(30f)
+                .WithOnSessionEnd(AssignCharacterCard)
+                .WithOnForceEndSession(AssignCharacterCard)
                 .Build(_danmakuInteractionController);
 
             
@@ -82,11 +87,36 @@ namespace _Scripts.CoreGame.InteractionSystems
                     characterCards.Add((DanmakuCharacterCardModel) BoardModel.CharacterDeckModel.PopCardFront());
                 }
                 
+                // Create a menu for each player
+                var characterCardChoices = characterCards.ConvertAll(card => (card) as IDanmakuTargetable);
+                var sessionChoices = new List<DanmakuSessionChoice>();
+                
+                DanmakuSessionMenu menu = new DanmakuSessionMenu(session, player, sessionChoices);
+                
+                sessionChoices.Add(new DanmakuSessionChoice(menu, characterCardChoices, ChoiceActionEnum.Select));
+                
+                menus.Add(menu);
+                
+                // Draw the character cards for selection
                 InteractionViewRepo.BoardView.DrawCharacterCardsForSelection(player, characterCards);
                 
             }
             
             InteractionViewRepo.BoardView.AddSessionToPlayer(session);
+            session.SubscribeOnSessionEnd(() => InteractionViewRepo.BoardView.RemoveSessionFromPlayer(session), true);
+        }
+        
+        public void AssignCharacterCard(List<DanmakuSessionMenu> danmakuSessionMenus)
+        {
+            foreach (var menu in danmakuSessionMenus)
+            {
+                var player = (DanmakuPlayerModel) menu.Activator;
+                var chosenCard = (DanmakuCharacterCardModel) menu.SessionChoices[0].SelectedTarget;
+                
+                // Todo: Assign the character card to the player
+                
+                
+            }
         }
     }
 }

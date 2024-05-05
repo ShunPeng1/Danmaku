@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace _Scripts.BaseGame.Views.Basics
 {
-    public class VRCardSelectionView : DanmakuCardSelectionBaseView
+    public class VRCardShowcaseView : DanmakuCardShowcaseBaseView
     {
         [SerializeField] private GameObject _selectionView;
         [SerializeField] private SnapZoneCoordinator _snapZoneCoordinator;
@@ -19,17 +19,17 @@ namespace _Scripts.BaseGame.Views.Basics
         [SerializeField] private Ease _tweenEase = Ease.InOutCubic;
         
         
-        public override void ShowSelection()
+        public override void Show()
         {
             _selectionView.SetActive(true);
         }
 
-        public override void HideSelection()
+        public override void Hide()
         {
             _selectionView.SetActive(false);
         }
 
-        public override void AddCardsToSelection(List<DanmakuCardBaseView> characterCardViews)
+        public override void AddCardsToShowcase(List<DanmakuCardBaseView> characterCardViews)
         {
             List<Grabbable> grabbables = characterCardViews.Select(characterCardView => characterCardView.GetComponent<Grabbable>()).ToList();
 

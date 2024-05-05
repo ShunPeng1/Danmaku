@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using _Scripts.BaseGame.InteractionSystems.Interfaces;
+using TMPro;
 using UnityEngine;
 
 namespace _Scripts.BaseGame.Views.Default
@@ -11,6 +12,11 @@ namespace _Scripts.BaseGame.Views.Default
         }
 
         public override void SetNotPlayable()
+        {
+            
+        }
+
+        public override void SetCardModel(IDanmakuCard card)
         {
             
         }
