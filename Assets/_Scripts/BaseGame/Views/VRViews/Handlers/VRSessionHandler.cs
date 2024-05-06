@@ -10,7 +10,6 @@ namespace _Scripts.BaseGame.Views.Basics.UI
 {
     public class VRSessionHandler : DanmakuSessionBaseHandler
     {
-        [SerializeField] private TargetSelectionCanvas _targetSelectionCanvas;
         
         public override void SetCurrentSession(DanmakuSession session)
         {

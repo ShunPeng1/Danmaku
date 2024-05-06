@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.Views;
 using UnityEngine;
 
@@ -15,7 +17,16 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
         {
             Debug.Log(playerModel.PlayerId + " Main Step Executed!");
         
-            playerView.StartMainStep(finishExecuteCallback);
+            var session = new DanmakuSession.Builder()
+                .WithOnSessionEnd(finishExecuteCallback)
+                .WithOnForceEndSession(finishExecuteCallback)
+                .WithPlayingPlayerModel(new List<IDanmakuActivator>(){playerModel})
+                .WithPlayerSessionKindEnum(EndSessionKindEnum.NonePlayed)
+                .WithCountDownTime(1000f)
+                .Build(interactionController);
+            
+            playerView.AddSession(session);
+            session.StartSession();
             
         }
     }

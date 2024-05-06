@@ -148,8 +148,8 @@ MonoBehaviour:
   _snapZonePrefab: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
     type: 3}
   _snapZoneStartingTransform: {fileID: 7868226526101417429}
-  _snapZoneOffset: {x: 3, y: 0, z: 0}
-  _debugSnapZoneCount: 0
+  _snapZoneOffset: {x: 0.3, y: 0, z: 0}
+  _debugSnapZoneCount: 10
   SnapZones: []
 --- !u!1 &7231957243857685862
 GameObject:
@@ -176,13 +176,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7231957243857685862}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.01699999, z: 0.83500016}
+  m_LocalRotation: {x: 0.15151638, y: 0.6906829, z: -0.1515165, w: 0.6906829}
+  m_LocalPosition: {x: 0.034, y: 0.103, z: 0.835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5165056762305159902}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 24.746, y: 90, z: 0}
 --- !u!54 &8165241890129643332
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -17,6 +17,11 @@ namespace _Scripts.CoreGame.InteractionSystems
             SessionChoices = sessionChoices;
         }
         
+        public bool TryEndSession()
+        {
+            return Session.TryEndSession();
+        }
+        
         public void AddSessionChoice(DanmakuSessionChoice sessionChoice)
         {
             SessionChoices.Add(sessionChoice);

@@ -29,16 +29,18 @@ namespace _Scripts.BaseGame.Views
         }
 
         public abstract void SetupRole(IDanmakuRole playerRoleValue);
-
-        public virtual void StartMainStep(Action finishExecuteCallback)
-        {
-            CardHandView.AllowCardPlay();
-            CardHandView.DisallowCardPlay();
-            finishExecuteCallback?.Invoke();
-        }
-
-       
         public abstract void AddSession(DanmakuSession session);
         public abstract void RemoveSession(DanmakuSession session);
+        
+        public virtual void AllowCardPlay()
+        {
+            CardHandView.AllowCardPlay();
+        }
+        
+        public virtual void DisallowCardPlay()
+        {
+            CardHandView.DisallowCardPlay();
+        }
+
     }
 }

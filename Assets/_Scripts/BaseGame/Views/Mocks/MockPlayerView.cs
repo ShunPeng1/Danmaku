@@ -15,11 +15,6 @@ namespace _Scripts.BaseGame.Views.Default
             
         }
         
-        public override void StartMainStep(Action finishExecuteCallback)
-        {
-            finishExecuteCallback?.Invoke();
-        }
-
         public override void AddSession(DanmakuSession session)
         {
             

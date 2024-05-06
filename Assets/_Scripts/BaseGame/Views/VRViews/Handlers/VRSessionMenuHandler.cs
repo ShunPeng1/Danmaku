@@ -8,7 +8,7 @@ namespace _Scripts.BaseGame.Views.Basics.UI
 {
     public class VRSessionMenuHandler : DanmakuSessionMenuBaseHandler
     {
-        
+        [SerializeField] private VRSessionMenuUICoordinator _sessionMenuUICoordinator;
         
         public override void AddSessionMenu(DanmakuSessionMenu sessionMenu)
         {
@@ -22,7 +22,8 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             {
                 CreateView(sessionChoice);
             }
-        
+            
+            _sessionMenuUICoordinator.CreateMenuUI(sessionMenu, () => RemoveSessionMenu(sessionMenu));
         }
         
         public override void RemoveSessionMenu(DanmakuSessionMenu sessionMenu)
@@ -43,10 +44,12 @@ namespace _Scripts.BaseGame.Views.Basics.UI
                 }
             }
             
+            _sessionMenuUICoordinator.RemoveMenuUI(sessionMenu);
+            
         }
 
-        
-        public void CreateView(DanmakuSessionChoice sessionChoice)
+
+        private void CreateView(DanmakuSessionChoice sessionChoice)
         {
             var cardPlayView = CreateCardPlayView(sessionChoice);
             cardPlayView.SetSessionChoice(sessionChoice);

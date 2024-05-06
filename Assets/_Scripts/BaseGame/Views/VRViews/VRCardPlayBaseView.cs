@@ -2,6 +2,7 @@
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.Views.Abstracts;
 using _Scripts.BaseGame.Views.Basics.BNGExtension;
+using _Scripts.BaseGame.Views.Basics.UI;
 using _Scripts.CoreGame.InteractionSystems;
 using BNG;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace _Scripts.BaseGame.Views.Basics
     {
         [SerializeField] private SnapZone _playCardSnapZone;
         [SerializeField] private PlayCardSnapZoneFilter _playCardSnapZoneFilter;
+         
         private DanmakuCardBaseView _playingCard;
         
         private Func<Grabbable, bool> _grabbableFilter;

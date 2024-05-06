@@ -23,6 +23,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         public List<IDanmakuActivator> PlayingPlayerModel { get; private set; }
         public ObservableList<DanmakuSessionMenu> PlayingSessionMenus { get; private set; }
         public Countdown Countdown { get; private set; }
+        public DanmakuSessionEvent OnSessionStartEvent { get; set; }
         public DanmakuSessionEvent OnSessionEndEvent { get; set; }
         public DanmakuSessionEvent OnForceEndSessionEvent { get; set; }
         public bool CanEndSession => UpdateEndSession();
@@ -32,6 +33,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             ObservableList<DanmakuSessionMenu> playingSessionMenus, 
             EndSessionKindEnum sessionKindEnum,
             Countdown countdown,
+            DanmakuSessionEvent onSessionStartEvent,
             DanmakuSessionEvent onSessionEndEvent,
             DanmakuSessionEvent onForceEndSessionEvent)  
         {
@@ -40,6 +42,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             PlayingPlayerModel = playingPlayerModel;
             Countdown = countdown;
             PlayingSessionMenus = playingSessionMenus;
+            OnSessionStartEvent = onSessionStartEvent;
             OnSessionEndEvent = onSessionEndEvent;
             OnForceEndSessionEvent = onForceEndSessionEvent;
             
@@ -52,6 +55,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             private List<IDanmakuActivator> _playingPlayerModel = new List<IDanmakuActivator>(); // Default is empty
             private ObservableList<DanmakuSessionMenu> _playingSessionMenus = new (); // Default is empty
             private Countdown _countdown = new Countdown(false, float.PositiveInfinity); // Default is infinite
+            private DanmakuSessionEvent _onSessionStartEvent = new DanmakuSessionEvent();
             private DanmakuSessionEvent _onSessionEndEvent = new DanmakuSessionEvent();
             private DanmakuSessionEvent _onForceEndSessionEvent = new DanmakuSessionEvent();
             
@@ -76,6 +80,12 @@ namespace _Scripts.CoreGame.InteractionSystems
             public Builder WithCountDownTime(float countDownTime)
             {
                 _countdown = new Countdown(false, countDownTime);
+                return this;
+            }
+            
+            public Builder WithOnSessionStart(Action onSessionStart)
+            {
+                _onSessionStartEvent.Subscribe(onSessionStart);
                 return this;
             }
             
@@ -111,10 +121,17 @@ namespace _Scripts.CoreGame.InteractionSystems
                     _playingSessionMenus,
                     _endSessionKindEnum,
                     _countdown,
+                    _onSessionStartEvent,
                     _onSessionEndEvent,
                     _onForceEndSessionEvent
                 );
             }
+        }
+        
+        public void StartSession()
+        {
+            OnSessionStartEvent.Invoke(PlayingSessionMenus.List.ToList());
+            Countdown.Reset();
         }
         
         public void UpdateSession(float deltaTime)
@@ -159,12 +176,15 @@ namespace _Scripts.CoreGame.InteractionSystems
         }
         
         
-        public void TryEndSession()
+        public bool TryEndSession()
         {
             if (CanEndSession)
             {
-                
+                EndSession();
+                return true;
             }
+
+            return false;
         }
 
         public void SubscribeOnSessionEnd(Action onSessionEnd, bool isAlsoSubcriveToFoceEnd = false)

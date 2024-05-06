@@ -104,6 +104,8 @@ namespace _Scripts.CoreGame.InteractionSystems
             
             InteractionViewRepo.BoardView.AddSessionToPlayer(session);
             session.SubscribeOnSessionEnd(() => InteractionViewRepo.BoardView.RemoveSessionFromPlayer(session), true);
+            
+            session.StartSession();
         }
         
         public void AssignCharacterCard(List<DanmakuSessionMenu> danmakuSessionMenus)

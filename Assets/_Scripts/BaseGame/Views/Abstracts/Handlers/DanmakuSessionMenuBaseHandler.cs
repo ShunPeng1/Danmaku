@@ -10,15 +10,23 @@ namespace _Scripts.BaseGame.Views
     {
         [ShowInInspector, ReadOnly] public List<DanmakuCardPlayBaseView> CardPlayViews;
         [SerializeField] protected DanmakuCardPlayBaseView CardPlayViewPrefab;
+        [SerializeField] protected Transform StartingTransform;
+        [SerializeField] protected Vector3 Offset;
         
-        protected List<DanmakuSessionMenu> SessionMenus = new();
+        protected readonly List<DanmakuSessionMenu> SessionMenus = new();
         
         public abstract void AddSessionMenu(DanmakuSessionMenu sessionMenu);
         public abstract void RemoveSessionMenu(DanmakuSessionMenu sessionMenu);
         
         protected DanmakuCardPlayBaseView CreateCardPlayView(DanmakuSessionChoice sessionChoice)
         {
-            var cardPlayView = Instantiate(CardPlayViewPrefab, transform);
+            var cardPlayView = Instantiate(CardPlayViewPrefab, StartingTransform);
+
+            var cardTransform = cardPlayView.transform;
+            cardTransform.position = StartingTransform.position;
+            cardTransform.localPosition += StartingTransform.position * SessionMenus.Count;
+            cardTransform.rotation = StartingTransform.rotation;
+            
             cardPlayView.SetSessionChoice(sessionChoice);
             CardPlayViews.Add(cardPlayView);
             return cardPlayView;
