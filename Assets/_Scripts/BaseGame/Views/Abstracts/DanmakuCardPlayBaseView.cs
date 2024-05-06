@@ -7,9 +7,9 @@ namespace _Scripts.BaseGame.Views.Basics
     public class DanmakuCardPlayBaseView : MonoBehaviour
     {
         protected DanmakuSessionBaseHandler SessionHandler;
-        public DanmakuSessionChoice SessionChoice { get; protected set; } 
+        public DanmakuSessionChoice SessionChoice { get; protected set; }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             SessionHandler = transform.GetComponentInParent<DanmakuSessionBaseHandler>();
         }

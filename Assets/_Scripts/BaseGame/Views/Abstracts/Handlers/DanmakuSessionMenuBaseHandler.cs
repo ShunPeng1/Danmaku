@@ -11,7 +11,7 @@ namespace _Scripts.BaseGame.Views
         [ShowInInspector, ReadOnly] public List<DanmakuCardPlayBaseView> CardPlayViews;
         [SerializeField] protected DanmakuCardPlayBaseView CardPlayViewPrefab;
         
-        protected List<DanmakuSessionMenu> SessionMenus;
+        protected List<DanmakuSessionMenu> SessionMenus = new();
         
         public abstract void AddSessionMenu(DanmakuSessionMenu sessionMenu);
         public abstract void RemoveSessionMenu(DanmakuSessionMenu sessionMenu);

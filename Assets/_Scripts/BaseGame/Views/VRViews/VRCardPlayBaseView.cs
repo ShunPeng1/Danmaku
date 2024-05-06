@@ -15,10 +15,12 @@ namespace _Scripts.BaseGame.Views.Basics
         private DanmakuCardBaseView _playingCard;
         
         private Func<Grabbable, bool> _grabbableFilter;
-        
-        
-        private void Awake()
+
+
+        protected override void Awake()
         {
+            base.Awake();
+            
             _playCardSnapZone.OnSnapEvent.AddListener(SetPlayingCard);
             _playCardSnapZone.OnDetachEvent.AddListener(UnsetPlayingCard);
             _playCardSnapZoneFilter.SetOwner(SessionHandler.PlayerView.PlayerModel);

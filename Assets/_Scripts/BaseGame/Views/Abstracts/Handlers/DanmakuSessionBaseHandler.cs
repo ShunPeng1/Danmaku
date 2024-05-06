@@ -20,6 +20,7 @@ namespace _Scripts.BaseGame.Views
         {
             PlayerView = transform.GetComponentInParent<DanmakuPlayerBaseView>();
             CardShowcaseView = transform.GetComponentInChildren<DanmakuCardShowcaseBaseView>();
+            MenuHandler = transform.GetComponentInChildren<DanmakuSessionMenuBaseHandler>();
         }
 
         private void Start()
