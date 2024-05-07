@@ -224,7 +224,6 @@ MonoBehaviour:
   PlayerView: {fileID: 0}
   CardShowcaseView: {fileID: 0}
   MenuHandler: {fileID: 0}
-  _targetSelectionCanvas: {fileID: 7731765626423246181}
 --- !u!114 &7161884157635016607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,7 +511,7 @@ Transform:
   m_GameObject: {fileID: 9049091008030608307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.129, z: -0.064}
+  m_LocalPosition: {x: 0, y: -0.129, z: -0.179}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

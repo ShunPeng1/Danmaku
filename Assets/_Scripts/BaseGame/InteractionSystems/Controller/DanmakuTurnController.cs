@@ -8,7 +8,7 @@ using _Scripts.CoreGame.InteractionSystems.Stats;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
-    public class DanmakuPlayerController
+    public class DanmakuTurnController
     {
         private readonly DanmakuInteractionController _danmakuInteractionController;
         
@@ -23,7 +23,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         private readonly DanmakuPlayerStepContext _currentStepContext; 
         
-        public DanmakuPlayerController(DanmakuInteractionController danmakuInteractionController)
+        public DanmakuTurnController(DanmakuInteractionController danmakuInteractionController)
         {
             _danmakuInteractionController = danmakuInteractionController;
             _currentStepContext = new DanmakuPlayerStepContext(_danmakuInteractionController);

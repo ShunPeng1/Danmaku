@@ -7,8 +7,8 @@ namespace _Scripts.CoreGame.InteractionSystems
 {
     public enum ChoiceActionEnum
     {
-        Select,
-        Discard
+        Confirm,
+        AutoCheck,
     }
     
     public class DanmakuSessionChoice
@@ -19,6 +19,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         public IDanmakuTargetable SelectedTarget { get; private set; }
         public ChoiceActionEnum ChoiceAction { get; private set; }
         public Type TargetType => Targetables[0].GetType(); 
+        public Action<IDanmakuTargetable> OnTargetSelected { get; set; }
         
         public DanmakuSessionChoice(DanmakuSessionMenu menu, List<IDanmakuTargetable> targetables, ChoiceActionEnum choiceAction, Func<IDanmakuTargetable, bool> cardFilter = null)
         {
@@ -40,6 +41,13 @@ namespace _Scripts.CoreGame.InteractionSystems
             if (IsSelectionValid(target))
             {
                 SelectedTarget = target;
+                OnTargetSelected?.Invoke(target);
+                
+               
+                if (ChoiceAction == ChoiceActionEnum.AutoCheck)
+                {
+                    Menu.TryEndSession();
+                }
             }
         }
         

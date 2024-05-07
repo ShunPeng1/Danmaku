@@ -74,8 +74,8 @@ namespace _Scripts.CoreGame.InteractionSystems
                 .WithPlayerSessionKindEnum(EndSessionKindEnum.AllPlayed)
                 .WithPlayingSessionMenus(menus)
                 .WithCountDownTime(30f)
-                .WithOnSessionEnd(AssignCharacterCard)
-                .WithOnForceEndSession(AssignCharacterCard)
+                .WithOnSessionEnd(AssignCharacterCard, true)
+                
                 .Build(_danmakuInteractionController);
 
             
@@ -93,7 +93,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 
                 DanmakuSessionMenu menu = new DanmakuSessionMenu(session, player, sessionChoices);
                 
-                sessionChoices.Add(new DanmakuSessionChoice(menu, characterCardChoices, ChoiceActionEnum.Select));
+                sessionChoices.Add(new DanmakuSessionChoice(menu, characterCardChoices, ChoiceActionEnum.AutoCheck));
                 
                 menus.Add(menu);
                 
@@ -102,20 +102,25 @@ namespace _Scripts.CoreGame.InteractionSystems
                 
             }
             
-            InteractionViewRepo.BoardView.AddSessionToPlayer(session);
-            session.SubscribeOnSessionEnd(() => InteractionViewRepo.BoardView.RemoveSessionFromPlayer(session), true);
+            // Remove the session from the player when the session ends
+            session.SubscribeOnSessionEnd(InteractionViewRepo.BoardView.RemoveSessionFromPlayer);
+            session.OnSessionStartEvent.Subscribe(InteractionViewRepo.BoardView.AddSessionToPlayer);
             
+            
+            // Start the session
             session.StartSession();
         }
         
         public void AssignCharacterCard(List<DanmakuSessionMenu> danmakuSessionMenus)
         {
+            
             foreach (var menu in danmakuSessionMenus)
             {
                 var player = (DanmakuPlayerModel) menu.Activator;
                 var chosenCard = (DanmakuCharacterCardModel) menu.SessionChoices[0].SelectedTarget;
                 
                 // Todo: Assign the character card to the player
+                
                 
                 
             }

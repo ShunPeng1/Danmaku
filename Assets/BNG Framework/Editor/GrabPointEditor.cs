@@ -214,7 +214,7 @@ namespace BNG {
         }
 
         public void EditHandPose() {
-            // Select the Hand Object
+            // Confirm the Hand Object
             if(grabPoint.RightHandIsValid) {
                 if(!showingRightHand) {
                     CreateRightHandPreview();

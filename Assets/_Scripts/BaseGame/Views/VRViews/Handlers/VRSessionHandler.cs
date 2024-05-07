@@ -17,6 +17,11 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             
             foreach (var sessionMenu in session.PlayingSessionMenus)
             {
+                if (sessionMenu.Activator != null && sessionMenu.Activator != PlayerView.PlayerModel)
+                {
+                    continue;
+                }
+                
                 MenuHandler.AddSessionMenu(sessionMenu);    
             }
         }
@@ -24,7 +29,17 @@ namespace _Scripts.BaseGame.Views.Basics.UI
         
         public override void UnsetCurrentSession()
         {
+            foreach (var sessionMenu in CurrentSession.PlayingSessionMenus)
+            {
+                if (sessionMenu.Activator != null && sessionMenu.Activator != PlayerView.PlayerModel)
+                {
+                    continue;
+                }
+                MenuHandler.RemoveSessionMenu(sessionMenu);
+            }
+
             CurrentSession = null;
+
         }
         
         public override void AddCardsToSelection(List<DanmakuCardBaseView> cardViews)

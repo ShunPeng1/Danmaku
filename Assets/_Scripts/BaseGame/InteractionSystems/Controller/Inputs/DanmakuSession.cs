@@ -89,23 +89,33 @@ namespace _Scripts.CoreGame.InteractionSystems
                 return this;
             }
             
-            public Builder WithOnSessionEnd(Action onSessionEnd)
+            public Builder WithOnSessionEnd(Action onSessionEnd, bool isAlsoSubcribeToForceEnd = false)
             {
                 _onSessionEndEvent.Subscribe(onSessionEnd);
+                if (isAlsoSubcribeToForceEnd)
+                {
+                    _onForceEndSessionEvent.Subscribe(onSessionEnd);
+                }
                 return this;
             }
             
-            public Builder WithOnSessionEnd(Action<List<DanmakuSessionMenu>> onSessionEnd)
+            public Builder WithOnSessionEnd(Action<List<DanmakuSessionMenu>> onSessionEnd, bool isAlsoSubcribeToForceEnd = false)
             {
                 _onSessionEndEvent.Subscribe(onSessionEnd);
+                if (isAlsoSubcribeToForceEnd)
+                {
+                    _onForceEndSessionEvent.Subscribe(onSessionEnd);
+                }
                 return this;
             }
             
             public Builder WithOnForceEndSession(Action onForceEndSession)
             {
                 _onForceEndSessionEvent.Subscribe(onForceEndSession);
+                
                 return this;
             }
+            
             
             public Builder WithOnForceEndSession(Action<List<DanmakuSessionMenu>> onForceEndSession)
             {
@@ -142,15 +152,32 @@ namespace _Scripts.CoreGame.InteractionSystems
                 OnForceEndSessionEvent.Invoke(PlayingSessionMenus.List.ToList());
             }
         }
-        
-        public void EndSession()
+
+        private void EndSession()
         {
-            if (CanEndSession)
-            {
-                OnSessionEndEvent.Invoke(PlayingSessionMenus.List.ToList());
-            }
+            OnSessionEndEvent.Invoke(PlayingSessionMenus.List.ToList());
         }
         
+        public bool TryEndSession()
+        {
+            if (!CanEndSession) return false;
+            
+            EndSession();
+            return true;
+
+        }
+
+        private bool UpdateEndSession()
+        {
+            return _sessionKindEnum switch
+            {
+                EndSessionKindEnum.AllPlayed => PlayingSessionMenus.List.ToList().TrueForAll(menu => menu.IsAllChosen()),
+                EndSessionKindEnum.AnyPlayed => PlayingSessionMenus.Any(menu => menu.IsAllChosen()),
+                EndSessionKindEnum.NonePlayed => true,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+
         
         public void AddSessionMenu(DanmakuSessionMenu sessionMenu)
         {
@@ -176,45 +203,34 @@ namespace _Scripts.CoreGame.InteractionSystems
         }
         
         
-        public bool TryEndSession()
-        {
-            if (CanEndSession)
-            {
-                EndSession();
-                return true;
-            }
-
-            return false;
-        }
-
-        public void SubscribeOnSessionEnd(Action onSessionEnd, bool isAlsoSubcriveToFoceEnd = false)
+        
+        public void SubscribeOnSessionEnd(Action onSessionEnd, bool isAlsoSubcribeToForceEnd = false)
         {
             OnSessionEndEvent.Subscribe(onSessionEnd);
-            if (isAlsoSubcriveToFoceEnd)
+            if (isAlsoSubcribeToForceEnd)
             {
                 OnForceEndSessionEvent.Subscribe(onSessionEnd);
             }
         }
         
-        public void SubscribeOnSessionEnd(Action<List<DanmakuSessionMenu>> onSessionEnd, bool isAlsoSubcriveToFoceEnd = false)
+        public void SubscribeOnSessionEnd(Action<List<DanmakuSessionMenu>> onSessionEnd, bool isAlsoSubcribeToForceEnd = false)
         {
             OnSessionEndEvent.Subscribe(onSessionEnd);
-            if (isAlsoSubcriveToFoceEnd)
+            if (isAlsoSubcribeToForceEnd)
             {
                 OnForceEndSessionEvent.Subscribe(onSessionEnd);
             }
         }
-        
-        private bool UpdateEndSession()
-        {
-            return _sessionKindEnum switch
-            {
-                EndSessionKindEnum.AllPlayed => PlayingSessionMenus.List.ToList().TrueForAll(menu => menu.IsAllChosen()),
-                EndSessionKindEnum.AnyPlayed => PlayingSessionMenus.Any(menu => menu.IsAllChosen()),
-                EndSessionKindEnum.NonePlayed => true,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
 
+
+        public void SubscribeOnSessionEnd(Action<DanmakuSession> removeSessionFromPlayer, bool isAlsoSubcribeToForceEnd = false)
+        {
+            OnSessionEndEvent.Subscribe(removeSessionFromPlayer);
+            if (isAlsoSubcribeToForceEnd)
+            {
+                OnForceEndSessionEvent.Subscribe(removeSessionFromPlayer);
+            }
+        }
+        
     }
 }

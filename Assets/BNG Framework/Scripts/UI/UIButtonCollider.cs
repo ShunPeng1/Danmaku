@@ -72,7 +72,7 @@ namespace BNG {
                     // Call the event
                     if (uiButton != null && uiButton.onClick != null) {
                         uiButton.onClick.Invoke();
-                        // uiButton.Select(); // May want to select the ui button
+                        // uiButton.Confirm(); // May want to select the ui button
                     }
 
                     clickCount++;
