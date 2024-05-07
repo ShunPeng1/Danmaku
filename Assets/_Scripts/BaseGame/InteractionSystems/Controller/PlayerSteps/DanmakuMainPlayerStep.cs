@@ -18,14 +18,14 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
             Debug.Log(playerModel.PlayerId + " Main Step Executed!");
         
             var session = new DanmakuSession.Builder()
-                .WithOnSessionEnd(finishExecuteCallback)
-                .WithOnForceEndSession(finishExecuteCallback)
                 .WithPlayingPlayerModel(new List<IDanmakuActivator>(){playerModel})
                 .WithPlayerSessionKindEnum(EndSessionKindEnum.NonePlayed)
                 .WithCountDownTime(1000f)
                 .Build(interactionController);
+
+            session.OnSessionStartEvent.Subscribe(()=>playerView.AddSession(session));
+            session.SubscribeOnSessionEnd(finishExecuteCallback, true);
             
-            playerView.AddSession(session);
             session.StartSession();
             
         }

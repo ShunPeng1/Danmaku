@@ -20,7 +20,6 @@ namespace _Scripts.CoreGame.InteractionSystems
         private DanmakuPlayerGroupModel PlayerGroupModel => _danmakuInteractionController.PlayerGroupModel;
         private DanmakuBoardModel BoardModel => _danmakuInteractionController.BoardModel;
         
-        
         private readonly DanmakuPlayerStepContext _currentStepContext; 
         
         public DanmakuTurnController(DanmakuInteractionController danmakuInteractionController)

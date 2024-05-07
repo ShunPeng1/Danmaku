@@ -8,19 +8,19 @@ namespace _Scripts.CoreGame.InteractionSystems
 {
     public class DanmakuBoardController
     {
-        private readonly DanmakuInteractionController _danmakuInteractionController;
+        private readonly DanmakuInteractionController _interactionController;
         
         // Views
-        private DanmakuInteractionViewRepo InteractionViewRepo => _danmakuInteractionController.InteractionViewRepo;
+        private DanmakuInteractionViewRepo InteractionViewRepo => _interactionController.InteractionViewRepo;
         
         // Models
-        private DanmakuPlayerGroupModel PlayerGroupModel => _danmakuInteractionController.PlayerGroupModel;
-        private DanmakuBoardModel BoardModel => _danmakuInteractionController.BoardModel;
+        private DanmakuPlayerGroupModel PlayerGroupModel => _interactionController.PlayerGroupModel;
+        private DanmakuBoardModel BoardModel => _interactionController.BoardModel;
         
         
-        public DanmakuBoardController(DanmakuInteractionController danmakuInteractionController)
+        public DanmakuBoardController(DanmakuInteractionController interactionController)
         {
-            _danmakuInteractionController = danmakuInteractionController;
+            _interactionController = interactionController;
         }
         
         
@@ -42,7 +42,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             var card = BoardModel.MainDeckModel.PopCardFront();
             player.CardHandModel.AddCard(card);
             
-            var boardView = _danmakuInteractionController.InteractionViewRepo.BoardView;
+            var boardView = _interactionController.InteractionViewRepo.BoardView;
             boardView.DrawCardFromMainDeck(player, (DanmakuMainDeckCardModel) card);
             
             //var playerHandView = SetupPlayerView.GetPlayerView(player).CardHandView;
@@ -60,7 +60,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 player.CardHandModel.AddCard(card);
             }
             
-            var boardView = _danmakuInteractionController.InteractionViewRepo.BoardView;
+            var boardView = _interactionController.InteractionViewRepo.BoardView;
             boardView.DrawCardFromMainDeck(player, cards);
 
         }
@@ -74,9 +74,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 .WithPlayerSessionKindEnum(EndSessionKindEnum.AllPlayed)
                 .WithPlayingSessionMenus(menus)
                 .WithCountDownTime(30f)
-                .WithOnSessionEnd(AssignCharacterCard, true)
-                
-                .Build(_danmakuInteractionController);
+                .Build(_interactionController);
 
             
             foreach (var player in PlayerGroupModel.Players)
@@ -103,9 +101,11 @@ namespace _Scripts.CoreGame.InteractionSystems
             }
             
             // Remove the session from the player when the session ends
-            session.SubscribeOnSessionEnd(InteractionViewRepo.BoardView.RemoveSessionFromPlayer);
             session.OnSessionStartEvent.Subscribe(InteractionViewRepo.BoardView.AddSessionToPlayer);
             
+            session.SubscribeOnSessionEnd(InteractionViewRepo.BoardView.RemoveSessionFromPlayer);
+            session.SubscribeOnSessionEnd(AssignCharacterCard, true);
+            session.SubscribeOnSessionEnd(_interactionController.StartNextSequence, true);
             
             // Start the session
             session.StartSession();

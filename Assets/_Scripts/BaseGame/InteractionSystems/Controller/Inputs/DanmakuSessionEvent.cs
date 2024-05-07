@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
     public class DanmakuSessionEvent
     {
+        private DanmakuSession _session;
         public Action NoParamEvent { get; private set; }
         public Action<List<DanmakuSessionMenu>> MenusEvent { get; private set; }
         public Action<DanmakuSession> SessionEvent { get; private set; }
         
-        public DanmakuSessionEvent(Action noParamEvent = null, Action<List<DanmakuSessionMenu>> menusEvent = null, Action<DanmakuSession> sessionEvent = null)
+        public DanmakuSessionEvent(DanmakuSession session,Action noParamEvent = null, Action<List<DanmakuSessionMenu>> menusEvent = null, Action<DanmakuSession> sessionEvent = null)
         {
+            _session = session;
             NoParamEvent = noParamEvent;
             MenusEvent = menusEvent;
             SessionEvent = sessionEvent;
@@ -62,10 +65,11 @@ namespace _Scripts.CoreGame.InteractionSystems
             MenusEvent = null;
         }
         
-        public void Invoke(List<DanmakuSessionMenu> menus)
+        public void Invoke()
         {
             NoParamEvent?.Invoke();
-            MenusEvent?.Invoke(menus);
+            MenusEvent?.Invoke(_session.PlayingSessionMenus.List.ToList());
+            SessionEvent?.Invoke(_session); 
         }
         
     }

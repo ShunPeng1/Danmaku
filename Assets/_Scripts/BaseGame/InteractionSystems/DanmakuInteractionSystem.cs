@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using _Scripts.BaseGame.Views;
 using _Scripts.CoreGame.Configurations;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
@@ -31,29 +33,20 @@ namespace _Scripts.CoreGame.InteractionSystems
                 .WithPlayerRoles(_roleSetConfig)
                 .WithCardDeck(_deckSetConfig)
                 .WithCharacterSet(_characterSetConfig)
+                .WithStartGameSequence(new List<Action>()
+                {
+                    () => InteractionController.StartDrawCharacter(_eachPlayerCharacterChoiceCount),
+                    () => InteractionController.SetupStartingStats(_startupStatsConfig),
+                    () => InteractionController.StartupReveal(),
+                    () => InteractionController.StartupDraw(),
+                    () => InteractionController.StartGame(),
+                    
+                })
                 .Build();
             
             yield return null;
             
-            InteractionController.StartDrawCharacter(_eachPlayerCharacterChoiceCount);
-            
-            
-            yield return null;
-            
-            InteractionController.SetupStartingStats(_startupStatsConfig);
-            
-            yield return null;
-            
-            InteractionController.StartupReveal();
-            
-            yield return null;
-            
-            InteractionController.StartupDraw();
-            
-            yield return null;
-            
-            InteractionController.StartGame();
-            
+            InteractionController.StartNextSequence();
 
         }
         

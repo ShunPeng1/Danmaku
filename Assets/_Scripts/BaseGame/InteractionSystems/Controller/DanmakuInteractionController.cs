@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.InteractionSystems.Setups;
 using _Scripts.BaseGame.Views;
@@ -23,19 +24,25 @@ namespace _Scripts.CoreGame.InteractionSystems
         public DanmakuBoardModel BoardModel { get; private set; }
         public DanmakuPlayerGroupModel PlayerGroupModel { get; private set; }
         
-        
-        
-        private DanmakuInteractionController(DanmakuInteractionViewRepo danmakuInteractionViewRepo, DanmakuPlayerGroupModel playerGroupModel, DanmakuBoardModel boardModel)
+        private List<Action> _startGameSequences = new();
+        private int _currentSequenceIndex = -1;
+
+        private DanmakuInteractionController(DanmakuInteractionViewRepo danmakuInteractionViewRepo,
+            DanmakuPlayerGroupModel playerGroupModel, DanmakuBoardModel boardModel)
         {
             InteractionViewRepo = danmakuInteractionViewRepo;
             PlayerGroupModel = playerGroupModel;
             BoardModel = boardModel;
-            
+
             // Controllers
-            
+
             BoardController = new DanmakuBoardController(this);
             TurnController = new DanmakuTurnController(this);
             CombatController = new DanmakuCombatController(this);
+        }
+        private void UpdateStartGameSequences(List<Action> startGameSequences)
+        {
+            _startGameSequences = startGameSequences;
         }
         
         private void UpdatePlayerGroupModel(DanmakuPlayerGroupModel playerGroupModel)
@@ -58,7 +65,9 @@ namespace _Scripts.CoreGame.InteractionSystems
                 new DanmakuCardDeckModel(new List<IDanmakuCard>(){}
                 ));
             
-            private DanmakuInteractionController _interactionController;
+            private readonly DanmakuInteractionController _interactionController;
+            
+            private List<Action> _startGameSequences = new();
             
             public Builder(DanmakuInteractionViewRepo viewRepo)
             {
@@ -143,14 +152,26 @@ namespace _Scripts.CoreGame.InteractionSystems
                 return this;
             }
             
+            public Builder WithStartGameSequence(List<Action> startGameSequence)
+            {
+                _startGameSequences = startGameSequence;
+                return this;
+            }
+            
             
             public DanmakuInteractionController Build()
             {
                 _interactionController.UpdatePlayerGroupModel(_playerGroupModel);
                 _interactionController.UpdateBoardModel(_boardModelBuilder.Build());
+                _interactionController.UpdateStartGameSequences(_startGameSequences);
                 return _interactionController;
             }
             
+        }
+        
+        public void StartDrawCharacter(int eachPlayerCharacterChoiceCount)
+        {
+            BoardController.StartDrawCharacter(eachPlayerCharacterChoiceCount);
         }
 
         public void SetupStartingStats(StartupStatsConfig startupStatsConfig)
@@ -169,12 +190,23 @@ namespace _Scripts.CoreGame.InteractionSystems
                 );
                 
             }
+            
+            StartNextSequence();
         }
-
+        
+        public void StartupDraw()
+        {
+            BoardController.StartupDraw();
+            
+            StartNextSequence();
+        }
+        
 
         public void StartupReveal()
         {
             TurnController.StartupReveal();
+            
+            StartNextSequence();
         }
         
         public void StartGame()
@@ -182,15 +214,14 @@ namespace _Scripts.CoreGame.InteractionSystems
             TurnController.StartGame();
         }
 
-        public void StartupDraw()
+        public void StartNextSequence()
         {
-            BoardController.StartupDraw();
+            if (_currentSequenceIndex < _startGameSequences.Count)
+            {
+                _currentSequenceIndex++;
+                _startGameSequences[_currentSequenceIndex]();
+                
+            }
         }
-        
-        public void StartDrawCharacter(int eachPlayerCharacterChoiceCount)
-        {
-            BoardController.StartDrawCharacter(eachPlayerCharacterChoiceCount);
-        }
-        
     }
 }

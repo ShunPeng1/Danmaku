@@ -32,21 +32,24 @@ namespace _Scripts.CoreGame.InteractionSystems
             List<IDanmakuActivator> playingPlayerModel,
             ObservableList<DanmakuSessionMenu> playingSessionMenus, 
             EndSessionKindEnum sessionKindEnum,
-            Countdown countdown,
-            DanmakuSessionEvent onSessionStartEvent,
-            DanmakuSessionEvent onSessionEndEvent,
-            DanmakuSessionEvent onForceEndSessionEvent)  
+            Countdown countdown)  
         {
             DanmakuInteractionController = danmakuInteractionController;
             _sessionKindEnum = sessionKindEnum;
             PlayingPlayerModel = playingPlayerModel;
             Countdown = countdown;
             PlayingSessionMenus = playingSessionMenus;
+            
+            UpdateEndSession();
+        }
+
+        private void UpdateEvent(DanmakuSessionEvent onSessionStartEvent,
+            DanmakuSessionEvent onSessionEndEvent,
+            DanmakuSessionEvent onForceEndSessionEvent)
+        {
             OnSessionStartEvent = onSessionStartEvent;
             OnSessionEndEvent = onSessionEndEvent;
             OnForceEndSessionEvent = onForceEndSessionEvent;
-            
-            UpdateEndSession();
         }
         
         public class Builder
@@ -55,9 +58,6 @@ namespace _Scripts.CoreGame.InteractionSystems
             private List<IDanmakuActivator> _playingPlayerModel = new List<IDanmakuActivator>(); // Default is empty
             private ObservableList<DanmakuSessionMenu> _playingSessionMenus = new (); // Default is empty
             private Countdown _countdown = new Countdown(false, float.PositiveInfinity); // Default is infinite
-            private DanmakuSessionEvent _onSessionStartEvent = new DanmakuSessionEvent();
-            private DanmakuSessionEvent _onSessionEndEvent = new DanmakuSessionEvent();
-            private DanmakuSessionEvent _onForceEndSessionEvent = new DanmakuSessionEvent();
             
             public Builder WithPlayerSessionKindEnum(EndSessionKindEnum endSessionKindEnum)
             {
@@ -83,64 +83,31 @@ namespace _Scripts.CoreGame.InteractionSystems
                 return this;
             }
             
-            public Builder WithOnSessionStart(Action onSessionStart)
-            {
-                _onSessionStartEvent.Subscribe(onSessionStart);
-                return this;
-            }
-            
-            public Builder WithOnSessionEnd(Action onSessionEnd, bool isAlsoSubcribeToForceEnd = false)
-            {
-                _onSessionEndEvent.Subscribe(onSessionEnd);
-                if (isAlsoSubcribeToForceEnd)
-                {
-                    _onForceEndSessionEvent.Subscribe(onSessionEnd);
-                }
-                return this;
-            }
-            
-            public Builder WithOnSessionEnd(Action<List<DanmakuSessionMenu>> onSessionEnd, bool isAlsoSubcribeToForceEnd = false)
-            {
-                _onSessionEndEvent.Subscribe(onSessionEnd);
-                if (isAlsoSubcribeToForceEnd)
-                {
-                    _onForceEndSessionEvent.Subscribe(onSessionEnd);
-                }
-                return this;
-            }
-            
-            public Builder WithOnForceEndSession(Action onForceEndSession)
-            {
-                _onForceEndSessionEvent.Subscribe(onForceEndSession);
-                
-                return this;
-            }
-            
-            
-            public Builder WithOnForceEndSession(Action<List<DanmakuSessionMenu>> onForceEndSession)
-            {
-                _onForceEndSessionEvent.Subscribe(onForceEndSession);
-                return this;
-            }
            
+            
+            
             public DanmakuSession Build(DanmakuInteractionController danmakuInteractionController)
             {
-                return new DanmakuSession(
+                var session = new DanmakuSession(
                     danmakuInteractionController,
                     _playingPlayerModel,
                     _playingSessionMenus,
                     _endSessionKindEnum,
-                    _countdown,
-                    _onSessionStartEvent,
-                    _onSessionEndEvent,
-                    _onForceEndSessionEvent
+                    _countdown
                 );
+                
+                session.UpdateEvent(
+                    new DanmakuSessionEvent(session), 
+                    new DanmakuSessionEvent(session), 
+                    new DanmakuSessionEvent(session));
+                
+                return session;
             }
         }
         
         public void StartSession()
         {
-            OnSessionStartEvent.Invoke(PlayingSessionMenus.List.ToList());
+            OnSessionStartEvent.Invoke();
             Countdown.Reset();
         }
         
@@ -149,13 +116,13 @@ namespace _Scripts.CoreGame.InteractionSystems
             bool isEnded = Countdown.Progress(deltaTime);
             if (isEnded)
             {
-                OnForceEndSessionEvent.Invoke(PlayingSessionMenus.List.ToList());
+                OnForceEndSessionEvent.Invoke();
             }
         }
 
         private void EndSession()
         {
-            OnSessionEndEvent.Invoke(PlayingSessionMenus.List.ToList());
+            OnSessionEndEvent.Invoke();
         }
         
         public bool TryEndSession()
