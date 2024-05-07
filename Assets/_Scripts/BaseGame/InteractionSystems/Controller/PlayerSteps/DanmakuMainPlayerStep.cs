@@ -23,7 +23,7 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
                 .WithCountDownTime(1000f)
                 .Build(interactionController);
 
-            session.OnSessionStartEvent.Subscribe(()=>playerView.AddSession(session));
+            session.OnSessionStartEvent.Subscribe(()=>playerView.SessionHandler.SetCurrentSession(session));
             session.SubscribeOnSessionEnd(finishExecuteCallback, true);
             
             session.StartSession();

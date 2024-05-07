@@ -10,5 +10,10 @@ namespace _Scripts.BaseGame.Views.Default
         {
             Debug.Log("RevealRole :" + role.GetType());
         }
+
+        public override void SetupRole(IDanmakuRole playerRoleValue)
+        {
+            Debug.Log("SetupRole :" + playerRoleValue.GetType());
+        }
     }
 }

@@ -36,17 +36,13 @@ namespace _Scripts.BaseGame.Views.Basics.UI
                     continue;
                 }
                 MenuHandler.RemoveSessionMenu(sessionMenu);
+                
             }
 
             CurrentSession = null;
 
         }
         
-        public override void AddCardsToSelection(List<DanmakuCardBaseView> cardViews)
-        {
-            CardShowcaseView.Show();
-            CardShowcaseView.AddCardsToShowcase(cardViews);
-        }
         
     }
 }

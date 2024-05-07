@@ -23,6 +23,11 @@ namespace _Scripts.BaseGame.Views.Basics
         [SerializeField] private Transform _topDrawCharacterDeck;
         [SerializeField] private Transform _topDiscardCharacterDeck;
         
+        [Header("Tween Move")]
+        [SerializeField] private float _moveDuration = 0.5f;
+        [SerializeField] private Ease _moveEase = Ease.InOutCubic;
+        
+        
 
         protected override void InitializeInherit()
         {
@@ -112,12 +117,31 @@ namespace _Scripts.BaseGame.Views.Basics
             playerView.SessionHandler.AddCardsToSelection(characterCardViews);
         }
 
+        public override void DiscardCharacterCardForSelection(DanmakuPlayerModel player)
+        {
+            var playerView = InteractionViewRepo.GetPlayerView(player);
+            var cardViews = playerView.SessionHandler.RemoveCardsFromSelection();
+            
+            foreach (var cardView in cardViews)
+            {
+                cardView.transform.DOMove(_topDiscardCharacterDeck.position, _moveDuration).SetEase(_moveEase).OnComplete(
+                    () =>
+                    {
+                        Destroy(cardView.gameObject); 
+                        
+                    });
+                
+            }
+            
+            
+        }
+
         public override void AddSessionToPlayer(DanmakuSession session)
         {
             foreach (var player in session.PlayingPlayerModel)
             {
                 var playerView = InteractionViewRepo.GetPlayerView((DanmakuPlayerModel)player);
-                playerView.AddSession(session);
+                playerView.SessionHandler.SetCurrentSession(session);
             }
         }
 
@@ -126,7 +150,7 @@ namespace _Scripts.BaseGame.Views.Basics
             foreach (var player in session.PlayingPlayerModel)
             {
                 var playerView = InteractionViewRepo.GetPlayerView((DanmakuPlayerModel)player);
-                playerView.RemoveSession(session);
+                playerView.SessionHandler.UnsetCurrentSession();
             }
         }
         

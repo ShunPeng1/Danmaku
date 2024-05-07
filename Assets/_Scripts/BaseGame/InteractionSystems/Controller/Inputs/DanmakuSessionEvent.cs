@@ -11,35 +11,22 @@ namespace _Scripts.CoreGame.InteractionSystems
         public Action<List<DanmakuSessionMenu>> MenusEvent { get; private set; }
         public Action<DanmakuSession> SessionEvent { get; private set; }
         
-        public DanmakuSessionEvent(DanmakuSession session,Action noParamEvent = null, Action<List<DanmakuSessionMenu>> menusEvent = null, Action<DanmakuSession> sessionEvent = null)
+        public DanmakuSessionEvent(DanmakuSession session)
         {
             _session = session;
-            NoParamEvent = noParamEvent;
-            MenusEvent = menusEvent;
-            SessionEvent = sessionEvent;
         }
         
-        public DanmakuSessionEvent(Action<List<DanmakuSessionMenu>> menusEvent)
+        public void Subscribe(Action noParamEvent, int priority = 0)
         {
-            MenusEvent = menusEvent;
+            NoParamEvent += noParamEvent;
         }
         
-        public DanmakuSessionEvent(Action @event)
-        {
-            NoParamEvent = @event;
-        }
-        
-        public void Subscribe(Action @event)
-        {
-            NoParamEvent += @event;
-        }
-        
-        public void Subscribe(Action<List<DanmakuSessionMenu>> menusEvent)
+        public void Subscribe(Action<List<DanmakuSessionMenu>> menusEvent, int priority = 0)
         {
             MenusEvent += menusEvent;
         }
         
-        public void Subscribe(Action<DanmakuSession> sessionEvent)
+        public void Subscribe(Action<DanmakuSession> sessionEvent, int priority = 0)
         {
             SessionEvent += sessionEvent;
         }

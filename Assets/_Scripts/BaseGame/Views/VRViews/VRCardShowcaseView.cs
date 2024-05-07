@@ -34,7 +34,6 @@ namespace _Scripts.BaseGame.Views.Basics
             List<Grabbable> grabbables = characterCardViews.Select(characterCardView => characterCardView.GetComponent<Grabbable>()).ToList();
 
             var snapZones = _snapZoneCoordinator.CreateSnapZones(characterCardViews.Count);
-
             
             for (var index = 0; index < characterCardViews.Count; index++)
             {
@@ -49,6 +48,22 @@ namespace _Scripts.BaseGame.Views.Basics
                     () => {snapZone.GrabGrabbable(grabbable); });
 
             }
+        }
+
+        public override List<DanmakuCardBaseView> ClearCardsFromSelection()
+        {
+            var snapZones = _snapZoneCoordinator.GetGrabbables();
+            List<DanmakuCardBaseView> cardViews = new List<DanmakuCardBaseView>();
+            for (var index = 0; index < snapZones.Count; index++)
+            {
+                cardViews.Add(snapZones[index].GetComponent<DanmakuCardBaseView>());
+                
+                snapZones[index].transform.SetParent(null);
+            }
+            
+            _snapZoneCoordinator.DestroySnapZones();
+
+            return cardViews;
         }
     }
 }

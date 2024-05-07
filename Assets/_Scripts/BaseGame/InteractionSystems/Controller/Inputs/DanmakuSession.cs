@@ -26,6 +26,8 @@ namespace _Scripts.CoreGame.InteractionSystems
         public DanmakuSessionEvent OnSessionStartEvent { get; set; }
         public DanmakuSessionEvent OnSessionEndEvent { get; set; }
         public DanmakuSessionEvent OnForceEndSessionEvent { get; set; }
+        
+        public DanmakuSessionEvent OnFinallyEndSessionEvent { get; set; }
         public bool CanEndSession => UpdateEndSession();
        
         private DanmakuSession(DanmakuInteractionController danmakuInteractionController,
@@ -45,11 +47,13 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         private void UpdateEvent(DanmakuSessionEvent onSessionStartEvent,
             DanmakuSessionEvent onSessionEndEvent,
-            DanmakuSessionEvent onForceEndSessionEvent)
+            DanmakuSessionEvent onForceEndSessionEvent,
+            DanmakuSessionEvent onFinallyEndSessionEvent)
         {
             OnSessionStartEvent = onSessionStartEvent;
             OnSessionEndEvent = onSessionEndEvent;
             OnForceEndSessionEvent = onForceEndSessionEvent;
+            OnFinallyEndSessionEvent = onFinallyEndSessionEvent;
         }
         
         public class Builder
@@ -99,6 +103,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 session.UpdateEvent(
                     new DanmakuSessionEvent(session), 
                     new DanmakuSessionEvent(session), 
+                    new DanmakuSessionEvent(session),
                     new DanmakuSessionEvent(session));
                 
                 return session;
@@ -117,12 +122,14 @@ namespace _Scripts.CoreGame.InteractionSystems
             if (isEnded)
             {
                 OnForceEndSessionEvent.Invoke();
+                OnFinallyEndSessionEvent.Invoke();
             }
         }
 
         private void EndSession()
         {
             OnSessionEndEvent.Invoke();
+            OnFinallyEndSessionEvent.Invoke();
         }
         
         public bool TryEndSession()

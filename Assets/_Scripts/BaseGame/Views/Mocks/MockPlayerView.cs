@@ -10,20 +10,6 @@ namespace _Scripts.BaseGame.Views.Default
     public class MockPlayerView : DanmakuPlayerBaseView
     {
         
-        public override void SetupRole(IDanmakuRole playerRoleValue)
-        {
-            
-        }
-        
-        public override void AddSession(DanmakuSession session)
-        {
-            
-        }
-
-        public override void RemoveSession(DanmakuSession session)
-        {
-            
-        }
         
     }
 }

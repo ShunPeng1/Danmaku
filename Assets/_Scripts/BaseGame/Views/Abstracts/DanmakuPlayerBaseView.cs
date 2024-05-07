@@ -13,7 +13,8 @@ namespace _Scripts.BaseGame.Views
         [ShowInInspector, ReadOnly] public DanmakuRoleBaseView RoleView;
         [ShowInInspector, ReadOnly] public DanmakuCardHandBaseView CardHandView;
         [ShowInInspector, ReadOnly] public DanmakuSessionBaseHandler SessionHandler;
-
+        [ShowInInspector, ReadOnly] public DanmakuCharacterBaseView CharacterView;
+        
         public DanmakuPlayerModel PlayerModel { get; protected set;}
 
         private void Awake()
@@ -21,16 +22,13 @@ namespace _Scripts.BaseGame.Views
             RoleView = transform.GetComponentInChildren<DanmakuRoleBaseView>();
             CardHandView = transform.GetComponentInChildren<DanmakuCardHandBaseView>();
             SessionHandler = transform.GetComponentInChildren<DanmakuSessionBaseHandler>();
+            CharacterView = transform.GetComponentInChildren<DanmakuCharacterBaseView>();
         }
 
         public virtual void InitializeView(DanmakuPlayerModel playerModel)
         {
             PlayerModel = playerModel;
         }
-
-        public abstract void SetupRole(IDanmakuRole playerRoleValue);
-        public abstract void AddSession(DanmakuSession session);
-        public abstract void RemoveSession(DanmakuSession session);
         
         public virtual void AllowCardPlay()
         {
@@ -42,5 +40,6 @@ namespace _Scripts.BaseGame.Views
             CardHandView.DisallowCardPlay();
         }
 
+        
     }
 }

@@ -45,6 +45,12 @@ namespace _Scripts.BaseGame.Views
             CardShowcaseView.AddCardsToShowcase(cardViews);
         }
         
+        public virtual List<DanmakuCardBaseView> RemoveCardsFromSelection()
+        {
+            List<DanmakuCardBaseView> cardViews = CardShowcaseView.ClearCardsFromSelection();
+            CardShowcaseView.Hide();
+            return cardViews;
+        }
         
     }
 }

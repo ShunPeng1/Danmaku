@@ -108,7 +108,9 @@ namespace _Scripts.CoreGame.InteractionSystems
                 foreach (var characterCardData in characterSetConfig.CharacterCardsData)
                 {
                     var rules = new List<DanmakuCardRuleBase>();
-                    var card = new DanmakuCharacterCardModel(characterCardData, rules, characterDeckModel);
+                    
+                    // TODO: Implement CharacterBase
+                    var card = new DanmakuCharacterCardModel(characterCardData, rules, characterDeckModel, new DanmakuCharacterBase());
                     
                     characterCards.Add(card);
                 }

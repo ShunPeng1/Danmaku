@@ -68,6 +68,21 @@ namespace _Scripts.BaseGame.Views.Positions
             return snapZones;
         }
 
+        public List<Grabbable> GetGrabbables()
+        {
+            var grabbables = new List<Grabbable>();
+            foreach (var snapZone in SnapZones)
+            {
+                if (snapZone.HeldItem != null)
+                {
+                    grabbables.Add(snapZone.HeldItem);
+                }
+            }
+
+            return grabbables;
+            
+        }
+
         public void DestroySnapZones()
         {
             foreach (var snapZone in SnapZones)

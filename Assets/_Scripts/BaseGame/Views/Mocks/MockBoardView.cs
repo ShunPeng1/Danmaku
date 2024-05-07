@@ -73,6 +73,11 @@ namespace _Scripts.BaseGame.Views.Default
             
         }
 
+        public override void DiscardCharacterCardForSelection(DanmakuPlayerModel player)
+        {
+            
+        }
+
         public override void AddSessionToPlayer(DanmakuSession session)
         {
             

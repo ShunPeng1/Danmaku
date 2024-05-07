@@ -15,19 +15,6 @@ namespace _Scripts.BaseGame.Views.Basics
             PlayerModel = playerModel;
         }
 
-        public override void SetupRole(IDanmakuRole playerRoleValue)
-        {
-            
-        }
         
-        public override void AddSession(DanmakuSession session)
-        {
-            SessionHandler.SetCurrentSession(session);
-        }
-
-        public override void RemoveSession(DanmakuSession session)
-        {
-            SessionHandler.UnsetCurrentSession();
-        }
     }
 }

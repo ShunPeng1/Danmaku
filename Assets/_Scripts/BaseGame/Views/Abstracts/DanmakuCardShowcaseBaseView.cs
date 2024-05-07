@@ -17,5 +17,7 @@ namespace _Scripts.BaseGame.Views
         public abstract void Show();
         public abstract void Hide();
         public abstract void AddCardsToShowcase(List<DanmakuCardBaseView> characterCardViews);
+
+        public abstract List<DanmakuCardBaseView> ClearCardsFromSelection();
     }
 }

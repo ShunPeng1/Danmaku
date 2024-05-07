@@ -103,10 +103,11 @@ namespace _Scripts.CoreGame.InteractionSystems
             // Remove the session from the player when the session ends
             session.OnSessionStartEvent.Subscribe(InteractionViewRepo.BoardView.AddSessionToPlayer);
             
-            session.SubscribeOnSessionEnd(InteractionViewRepo.BoardView.RemoveSessionFromPlayer);
             session.SubscribeOnSessionEnd(AssignCharacterCard, true);
-            session.SubscribeOnSessionEnd(_interactionController.StartNextSequence, true);
+            session.SubscribeOnSessionEnd(InteractionViewRepo.BoardView.RemoveSessionFromPlayer, true);
             
+            session.OnFinallyEndSessionEvent.Subscribe(_interactionController.StartNextSequence);
+
             // Start the session
             session.StartSession();
         }
@@ -119,10 +120,12 @@ namespace _Scripts.CoreGame.InteractionSystems
                 var player = (DanmakuPlayerModel) menu.Activator;
                 var chosenCard = (DanmakuCharacterCardModel) menu.SessionChoices[0].SelectedTarget;
                 
-                // Todo: Assign the character card to the player
+                player.CardHandModel.AddCard(chosenCard);
+                player.InitializeCharacter(chosenCard.Character);
                 
                 
-                
+                InteractionViewRepo.BoardView.DiscardCharacterCardForSelection(player);
+                InteractionViewRepo.GetPlayerView(player).CharacterView.SetupCharacter(chosenCard);
             }
         }
     }

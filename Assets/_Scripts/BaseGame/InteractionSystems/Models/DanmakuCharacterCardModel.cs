@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.ScriptableData;
+using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using Shun_Utilities;
 
 namespace _Scripts.CoreGame.InteractionSystems
@@ -8,13 +9,16 @@ namespace _Scripts.CoreGame.InteractionSystems
     public class DanmakuCharacterCardModel : IDanmakuCard
     {
         public CharacterCardScriptableData CharacterCardData { get; private set; }
+        public readonly IDanmakuCharacter Character;
+        
         private readonly ObservableData<IDanmakuCardHolder> _cardHolder;
         private readonly List<DanmakuCardRuleBase> _cardRuleModels;
         
-        public DanmakuCharacterCardModel(CharacterCardScriptableData characterCardData, List<DanmakuCardRuleBase> cardRuleModels, IDanmakuCardHolder cardHolder )
+        public DanmakuCharacterCardModel(CharacterCardScriptableData characterCardData, List<DanmakuCardRuleBase> cardRuleModels, IDanmakuCardHolder cardHolder, IDanmakuCharacter character)
         {
             CharacterCardData = characterCardData;
             _cardRuleModels = cardRuleModels;
+            Character = character;
             _cardHolder = new ObservableData<IDanmakuCardHolder>(cardHolder);
         }
         
@@ -45,37 +49,37 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         public void ExecuteCard(IDanmakuCardRule cardRule, IDanmakuActivator activator, List<IDanmakuTargetable> targetables)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void DiscardCard()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void DrawCard(DanmakuPlayerModel danmakuPlayerModel)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void SetCardHolder(IDanmakuCardHolder danmakuPlayerModel)
         {
-            throw new System.NotImplementedException();
+            _cardHolder.Value = danmakuPlayerModel;
         }
-
+        
         public DanmakuPlayerModel GetCardOwner()
         {
-            throw new System.NotImplementedException();
+            return _cardHolder.Value.Owner;
         }
 
         public void ShowCard(DanmakuPlayerModel showToPlayerModel)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public string PrintDebug()
         {
-            throw new System.NotImplementedException();
+            return "Character Card";
         }
     }
 }

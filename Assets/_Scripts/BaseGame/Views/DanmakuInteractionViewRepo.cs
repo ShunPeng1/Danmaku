@@ -42,7 +42,7 @@ namespace _Scripts.BaseGame.Views
             foreach (var playerRole in playerToRole)
             {
                 var playerView = GetPlayerView(playerRole.Key);
-                playerView.SetupRole(playerRole.Value);
+                playerView.RoleView.SetupRole(playerRole.Value);
             }
         }
 

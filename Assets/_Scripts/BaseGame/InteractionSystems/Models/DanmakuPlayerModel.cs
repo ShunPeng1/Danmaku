@@ -46,6 +46,11 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             Role = role;
         }
+        
+        public void InitializeCharacter(IDanmakuCharacter character)
+        {
+            DanmakuCharacter = character;
+        }
                 
         public void InitializeStats(
             PlayerStat life, 
