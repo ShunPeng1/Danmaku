@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3783b909629478db9128655c29fcf21, type: 3}
+  m_Name: TestGameDeckSet
+  m_EditorClassIdentifier: 
+  _deckCardsData:
+  - DeckCardData: {fileID: 11400000, guid: 808fd0b47841e1a4a8011cd04ab27a58, type: 2}
+    Amount: 2
+  - DeckCardData: {fileID: 11400000, guid: 0f3734b3d7c1f2e4c8970332fadfed02, type: 2}
+    Amount: 4
+  - DeckCardData: {fileID: 11400000, guid: 2283f8df673a3db4aaa30f6bfbae5235, type: 2}
+    Amount: 2
+  - DeckCardData: {fileID: 11400000, guid: 179e363d7e2926743a1a9994730c5af5, type: 2}
+    Amount: 1
+  - DeckCardData: {fileID: 11400000, guid: f7e4132ee6bc5274c97b489b15dacec1, type: 2}
+    Amount: 2
+  - DeckCardData: {fileID: 11400000, guid: 19622c95897fc824380f2d67d6dc5b6b, type: 2}
+    Amount: 14
+  - DeckCardData: {fileID: 11400000, guid: da57acb3c7380ce4ba065147f8a5885d, type: 2}
+    Amount: 2
+  - DeckCardData: {fileID: 11400000, guid: 49da112745df0a64f988bc36e40b587c, type: 2}
+    Amount: 1
+  - DeckCardData: {fileID: 11400000, guid: f4ded541c65207d44bae4fbe2f3aa8fd, type: 2}
+    Amount: 1
+  - DeckCardData: {fileID: 11400000, guid: 98fed381e024ac54f9cc7e090c04fa93, type: 2}
+    Amount: 1
+  - DeckCardData: {fileID: 11400000, guid: 18d2c79501761e0499d268d26f97b1f2, type: 2}
+    Amount: 1
+  - DeckCardData: {fileID: 11400000, guid: a59e7a1ad3d5eb64ea66525f05892861, type: 2}
+    Amount: 1
+  - DeckCardData: {fileID: 11400000, guid: f7542fb83c42dd74d99c427483f03d7a, type: 2}
+    Amount: 1
+  - DeckCardData: {fileID: 11400000, guid: 68355afcc54f97a4b9e8d37b6feec26c, type: 2}
+    Amount: 1
+  - DeckCardData: {fileID: 11400000, guid: 6ccb65861c97f5e43bd3db9ba0edb91c, type: 2}
+    Amount: 6
+  - DeckCardData: {fileID: 11400000, guid: f515a05da3a53bc4398c3b8a862ef538, type: 2}
+    Amount: 4
+  - DeckCardData: {fileID: 11400000, guid: 906592d16e4a1fe4da6a4384e381ea54, type: 2}
+    Amount: 24
+  - DeckCardData: {fileID: 11400000, guid: 1010ad8dfeca7e044a0261f6ef885f94, type: 2}
+    Amount: 1
+  - DeckCardData: {fileID: 11400000, guid: f095c28ffacfb7c4b8f9a5b49414380a, type: 2}
+    Amount: 6
+  - DeckCardData: {fileID: 11400000, guid: df75ce367e780aa4abe876eb7d1d7976, type: 2}
+    Amount: 1
+  - DeckCardData: {fileID: 11400000, guid: 4f6d6c61797443543aa27276a507670a, type: 2}
+    Amount: 2
+  - DeckCardData: {fileID: 11400000, guid: 78c08cb83cf3c4a419327592746a5f3a, type: 2}
+    Amount: 1
+  - DeckCardData: {fileID: 11400000, guid: d5731a3d8562c2e4688f10fefc96d661, type: 2}
+    Amount: 1

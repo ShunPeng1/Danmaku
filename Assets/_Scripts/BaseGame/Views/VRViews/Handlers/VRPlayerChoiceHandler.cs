@@ -43,7 +43,7 @@ namespace _Scripts.BaseGame.Views.VRViews.Handlers
             foreach(var playerModel in playerGroupModel.Players)
             {
                 var isTargetable = targetables.Contains(playerModel);
-                var buttonTransform = _playerStandingPositionMap.GetPlayerPosition(totalPlayers, playerIndex, playerIndex);
+                var buttonTransform = _playerStandingPositionMap.GetPlayerPosition(totalPlayers, playerModel.PlayerId, playerIndex);
                 
                 var playerSelectionButton = Instantiate(_playerTargetSelectionButtonPrefab, transform);
                 

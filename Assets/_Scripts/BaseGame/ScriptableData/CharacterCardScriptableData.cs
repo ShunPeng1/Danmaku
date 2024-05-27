@@ -21,12 +21,6 @@ namespace _Scripts.BaseGame.ScriptableData
 
         public GameObject ModelData;
         
-        private void OnEnable()
-        {
-            if (CardIllustration == null)
-            {
-                CardIllustration = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 1, 1), Vector2.zero);
-            }
-        }
+        
     }
 }
