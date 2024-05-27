@@ -322,6 +322,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ModelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 2628461626508234557, guid: de0183922bda6f74b850907fc875571c,
+        type: 3}
+      propertyPath: _characterData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7439702405c18b940b7abd552a954d69,
+        type: 2}
     - target: {fileID: 8934043775846475743, guid: de0183922bda6f74b850907fc875571c,
         type: 3}
       propertyPath: m_LocalPosition.x
