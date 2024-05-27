@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d46621d09c675ed40a36a056c6a4094f, type: 3}
-  m_Name: ReisenCharacterCard
+  m_Name: RemiliaCharacterCard
   m_EditorClassIdentifier: 
-  CardName: Reisen Udongein Inaba
-  CardTitle: Lunatic Moon Rabbit
+  CardName: Remilia Scarlet
+  CardTitle: The Scarlet Devil
   CardDeck: 2
   CardExpansion: 0
   CardSeason: 2
   CardIllustration: {fileID: 0}
   AbilityCardRules: []
   SpellCardRules: []
-  ModelData: {fileID: 919132149155446097, guid: b875deaeb5fdbfa48ac167bdf9ef5176,
+  ModelData: {fileID: 919132149155446097, guid: e49b7cbe7cb568644849550a322a78f2,
     type: 3}
