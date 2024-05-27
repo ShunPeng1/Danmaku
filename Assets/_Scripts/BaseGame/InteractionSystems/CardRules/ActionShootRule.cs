@@ -26,17 +26,18 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
             }
             
             List<TargetableQueryResult> allPossibleTargetables = new ();
+            
+            List<IDanmakuTargetable> targetables = new ();
             foreach (var targetPlayerModel in InteractionController.PlayerGroupModel.Players)
             {
-                List<IDanmakuTargetable> targetables = new ();
 
                 if (AttackCombatUtility.CanAttackInRange(InteractionController.PlayerGroupModel, attackerPlayer, targetPlayerModel))
                 {
                     targetables.Add(targetPlayerModel);
-                    allPossibleTargetables.Add(new TargetableQueryResult(TargetableTypeEnum.Player, targetables));
                 }            
             }
-            
+            allPossibleTargetables.Add(new TargetableQueryResult(TargetableTypeEnum.Player, targetables));
+
             return allPossibleTargetables;
             
         }

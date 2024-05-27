@@ -9,6 +9,7 @@ namespace _Scripts.BaseGame.Views.Basics.UI
     public class VRSessionMenuHandler : DanmakuSessionMenuBaseHandler
     {
         [SerializeField] private VRSessionMenuUICoordinator _sessionMenuUICoordinator;
+        [SerializeField] private VRSessionChoiceUICoordinator _sessionChoiceUICoordinator;
         
         public override void AddSessionMenu(DanmakuSessionMenu sessionMenu)
         {
@@ -20,10 +21,10 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             SessionMenus.Add(sessionMenu);
             foreach (var sessionChoice in sessionMenu.SessionChoices)
             {
-                CreateView(sessionChoice);
+                _sessionChoiceUICoordinator.CreateView(sessionChoice);
             }
             
-            _sessionMenuUICoordinator.CreateMenuUI(sessionMenu, () => RemoveSessionMenu(sessionMenu));
+            _sessionMenuUICoordinator.CreateView(sessionMenu);
         }
         
         public override void RemoveSessionMenu(DanmakuSessionMenu sessionMenu)
@@ -37,38 +38,12 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             
             foreach (var sessionChoice in sessionMenu.SessionChoices)
             {
-                var cardPlayView = CardPlayViews.FirstOrDefault(view => view.SessionChoice == sessionChoice);
-                if (cardPlayView != null)
-                {
-                    RemoveCardPlayView(cardPlayView);
-                }
+                _sessionChoiceUICoordinator.RemoveView(sessionChoice);
+
             }
             
-            _sessionMenuUICoordinator.RemoveMenuUI(sessionMenu);
+            _sessionMenuUICoordinator.RemoveView(sessionMenu);
             
-        }
-
-
-        private void CreateView(DanmakuSessionChoice sessionChoice)
-        {
-            var cardPlayView = CreateCardPlayView(sessionChoice);
-            cardPlayView.SetSessionChoice(sessionChoice);
-                    
-            switch (sessionChoice.TargetType)
-            {
-                case var type when type == typeof(DanmakuCharacterCardModel):
-                    // Handle DanmakuCharacterCardModel case
-                            
-                    break;
-                case var type when type == typeof(DanmakuPlayerModel):
-                    // Handle DanmakuPlayerModel case
-                            
-                    break;
-                // Add more cases as needed
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
         }
 
     }

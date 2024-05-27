@@ -138,7 +138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _vrSessionMenuUIPrefab: {fileID: 0}
   _startingTransform: {fileID: 0}
-  _offset: {x: 0, y: 0, z: 0}
 --- !u!1 &7573546341237768457
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +181,7 @@ GameObject:
   - component: {fileID: 456244907166930750}
   - component: {fileID: 7161884157635016607}
   - component: {fileID: 7985072525359687884}
+  - component: {fileID: 1315426300076562149}
   m_Layer: 0
   m_Name: VR Player Session Handler
   m_TagString: Untagged
@@ -236,12 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c49a61d86d450ab34a4adce22cf6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardPlayViews: []
-  CardPlayViewPrefab: {fileID: 7930604268193138202, guid: f6bde5ecd8ae57b42a5be59b6fc55b95,
-    type: 3}
-  StartingTransform: {fileID: 6106270899321244590}
-  Offset: {x: 0.2, y: 0, z: 0}
   _sessionMenuUICoordinator: {fileID: 7985072525359687884}
+  _sessionChoiceUICoordinator: {fileID: 1315426300076562149}
 --- !u!114 &7985072525359687884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +253,23 @@ MonoBehaviour:
   _vrSessionMenuUIPrefab: {fileID: 9139701640631183909, guid: 5d1a9a35e6a7b964699d43668d794363,
     type: 3}
   _startingTransform: {fileID: 7156183038801953747}
-  _offset: {x: 0.2, y: 0, z: 0}
+--- !u!114 &1315426300076562149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027818662606847487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af55d96dd8943a4bb461e90cc127bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardPlayViews: []
+  CardPlayViewPrefab: {fileID: 7930604268193138202, guid: f6bde5ecd8ae57b42a5be59b6fc55b95,
+    type: 3}
+  StartingTransform: {fileID: 6106270899321244590}
+  Offset: {x: 0, y: 0, z: -0.3}
 --- !u!1 &8084782863733586598
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,17 +21,16 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
         public override List<TargetableQueryResult> GetAnyValidTargetables(IDanmakuActivator danmakuActivator)
         {
             List<TargetableQueryResult> allPossibleTargetables = new ();
+            List<IDanmakuTargetable> targetables = new ();
             foreach (var playerModel in InteractionController.PlayerGroupModel.Players)
             {
-                List<IDanmakuTargetable> targetables = new ();
-
                 if (LifeCombatUtility.CanHeal(playerModel))
                 {
                     targetables.Add(playerModel);
-                    allPossibleTargetables.Add(new TargetableQueryResult(TargetableTypeEnum.Player, targetables));
                 }            
             }
-            
+            allPossibleTargetables.Add(new TargetableQueryResult(TargetableTypeEnum.Player, targetables));
+
             return allPossibleTargetables;
         }
 

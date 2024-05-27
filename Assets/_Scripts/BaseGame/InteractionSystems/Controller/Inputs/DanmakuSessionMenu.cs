@@ -4,17 +4,26 @@ using _Scripts.BaseGame.Views.Enum;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
+    
+    public enum ChoiceActionEnum
+    {
+        Confirm,
+        AutoCheck,
+    }
+    
     public class DanmakuSessionMenu
     {
         public DanmakuSession Session { get; private set; }
         public IDanmakuActivator Activator { get; private set; }
         public List<DanmakuSessionChoice> SessionChoices { get; private set; }
         
-        public DanmakuSessionMenu(DanmakuSession session, IDanmakuActivator activator, List<DanmakuSessionChoice> sessionChoices)
+        public ChoiceActionEnum ChoiceAction { get; private set; }
+        public DanmakuSessionMenu(DanmakuSession session, IDanmakuActivator activator, List<DanmakuSessionChoice> sessionChoices, ChoiceActionEnum choiceAction)
         {
             Session = session;
             Activator = activator;
             SessionChoices = sessionChoices;
+            ChoiceAction = choiceAction;
         }
         
         public bool TryEndSession()

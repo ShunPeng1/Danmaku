@@ -67,7 +67,7 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         public void StartDrawCharacter(int eachPlayerCharacterChoiceCount)
         {
-            var menus = new ObservableList<DanmakuSessionMenu>();
+            var menus = new List<DanmakuSessionMenu>();
             
             var session = new DanmakuSession.Builder()
                 .WithPlayingPlayerModel(PlayerGroupModel.Players.ConvertAll(player => (IDanmakuActivator) player))
@@ -89,9 +89,9 @@ namespace _Scripts.CoreGame.InteractionSystems
                 var characterCardChoices = characterCards.ConvertAll(card => (card) as IDanmakuTargetable);
                 var sessionChoices = new List<DanmakuSessionChoice>();
                 
-                DanmakuSessionMenu menu = new DanmakuSessionMenu(session, player, sessionChoices);
+                DanmakuSessionMenu menu = new DanmakuSessionMenu(session, player, sessionChoices, ChoiceActionEnum.AutoCheck);
                 
-                sessionChoices.Add(new DanmakuSessionChoice(menu, characterCardChoices, ChoiceActionEnum.AutoCheck));
+                sessionChoices.Add(new DanmakuSessionChoice(menu, characterCardChoices));
                 
                 menus.Add(menu);
                 
@@ -111,10 +111,10 @@ namespace _Scripts.CoreGame.InteractionSystems
             // Start the session
             session.StartSession();
         }
-        
-        public void AssignCharacterCard(List<DanmakuSessionMenu> danmakuSessionMenus)
+
+        private void AssignCharacterCard(DanmakuSession session)
         {
-            
+            List<DanmakuSessionMenu> danmakuSessionMenus = session.GetSessionMenus();
             foreach (var menu in danmakuSessionMenus)
             {
                 var player = (DanmakuPlayerModel) menu.Activator;

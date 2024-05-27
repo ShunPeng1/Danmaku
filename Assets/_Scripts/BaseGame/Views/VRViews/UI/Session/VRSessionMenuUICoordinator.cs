@@ -9,27 +9,39 @@ namespace _Scripts.BaseGame.Views.Basics.UI
     {
         [SerializeField] private VRSessionMenuUI _vrSessionMenuUIPrefab;
         [SerializeField] private Transform _startingTransform;
-        [SerializeField] private Vector3 _offset;
         
-        private Dictionary<DanmakuSessionMenu, VRSessionMenuUI> _vrMenuUIs = new ();
         
+        private readonly Dictionary<DanmakuSessionMenu, VRSessionMenuUI> _vrMenuUIs = new ();
+        private readonly List<DanmakuSessionMenu> _sessionMenus = new ();
+        private VRSessionMenuUI _currentMenuUI;
 
-        public void CreateMenuUI(DanmakuSessionMenu sessionMenu, Action endAction = null)
+        public void CreateView(DanmakuSessionMenu sessionMenu)
         {
+            if (_currentMenuUI != null)
+            {
+                _currentMenuUI.gameObject.SetActive(false);
+            }
+            
             var vrMenuUI = Instantiate(_vrSessionMenuUIPrefab, _startingTransform);
             
             var uiTransform = vrMenuUI.transform;
             
             uiTransform.position = _startingTransform.position;
-            uiTransform.localPosition += _startingTransform.position * _vrMenuUIs.Count;
+            //uiTransform.localPosition += _startingTransform.position * _vrMenuUIs.Count;
             uiTransform.rotation = _startingTransform.rotation;
-            vrMenuUI.SetOneTimeButtonAction(sessionMenu.TryEndSession, endAction);
+
+            if (sessionMenu.ChoiceAction == ChoiceActionEnum.Confirm)
+            {
+                vrMenuUI.SetOneTimeButtonAction(sessionMenu.TryEndSession);
+            }
             
             _vrMenuUIs.Add(sessionMenu, vrMenuUI);
+            _sessionMenus.Add(sessionMenu);
+            _currentMenuUI = vrMenuUI;
             
         }
 
-        public void RemoveMenuUI(DanmakuSessionMenu sessionMenu)
+        public void RemoveView(DanmakuSessionMenu sessionMenu)
         {
             if (!_vrMenuUIs.ContainsKey(sessionMenu))
             {
@@ -39,6 +51,20 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             var vrMenuUI = _vrMenuUIs[sessionMenu];
             _vrMenuUIs.Remove(sessionMenu);
             Destroy(vrMenuUI.gameObject);
+            
+            _sessionMenus.Remove(sessionMenu);
+            
+            if (_sessionMenus.Count == 0)
+            {
+                _currentMenuUI = null;
+                return;
+            }
+            else
+            {
+                _currentMenuUI = _vrMenuUIs[_sessionMenus[^1]];
+                _currentMenuUI.gameObject.SetActive(true);
+            }
+            
         }
         
         public void ClearMenuUI()
@@ -48,6 +74,9 @@ namespace _Scripts.BaseGame.Views.Basics.UI
                 Destroy(vrMenuUI.gameObject);
             }
             _vrMenuUIs.Clear();
+            _sessionMenus.Clear();
+            _currentMenuUI = null;
+            
         }
         
         public void SetMenuUIActive(DanmakuSessionMenu sessionMenu, bool active)

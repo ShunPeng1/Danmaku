@@ -3,7 +3,7 @@
 namespace _Scripts.BaseGame.InteractionSystems.Interfaces
 {
 
-    public interface IDanmakuCardRule
+    public interface IDanmakuCardRule : IDanmakuTargetable
     {
         
         public void InitializeCard();

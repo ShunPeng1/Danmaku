@@ -5,11 +5,6 @@ using _Scripts.BaseGame.Views.Abstracts;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
-    public enum ChoiceActionEnum
-    {
-        Confirm,
-        AutoCheck,
-    }
     
     public class DanmakuSessionChoice
     {
@@ -17,11 +12,11 @@ namespace _Scripts.CoreGame.InteractionSystems
         public List<IDanmakuTargetable> Targetables { get; private set; }
         public Func<IDanmakuTargetable, bool> CardFilter { get; private set; }
         public IDanmakuTargetable SelectedTarget { get; private set; }
-        public ChoiceActionEnum ChoiceAction { get; private set; }
         public Type TargetType => Targetables[0].GetType(); 
-        public Action<IDanmakuTargetable> OnTargetSelected { get; set; }
+        public Action<IDanmakuTargetable> OnTargetSelected { get; set; } = delegate{};
+        public Action<IDanmakuTargetable> OnTargetDeselected { get; set; } = delegate{}; 
         
-        public DanmakuSessionChoice(DanmakuSessionMenu menu, List<IDanmakuTargetable> targetables, ChoiceActionEnum choiceAction, Func<IDanmakuTargetable, bool> cardFilter = null)
+        public DanmakuSessionChoice(DanmakuSessionMenu menu, List<IDanmakuTargetable> targetables, Func<IDanmakuTargetable, bool> cardFilter = null)
         {
             if (targetables.Count == 0)
             {
@@ -29,7 +24,6 @@ namespace _Scripts.CoreGame.InteractionSystems
             }
          
             Targetables = targetables;
-            ChoiceAction = choiceAction;
             Menu = menu;
             CardFilter = cardFilter;
             
@@ -44,7 +38,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 OnTargetSelected?.Invoke(target);
                 
                
-                if (ChoiceAction == ChoiceActionEnum.AutoCheck)
+                if (Menu.ChoiceAction == ChoiceActionEnum.AutoCheck)
                 {
                     Menu.TryEndSession();
                 }
@@ -53,6 +47,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         public void DeselectTarget()
         {
+            OnTargetDeselected?.Invoke(SelectedTarget);
             SelectedTarget = null;
         }
         
