@@ -136,8 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6578ff752a8c4cf7a988083180333fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _vrSessionMenuUIPrefab: {fileID: 0}
-  _startingTransform: {fileID: 0}
+  _vrSessionMenuUIPrefab: {fileID: 9139701640631183909, guid: 5d1a9a35e6a7b964699d43668d794363,
+    type: 3}
+  _startingTransform: {fileID: 7156183038801953747}
 --- !u!1 &7573546341237768457
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,11 +266,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af55d96dd8943a4bb461e90cc127bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardPlayViews: []
-  CardPlayViewPrefab: {fileID: 7930604268193138202, guid: f6bde5ecd8ae57b42a5be59b6fc55b95,
-    type: 3}
-  StartingTransform: {fileID: 6106270899321244590}
-  Offset: {x: 0, y: 0, z: -0.3}
+  _choiceHandlerRepositories:
+  - HandlerPrefab: {fileID: 7930604268193138202, guid: f6bde5ecd8ae57b42a5be59b6fc55b95,
+      type: 3}
+    TargetableType: DanmakuMainDeckCardModel
+    PlaceKindEnum: 0
+  - HandlerPrefab: {fileID: 7930604268193138202, guid: f6bde5ecd8ae57b42a5be59b6fc55b95,
+      type: 3}
+    TargetableType: DanmakuCharacterCardModel
+    PlaceKindEnum: 0
+  - HandlerPrefab: {fileID: 0}
+    TargetableType: DanmakuPlayerModel
+    PlaceKindEnum: 1
+  _placeTypeData:
+  - PlaceKindEnum: 0
+    StartingTransform: {fileID: 6106270899321244590}
+    Offset: {x: 0, y: 0, z: 0.3}
+    HandlerCount: 0
+  - PlaceKindEnum: 1
+    StartingTransform: {fileID: 3919288933987748946}
+    Offset: {x: 0, y: 0, z: 0}
+    HandlerCount: 0
 --- !u!1 &8084782863733586598
 GameObject:
   m_ObjectHideFlags: 0

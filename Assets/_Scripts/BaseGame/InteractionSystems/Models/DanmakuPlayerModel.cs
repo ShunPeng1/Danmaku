@@ -1,10 +1,12 @@
 ﻿using _Scripts.BaseGame.InteractionSystems.Interfaces;
+using _Scripts.CoreGame.InteractionSystems.Attributes;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using _Scripts.CoreGame.InteractionSystems.Roles;
 using _Scripts.CoreGame.InteractionSystems.Stats;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
+    [DanmakuTargetableClass]
     public class DanmakuPlayerModel : IDanmakuActivator, IDanmakuTargetable
     {
         public int PlayerId { get; private set; }

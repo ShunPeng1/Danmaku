@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Scripts.CoreGame.InteractionSystems;
+using _Scripts.CoreGame.InteractionSystems.Attributes;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -9,78 +10,107 @@ namespace _Scripts.BaseGame.Views.Basics.UI
 {
     public class VRSessionChoiceUICoordinator : MonoBehaviour
     {
-        [ShowInInspector, ReadOnly] public List<DanmakuCardPlayBaseView> CardPlayViews;
-        [SerializeField] protected DanmakuCardPlayBaseView CardPlayViewPrefab;
-        [SerializeField] protected Transform StartingTransform;
-        [SerializeField] protected Vector3 Offset;
+        [SerializeField] private List<ChoiceHandlerRepository> _choiceHandlerRepositories;
+        [SerializeField] private List<PlaceKindData> _placeTypeData;
+
+        [ShowInInspector, ReadOnly] private Dictionary<DanmakuSessionChoice, ChoiceHandlerData> _choiceHandlers = new();
+
+        public enum PlaceKindEnum
+        {
+            World,
+            Canvas
+        }
+
+        private class ChoiceHandlerData
+        {
+            public DanmakuSessionChoiceBaseHandler Handler;
+            public PlaceKindData PlaceKindData;
+            
+        }
+        
+        [System.Serializable]
+        public class PlaceKindData
+        {
+            public PlaceKindEnum PlaceKindEnum;
+            public Transform StartingTransform;
+            public Vector3 Offset;
+            [ReadOnly] public int HandlerCount;
+        }
+        
+        [System.Serializable]
+        public class ChoiceHandlerRepository
+        {
+            public DanmakuSessionChoiceBaseHandler HandlerPrefab;
+            [DanmakuTargetableProperty]
+            public string TargetableType;
+            public PlaceKindEnum PlaceKindEnum = PlaceKindEnum.World;
+        }
         
         public void CreateView(DanmakuSessionChoice sessionChoice)
         {
+            var choiceHandlerRepository = _choiceHandlerRepositories.FirstOrDefault(handler => handler.TargetableType == sessionChoice.TargetType.Name);
             
-                    
-            switch (sessionChoice.TargetType)
+            if (choiceHandlerRepository == null)
             {
-                case var type when type == typeof(DanmakuCharacterCardModel):
-                    // Handle DanmakuCharacterCardModel case
-                    var characterCardPlayView = CreateCardPlayView(sessionChoice);
-                    characterCardPlayView.SetSessionChoice(sessionChoice);
+                Debug.LogError($"No handler found for {sessionChoice.TargetType.Name}");
+                return;
+            }
+
+            switch (choiceHandlerRepository.PlaceKindEnum)
+            {
+                case PlaceKindEnum.World:
+                    var handler = CreateWorldHandler(sessionChoice,choiceHandlerRepository.HandlerPrefab);
+                    handler.SetSessionChoice(sessionChoice);
+
                     break;
+                case PlaceKindEnum.Canvas:
+                    Debug.Log("Canvas not implemented yet");
                     
-                case var type when type == typeof(DanmakuMainDeckCardModel):
-                    // Handle DanmakuMainDeckCardModel case
-                    var mainDeckCardPlayView = CreateCardPlayView(sessionChoice);
-                    mainDeckCardPlayView.SetSessionChoice(sessionChoice);
-                            
                     break;
-                case var type when type == typeof(DanmakuPlayerModel):
-                    // Handle DanmakuPlayerModel case
-                    Debug.Log("Create Player Model Choice");
-                            
-                    break;
-                // Add more cases as needed
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            
+            
         }
         
         public void RemoveView(DanmakuSessionChoice sessionChoice)
         {
-            var cardPlayView = CardPlayViews.FirstOrDefault(view => view.SessionChoice == sessionChoice);
-            if (cardPlayView != null)
-            {
-                RemoveCardPlayView(cardPlayView);
-            }
-
-        }
-
-        private DanmakuCardPlayBaseView CreateCardPlayView(DanmakuSessionChoice sessionChoice)
-        {
-            var cardPlayView = Instantiate(CardPlayViewPrefab, StartingTransform);
-
-            var cardTransform = cardPlayView.transform;
-            cardTransform.position = StartingTransform.position;
-            cardTransform.localPosition += StartingTransform.position * CardPlayViews.Count;
-            cardTransform.rotation = StartingTransform.rotation;
+            var isExist = _choiceHandlers.TryGetValue(sessionChoice, out var handler);
+            if (!isExist) return;
             
-            cardPlayView.SetSessionChoice(sessionChoice);
-            CardPlayViews.Add(cardPlayView);
-            return cardPlayView;
+            _choiceHandlers.Remove(sessionChoice);
+            Destroy(handler.Handler.gameObject);
+            handler.PlaceKindData.HandlerCount--;
+
         }
 
-        private void RemoveCardPlayView(DanmakuCardPlayBaseView cardPlayView)
+        private DanmakuSessionChoiceBaseHandler CreateWorldHandler(DanmakuSessionChoice sessionChoice, DanmakuSessionChoiceBaseHandler handlerPrefab)
         {
-            CardPlayViews.Remove(cardPlayView);
-            Destroy(cardPlayView.gameObject);
+            PlaceKindData worldPlaceKindData = _placeTypeData.FirstOrDefault(data => data.PlaceKindEnum == PlaceKindEnum.World);
+            
+            if (worldPlaceKindData == null)
+            {
+                Debug.LogError("No world place type data found");
+                return null;
+            }
+            
+            var cardHandlerView = Instantiate(handlerPrefab, worldPlaceKindData.StartingTransform);
+
+            var cardTransform = cardHandlerView.transform;
+            cardTransform.position = worldPlaceKindData.StartingTransform.position;
+            cardTransform.localPosition += worldPlaceKindData.Offset * worldPlaceKindData.HandlerCount;
+            cardTransform.rotation = worldPlaceKindData.StartingTransform.rotation;
+            
+            cardHandlerView.SetSessionChoice(sessionChoice);
+            
+            _choiceHandlers.Add(sessionChoice,new ChoiceHandlerData
+            {
+                Handler = cardHandlerView,
+                PlaceKindData = worldPlaceKindData
+            });
+            return cardHandlerView;
         }
         
-        private void ClearCardPlayViews()
-        {
-            foreach (var cardPlayView in CardPlayViews)
-            {
-                Destroy(cardPlayView.gameObject);
-            }
-            CardPlayViews.Clear();
-        }
-
     }
 }

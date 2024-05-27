@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace _Scripts.BaseGame.Views.Basics
 {
-    public class VRCardPlayBaseView : DanmakuCardPlayBaseView
+    public class VRCardChoiceHandler : DanmakuSessionChoiceBaseHandler
     {
         [SerializeField] private SnapZone _playCardSnapZone;
         [SerializeField] private PlayCardSnapZoneFilter _playCardSnapZoneFilter;
@@ -18,28 +18,25 @@ namespace _Scripts.BaseGame.Views.Basics
         
         private Func<Grabbable, bool> _grabbableFilter;
 
-
-        protected override void Awake()
+        protected void Start()
         {
-            base.Awake();
-            
             _playCardSnapZone.OnSnapEvent.AddListener(SetPlayingCard);
             _playCardSnapZone.OnDetachEvent.AddListener(UnsetPlayingCard);
             _playCardSnapZoneFilter.SetOwner(SessionHandler.PlayerView.PlayerModel);
-        }
-        
-        public override void SetSessionChoice(DanmakuSessionChoice sessionChoice)
-        {
-            base.SetSessionChoice(sessionChoice);
 
+            OnSessionChoiceSet += SetCardFilter;
+            OnSessionChoiceUnset += UnsetCardFilter;
+            
+        }
+
+        public void SetCardFilter(DanmakuSessionChoice sessionChoice)
+        {
             _grabbableFilter = ConvertFilter(sessionChoice.CardFilter);
             _playCardSnapZoneFilter.AddMustIncludeFilter(_grabbableFilter);
         }
         
-        public override void UnsetSessionChoice()
+        public void UnsetCardFilter(DanmakuSessionChoice danmakuSessionChoice)
         {
-            base.UnsetSessionChoice();
-            
             _playCardSnapZoneFilter.RemoveMustIncludeFilter(_grabbableFilter);
         }
         

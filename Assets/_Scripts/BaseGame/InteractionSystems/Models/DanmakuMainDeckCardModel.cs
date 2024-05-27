@@ -2,11 +2,12 @@
 using System.Linq;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.ScriptableData;
-
+using _Scripts.CoreGame.InteractionSystems.Attributes;
 using Shun_Utilities;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
+    [DanmakuTargetableClass]
     public class DanmakuMainDeckCardModel : IDanmakuCard
     {
         public DeckCardScriptableData DeckCardData { get; private set; }

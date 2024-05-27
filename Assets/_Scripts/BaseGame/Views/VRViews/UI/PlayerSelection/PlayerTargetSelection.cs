@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace _Scripts.BaseGame.Views.Basics.UI.PlayerSelection
 {
-    public class PlayerTargetSelection : MonoBehaviour, ITargetSelectionView
+    public class PlayerTargetSelection : MonoBehaviour
     {
         [SerializeField] private PlayerStandingPositionMap _playerStandingPositionMap;
-
         
         [Header("Prefabs")]
         [SerializeField] private PlayerTargetSelectionButton _playerTargetSelectionButtonPrefab;

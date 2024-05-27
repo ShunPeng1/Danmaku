@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
+using _Scripts.CoreGame.InteractionSystems.Attributes;
 
 namespace _Scripts.BaseGame.InteractionSystems.Interfaces
 {
-
     public interface IDanmakuCardRule : IDanmakuTargetable
     {
-        
         public void InitializeCard();
         
         public abstract IDanmakuActivator GetAnyValidActivator();
