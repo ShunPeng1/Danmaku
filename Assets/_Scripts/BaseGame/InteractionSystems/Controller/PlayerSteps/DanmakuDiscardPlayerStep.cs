@@ -7,7 +7,7 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
     {
         public bool CanEndStep(DanmakuInteractionController interactionController, DanmakuPlayerModel playerModel, DanmakuPlayerBaseView playerView)
         {
-            return playerModel.CardHandModel.Cards.Count <= playerModel.HandSize.Get();
+            return playerModel.DeckCardHandModel.Cards.Count <= playerModel.HandSize.Get();
         }
 
         public void Execute(DanmakuInteractionController interactionController, DanmakuPlayerModel playerModel, DanmakuPlayerBaseView playerView, Action finishExecuteCallback = null)

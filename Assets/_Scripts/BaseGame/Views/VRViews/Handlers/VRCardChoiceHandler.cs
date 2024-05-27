@@ -18,8 +18,10 @@ namespace _Scripts.BaseGame.Views.Basics
         
         private Func<Grabbable, bool> _grabbableFilter;
 
-        protected void Start()
+        protected override void Awake()
         {
+            base.Awake();
+            
             _playCardSnapZone.OnSnapEvent.AddListener(SetPlayingCard);
             _playCardSnapZone.OnDetachEvent.AddListener(UnsetPlayingCard);
             _playCardSnapZoneFilter.SetOwner(SessionHandler.PlayerView.PlayerModel);

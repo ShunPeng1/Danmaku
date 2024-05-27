@@ -41,7 +41,7 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
 
             _playCardChoice = new DanmakuSessionChoice(
                 menu,
-                new List<IDanmakuTargetable>(playerModel.CardHandModel.Cards.Items.ToList()),
+                new List<IDanmakuTargetable>(playerModel.DeckCardHandModel.Cards.Items.ToList()),
                 IsCardPlayable);
             choices.Add(_playCardChoice);
 
@@ -88,6 +88,8 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
             }
             */
             
+            _cardChoiceMenu = new DanmakuSessionMenu(_session, _playCardChoice.Menu.Activator, choices, ChoiceActionEnum.Confirm);
+
             foreach (var ruleTargetables in ruleTargetablesQueryResults)
             {
                 foreach (var targetableQueryResult in ruleTargetables.Targetables)
@@ -99,8 +101,6 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
                     ));
                 }
             }
-            
-            _cardChoiceMenu = new DanmakuSessionMenu(_session, _playCardChoice.Menu.Activator, choices, ChoiceActionEnum.Confirm);
             
             _session.AddSessionMenu(_cardChoiceMenu);
             

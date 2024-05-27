@@ -40,7 +40,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         public void DrawCard(DanmakuPlayerModel player)
         {
             var card = BoardModel.MainDeckModel.PopCardFront();
-            player.CardHandModel.AddCard(card);
+            player.DeckCardHandModel.AddCard(card);
             
             var boardView = _interactionController.InteractionViewRepo.BoardView;
             boardView.DrawCardFromMainDeck(player, (DanmakuMainDeckCardModel) card);
@@ -57,7 +57,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             {
                 var card = BoardModel.MainDeckModel.PopCardFront();
                 cards.Add((DanmakuMainDeckCardModel) card);
-                player.CardHandModel.AddCard(card);
+                player.DeckCardHandModel.AddCard(card);
             }
             
             var boardView = _interactionController.InteractionViewRepo.BoardView;
@@ -120,9 +120,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                 var player = (DanmakuPlayerModel) menu.Activator;
                 var chosenCard = (DanmakuCharacterCardModel) menu.SessionChoices[0].SelectedTarget;
                 
-                player.CardHandModel.AddCard(chosenCard);
-                player.InitializeCharacter(chosenCard.Character);
-                
+                player.CharacterCardHandModel.AddCard(chosenCard);
                 
                 InteractionViewRepo.BoardView.DiscardCharacterCardForSelection(player);
                 InteractionViewRepo.GetPlayerView(player).CharacterView.SetupCharacter(chosenCard);

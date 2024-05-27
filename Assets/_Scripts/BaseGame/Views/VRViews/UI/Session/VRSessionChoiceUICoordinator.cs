@@ -59,12 +59,13 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             switch (choiceHandlerRepository.PlaceKindEnum)
             {
                 case PlaceKindEnum.World:
-                    var handler = CreateWorldHandler(sessionChoice,choiceHandlerRepository.HandlerPrefab);
-                    handler.SetSessionChoice(sessionChoice);
+                    var worldHandler = CreateWorldHandler(sessionChoice,choiceHandlerRepository.HandlerPrefab);
+                    worldHandler.SetSessionChoice(sessionChoice);
 
                     break;
                 case PlaceKindEnum.Canvas:
-                    Debug.Log("Canvas not implemented yet");
+                    var canvasHandler = CreateCanvasHandler(sessionChoice,choiceHandlerRepository.HandlerPrefab);
+                    canvasHandler.SetSessionChoice(sessionChoice);
                     
                     break;
                 default:
@@ -73,17 +74,7 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             
             
         }
-        
-        public void RemoveView(DanmakuSessionChoice sessionChoice)
-        {
-            var isExist = _choiceHandlers.TryGetValue(sessionChoice, out var handler);
-            if (!isExist) return;
-            
-            _choiceHandlers.Remove(sessionChoice);
-            Destroy(handler.Handler.gameObject);
-            handler.PlaceKindData.HandlerCount--;
 
-        }
 
         private DanmakuSessionChoiceBaseHandler CreateWorldHandler(DanmakuSessionChoice sessionChoice, DanmakuSessionChoiceBaseHandler handlerPrefab)
         {
@@ -102,8 +93,6 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             cardTransform.localPosition += worldPlaceKindData.Offset * worldPlaceKindData.HandlerCount;
             cardTransform.rotation = worldPlaceKindData.StartingTransform.rotation;
             
-            cardHandlerView.SetSessionChoice(sessionChoice);
-            
             _choiceHandlers.Add(sessionChoice,new ChoiceHandlerData
             {
                 Handler = cardHandlerView,
@@ -111,6 +100,43 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             });
             return cardHandlerView;
         }
-        
+
+        private DanmakuSessionChoiceBaseHandler CreateCanvasHandler(DanmakuSessionChoice sessionChoice, DanmakuSessionChoiceBaseHandler handlerPrefab)
+        {
+            PlaceKindData canvasPlaceKindData = _placeTypeData.FirstOrDefault(data => data.PlaceKindEnum == PlaceKindEnum.Canvas);
+            
+            if (canvasPlaceKindData == null)
+            {
+                Debug.LogError("No canvas place type data found");
+                return null;
+            }
+            
+            var cardHandlerView = Instantiate(handlerPrefab, canvasPlaceKindData.StartingTransform);
+
+            var cardTransform = cardHandlerView.transform;
+            cardTransform.position = canvasPlaceKindData.StartingTransform.position;
+            cardTransform.localPosition += canvasPlaceKindData.Offset * canvasPlaceKindData.HandlerCount;
+            cardTransform.rotation = canvasPlaceKindData.StartingTransform.rotation;
+            
+            _choiceHandlers.Add(sessionChoice,new ChoiceHandlerData
+            {
+                Handler = cardHandlerView,
+                PlaceKindData = canvasPlaceKindData
+            });
+            return cardHandlerView;
+            
+        }        
+        public void RemoveView(DanmakuSessionChoice sessionChoice)
+        {
+            var isExist = _choiceHandlers.TryGetValue(sessionChoice, out var handler);
+            if (!isExist) return;
+            
+            _choiceHandlers.Remove(sessionChoice);
+            Destroy(handler.Handler.gameObject);
+            handler.PlaceKindData.HandlerCount--;
+
+        }
+
+    
     }
 }

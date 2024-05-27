@@ -16,6 +16,11 @@ namespace _Scripts.CoreGame.InteractionSystems
             Owner = owner;
         }
 
+        public T GetFrontCard<T>() where T : IDanmakuCard
+        {
+            return (T) Cards.Items[0];
+        }
+        
         public void AddCard(IDanmakuCard danmakuCard)
         {
             if (Cards.TryAdd(danmakuCard))

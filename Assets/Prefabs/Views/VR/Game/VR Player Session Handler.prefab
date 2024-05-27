@@ -275,7 +275,8 @@ MonoBehaviour:
       type: 3}
     TargetableType: DanmakuCharacterCardModel
     PlaceKindEnum: 0
-  - HandlerPrefab: {fileID: 0}
+  - HandlerPrefab: {fileID: 4265220772140344660, guid: c664a3fb8b63caf4a84a18d03108e1d6,
+      type: 3}
     TargetableType: DanmakuPlayerModel
     PlaceKindEnum: 1
   _placeTypeData:
@@ -300,7 +301,6 @@ GameObject:
   - component: {fileID: 6790693359000640460}
   - component: {fileID: 5288615217601738055}
   - component: {fileID: 6063391738340225699}
-  - component: {fileID: 7731765626423246181}
   m_Layer: 5
   m_Name: Target Selection Canvas
   m_TagString: Untagged
@@ -402,19 +402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee805472840d5843b863535775bbe97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7731765626423246181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8084782863733586598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e8a9e482f3141debb6a5a67918eb9f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerTargetSelectionPrefab: {fileID: 0}
 --- !u!1 &8102662776446345175
 GameObject:
   m_ObjectHideFlags: 0

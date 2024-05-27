@@ -114,8 +114,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7536005431688136451}
+  - component: {fileID: 4265220772140344660}
   - component: {fileID: 1569312654982755186}
-  - component: {fileID: -3485993457436803301}
   m_Layer: 5
   m_Name: Player Target Selection
   m_TagString: Untagged
@@ -144,6 +144,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4265220772140344660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3517133209339945466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad88153392b4626b3cff180ba032609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerStandingPositionMap: {fileID: 1569312654982755186}
+  _playerTargetSelectionButtonPrefab: {fileID: 4082758771044673230, guid: d74d1a077690fa040a526fe04cf36cfe,
+    type: 3}
 --- !u!114 &1569312654982755186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,21 +186,6 @@ MonoBehaviour:
   - {fileID: 6375717812243259193}
   - {fileID: 4427148315021611096}
   - {fileID: 1990253229086984846}
---- !u!114 &-3485993457436803301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3517133209339945466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2260c3af1924134af4449377ad0da1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerStandingPositionMap: {fileID: 1569312654982755186}
-  _playerTargetSelectionButtonPrefab: {fileID: 4082758771044673230, guid: d74d1a077690fa040a526fe04cf36cfe,
-    type: 3}
 --- !u!1 &3712232716537491884
 GameObject:
   m_ObjectHideFlags: 0

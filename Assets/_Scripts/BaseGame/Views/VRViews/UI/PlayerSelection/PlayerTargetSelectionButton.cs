@@ -1,4 +1,5 @@
 ﻿using System;
+using _Scripts.BaseGame.Views.VRViews.Handlers;
 using _Scripts.CoreGame.InteractionSystems;
 using TMPro;
 using UnityEngine;
@@ -12,21 +13,33 @@ namespace _Scripts.BaseGame.Views.Basics.UI.PlayerSelection
         [SerializeField] private TMP_Text _playerName;
         [SerializeField] private Button _button;
 
+        private VRPlayerChoiceHandler _playerChoiceHandler;
+        private DanmakuPlayerModel _playerModel;
         
-        private void Awake()
+        
+        public void SetPlayerTargetSelection(VRPlayerChoiceHandler playerChoiceHandler)
         {
-            _button.onClick.AddListener(SelectPlayer);
+            _playerChoiceHandler = playerChoiceHandler;
         }
 
-        private void Initialize(DanmakuPlayerModel playerModel)
+        public void SetPlayerModel(DanmakuPlayerModel playerModel, bool isTargetable)
         {
+            _playerModel = playerModel;
+
+            var characterCardData = playerModel.CharacterCardHandModel.GetFrontCard<DanmakuCharacterCardModel>().CharacterCardData;
+            _characterImage.sprite = characterCardData.CardIllustration;
+            _playerName.text = characterCardData.CardName;
             
-            
+            _button.interactable = isTargetable;
+            if (isTargetable)
+            {
+                _button.onClick.AddListener(SelectPlayer);
+            }
         }
 
         private void SelectPlayer()
         {
-            Debug.Log("Selecting player");
+            _playerChoiceHandler.SelectPlayer(_playerModel);
         }
     }
 }

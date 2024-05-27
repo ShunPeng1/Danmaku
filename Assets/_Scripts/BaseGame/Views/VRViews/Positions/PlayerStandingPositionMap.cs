@@ -10,13 +10,15 @@ namespace _Scripts.BaseGame.Views.Positions
         [SerializeField] private List<Transform> _leftPositions;
         [SerializeField] private List<Transform> _rightPositions;
         
-        public Transform GetPlayerPosition(int totalPlayer, int index)
+        public Transform GetPlayerPosition(int totalPlayer, int index, int offset = 0)
         {
             if (index < 0 || index >= totalPlayer)
             {
                 Debug.LogError("Invalid index");
                 return null;
             }
+            
+            index = (index + offset) % totalPlayer;
             
             switch (totalPlayer)
             {

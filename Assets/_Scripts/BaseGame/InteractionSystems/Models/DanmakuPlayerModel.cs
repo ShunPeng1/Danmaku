@@ -11,7 +11,6 @@ namespace _Scripts.CoreGame.InteractionSystems
     {
         public int PlayerId { get; private set; }
         public IDanmakuRole Role { get; private set;}
-        public IDanmakuCharacter DanmakuCharacter { get; private set;}
         public bool IsAlive { get; private set; } = true;
         
         // Stats
@@ -24,7 +23,8 @@ namespace _Scripts.CoreGame.InteractionSystems
         public PlayerStat Power { get; private set; }
         
         // Card Hand and Items Board
-        public DanmakuCardHandModel CardHandModel { get; private set; }
+        public DanmakuCardHandModel DeckCardHandModel { get; private set; }
+        public DanmakuCardHandModel CharacterCardHandModel { get; private set; }
         
         // Turn Stats
         public PlayerStat CardDrawIncomeCount { get; private set; }
@@ -40,7 +40,8 @@ namespace _Scripts.CoreGame.InteractionSystems
             Range = new PlayerStat(1);
             Power = new PlayerStat(1);
         
-            CardHandModel = new DanmakuCardHandModel(this);
+            DeckCardHandModel = new DanmakuCardHandModel(this);
+            CharacterCardHandModel = new DanmakuCardHandModel(this);
             
         }
 
@@ -49,10 +50,6 @@ namespace _Scripts.CoreGame.InteractionSystems
             Role = role;
         }
         
-        public void InitializeCharacter(IDanmakuCharacter character)
-        {
-            DanmakuCharacter = character;
-        }
                 
         public void InitializeStats(
             PlayerStat life, 
@@ -76,6 +73,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             SpellCardPlayedCount = spellCardPlayedCount;
             
         }
+        
 
     }
 }

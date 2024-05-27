@@ -5,5 +5,6 @@ namespace _Scripts.CoreGame.InteractionSystems
     public class DanmakuCharacterBase : IDanmakuCharacter
     {
         
+        
     }
 }
