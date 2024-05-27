@@ -4,24 +4,29 @@ using UnityEngine;
 
 namespace _Scripts.BaseGame.Views.Basics
 {
-    public class DanmakuCardPlayBaseView : MonoBehaviour
+    public class DanmakuSessionChoiceBaseHandler : MonoBehaviour
     {
         protected DanmakuSessionBaseHandler SessionHandler;
         public DanmakuSessionChoice SessionChoice { get; protected set; }
+        
+        public Action<DanmakuSessionChoice> OnSessionChoiceSet;
+        public Action<DanmakuSessionChoice> OnSessionChoiceUnset;
 
-        protected virtual void Awake()
+        protected void Awake()
         {
             SessionHandler = transform.GetComponentInParent<DanmakuSessionBaseHandler>();
         }
 
-        public virtual void SetSessionChoice(DanmakuSessionChoice sessionChoice)
+        public void SetSessionChoice(DanmakuSessionChoice sessionChoice)
         {
             SessionChoice = sessionChoice;
+            OnSessionChoiceSet?.Invoke(SessionChoice);
         }
         
-        public virtual void UnsetSessionChoice()
+        public void UnsetSessionChoice()
         {
             SessionChoice = null;
+            OnSessionChoiceUnset?.Invoke(SessionChoice);
         }
         
     }
