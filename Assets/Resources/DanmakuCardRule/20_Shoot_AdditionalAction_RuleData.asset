@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
   m_Name: 20_Shoot_AdditionalAction_RuleData
   m_EditorClassIdentifier: 
+  CardRuleName: 
   CardRule: 'Attack a player in range.
 
     You may discard Danmaku cards to give
@@ -26,3 +27,5 @@ MonoBehaviour:
     CardRuleTextIconEnum: 1
   - Value: 1
     CardRuleTextIconEnum: 4
+  VisualizerPrefab: {fileID: 372840726830190813, guid: 2b7519b1e58b0a543bc695b5724502bc,
+    type: 3}
