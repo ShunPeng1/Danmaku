@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
   m_Name: 3_Bomb_Invocation_RuleData
   m_EditorClassIdentifier: 
+  CardRuleName: 
   CardRule: 'Activate your {0} card.
 
     You can only activate {1} card per round.'
@@ -22,3 +23,5 @@ MonoBehaviour:
     CardRuleTextIconEnum: 6
   - Value: 1
     CardRuleTextIconEnum: 6
+  VisualizerPrefab: {fileID: 372840726830190813, guid: 2b7519b1e58b0a543bc695b5724502bc,
+    type: 3}
