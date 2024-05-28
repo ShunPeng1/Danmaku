@@ -14,10 +14,9 @@ namespace _Scripts.BaseGame.Views
         [ShowInInspector, ReadOnly] public DanmakuCardDeckBaseView MainDeckView;
         [ShowInInspector, ReadOnly] public DanmakuCardDeckBaseView DiscardDeckView;
         [ShowInInspector, ReadOnly] public DanmakuCardDeckBaseView IncidentDeckView;
-        private void Awake()
+        protected virtual void Awake()
         {
             InitializeViews();
-            InitializeInherit();
         }
 
         protected abstract void InitializeInherit();

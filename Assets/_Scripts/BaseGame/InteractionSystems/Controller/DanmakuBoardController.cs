@@ -71,7 +71,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             
             var session = new DanmakuSession.Builder()
                 .WithPlayingPlayerModel(PlayerGroupModel.Players.ConvertAll(player => (IDanmakuActivator) player))
-                .WithPlayerSessionKindEnum(EndSessionKindEnum.AllPlayed)
+                .WithPlayerSessionKindEnum(MenuEndCheckEnum.AllPlayed)
                 .WithPlayingSessionMenus(menus)
                 .WithCountDownTime(30f)
                 .Build(_interactionController);

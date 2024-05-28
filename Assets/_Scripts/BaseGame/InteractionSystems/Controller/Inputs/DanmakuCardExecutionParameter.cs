@@ -19,6 +19,7 @@ namespace _Scripts.CoreGame.InteractionSystems
             Targetable = new ();
         }
         
+        
         public void AddTarget(IDanmakuTargetable target)
         {
             Targetable.Add(target);

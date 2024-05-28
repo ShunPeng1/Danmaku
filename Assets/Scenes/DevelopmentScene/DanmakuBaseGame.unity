@@ -2076,7 +2076,7 @@ MonoBehaviour:
   _playerCount: 4
   _eachPlayerCharacterChoiceCount: 2
   _roleSetConfig: {fileID: 11400000, guid: c450b1abc5bc8e74a80aa32c6a4d4680, type: 2}
-  _deckSetConfig: {fileID: 11400000, guid: b7088ecc9d1fefb4cb47bdd26689ff44, type: 2}
+  _deckSetConfig: {fileID: 11400000, guid: dc1a210f60666e94d9953b88166899da, type: 2}
   _startupStatsConfig: {fileID: 11400000, guid: 5e96a99a593a4bd46a7f469d559a9d3b,
     type: 2}
   _characterSetConfig: {fileID: 11400000, guid: 677490a7b55a818438d17c7090fb23bf,
