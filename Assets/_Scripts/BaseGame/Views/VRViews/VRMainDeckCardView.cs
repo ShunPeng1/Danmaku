@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using _Scripts.BaseGame.InteractionSystems.Interfaces;
+using _Scripts.BaseGame.ScriptableData;
 using _Scripts.CoreGame.InteractionSystems;
 using BNG;
 using DG.Tweening;
@@ -11,12 +15,14 @@ namespace _Scripts.BaseGame.Views.Basics
     {
         [SerializeField] private TMP_Text _cardNameText;
 
+        public bool IsMoveByTween { get; private set; }
         public bool IsPlayable { get; private set; }
+        
+        private DanmakuInteractionViewRepo _viewRepo;
+        private DeckCardScriptableData _deckCardData;
         
         private Grabbable _grabbable;
         private Rigidbody _rigidbody;
-        
-        public bool IsMoveByTween { get; private set; }
         
         private Tween _moveTween;
         private Tween _rotateTween;
@@ -25,12 +31,45 @@ namespace _Scripts.BaseGame.Views.Basics
         {
             _grabbable = GetComponent<Grabbable>();
             _rigidbody = GetComponent<Rigidbody>();
+            _viewRepo = GetComponentInParent<DanmakuInteractionViewRepo>();
         }
 
         private void Start()
         {
             DanmakuMainDeckCardModel mainDeckCardModel = (DanmakuMainDeckCardModel)CardModel;
             _cardNameText.text = mainDeckCardModel.DeckCardData.CardName;
+        }
+
+        public override void SetCardModel(IDanmakuCard cardModel)
+        {
+            if (cardModel is DanmakuMainDeckCardModel mainDeckCardModel)
+            {
+                CardModel = mainDeckCardModel;
+                _deckCardData = mainDeckCardModel.DeckCardData;
+
+                mainDeckCardModel.OnCardExecuted += VisualizeCardExecution;
+            }
+            else
+            {
+                Debug.LogError("Wrong card model type");
+            }
+        }
+
+        private void VisualizeCardExecution(IDanmakuCardRule rule, IDanmakuActivator activator, List<IDanmakuTargetable> targetables)
+        {
+            var ruleType = rule.GetType().ToString();
+            var ruleData = _deckCardData.CardRulesScriptableData.FirstOrDefault(ruleData => ruleData.CardRuleName == ruleType);
+
+            if (ruleData != null && ruleData.VisualizerPrefab != null)
+            {
+                var executionVisualizer = Instantiate(ruleData.VisualizerPrefab, transform.position, Quaternion.identity, transform);
+            
+            
+                GameObject activatorGameObject = _viewRepo.GetActivatorView(activator);
+                List<GameObject> targetableGameObjects = _viewRepo.GetTargetableViews(targetables);
+            
+                executionVisualizer.Visualize(activatorGameObject, targetableGameObjects);
+            }
         }
 
         public void TweenMove(Vector3 moveTo, Vector3 rotateTo, float duration, Ease ease = Ease.InOutCubic, Action onComplete = null)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.ScriptableData;
@@ -14,6 +15,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         private readonly ObservableData<IDanmakuCardHolder> _cardHolder;
         private readonly List<DanmakuCardRuleBase> _cardRuleModels;
         
+        public Action<IDanmakuCardRule, IDanmakuActivator, List<IDanmakuTargetable>> OnCardExecuted { get; set; }
         
         public DanmakuMainDeckCardModel(DeckCardScriptableData deckCardData, List<DanmakuCardRuleBase> cardRuleModels, IDanmakuCardHolder cardHolder )
         {
@@ -78,6 +80,7 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         public void ExecuteCard(IDanmakuCardRule cardRule, IDanmakuActivator activators, List<IDanmakuTargetable> targetables)
         {
+            OnCardExecuted?.Invoke(cardRule, activators, targetables);
             cardRule.ExecuteRule(activators, targetables);
         }
 
