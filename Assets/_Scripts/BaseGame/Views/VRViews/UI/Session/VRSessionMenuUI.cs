@@ -7,7 +7,9 @@ namespace _Scripts.BaseGame.Views.Basics.UI
 {
     public class VRSessionMenuUI : MonoBehaviour
     {
+        
         [SerializeField] private Button _endStepButton;
+        
         
         public void SetOneTimeButtonAction(Func<bool> tryEndFunc)
         {

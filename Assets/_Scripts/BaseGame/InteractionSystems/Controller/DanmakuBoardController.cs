@@ -64,14 +64,36 @@ namespace _Scripts.CoreGame.InteractionSystems
             boardView.DrawCardFromMainDeck(player, cards);
 
         }
-
+        
+        public void DiscardCard(DanmakuPlayerModel player, DanmakuMainDeckCardModel mainDeckCard)
+        {
+            player.DeckCardHandModel.RemoveCard(mainDeckCard);
+            BoardModel.DiscardDeckModel.AddCard(mainDeckCard);
+            
+            var boardView = _interactionController.InteractionViewRepo.BoardView;
+            boardView.DiscardCardToDiscardDeck(player, mainDeckCard);
+            
+        }
+        
+        public void DiscardCards(DanmakuPlayerModel player, List<DanmakuMainDeckCardModel> mainDeckCards)
+        {
+            foreach (var mainDeckCard in mainDeckCards)
+            {
+                player.DeckCardHandModel.RemoveCard(mainDeckCard);
+                BoardModel.DiscardDeckModel.AddCard(mainDeckCard);
+            }
+            
+            var boardView = _interactionController.InteractionViewRepo.BoardView;
+            boardView.DiscardCardsToDiscardDeck(player, mainDeckCards);
+        }
+        
         public void StartDrawCharacter(int eachPlayerCharacterChoiceCount)
         {
             var menus = new List<DanmakuSessionMenu>();
             
             var session = new DanmakuSession.Builder()
                 .WithPlayingPlayerModel(PlayerGroupModel.Players.ConvertAll(player => (IDanmakuActivator) player))
-                .WithPlayerSessionKindEnum(EndSessionKindEnum.AllPlayed)
+                .WithPlayerSessionKindEnum(MenuEndCheckEnum.AllPlayed)
                 .WithPlayingSessionMenus(menus)
                 .WithCountDownTime(30f)
                 .Build(_interactionController);
@@ -126,5 +148,6 @@ namespace _Scripts.CoreGame.InteractionSystems
                 InteractionViewRepo.GetPlayerView(player).CharacterView.SetupCharacter(chosenCard);
             }
         }
+
     }
 }

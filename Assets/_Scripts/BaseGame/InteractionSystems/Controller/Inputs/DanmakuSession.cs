@@ -9,17 +9,18 @@ using Shun_Utilities;
 
 namespace _Scripts.CoreGame.InteractionSystems
 {
-    public enum EndSessionKindEnum
+    
+    public enum MenuEndCheckEnum
     {
-        AllPlayed, // All players need to play a card to end the session
-        AnyPlayed,  // Only one player needs to play a card to end the session
-        NonePlayed, // Player does not need to play any card to end the session
+        AllPlayed,
+        AnyPlayed,
+        NonePlayed
     }
     
     public class DanmakuSession
     {
         public DanmakuInteractionController DanmakuInteractionController { get; private set; }
-        private readonly EndSessionKindEnum _sessionKindEnum;
+        private readonly MenuEndCheckEnum _menuEndCheckEnum;
         public List<IDanmakuActivator> PlayingPlayerModel { get; private set; }
         public List<DanmakuSessionMenu> PlayingSessionMenus { get; private set;}
         public Countdown Countdown { get; private set; }
@@ -30,15 +31,16 @@ namespace _Scripts.CoreGame.InteractionSystems
         public DanmakuSessionMenuEvent OnMenuAdded { get; set; }
         public DanmakuSessionMenuEvent OnMenuRemoved { get; set; }
         public bool CanEndSession => UpdateEndSession();
+        public bool IsEnded = false;
        
         private DanmakuSession(DanmakuInteractionController danmakuInteractionController,
             List<IDanmakuActivator> playingPlayerModel,
             List<DanmakuSessionMenu> playingSessionMenus, 
-            EndSessionKindEnum sessionKindEnum,
+            MenuEndCheckEnum menuEndCheckEnum,
             Countdown countdown)  
         {
             DanmakuInteractionController = danmakuInteractionController;
-            _sessionKindEnum = sessionKindEnum;
+            _menuEndCheckEnum = menuEndCheckEnum;
             PlayingPlayerModel = playingPlayerModel;
             Countdown = countdown;
             PlayingSessionMenus = playingSessionMenus;
@@ -65,14 +67,14 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         public class Builder
         {
-            private EndSessionKindEnum _endSessionKindEnum = EndSessionKindEnum.AnyPlayed; // Default is AnyPlayed
+            private MenuEndCheckEnum _menuEndCheckEnum = MenuEndCheckEnum.AnyPlayed; // Default is AnyPlayed
             private List<IDanmakuActivator> _playingPlayerModel = new List<IDanmakuActivator>(); // Default is empty
             private List<DanmakuSessionMenu> _playingSessionMenus = new (); // Default is empty
             private Countdown _countdown = new Countdown(false, float.PositiveInfinity); // Default is infinite
             
-            public Builder WithPlayerSessionKindEnum(EndSessionKindEnum endSessionKindEnum)
+            public Builder WithPlayerSessionKindEnum(MenuEndCheckEnum menuEndCheckEnum)
             {
-                _endSessionKindEnum = endSessionKindEnum;
+                _menuEndCheckEnum = menuEndCheckEnum;
                 return this;
             }
 
@@ -103,7 +105,7 @@ namespace _Scripts.CoreGame.InteractionSystems
                     danmakuInteractionController,
                     _playingPlayerModel,
                     _playingSessionMenus,
-                    _endSessionKindEnum,
+                    _menuEndCheckEnum,
                     _countdown
                 );
                 
@@ -130,15 +132,24 @@ namespace _Scripts.CoreGame.InteractionSystems
             bool isEnded = Countdown.Progress(deltaTime);
             if (isEnded)
             {
-                OnForceEndSessionEvent.Invoke();
-                OnFinallyEndSessionEvent.Invoke();
+                ForceEndSession();
             }
         }
 
         private void EndSession()
         {
             OnSessionEndEvent.Invoke();
+            IsEnded = true;
             OnFinallyEndSessionEvent.Invoke();
+            ClearSessionMenus();
+        }
+
+        private void ForceEndSession()
+        {
+            OnForceEndSessionEvent.Invoke();
+            IsEnded = true;
+            OnFinallyEndSessionEvent.Invoke();
+            ClearSessionMenus();
         }
         
         public bool TryEndSession()
@@ -152,11 +163,11 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         private bool UpdateEndSession()
         {
-            return _sessionKindEnum switch
+            return _menuEndCheckEnum switch
             {
-                EndSessionKindEnum.AllPlayed => PlayingSessionMenus.TrueForAll(menu => menu.IsAllChosen()),
-                EndSessionKindEnum.AnyPlayed => PlayingSessionMenus.Any(menu => menu.IsAllChosen()),
-                EndSessionKindEnum.NonePlayed => true,
+                MenuEndCheckEnum.AllPlayed => PlayingSessionMenus.TrueForAll(menu => menu.CheckEndSession()),
+                MenuEndCheckEnum.AnyPlayed => PlayingSessionMenus.Any(menu => menu.CheckEndSession()),
+                MenuEndCheckEnum.NonePlayed => true,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -194,6 +205,11 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         public void ClearSessionMenus()
         {
+            foreach (var sessionMenu in PlayingSessionMenus)
+            {
+                OnMenuRemoved.Invoke(sessionMenu);
+            }
+            
             PlayingSessionMenus.Clear();
         }
         
