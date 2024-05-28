@@ -30,7 +30,8 @@ namespace _Scripts.CoreGame.InteractionSystems
             _playedCards.Push(danmakuCardExecutionParameter);
             
             danmakuCardExecutionParameter.Card.RevealCard();
-            
+
+            ResolveCombat();
         }
         
         

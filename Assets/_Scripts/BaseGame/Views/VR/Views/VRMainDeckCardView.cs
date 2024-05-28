@@ -58,17 +58,22 @@ namespace _Scripts.BaseGame.Views.Basics
         private void VisualizeCardExecution(IDanmakuCardRule rule, IDanmakuActivator activator, List<IDanmakuTargetable> targetables)
         {
             var ruleType = rule.GetType().ToString();
+            ruleType = ruleType.Substring(ruleType.LastIndexOf('.') + 1);
+            
             var ruleData = _deckCardData.CardRulesScriptableData.FirstOrDefault(ruleData => ruleData.CardRuleName == ruleType);
 
             if (ruleData != null && ruleData.VisualizerPrefab != null)
             {
-                var executionVisualizer = Instantiate(ruleData.VisualizerPrefab, transform.position, Quaternion.identity, transform);
-            
-            
+                
                 GameObject activatorGameObject = _viewRepo.GetActivatorView(activator);
                 List<GameObject> targetableGameObjects = _viewRepo.GetTargetableViews(targetables);
-            
-                executionVisualizer.Visualize(activatorGameObject, targetableGameObjects);
+
+                if (activatorGameObject != null && targetableGameObjects != null)
+                {
+                    var executionVisualizer = Instantiate(ruleData.VisualizerPrefab, activatorGameObject.transform.position, Quaternion.identity);
+
+                    executionVisualizer.Visualize(activatorGameObject, targetableGameObjects);
+                }
             }
         }
 
