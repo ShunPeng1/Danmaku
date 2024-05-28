@@ -17,7 +17,7 @@ MonoBehaviour:
   CardDeck: 2
   CardExpansion: 0
   CardSeason: 2
-  CardIllustration: {fileID: 21300000, guid: 75e4fd7b790bd164a846bcbf3746686d, type: 3}
+  CardIllustration: {fileID: 21300000, guid: 7dc22c7d4d6b28f4aa913f5c64e2eeaf, type: 3}
   AbilityCardRules: []
   SpellCardRules: []
   ModelData: {fileID: 919132149155446097, guid: e49b7cbe7cb568644849550a322a78f2,
