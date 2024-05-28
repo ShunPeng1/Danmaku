@@ -171,6 +171,86 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 2435177347831605220}
   m_maskType: 0
+--- !u!1001 &454721906376289223
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4694970847596176793}
+    m_Modifications:
+    - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.9136661
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8444198
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.6008716
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8313630153132330976, guid: a1fee9141b637e04784f12984055cb4a,
+        type: 3}
+      propertyPath: m_Name
+      value: CharacterCardTemplate
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a1fee9141b637e04784f12984055cb4a, type: 3}
+--- !u!4 &7435887611636974512 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 454721906376289223}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8435397929959187495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8313630153132330976, guid: a1fee9141b637e04784f12984055cb4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 454721906376289223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2868542272409236598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -241,6 +321,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1286805921540293782}
+    - targetCorrespondingSourceObject: {fileID: 7415450443593814511, guid: 2b46f372f17f243409d40a95ed756b05,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7435887611636974512}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1314030508674949549, guid: 2b46f372f17f243409d40a95ed756b05,
         type: 3}
@@ -266,6 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardNameText: {fileID: 7099086934100691900}
+  _cardTemplate: {fileID: 8435397929959187495}
 --- !u!4 &4694970847596176793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7415450443593814511, guid: 2b46f372f17f243409d40a95ed756b05,
