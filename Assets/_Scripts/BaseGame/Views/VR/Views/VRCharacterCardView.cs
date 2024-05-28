@@ -9,13 +9,14 @@ namespace _Scripts.BaseGame.Views.Basics
 {
     public class VRCharacterCardView : DanmakuCharacterCardBaseView
     {
-        [SerializeField] private TMP_Text _cardNameText;
+        [SerializeField] private GameObject _cardTemplate;
 
         private DanmakuCharacterCardModel _characterCardModel;
         
         
         private Grabbable _grabbable;
         private Rigidbody _rigidbody;
+        private SpriteRenderer _spriteRenderer;
         
         public bool IsMoveByTween { get; private set; }
         
@@ -26,12 +27,14 @@ namespace _Scripts.BaseGame.Views.Basics
         {
             _grabbable = GetComponent<Grabbable>();
             _rigidbody = GetComponent<Rigidbody>();
+            _spriteRenderer = _cardTemplate.GetComponent<SpriteRenderer>();
         }
 
         private void Start()
         {
             DanmakuCharacterCardModel characterCardModel = (DanmakuCharacterCardModel)CardModel;
-            _cardNameText.text = characterCardModel.CharacterCardData.CardName;
+            //_cardNameText.text = characterCardModel.CharacterCardData.CardName;
+            _spriteRenderer.sprite = characterCardModel.CharacterCardData.CardIllustration;
         }
         
         
