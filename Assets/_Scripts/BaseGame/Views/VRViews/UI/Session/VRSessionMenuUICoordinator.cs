@@ -57,7 +57,6 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             if (_sessionMenus.Count == 0)
             {
                 _currentMenuUI = null;
-                return;
             }
             else
             {

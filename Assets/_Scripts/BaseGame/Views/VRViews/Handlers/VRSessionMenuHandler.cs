@@ -11,6 +11,7 @@ namespace _Scripts.BaseGame.Views.Basics.UI
         [SerializeField] private VRSessionMenuUICoordinator _sessionMenuUICoordinator;
         [SerializeField] private VRSessionChoiceUICoordinator _sessionChoiceUICoordinator;
         
+        
         public override void AddSessionMenu(DanmakuSessionMenu sessionMenu)
         {
             if (SessionMenus.Contains(sessionMenu))
