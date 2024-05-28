@@ -1,4 +1,5 @@
 ﻿using System;
+using _Scripts.BaseGame.Views.Abstracts.Visualizers;
 using _Scripts.CoreGame.InteractionSystems.Attributes;
 using _Scripts.CoreGame.InteractionSystems.Interfaces;
 using Sirenix.OdinInspector;
@@ -16,6 +17,8 @@ namespace _Scripts.BaseGame.ScriptableData
         public CardTimingTypeEnum CardTimingType;
         public CardEffectTypeEnum[] CardEffectTypes;
         public CardRuleValueWithIcon[] CardRuleValueWithIcons;
+        
+        public DanmakuCardExecutionBaseVisualizer VisualizerPrefab;
         
         [ShowInInspector][ReadOnly][TextArea(10,20)]
         private string _finalRuleText;

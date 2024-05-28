@@ -30,7 +30,8 @@ namespace _Scripts.CoreGame.InteractionSystems
             _playedCards.Push(danmakuCardExecutionParameter);
             
             danmakuCardExecutionParameter.Card.RevealCard();
-            
+
+            ResolveCombat();
         }
         
         
@@ -39,7 +40,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             while (_playedCards.TryPop(out var cardExecution))
             {
-                cardExecution.Card.ExecuteCard(cardExecution.DanmakuCardRule, cardExecution.Activator, cardExecution.Targetable);
+                cardExecution.Card.ExecuteCard(cardExecution.CardRule, cardExecution.Activator, cardExecution.Targetables);
                 
                 BoardModel.DiscardDeckModel.AddCard(cardExecution.Card);
             }

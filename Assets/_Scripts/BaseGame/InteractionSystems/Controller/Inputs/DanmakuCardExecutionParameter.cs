@@ -7,37 +7,37 @@ namespace _Scripts.CoreGame.InteractionSystems
     public class DanmakuCardExecutionParameter
     {
         public readonly IDanmakuCard Card;
-        public readonly IDanmakuCardRule DanmakuCardRule;
+        public readonly IDanmakuCardRule CardRule;
         public readonly IDanmakuActivator Activator;
-        public readonly List<IDanmakuTargetable> Targetable;
+        public readonly List<IDanmakuTargetable> Targetables;
             
-        public DanmakuCardExecutionParameter(IDanmakuCard card, IDanmakuCardRule danmakuCardRule, IDanmakuActivator activator)
+        public DanmakuCardExecutionParameter(IDanmakuCard card, IDanmakuCardRule cardRule, IDanmakuActivator activator)
         {
             Card = card;
-            DanmakuCardRule = danmakuCardRule;
+            CardRule = cardRule;
             Activator = activator;
-            Targetable = new ();
+            Targetables = new ();
         }
         
         
         public void AddTarget(IDanmakuTargetable target)
         {
-            Targetable.Add(target);
+            Targetables.Add(target);
         }
         
         public void AddTarget(DanmakuSessionChoice sessionChoice)
         {
-            Targetable.Add(sessionChoice.SelectedTarget);
+            Targetables.Add(sessionChoice.SelectedTarget);
         }
             
         public void AddTargets(List<IDanmakuTargetable> targets)
         {
-            Targetable.AddRange(targets);
+            Targetables.AddRange(targets);
         }
         
         public void ClearTargets()
         {
-            Targetable.Clear();
+            Targetables.Clear();
         }
         
     } 

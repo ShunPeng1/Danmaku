@@ -18,9 +18,8 @@ namespace _Scripts.BaseGame.ScriptableData
         
         public Sprite CardIllustration;
         public string ArtistName;
-        
-        
+
+        public CardEffectVisualizerScriptableData CardEffect;
 
     }
-
 }
