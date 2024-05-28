@@ -19,9 +19,18 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         public void AddCardExecution(DanmakuCardExecutionParameter danmakuCardExecutionParameter)
         {
+            // Remove from hand if is player
+            if (danmakuCardExecutionParameter.Activator is DanmakuPlayerModel danmakuPlayerModel)
+            {
+                danmakuPlayerModel.DeckCardHandModel.RemoveCard(danmakuCardExecutionParameter.Card);
+            }
+           
+            
+            // Add to played cards
             _playedCards.Push(danmakuCardExecutionParameter);
             
             danmakuCardExecutionParameter.Card.RevealCard();
+            
         }
         
         

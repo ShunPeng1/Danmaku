@@ -56,7 +56,7 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
 
             _playCardChoice = new DanmakuSessionChoice(
                 menu,
-                new List<IDanmakuTargetable>(_playerModel.DeckCardHandModel.Cards.Items.ToList()),
+                _playerModel.DeckCardHandModel.GetCards<IDanmakuTargetable>(),
                 IsCardPlayable);
             
             choices.Add(_playCardChoice);
