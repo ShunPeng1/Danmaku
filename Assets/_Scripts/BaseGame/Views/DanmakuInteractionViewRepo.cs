@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.Views.Default;
 using _Scripts.CoreGame.InteractionSystems;
 using _Scripts.CoreGame.InteractionSystems.Roles;
@@ -60,7 +61,51 @@ namespace _Scripts.BaseGame.Views
         {
             BoardView.SetupCharacterDeck(characterDeckModel);
         }
+
+
+        public GameObject GetActivatorView(IDanmakuActivator activator)
+        {
+            if (activator is DanmakuPlayerModel playerModel)
+            {
+                return GetPlayerView(playerModel).gameObject;
+            }
+           
+            
+            
+            return null;
+        }
         
-        
+        public GameObject GetTargetableView(IDanmakuTargetable targetable)
+        {
+            if (targetable is DanmakuPlayerModel playerModel)
+            {
+                return GetPlayerView(playerModel).gameObject;
+            }
+            
+            if (targetable is DanmakuMainDeckCardModel cardDeckModel)
+            {
+                foreach (var (_, view) in PlayerModelToViews)
+                {
+                    if (view.CardHandView.CardToView.TryGetValue(cardDeckModel, out DanmakuMainDeckCardBaseView cardView))
+                    {
+                        return cardView.gameObject;
+                    }
+                }
+            }
+            
+            return null;
+        }
+
+        public List<GameObject> GetTargetableViews(List<IDanmakuTargetable> targetables)
+        {
+            var targetableGameObjects = new List<GameObject>();
+            
+            foreach (var targetable in targetables)
+            {
+                targetableGameObjects.Add(GetTargetableView(targetable));
+            }
+            
+            return targetableGameObjects;
+        }
     }
 }
