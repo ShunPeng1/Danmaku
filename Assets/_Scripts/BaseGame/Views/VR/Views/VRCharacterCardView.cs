@@ -9,7 +9,6 @@ namespace _Scripts.BaseGame.Views.Basics
 {
     public class VRCharacterCardView : DanmakuCharacterCardBaseView
     {
-        [SerializeField] private TMP_Text _cardNameText;
         [SerializeField] private GameObject _cardTemplate;
 
         private DanmakuCharacterCardModel _characterCardModel;
@@ -34,7 +33,7 @@ namespace _Scripts.BaseGame.Views.Basics
         private void Start()
         {
             DanmakuCharacterCardModel characterCardModel = (DanmakuCharacterCardModel)CardModel;
-            _cardNameText.text = characterCardModel.CharacterCardData.CardName;
+            //_cardNameText.text = characterCardModel.CharacterCardData.CardName;
             _spriteRenderer.sprite = characterCardModel.CharacterCardData.CardIllustration;
         }
         
