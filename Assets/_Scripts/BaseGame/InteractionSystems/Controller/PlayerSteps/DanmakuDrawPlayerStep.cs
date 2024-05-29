@@ -15,10 +15,11 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
         {
             Debug.Log(playerModel.PlayerId + " Draw Step Executed!");
 
-            for (int i = playerModel.CardDrawIncomeCount.Get(), j = 0; j < i; j++)
-            {
-                interactionController.BoardController.DrawCard(playerModel);
-            }
+            
+            
+            
+            interactionController.BoardController.DrawCard(playerModel, playerModel.CardDrawIncomeCount.Get());
+            
             
             finishExecuteCallback?.Invoke();
         }

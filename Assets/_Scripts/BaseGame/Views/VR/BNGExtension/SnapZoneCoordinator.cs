@@ -14,6 +14,25 @@ namespace _Scripts.BaseGame.Views.Positions
         [SerializeField] private int _debugSnapZoneCount;
         
         public List<SnapZone> SnapZones = new();
+        
+        
+        public SnapZone GetEmptySnapZone(int startFrom = 0, Grabbable startingItem = null )
+        {
+            for (var index = startFrom; index < SnapZones.Count; index++)
+            {
+                var snapZone = SnapZones[index];
+                if (snapZone.HeldItem == null)
+                {
+                    snapZone.HeldItem = startingItem;
+                    return snapZone;
+                }
+            }
+
+            var newSnapZone = CreateSnapZone(startingItem);
+            return newSnapZone;
+        }
+        
+        
         public SnapZone CreateSnapZone(Grabbable startingItem = null, int positionIndex = 0)
         {
             

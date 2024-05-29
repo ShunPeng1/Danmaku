@@ -28,11 +28,7 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             foreach (var player in PlayerGroupModel.Players)
             {
-                for (int i = 0; i < player.HandSize.Get(); i++)
-                {
-                    DrawCard(player);
-                }
-                
+                DrawCard(player, player.HandSize.Get());
             }
         }
 
@@ -49,8 +45,13 @@ namespace _Scripts.CoreGame.InteractionSystems
             //playerHandView.AddCard(card);
         }
         
-        public void DrawCards(DanmakuPlayerModel player, int count)
+        public void DrawCard(DanmakuPlayerModel player, int count)
         {
+            if (count <= 0)
+            {
+                return;
+            }
+            
             var cards = new List<DanmakuMainDeckCardModel>();
 
             for (int i = 0; i < count; i++)

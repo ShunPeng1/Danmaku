@@ -1,88 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6880176554814215579
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2132444577506282805}
-  - component: {fileID: 893669519119298411}
-  - component: {fileID: 8916745702414245726}
-  m_Layer: 0
-  m_Name: default
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2132444577506282805
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6880176554814215579}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5165056762305159902}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &893669519119298411
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6880176554814215579}
-  m_Mesh: {fileID: -2432090755550338912, guid: 0209cbfcc505b824e9ba86aee917842e, type: 3}
---- !u!23 &8916745702414245726
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6880176554814215579}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: -3033667219593020291, guid: 0209cbfcc505b824e9ba86aee917842e, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7090075800428070255
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 25888802738237005}
   - {fileID: 5165056762305159902}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
@@ -150,7 +68,19 @@ MonoBehaviour:
   _snapZoneStartingTransform: {fileID: 7868226526101417429}
   _snapZoneOffset: {x: 0.3, y: 0, z: 0}
   _debugSnapZoneCount: 10
-  SnapZones: []
+  SnapZones:
+  - {fileID: 7313710997083917527}
+  - {fileID: 1911777626033654991}
+  - {fileID: 5343419331054208624}
+  - {fileID: 3209346434813295386}
+  - {fileID: 1147088148398625486}
+  - {fileID: 464352395545483242}
+  - {fileID: 6637177724458919003}
+  - {fileID: 8075989819324680911}
+  - {fileID: 2447785970877656450}
+  - {fileID: 4528867434087534081}
+  - {fileID: 8274993622830732026}
+  - {fileID: 5631451286971799223}
 --- !u!1 &7231957243857685862
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,13 +106,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7231957243857685862}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15151638, y: 0.6906829, z: -0.1515165, w: 0.6906829}
-  m_LocalPosition: {x: 0.034, y: 0.103, z: 0.835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4461651441825412259}
+  - {fileID: 4761011385022051515}
+  - {fileID: 1347384069656411652}
+  - {fileID: 8366736661377483630}
+  - {fileID: 6304542129390529210}
+  - {fileID: 6837813563378495390}
+  - {fileID: 328341417834355759}
+  - {fileID: 2920250990505898683}
+  - {fileID: 8749708342429619702}
+  - {fileID: 7371471000435537525}
+  - {fileID: 3045510755309857422}
+  - {fileID: 1635811781023379139}
   m_Father: {fileID: 5165056762305159902}
-  m_LocalEulerAnglesHint: {x: 24.746, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8165241890129643332
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -234,12 +176,1131 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7780453435798806420}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.34, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.33, y: 0.061, z: 0.142}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7868226526101417429}
-  - {fileID: 2132444577506282805}
   m_Father: {fileID: 127984781012761742}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &8705801854591829948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 25888802738237005}
+  - component: {fileID: 7726516488238410995}
+  - component: {fileID: 8642291637426529218}
+  m_Layer: 0
+  m_Name: Board
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &25888802738237005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8705801854591829948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 0.689, y: -0.584, z: 0.304}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 127984781012761742}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
+--- !u!33 &7726516488238410995
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8705801854591829948}
+  m_Mesh: {fileID: -8678823145569952518, guid: b349075592eb7104bbf61f2dce2a2078, type: 3}
+--- !u!23 &8642291637426529218
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8705801854591829948}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 4545724110435435619, guid: b349075592eb7104bbf61f2dce2a2078, type: 3}
+  - {fileID: 8561642023961294558, guid: b349075592eb7104bbf61f2dce2a2078, type: 3}
+  - {fileID: 4039635932593994777, guid: b349075592eb7104bbf61f2dce2a2078, type: 3}
+  - {fileID: 7004556557813844035, guid: b349075592eb7104bbf61f2dce2a2078, type: 3}
+  - {fileID: -3905059689669167504, guid: b349075592eb7104bbf61f2dce2a2078, type: 3}
+  - {fileID: 2887751240489014976, guid: b349075592eb7104bbf61f2dce2a2078, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &780178096263530605
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.121999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!114 &1911777626033654991 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 780178096263530605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &4761011385022051515 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 780178096263530605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1595952450375095112
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.078
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!114 &464352395545483242 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1595952450375095112}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &6837813563378495390 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1595952450375095112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2287554628487665260
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.078
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!114 &1147088148398625486 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2287554628487665260}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &6304542129390529210 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2287554628487665260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3354483158099544739
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.121999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone (9)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!114 &4528867434087534081 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 3354483158099544739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &7371471000435537525 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 3354483158099544739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3579244704103557408
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.278
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!114 &2447785970877656450 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 3579244704103557408}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &8749708342429619702 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 3579244704103557408}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4385841739838324664
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14699998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.078
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!114 &3209346434813295386 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4385841739838324664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &8366736661377483630 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4385841739838324664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5498822297031598329
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14699998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.278
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!4 &328341417834355759 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5498822297031598329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6637177724458919003 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5498822297031598329}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &6517803590934037202
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.121999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!4 &1347384069656411652 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517803590934037202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5343419331054208624 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517803590934037202}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &6805694799699268117
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.278
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone (11)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!4 &1635811781023379139 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6805694799699268117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5631451286971799223 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6805694799699268117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &6937775111132302957
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.278
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!4 &2920250990505898683 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6937775111132302957}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8075989819324680911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6937775111132302957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &7098498316729603672
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.078
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone (10)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!4 &3045510755309857422 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7098498316729603672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8274993622830732026 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7098498316729603672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &8443058674428840053
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7868226526101417429}
+    m_Modifications:
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.147
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.122
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343758016025019755, guid: 1defdf9538e43e045a61762b9309c0b6,
+        type: 3}
+      propertyPath: m_Name
+      value: VR Player Card Snap Zone
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1defdf9538e43e045a61762b9309c0b6, type: 3}
+--- !u!4 &4461651441825412259 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5242539032856001750, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8443058674428840053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7313710997083917527 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176636077949224098, guid: 1defdf9538e43e045a61762b9309c0b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8443058674428840053}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b646e2949ffb74c9ca8c512b4411df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

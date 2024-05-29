@@ -55,7 +55,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.5, z: 0.3}
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1176636077949224098
 MonoBehaviour:
@@ -74,14 +74,14 @@ MonoBehaviour:
   CanDropItem: 1
   CanSwapItem: 1
   CanRemoveItem: 1
-  ScaleItem: 1
+  ScaleItem: 0.7
   DisableColliders: 1
   DuplicateItemOnGrab: 0
   MaxDropTime: 0.1
   LastSnapTime: 0
   SnapZoneFilter: {fileID: 0}
-  SoundOnSnap: {fileID: 0}
-  SoundOnUnsnap: {fileID: 0}
+  SoundOnSnap: {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
+  SoundOnUnsnap: {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
   OnSnapEvent:
     m_PersistentCalls:
       m_Calls: []

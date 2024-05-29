@@ -20,36 +20,52 @@ namespace _Scripts.BaseGame.Views.Basics
         [SerializeField] private float _addCardMoveDuration = 0.5f;
         [SerializeField] private float _addCardMoveDelay = 0.2f;
         [SerializeField] private Ease _tweenEase = Ease.Linear;
-
+        private int _movingCardCount = 0;
         
         public override void AddCard(DanmakuMainDeckCardBaseView cardView,IDanmakuCard card)
         {
             CardToView.Add(card, cardView);
-
-            // Move card to snap zone
-            var snapZone = _snapZoneCoordinator.CreateSnapZone();
-
-            var vrCardView = (VRMainDeckCardView)cardView;
-            vrCardView.TweenMove(snapZone.transform.position, snapZone.transform.rotation.eulerAngles, _addCardMoveDuration, _tweenEase,
-                () =>
-                {
-                    snapZone.GrabGrabbable(cardView.GetComponent<Grabbable>());
-                });
+            SetCardToSnapZone(cardView,card);
         }
 
         public override void AddCard(Dictionary<IDanmakuCard, DanmakuMainDeckCardBaseView> cardToView)
         {
+            foreach (var (card, cardView) in cardToView)
+            {
+                CardToView.Add(card, cardView);
+            }
+            
             StartCoroutine(AddCardsWithDelay(cardToView));
+            
         }
 
         private IEnumerator AddCardsWithDelay(Dictionary<IDanmakuCard, DanmakuMainDeckCardBaseView> cardToView)
         {
             foreach (var (card, view) in cardToView)
             {
-                AddCard(view, card);
+                SetCardToSnapZone(view, card);
                 yield return new WaitForSeconds(_addCardMoveDelay);
             }
         }
+        
+        
+        private void SetCardToSnapZone(DanmakuMainDeckCardBaseView cardView,IDanmakuCard card)
+        {
+            // Move card to snap zone
+            var snapZone = _snapZoneCoordinator.GetEmptySnapZone(_movingCardCount);
+
+            var vrCardView = (VRMainDeckCardView)cardView;
+            
+            _movingCardCount++;
+            vrCardView.TweenMove(snapZone.transform.position, snapZone.transform.rotation.eulerAngles, _addCardMoveDuration, _tweenEase,
+                () =>
+                {
+                    snapZone.GrabGrabbable(cardView.GetComponent<Grabbable>());
+                    _movingCardCount--;
+                });
+
+        }
+
         
         public override void RemoveCard(IDanmakuCard card)
         {

@@ -57,17 +57,21 @@ namespace _Scripts.BaseGame.Views.Basics
             var cardView = Instantiate(_mainDeckCardPrefab, _topDrawMainDeck);
             cardView.SetCardModel(card);
 
-            handView.AddCard(cardView, card);
             
         }
 
         public override void DrawCardFromMainDeck(DanmakuPlayerModel playerModel, List<DanmakuMainDeckCardModel> cards)
         {
+            var handView = InteractionViewRepo.GetPlayerView(playerModel).CardHandView;
+            Dictionary<IDanmakuCard, DanmakuMainDeckCardBaseView> cardToView = new();
             foreach (var card in cards)
             {
-                DrawCardFromMainDeck(playerModel, card);
+                var cardView = Instantiate(_mainDeckCardPrefab, _topDrawMainDeck);
+                cardView.SetCardModel(card);
+                cardToView.Add(card, cardView);
             }
             
+            handView.AddCard(cardToView);
         }
 
         public override void DiscardCardToDiscardDeck(DanmakuPlayerModel playerModel, DanmakuMainDeckCardModel card)
