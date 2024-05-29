@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterTransform: {fileID: 3274185874900108960}
+  _controller: {fileID: 9100000, guid: 4c16a90fd65c02248a0d47254b815698, type: 2}
