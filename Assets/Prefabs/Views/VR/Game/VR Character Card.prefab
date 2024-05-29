@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1603461059776347907}
   - component: {fileID: 8431570288530605657}
   m_Layer: 0
-  m_Name: CharacterCardBack
+  m_Name: Card Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,9 +25,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9048570807931671411}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.01}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.001}
+  m_LocalScale: {x: -1.1316112, y: 1.0986102, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4694970847596176793}
@@ -73,11 +73,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 931aed212d5a8a4408130830a3cc7d7d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 077d72a760d9d6e48a0d2efd52ba8a52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 1.04, y: 0.73}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -115,7 +115,7 @@ PrefabInstance:
     - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.01
+      value: -0.001
       objectReference: {fileID: 0}
     - target: {fileID: 7025311167048067191, guid: a1fee9141b637e04784f12984055cb4a,
         type: 3}
@@ -263,7 +263,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5340517242060494823, guid: 2b46f372f17f243409d40a95ed756b05, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7415450443593814511, guid: 2b46f372f17f243409d40a95ed756b05,
