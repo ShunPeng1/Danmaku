@@ -25,6 +25,13 @@ namespace _Scripts.CoreGame.InteractionSystems
         public DanmakuInteractionController InteractionController;
         
         
+        public Action OnFinishDrawCharacter;
+        public Action OnFinishSetupStats;
+        public Action OnFinishReveal;
+        public Action OnFinishDraw;
+        public Action OnFinishStartGame;
+        
+        
         private IEnumerator Start()
         {
             
@@ -35,21 +42,50 @@ namespace _Scripts.CoreGame.InteractionSystems
                 .WithCharacterSet(_characterSetConfig)
                 .WithStartGameSequence(new List<Action>()
                 {
-                    () => InteractionController.StartDrawCharacter(_eachPlayerCharacterChoiceCount),
-                    () => InteractionController.SetupStartingStats(_startupStatsConfig),
-                    () => InteractionController.StartupReveal(),
-                    () => InteractionController.StartupDraw(),
-                    () => InteractionController.StartGame(),
-                    
+                    StartDrawCharacter,
+                    StartSetupStats,
+                    StartReveal,
+                    StartDraw,
+                    StartGame
                 })
                 .Build();
+            
             
             yield return null;
             
             InteractionController.StartNextSequence();
-
+            
         }
         
+        private void StartDrawCharacter()
+        {
+            InteractionController.StartDrawCharacter(_eachPlayerCharacterChoiceCount);
+            OnFinishDrawCharacter?.Invoke();
+        }
+        
+        private void StartSetupStats()
+        {
+            InteractionController.SetupStartingStats(_startupStatsConfig);
+            OnFinishSetupStats?.Invoke();
+        }
+        
+        private void StartReveal()
+        {
+            InteractionController.StartupReveal();
+            OnFinishReveal?.Invoke();
+        }
+        
+        private void StartDraw()
+        {
+            InteractionController.StartupDraw();
+            OnFinishDraw?.Invoke();
+        }
+        
+        private void StartGame()
+        {
+            InteractionController.StartGame();
+            OnFinishStartGame?.Invoke();
+        }
         
     }
 }
