@@ -52,7 +52,9 @@ namespace _Scripts.BaseGame.Views.Basics
         private void SetCardToSnapZone(DanmakuMainDeckCardBaseView cardView,IDanmakuCard card)
         {
             // Move card to snap zone
-            var snapZone = _snapZoneCoordinator.GetEmptySnapZone(_movingCardCount);
+            var emptySnapZoneIndex = _snapZoneCoordinator.GetEmptySnapZoneIndex();
+            
+            var snapZone = _snapZoneCoordinator.GetEmptySnapZone(_movingCardCount + emptySnapZoneIndex);
 
             var vrCardView = (VRMainDeckCardView)cardView;
             

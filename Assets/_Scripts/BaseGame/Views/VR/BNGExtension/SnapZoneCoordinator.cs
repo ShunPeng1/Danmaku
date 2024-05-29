@@ -32,6 +32,19 @@ namespace _Scripts.BaseGame.Views.Positions
             return newSnapZone;
         }
         
+        public int GetEmptySnapZoneIndex(int startFrom = 0)
+        {
+            for (var index = startFrom; index < SnapZones.Count; index++)
+            {
+                var snapZone = SnapZones[index];
+                if (snapZone.HeldItem == null)
+                {
+                    return index;
+                }
+            }
+
+            return -1;
+        }
         
         public SnapZone CreateSnapZone(Grabbable startingItem = null, int positionIndex = 0)
         {

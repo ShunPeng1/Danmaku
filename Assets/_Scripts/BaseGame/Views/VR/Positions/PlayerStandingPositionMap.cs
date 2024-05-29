@@ -18,7 +18,7 @@ namespace _Scripts.BaseGame.Views.Positions
                 return null;
             }
             
-            index = (index + offset) % totalPlayer;
+            index = (index - offset + totalPlayer) % totalPlayer;
             
             switch (totalPlayer)
             {
