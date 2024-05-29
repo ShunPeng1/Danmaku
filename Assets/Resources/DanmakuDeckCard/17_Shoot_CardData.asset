@@ -20,5 +20,6 @@ MonoBehaviour:
   PointValue: 1
   CardRulesScriptableData:
   - {fileID: 11400000, guid: 45993824932d7f94a82810cf2990ee8a, type: 2}
-  CardIllustration: {fileID: 0}
+  CardIllustration: {fileID: 21300000, guid: a1a1cd74ffc07c84bbc744e6055dcb58, type: 3}
   ArtistName: 
+  CardEffect: {fileID: 0}

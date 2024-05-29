@@ -20,5 +20,6 @@ MonoBehaviour:
   PointValue: 5
   CardRulesScriptableData:
   - {fileID: 11400000, guid: 2dc49c1fe5e6ac246a33c1fbd5413a2a, type: 2}
-  CardIllustration: {fileID: 0}
+  CardIllustration: {fileID: 21300000, guid: 8b1adaeaf6ad4924bb93a767260549bf, type: 3}
   ArtistName: Kazu
+  CardEffect: {fileID: 0}
