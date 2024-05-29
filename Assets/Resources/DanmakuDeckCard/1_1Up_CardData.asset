@@ -21,5 +21,6 @@ MonoBehaviour:
   CardRulesScriptableData:
   - {fileID: 11400000, guid: f754df355b6a8c044ad1d9cd5630da8d, type: 2}
   - {fileID: 11400000, guid: 2d1c8c4e102548e4099c30176c29df0c, type: 2}
-  CardIllustration: {fileID: 0}
+  CardIllustration: {fileID: 21300000, guid: 6df5e30aed8e80740afdc1715c9a9ccd, type: 3}
   ArtistName: "2 C\xE1i art \u0111\u1EC3 sau "
+  CardEffect: {fileID: 0}

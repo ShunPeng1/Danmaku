@@ -20,5 +20,6 @@ MonoBehaviour:
   PointValue: 1
   CardRulesScriptableData:
   - {fileID: 11400000, guid: db7f2f4efd22bcd4fba7609dae275303, type: 2}
-  CardIllustration: {fileID: 0}
+  CardIllustration: {fileID: 21300000, guid: b662c8ed6510ccd4f96c6291a22189e8, type: 3}
   ArtistName: Mieharu
+  CardEffect: {fileID: 0}

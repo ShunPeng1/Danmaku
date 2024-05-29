@@ -13,8 +13,7 @@ namespace _Scripts.BaseGame.Views.Basics
 {
     public class VRMainDeckCardView : DanmakuMainDeckCardBaseView
     {
-        [SerializeField] private TMP_Text _cardNameText;
-
+        [SerializeField] private GameObject _cardTemplate;
         public bool IsMoveByTween { get; private set; }
         public bool IsPlayable { get; private set; }
         
@@ -23,6 +22,7 @@ namespace _Scripts.BaseGame.Views.Basics
         
         private Grabbable _grabbable;
         private Rigidbody _rigidbody;
+        private SpriteRenderer _spriteRenderer;
         
         private Tween _moveTween;
         private Tween _rotateTween;
@@ -32,12 +32,13 @@ namespace _Scripts.BaseGame.Views.Basics
             _grabbable = GetComponent<Grabbable>();
             _rigidbody = GetComponent<Rigidbody>();
             _viewRepo = GetComponentInParent<DanmakuInteractionViewRepo>();
+            _spriteRenderer = _cardTemplate.GetComponent<SpriteRenderer>();
         }
 
         private void Start()
         {
             DanmakuMainDeckCardModel mainDeckCardModel = (DanmakuMainDeckCardModel)CardModel;
-            _cardNameText.text = mainDeckCardModel.DeckCardData.CardName;
+            _spriteRenderer.sprite = mainDeckCardModel.DeckCardData.CardIllustration;
         }
 
         public override void SetCardModel(IDanmakuCard cardModel)
