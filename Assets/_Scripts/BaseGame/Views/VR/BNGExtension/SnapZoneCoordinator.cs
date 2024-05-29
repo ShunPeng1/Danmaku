@@ -32,9 +32,9 @@ namespace _Scripts.BaseGame.Views.Positions
             return newSnapZone;
         }
         
-        public int GetEmptySnapZoneIndex(int startFrom = 0)
+        public int GetEmptySnapZoneIndex()
         {
-            for (var index = startFrom; index < SnapZones.Count; index++)
+            for (var index = 0; index < SnapZones.Count; index++)
             {
                 var snapZone = SnapZones[index];
                 if (snapZone.HeldItem == null)
