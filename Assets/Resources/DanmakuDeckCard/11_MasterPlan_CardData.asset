@@ -20,5 +20,6 @@ MonoBehaviour:
   PointValue: 3
   CardRulesScriptableData:
   - {fileID: 11400000, guid: 0e32b790c5a3acf46b54b219839308ae, type: 2}
-  CardIllustration: {fileID: 0}
+  CardIllustration: {fileID: 21300000, guid: e4ae946c23812984ebbce93b175df358, type: 3}
   ArtistName: Akane
+  CardEffect: {fileID: 0}

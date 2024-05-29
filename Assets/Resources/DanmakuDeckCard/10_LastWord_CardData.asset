@@ -20,5 +20,6 @@ MonoBehaviour:
   PointValue: 3
   CardRulesScriptableData:
   - {fileID: 11400000, guid: 37a8575f0ba1b3a4cabd1517eb988fff, type: 2}
-  CardIllustration: {fileID: 0}
+  CardIllustration: {fileID: 21300000, guid: 20b1a40b6bbe6d348a16682b73dd918a, type: 3}
   ArtistName: Pokey
+  CardEffect: {fileID: 0}
