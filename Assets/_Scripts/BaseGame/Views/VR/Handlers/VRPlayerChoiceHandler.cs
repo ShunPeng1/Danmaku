@@ -16,6 +16,7 @@ namespace _Scripts.BaseGame.Views.VRViews.Handlers
         [Header("Prefabs")]
         [SerializeField] private PlayerTargetSelectionButton _playerTargetSelectionButtonPrefab;
         private List<PlayerTargetSelectionButton> _playerSelectionButtons = new();
+        private PlayerTargetSelectionButton _selectingButton;
         
         protected override void Awake()
         {
@@ -66,8 +67,21 @@ namespace _Scripts.BaseGame.Views.VRViews.Handlers
             _playerSelectionButtons.Clear();
         }
 
-        public void SelectPlayer(DanmakuPlayerModel playerModel)
+        public void SelectPlayer(PlayerTargetSelectionButton selectingButton, DanmakuPlayerModel playerModel)
         {
+            foreach (var selectionButton in _playerSelectionButtons)
+            {
+                if (selectionButton == selectingButton)
+                {
+                    selectionButton.SetIndicator(true);
+                    continue;
+                }
+                
+                selectionButton.SetIndicator(false);
+            }
+
+            _selectingButton = selectingButton;
+            
             SessionChoice.SelectTarget(playerModel);
         }
         

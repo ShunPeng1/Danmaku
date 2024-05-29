@@ -12,6 +12,7 @@ namespace _Scripts.BaseGame.Views.Basics.UI.PlayerSelection
         [SerializeField] private Image _characterImage;
         [SerializeField] private TMP_Text _playerName;
         [SerializeField] private Button _button;
+        [SerializeField] private GameObject _selectedIndicator;
 
         private VRPlayerChoiceHandler _playerChoiceHandler;
         private DanmakuPlayerModel _playerModel;
@@ -36,10 +37,18 @@ namespace _Scripts.BaseGame.Views.Basics.UI.PlayerSelection
                 _button.onClick.AddListener(SelectPlayer);
             }
         }
+        
+        public void SetIndicator(bool isActive)
+        {
+            _selectedIndicator.SetActive(isActive);
+        }
 
         private void SelectPlayer()
         {
-            _playerChoiceHandler.SelectPlayer(_playerModel);
+            _playerChoiceHandler.SelectPlayer(this,_playerModel);
         }
+        
+        
+        
     }
 }
