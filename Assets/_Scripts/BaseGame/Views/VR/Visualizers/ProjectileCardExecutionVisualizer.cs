@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace _Scripts.BaseGame.Views.VR.Visualizers
 {
-    public class ShootCardExecutionVisualizer : DanmakuCardExecutionBaseVisualizer
+    public class ProjectileCardExecutionVisualizer : DanmakuCardExecutionBaseVisualizer
     {
         [SerializeField] ProjectileMover _projectileMover;
-        public override void Visualize(GameObject activatorView, List<GameObject> targetablesView)
+        public override void Visualize(GameObject activatorView, List<GameObject> targetViews)
         {
-            var target = targetablesView[0];
+            var target = targetViews[0];
             
             
             _projectileMover.transform.forward = target.transform.position - activatorView.transform.position;

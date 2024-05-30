@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
   m_Name: 9_Grimoire_RuleData
   m_EditorClassIdentifier: 
-  CardRuleName: 
+  CardRuleName: GrimoireRule
   CardRule: Draw {0}.
   CardTimingType: 0
   CardEffectTypes: 
   CardRuleValueWithIcons:
   - Value: 2
     CardRuleTextIconEnum: 15
-  VisualizerPrefab: {fileID: 372840726830190813, guid: 2b7519b1e58b0a543bc695b5724502bc,
+  VisualizerPrefab: {fileID: -1053196324572544126, guid: db6775b85b288694c84da5ba149a4bfe,
     type: 3}

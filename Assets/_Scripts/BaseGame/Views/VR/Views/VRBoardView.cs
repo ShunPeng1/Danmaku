@@ -56,8 +56,8 @@ namespace _Scripts.BaseGame.Views.Basics
 
             var cardView = Instantiate(_mainDeckCardPrefab, _topDrawMainDeck);
             cardView.SetCardModel(card);
-
             
+            handView.AddCard(cardView, card);
         }
 
         public override void DrawCardFromMainDeck(DanmakuPlayerModel playerModel, List<DanmakuMainDeckCardModel> cards)

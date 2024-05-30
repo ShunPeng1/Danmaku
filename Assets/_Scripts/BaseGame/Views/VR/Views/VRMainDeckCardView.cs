@@ -37,6 +37,8 @@ namespace _Scripts.BaseGame.Views.Basics
 
         private void Start()
         {
+            if (CardModel == null) return;
+            
             DanmakuMainDeckCardModel mainDeckCardModel = (DanmakuMainDeckCardModel)CardModel;
             _spriteRenderer.sprite = mainDeckCardModel.DeckCardData.CardIllustration;
         }

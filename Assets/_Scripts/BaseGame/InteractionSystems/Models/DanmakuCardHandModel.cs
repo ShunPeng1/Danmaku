@@ -37,6 +37,11 @@ namespace _Scripts.CoreGame.InteractionSystems
         
         public void AddCard(IDanmakuCard danmakuCard)
         {
+            if (danmakuCard == null)
+            {
+                return;
+            }
+            
             if (Cards.TryAdd(danmakuCard))
             {
                 danmakuCard.SetCardHolder(this);

@@ -5,7 +5,6 @@ namespace _Scripts.BaseGame.InteractionSystems.Interfaces
 {
     public interface IDanmakuCardRule : IDanmakuTargetable
     {
-        public void InitializeCard();
         
         public abstract IDanmakuActivator GetAnyValidActivator();
         public abstract List<TargetableQueryResult> GetAnyValidTargetables(IDanmakuActivator danmakuActivator);

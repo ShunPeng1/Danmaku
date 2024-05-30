@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.Views;
 using _Scripts.BaseGame.Views.Basics;
@@ -35,7 +36,13 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         public void DrawCard(DanmakuPlayerModel player)
         {
-            var card = BoardModel.MainDeckModel.PopCardFront();
+            var card = GetCard();
+            
+            if (card == null)
+            {
+                return;
+            }
+            
             player.DeckCardHandModel.AddCard(card);
             
             var boardView = _interactionController.InteractionViewRepo.BoardView;
@@ -56,8 +63,14 @@ namespace _Scripts.CoreGame.InteractionSystems
 
             for (int i = 0; i < count; i++)
             {
-                var card = BoardModel.MainDeckModel.PopCardFront();
-                cards.Add((DanmakuMainDeckCardModel) card);
+                var card = GetCard();
+                
+                if (card == null)
+                {
+                    break;
+                }
+                
+                cards.Add(card);
                 player.DeckCardHandModel.AddCard(card);
             }
 
@@ -65,6 +78,38 @@ namespace _Scripts.CoreGame.InteractionSystems
             boardView.DrawCardFromMainDeck(player, cards);
 
             
+        }
+
+        private DanmakuMainDeckCardModel GetCard()
+        {
+            var card = BoardModel.MainDeckModel.PopCardFront();
+            
+            if (card != null)
+            {
+                return (DanmakuMainDeckCardModel) card;
+            }
+            
+            // If there are no cards in the main deck, shuffle the discard deck and add it to the main deck
+            
+            var discardDeckCards = BoardModel.DiscardDeckModel.Cards.ToList();
+            
+            if (discardDeckCards.Count == 0)
+            {
+                return null;
+            }
+            
+            BoardModel.DiscardDeckModel.Clear();
+            
+            discardDeckCards.Shuffle();
+
+            foreach (var addCard in discardDeckCards)
+            {
+                BoardModel.MainDeckModel.AddCard(addCard);
+            }
+
+            card = BoardModel.MainDeckModel.PopCardFront();
+            
+            return (DanmakuMainDeckCardModel) card;
         }
         
         public void DiscardCard(DanmakuPlayerModel player, DanmakuMainDeckCardModel mainDeckCard)

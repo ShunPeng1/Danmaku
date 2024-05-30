@@ -13,10 +13,6 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
         {
         }
 
-        public override void InitializeCard()
-        {
-            
-        }
 
         public override List<TargetableQueryResult> GetAnyValidTargetables(IDanmakuActivator danmakuActivator)
         {

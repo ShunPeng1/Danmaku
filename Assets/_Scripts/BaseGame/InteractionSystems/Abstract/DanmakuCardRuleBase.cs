@@ -20,7 +20,6 @@ namespace _Scripts.CoreGame.InteractionSystems
             CombatController = interactionController.CombatController;
         }
         
-        public abstract void InitializeCard();
 
         public IDanmakuActivator GetAnyValidActivator()
         {

@@ -114,13 +114,12 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
             {
                 _cardRuleChoice = new DanmakuSessionChoice(_cardChoiceMenu, ruleTargetablesQueryResults[0].CardRule);
                 
-                // Not Add to menu
-                //choices.Add(_cardRuleChoice);
+                
             }
             else if (ruleTargetablesQueryResults.Count == 0)
             {
                 Debug.Log("No rules found for card: " + card);
-                _cardChoiceMenu = null;
+                _cardRuleChoice = null;
                 return;
             }
             
@@ -131,6 +130,11 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
             {
                 foreach (var targetableQueryResult in ruleTargetables.Targetables)
                 {
+                    if (targetableQueryResult.Targetables.Count <= 1)
+                    {
+                        continue;
+                    }
+                    
                     choices.Add(new DanmakuSessionChoice(
                         _cardChoiceMenu,
                         targetableQueryResult.Targetables,

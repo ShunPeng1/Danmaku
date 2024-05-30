@@ -82,6 +82,11 @@ namespace _Scripts.CoreGame.InteractionSystems
         {
             Cards.List.Shuffle();
         }
+
+        public void Clear()
+        {
+            Cards.Clear();
+        }
     }
 }
     

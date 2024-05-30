@@ -22,7 +22,8 @@ namespace _Scripts.BaseGame.InteractionSystems.Setups
             {
                 {nameof(MockCardRule), (cardRuleData, card) => new MockCardRule(cardRuleData,card, _interactionController)},
                 {nameof(Action1UpRule), (cardRuleData, card) => new Action1UpRule(cardRuleData,card, _interactionController)},
-                {nameof(ActionShootRule), (cardRuleData, card) => new ActionShootRule(cardRuleData,card, _interactionController)}
+                {nameof(ActionShootRule), (cardRuleData, card) => new ActionShootRule(cardRuleData,card, _interactionController)},
+                {nameof(GrimoireRule), (cardRuleData, card) => new GrimoireRule(cardRuleData,card, _interactionController)},
             };
         }
         
