@@ -73,6 +73,7 @@ namespace _Scripts.BaseGame.Views.Basics
                 if (activatorGameObject != null && targetableGameObjects != null)
                 {
                     var executionVisualizer = Instantiate(ruleData.VisualizerPrefab, activatorGameObject.transform.position, Quaternion.identity);
+                    Physics.IgnoreCollision(activatorGameObject.GetComponent<Collider>(), executionVisualizer.gameObject.GetComponent<Collider>());
                     VRCharacterView activatorView = activatorGameObject.GetComponentInChildren<VRCharacterView>();
                     activatorView.GetModel().GetComponent<ModelAnimController>().OnAttackAnimation();
                     executionVisualizer.Visualize(activatorGameObject, targetableGameObjects);
