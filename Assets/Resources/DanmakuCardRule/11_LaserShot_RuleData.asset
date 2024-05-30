@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
   m_Name: 11_LaserShot_RuleData
   m_EditorClassIdentifier: 
-  CardRuleName: 
+  CardRuleName: LazerShotRule
   CardRule: 'Attack a player, regardless of range. This attack cannot be avoided.
 
     By
@@ -22,5 +22,5 @@ MonoBehaviour:
   CardRuleValueWithIcons:
   - Value: 1
     CardRuleTextIconEnum: 4
-  VisualizerPrefab: {fileID: 372840726830190813, guid: 2b7519b1e58b0a543bc695b5724502bc,
+  VisualizerPrefab: {fileID: 3802783784099138562, guid: 1e60033b8c583cc4aac7f3940e11cfe7,
     type: 3}

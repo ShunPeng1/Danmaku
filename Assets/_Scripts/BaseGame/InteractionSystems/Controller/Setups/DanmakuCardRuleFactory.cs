@@ -24,6 +24,7 @@ namespace _Scripts.BaseGame.InteractionSystems.Setups
                 {nameof(Action1UpRule), (cardRuleData, card) => new Action1UpRule(cardRuleData,card, _interactionController)},
                 {nameof(ActionShootRule), (cardRuleData, card) => new ActionShootRule(cardRuleData,card, _interactionController)},
                 {nameof(GrimoireRule), (cardRuleData, card) => new GrimoireRule(cardRuleData,card, _interactionController)},
+                {nameof(LazerShotRule), (cardRuleData, card) => new LazerShotRule(cardRuleData,card, _interactionController)},
             };
         }
         
