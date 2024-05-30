@@ -42,6 +42,17 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
             
         }
 
+        public override bool CanPlayRule(IDanmakuActivator activator)
+        {
+            if (activator is DanmakuPlayerModel attackerPlayerModel)
+            {
+                return AttackCombatUtility.CanUseDanmakuCardPlayer(attackerPlayerModel);
+                
+            }
+            
+            return false;
+        }
+
         public override bool CanExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables = null)
         {
             if (targetables is not { Count: 1 })
@@ -49,20 +60,22 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
                 return false;
             }
             
-            return targetables[0] is DanmakuPlayerModel playerModel && AttackCombatUtility.CanAttackInRange(InteractionController.PlayerGroupModel, activator as DanmakuPlayerModel, playerModel);
+            return activator is DanmakuPlayerModel activatorPlayer && targetables[0] is DanmakuPlayerModel targetedPlayer && AttackCombatUtility.CanAttackInRange(InteractionController.PlayerGroupModel,activatorPlayer , targetedPlayer);
         }
 
         public override void ExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables = null)
         {
-            if (targetables is not { Count: 1 })
+            if (CanExecuteRule(activator, targetables) == false)
             {
                 return;
             }
             
-            if (activator is DanmakuPlayerModel attackerPlayerModel && targetables[0] is DanmakuPlayerModel targetedPlayerModel)
-            {
-                AttackCombatUtility.AttackPlayer(attackerPlayerModel, targetedPlayerModel);
-            }
+            var attackerPlayerModel = activator as DanmakuPlayerModel;
+            var targetedPlayerModel = targetables[0] as DanmakuPlayerModel;
+            
+            AttackCombatUtility.AttackPlayer(attackerPlayerModel, targetedPlayerModel);
+            AttackCombatUtility.UseDanmakuCardPlayer(attackerPlayerModel);
+        
         }
     }
 }

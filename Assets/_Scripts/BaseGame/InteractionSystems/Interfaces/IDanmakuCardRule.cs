@@ -9,6 +9,8 @@ namespace _Scripts.BaseGame.InteractionSystems.Interfaces
         
         public abstract IDanmakuActivator GetAnyValidActivator();
         public abstract List<TargetableQueryResult> GetAnyValidTargetables(IDanmakuActivator danmakuActivator);
+        
+        public abstract bool CanPlayRule(IDanmakuActivator activator);
         public bool CanExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables);
         public void ExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables);
         

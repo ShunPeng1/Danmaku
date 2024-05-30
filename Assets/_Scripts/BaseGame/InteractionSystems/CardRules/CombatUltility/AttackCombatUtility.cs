@@ -44,10 +44,27 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules.CombatUltility
         {
             targetedPlayerModel.Life.Decrease(attackerPlayerModel.Power.Get());
             
-            if (targetedPlayerModel.Life.Get() == 0)
-            {
-                //TODO: Add death logic
-            }
         }
+        
+        public static void UseDanmakuCardPlayer(DanmakuPlayerModel attackerPlayerModel)
+        {
+            attackerPlayerModel.DanmakuCardPlayedCount.Increase(1);
+        }
+        
+        public static void UseSpellCardPlayer(DanmakuPlayerModel attackerPlayerModel)
+        {
+            attackerPlayerModel.SpellCardPlayedCount.Increase(1);
+        }
+        
+        public static bool CanUseDanmakuCardPlayer(DanmakuPlayerModel attackerPlayerModel)
+        {
+            return attackerPlayerModel.DanmakuCardPlayedCount.Get() < attackerPlayerModel.DanmakuCardPlayedCount.GetMaxValue();
+        }
+        
+        public static bool CanUseSpellCardPlayer(DanmakuPlayerModel attackerPlayerModel)
+        {
+            return attackerPlayerModel.SpellCardPlayedCount.Get() < attackerPlayerModel.SpellCardPlayedCount.GetMaxValue();
+        }
+        
     }
 }

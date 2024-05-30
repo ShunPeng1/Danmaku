@@ -34,9 +34,14 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
             return allPossibleTargetables;
         }
 
+        public override bool CanPlayRule(IDanmakuActivator activator)
+        {
+            return activator is DanmakuPlayerModel attackerPlayerModel;
+        }
+
         public override bool CanExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables = null)
         {
-            if (targetables is not { Count: 1 })
+            if (targetables is not { Count: 1 } || CardRuleScriptableData.CardRuleValueWithIcons.Length != 1)
             {
                 return false;
             }
@@ -46,17 +51,16 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
 
         public override void ExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables = null)
         {
-            if (targetables is not { Count: 1 } || CardRuleScriptableData.CardRuleValueWithIcons.Length != 1)
+            if (CanExecuteRule(activator, targetables) == false)
             {
                 return;
             }
             
             var healAmount = CardRuleScriptableData.CardRuleValueWithIcons[0].Value;
+            var playerModel = targetables[0] as DanmakuPlayerModel;
             
-            if (targetables[0] is DanmakuPlayerModel playerModel)
-            {
-                playerModel.Life.Increase(healAmount);
-            }
+            playerModel.Life.Increase(healAmount);
+        
         }
     }
 }

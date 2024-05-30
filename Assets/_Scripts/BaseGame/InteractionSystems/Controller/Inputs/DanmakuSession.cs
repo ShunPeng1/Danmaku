@@ -139,17 +139,18 @@ namespace _Scripts.CoreGame.InteractionSystems
         private void EndSession()
         {
             OnSessionEndEvent.Invoke();
+            ClearSessionMenus();
             IsEnded = true;
             OnFinallyEndSessionEvent.Invoke();
-            ClearSessionMenus();
         }
 
         private void ForceEndSession()
         {
             OnForceEndSessionEvent.Invoke();
+            ClearSessionMenus();
             IsEnded = true;
             OnFinallyEndSessionEvent.Invoke();
-            ClearSessionMenus();
+            
         }
         
         public bool TryEndSession()

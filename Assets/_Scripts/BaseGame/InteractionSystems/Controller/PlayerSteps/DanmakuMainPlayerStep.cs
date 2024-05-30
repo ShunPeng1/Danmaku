@@ -35,22 +35,24 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
             _playerModel = playerModel;
             _playerView = playerView;
             
-            CreateMainStepSession();
+            _session = CreateMainStepSession();
+            _interactionController.CombatController.EnqueueCombatSession(_session, true);
+            
         }
         
-        private void CreateMainStepSession()
+        private DanmakuSession CreateMainStepSession()
         {
 
             var menus = new List<DanmakuSessionMenu>();
             
-            _session = new DanmakuSession.Builder()
+            var session = new DanmakuSession.Builder()
                 .WithPlayingPlayerModel(new List<IDanmakuActivator>(){_playerModel})
                 .WithPlayingSessionMenus(menus)
                 .WithPlayerSessionKindEnum(MenuEndCheckEnum.AnyPlayed)
                 .WithCountDownTime(1000f)
                 .Build(_interactionController);
             var choices = new List<DanmakuSessionChoice>();
-            var menu = new DanmakuSessionMenu(_session, _playerModel, choices,ChoiceActionEnum.Confirm, ChoiceEndCheckEnum.NonePlayed);
+            var menu = new DanmakuSessionMenu(session, _playerModel, choices,ChoiceActionEnum.Confirm, ChoiceEndCheckEnum.NonePlayed);
             
             menus.Add(menu);
 
@@ -63,36 +65,40 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
 
             // session events
             
-            _session.OnSessionStartEvent.Subscribe(()=>_playerView.SessionHandler.SetCurrentSession(_session));
-            _session.SubscribeOnSessionEnd(()=>_playerView.SessionHandler.UnsetCurrentSession(), true);
-            _session.SubscribeOnSessionEnd(FinishMainStepSession, true);
+            session.OnSessionStartEvent.Subscribe(()=>_playerView.SessionHandler.SetCurrentSession(session));
+            session.SubscribeOnSessionEnd(()=>_playerView.SessionHandler.UnsetCurrentSession(), true);
+            session.SubscribeOnSessionEnd(FinishMainStepSession, true);
             
             // Add Card will make a play card session menu for card choices 
             _playCardChoice.OnTargetSelected += AddCardChoiceMenu;
             _playCardChoice.OnTargetDeselected += RemoveCardChoiceMenu;
-            
-            _session.StartSession();
-            
+
+            return session;
         }
         
         private bool IsCardPlayable(IDanmakuTargetable target)
         {
-            return target is DanmakuMainDeckCardModel mainDeckCard && mainDeckCard.IsPlayable();
+            if (target is DanmakuMainDeckCardModel mainDeckCard)
+            {
+                var isPlayable = mainDeckCard.IsPlayable();
+                return isPlayable;
+            }
+            return false;
         }
 
         private void AddCardChoiceMenu(IDanmakuTargetable obj)
         {
-            DanmakuMainDeckCardModel card = obj as DanmakuMainDeckCardModel;
-            List<DanmakuSessionChoice> choices = new List<DanmakuSessionChoice>();
+                DanmakuMainDeckCardModel card = obj as DanmakuMainDeckCardModel;
             
-            if (card == null)
+            if (card == null || card.IsPlayable() == false)
             {
                 return;
             }
-            
+
             var ruleTargetablesQueryResults = card.GetPlayableRules();
 
-            
+            List<DanmakuSessionChoice> choices = new List<DanmakuSessionChoice>();
+
             if (ruleTargetablesQueryResults.Count > 1)
             {
                 List<IDanmakuTargetable> ruleTargetables = new List<IDanmakuTargetable>(ruleTargetablesQueryResults.Select(ruleTargetables => ruleTargetables.CardRule).ToList());
@@ -113,7 +119,9 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
             }
             else if (ruleTargetablesQueryResults.Count == 0)
             {
-                Debug.LogError("No rules found for card: " + card);
+                Debug.Log("No rules found for card: " + card);
+                _cardChoiceMenu = null;
+                return;
             }
             
             
@@ -137,6 +145,10 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
         
         private void RemoveCardChoiceMenu(IDanmakuTargetable obj)
         {
+            if (_cardChoiceMenu == null)
+            {
+                return;
+            }
             _session.RemoveSessionMenu(_cardChoiceMenu);
         }
 
@@ -144,6 +156,7 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
         {
             if (_playCardChoice.SelectedTarget != null)
             {
+                
                 DanmakuMainDeckCardModel card = _playCardChoice.SelectedTarget as DanmakuMainDeckCardModel;
                 
                 IDanmakuCardRule cardRule = _cardRuleChoice.SelectedTarget as IDanmakuCardRule;
@@ -166,7 +179,13 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
                 
                 _interactionController.CombatController.AddCardExecution(cardExecutionParameter);
                 
-                CreateMainStepSession();
+                var nextSession = CreateMainStepSession();
+                _session.OnFinallyEndSessionEvent.Subscribe((danmakuSession) => // Do not remove parameter
+                {
+                    _interactionController.CombatController.EnqueueCombatSession(nextSession, true);
+                });
+                
+                _session = nextSession;
             }
             else
             {

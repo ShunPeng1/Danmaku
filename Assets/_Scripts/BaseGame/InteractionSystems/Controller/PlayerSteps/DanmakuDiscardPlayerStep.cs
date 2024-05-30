@@ -108,7 +108,7 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
 
         private bool IsCardPlayable(IDanmakuTargetable target)
         {
-            return target is DanmakuMainDeckCardModel mainDeckCard && mainDeckCard.IsPlayable();
+            return target is DanmakuMainDeckCardModel ;
         }
 
     }

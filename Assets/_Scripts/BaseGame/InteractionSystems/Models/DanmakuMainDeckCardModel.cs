@@ -39,10 +39,16 @@ namespace _Scripts.CoreGame.InteractionSystems
             foreach (var rule in _cardRuleModels)
             {
                 var activator = rule.GetAnyValidActivator();
+                
+                // Check if the rule can be played
+                if (!rule.CanPlayRule(activator))
+                {
+                    continue;
+                }
+                
                 var listTargetables = rule.GetAnyValidTargetables(activator);
 
                 // Check if there are any valid activators and targetables
-                
                 if (activator != null && listTargetables != null)
                 {
                     return true;
@@ -59,6 +65,12 @@ namespace _Scripts.CoreGame.InteractionSystems
             foreach (var rule in _cardRuleModels)
             {
                 var activator = rule.GetAnyValidActivator();
+                
+                if (!rule.CanPlayRule(activator))
+                {
+                    continue;
+                }
+                
                 var listTargetables = rule.GetAnyValidTargetables(activator);
 
                 // Check if there are any valid activators and targetables
@@ -111,8 +123,7 @@ namespace _Scripts.CoreGame.InteractionSystems
 
         public string PrintDebug()
         {
-            var cardRuleNames = string.Join(", ", _cardRuleModels.Select(rule => rule.CardRuleScriptableData.CardRuleName));
-            return DeckCardData.CardName + ": " + cardRuleNames;
+            return "";
         }
     }
 }

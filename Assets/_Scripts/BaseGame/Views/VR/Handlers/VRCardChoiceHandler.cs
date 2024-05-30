@@ -47,7 +47,9 @@ namespace _Scripts.BaseGame.Views.Basics
             return (grabbable) =>
             {
                 var cardView = grabbable.GetComponent<DanmakuCardBaseView>();
-                return cardBaseViewFilter(cardView.CardModel);
+                
+                bool result = cardBaseViewFilter(cardView.CardModel);
+                return result;  
             };
         }
         

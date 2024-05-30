@@ -25,9 +25,16 @@ namespace _Scripts.CoreGame.InteractionSystems
          
             Targetables = targetables;
             Menu = menu;
-            CardFilter = cardFilter;
             
-            CardFilter += targetables.Contains; // Ensure that the target is in the list of targetables
+            if (cardFilter == null)
+            {
+                CardFilter = (targetable) => true;
+            }
+            else
+            {
+                CardFilter = cardFilter;
+            }
+            
         }
         
         public DanmakuSessionChoice(DanmakuSessionMenu menu, IDanmakuTargetable targetable)

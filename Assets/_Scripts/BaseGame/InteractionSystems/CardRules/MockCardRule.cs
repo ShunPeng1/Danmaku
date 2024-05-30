@@ -24,6 +24,11 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
             return new List<TargetableQueryResult>();
         }
 
+        public override bool CanPlayRule(IDanmakuActivator activator)
+        {
+            return true;
+        }
+
         public override bool CanExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables)
         {
             return true;
