@@ -22,13 +22,16 @@ public class ModelAnimController : MonoBehaviour
     public void OnAttackAnimation()
     {
         _animator.SetTrigger("Attack");
+        Debug.Log("SHOOT");
     }
     public void OnTakingDamage(bool isDefeated)
     {
         _animator.SetTrigger("Damaged");
+        Debug.Log("HITLER");
         if (isDefeated)
         {
             _animator.SetBool("isDefeated", isDefeated);
+            Debug.Log("DED");
             
         }
     }

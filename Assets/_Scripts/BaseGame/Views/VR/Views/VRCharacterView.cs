@@ -34,9 +34,17 @@ namespace _Scripts.BaseGame.Views.Basics
             {
                 animator.runtimeAnimatorController = _controller;
                 loadedPrefab.AddComponent<ModelAnimController>();
+                GameObject parentObject = transform.parent.gameObject;
+                parentObject.AddComponent<CapsuleCollider>();
+                parentObject.layer = 14;
+                parentObject.GetComponent<CapsuleCollider>().radius = 0.1f;
             }
                 
             _characterObject = loadedPrefab;
+        }
+        public GameObject GetModel()
+        {
+            return _characterObject;
         }
     }
 }
