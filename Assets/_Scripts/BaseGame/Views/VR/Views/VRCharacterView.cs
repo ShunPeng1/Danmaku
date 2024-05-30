@@ -38,5 +38,9 @@ namespace _Scripts.BaseGame.Views.Basics
                 
             _characterObject = loadedPrefab;
         }
+        public GameObject GetModel()
+        {
+            return _characterObject;
+        }
     }
 }
