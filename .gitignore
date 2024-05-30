@@ -70,3 +70,18 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/BNG Framework/Integrations/Asmdef Files/asfmdef-export.unitypackage.meta
+Assets/BNG Framework/Integrations/Curved UI/CurvedUI.unitypackage.meta
+Assets/BNG Framework/Integrations/Emerald AI/EmeraldAIIntegration.unitypackage.meta
+Assets/BNG Framework/Integrations/FinalIK/FinalIK.unitypackage.meta
+Assets/BNG Framework/Integrations/Oculus Integration/OculusIntegration.unitypackage.meta
+Assets/BNG Framework/Integrations/Pico/Pico.unitypackage.meta
+Assets/BNG Framework/Integrations/PUN/PUN.unitypackage.meta
+Assets/BNG Framework/Integrations/SteamVR/SteamVR.unitypackage.meta
+Assets/BNG Framework/Integrations/VR Builder/VRIF-Integration_1.0.0.unitypackage.meta
+Assets/BNG Framework/Integrations/UniversalAI/UniversalAI.unitypackage.meta
+Assets/BNG Framework/Integrations/WebXR/webxr.unitypackage.meta
+Assets/Plugins/Sirenix/Demos/Custom Attribute Processors.unitypackage.meta
+Assets/Plugins/Sirenix/Demos/Custom Drawers.unitypackage.meta
+Assets/Plugins/Sirenix/Demos/Editor Windows.unitypackage.meta
+Assets/Plugins/Sirenix/Demos/Sample - RPG Editor.unitypackage.meta
