@@ -37,7 +37,7 @@ namespace _Scripts.BaseGame.Views.Basics
                 GameObject parentObject = transform.parent.gameObject;
                 parentObject.AddComponent<CapsuleCollider>();
                 parentObject.layer = 14;
-                parentObject.GetComponent<CapsuleCollider>().radius = 0.1f;
+                parentObject.GetComponent<CapsuleCollider>().radius = 0.05f;
             }
                 
             _characterObject = loadedPrefab;
