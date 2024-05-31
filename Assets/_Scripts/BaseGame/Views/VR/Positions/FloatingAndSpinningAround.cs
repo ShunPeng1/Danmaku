@@ -16,7 +16,7 @@ namespace _Scripts.BaseGame.Views.Positions
         
         private Vector3 _startPos;
 
-        private void Awake()
+        private void Start()
         {
             _startPos = transform.position;
         }

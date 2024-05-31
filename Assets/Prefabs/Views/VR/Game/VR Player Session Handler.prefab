@@ -282,11 +282,11 @@ MonoBehaviour:
   _placeTypeData:
   - PlaceKindEnum: 0
     StartingTransform: {fileID: 6106270899321244590}
-    Offset: {x: 0, y: 0, z: 0.3}
+    Spacing: {x: 0.5, y: 0, z: 0}
     HandlerCount: 0
   - PlaceKindEnum: 1
     StartingTransform: {fileID: 3919288933987748946}
-    Offset: {x: 0, y: 0, z: 0}
+    Spacing: {x: 0, y: 0, z: 0}
     HandlerCount: 0
 --- !u!1 &8084782863733586598
 GameObject:

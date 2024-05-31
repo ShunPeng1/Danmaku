@@ -33,7 +33,7 @@ namespace _Scripts.BaseGame.Views.Basics.UI
         {
             public PlaceKindEnum PlaceKindEnum;
             public Transform StartingTransform;
-            public Vector3 Offset;
+            public Vector3 Spacing;
             [ReadOnly] public int HandlerCount;
         }
         
@@ -86,21 +86,43 @@ namespace _Scripts.BaseGame.Views.Basics.UI
                 return null;
             }
             
-            var cardHandlerView = Instantiate(handlerPrefab, worldPlaceKindData.StartingTransform);
+            var handlerView = Instantiate(handlerPrefab, worldPlaceKindData.StartingTransform);
 
-            var cardTransform = cardHandlerView.transform;
-            cardTransform.position = worldPlaceKindData.StartingTransform.position;
-            cardTransform.localPosition += worldPlaceKindData.Offset * worldPlaceKindData.HandlerCount;
-            cardTransform.rotation = worldPlaceKindData.StartingTransform.rotation;
+            var cardHandlerTransform = handlerView.transform;
+            cardHandlerTransform.position = worldPlaceKindData.StartingTransform.position;
+            cardHandlerTransform.rotation = worldPlaceKindData.StartingTransform.rotation;
+            
             
             _choiceHandlers.Add(sessionChoice,new ChoiceHandlerData
             {
-                Handler = cardHandlerView,
+                Handler = handlerView,
                 PlaceKindData = worldPlaceKindData
             });
-            return cardHandlerView;
+            worldPlaceKindData.HandlerCount++;
+            
+            UpdateWorldHandlerPosition();
+            
+            return handlerView;
         }
 
+        private void UpdateWorldHandlerPosition()
+        {
+            int worldIndex = 0;
+            foreach (var choiceHandlerData in _choiceHandlers.Values)
+            {
+                if (choiceHandlerData.PlaceKindData.PlaceKindEnum == PlaceKindEnum.World)
+                {
+                    // Calculate offset for the current handler
+                    
+                    Vector3 offset = (worldIndex + 0.5f - choiceHandlerData.PlaceKindData.HandlerCount/2) * choiceHandlerData.PlaceKindData.Spacing;
+
+                    choiceHandlerData.Handler.transform.position = choiceHandlerData.PlaceKindData.StartingTransform.position;
+                    choiceHandlerData.Handler.transform.localPosition += offset;
+                    worldIndex++;
+                }
+            }
+        }
+        
         private DanmakuSessionChoiceBaseHandler CreateCanvasHandler(DanmakuSessionChoice sessionChoice, DanmakuSessionChoiceBaseHandler handlerPrefab)
         {
             PlaceKindData canvasPlaceKindData = _placeTypeData.FirstOrDefault(data => data.PlaceKindEnum == PlaceKindEnum.Canvas);
@@ -115,7 +137,7 @@ namespace _Scripts.BaseGame.Views.Basics.UI
 
             var cardTransform = cardHandlerView.transform;
             cardTransform.position = canvasPlaceKindData.StartingTransform.position;
-            cardTransform.localPosition += canvasPlaceKindData.Offset * canvasPlaceKindData.HandlerCount;
+            cardTransform.localPosition += canvasPlaceKindData.Spacing * canvasPlaceKindData.HandlerCount;
             cardTransform.rotation = canvasPlaceKindData.StartingTransform.rotation;
             
             _choiceHandlers.Add(sessionChoice,new ChoiceHandlerData
@@ -134,7 +156,8 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             _choiceHandlers.Remove(sessionChoice);
             Destroy(handler.Handler.gameObject);
             handler.PlaceKindData.HandlerCount--;
-
+            
+            UpdateWorldHandlerPosition();
         }
 
     
