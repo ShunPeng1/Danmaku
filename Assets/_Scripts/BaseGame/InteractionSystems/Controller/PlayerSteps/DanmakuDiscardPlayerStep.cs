@@ -56,7 +56,8 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
                 .WithCountDownTime(1000f)
                 .Build(_interactionController);
             var choices = new List<DanmakuSessionChoice>();
-            var menu = new DanmakuSessionMenu(_session, _playerModel, choices,ChoiceActionEnum.Confirm, ChoiceEndCheckEnum.AllPlayed);
+            var menu = new DanmakuSessionMenu(_session, _playerModel, choices,ChoiceActionEnum.Confirm, ChoiceEndCheckEnum.AllPlayed, 
+                new DanmakuSessionMenuDetail("Fill all slot here to discard", MenuOutcomeEnum.Bad, "Discard"));
             
             _discardMenu = menu;
             

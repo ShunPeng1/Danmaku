@@ -29,11 +29,9 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             uiTransform.position = _startingTransform.position;
             //uiTransform.localPosition += _startingTransform.position * _vrMenuUIs.Count;
             uiTransform.rotation = _startingTransform.rotation;
-
-            if (sessionMenu.ChoiceAction == ChoiceActionEnum.Confirm)
-            {
-                vrMenuUI.SetOneTimeButtonAction(sessionMenu.TryEndSession);
-            }
+            
+            vrMenuUI.SetMenu(sessionMenu);
+            
             
             _vrMenuUIs.Add(sessionMenu, vrMenuUI);
             _sessionMenus.Add(sessionMenu);

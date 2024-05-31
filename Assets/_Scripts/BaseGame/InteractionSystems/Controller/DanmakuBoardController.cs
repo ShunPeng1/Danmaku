@@ -158,7 +158,8 @@ namespace _Scripts.CoreGame.InteractionSystems
                 var characterCardChoices = characterCards.ConvertAll(card => (card) as IDanmakuTargetable);
                 var sessionChoices = new List<DanmakuSessionChoice>();
                 
-                DanmakuSessionMenu menu = new DanmakuSessionMenu(session, player, sessionChoices, ChoiceActionEnum.AutoCheck);
+                DanmakuSessionMenu menu = new DanmakuSessionMenu(session, player, sessionChoices, ChoiceActionEnum.AutoCheck, ChoiceEndCheckEnum.AllPlayed,
+                    new DanmakuSessionMenuDetail("Select a character", MenuOutcomeEnum.Good, "Select"));
                 
                 sessionChoices.Add(new DanmakuSessionChoice(menu, characterCardChoices));
                 
@@ -166,7 +167,6 @@ namespace _Scripts.CoreGame.InteractionSystems
                 
                 // Draw the character cards for selection
                 InteractionViewRepo.BoardView.DrawCharacterCardsForSelection(player, characterCards);
-                
             }
             
             // Remove the session from the player when the session ends
