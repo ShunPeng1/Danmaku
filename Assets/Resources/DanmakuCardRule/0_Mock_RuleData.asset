@@ -17,4 +17,5 @@ MonoBehaviour:
   CardTimingType: 0
   CardEffectTypes: 
   CardRuleValueWithIcons: []
-  VisualizerPrefab: {fileID: 0}
+  VisualizerPrefab: {fileID: -1053196324572544126, guid: 079d01bebdc2d984787beed852898ec9,
+    type: 3}

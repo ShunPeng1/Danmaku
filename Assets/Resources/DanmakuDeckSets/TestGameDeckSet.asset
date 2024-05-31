@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deckCardsData:
   - DeckCardData: {fileID: 11400000, guid: 808fd0b47841e1a4a8011cd04ab27a58, type: 2}
-    Amount: 2
+    Amount: 10
   - DeckCardData: {fileID: 11400000, guid: 906592d16e4a1fe4da6a4384e381ea54, type: 2}
-    Amount: 24
-  - DeckCardData: {fileID: 11400000, guid: da57acb3c7380ce4ba065147f8a5885d, type: 2}
-    Amount: 0
-  - DeckCardData: {fileID: 11400000, guid: f4ded541c65207d44bae4fbe2f3aa8fd, type: 2}
     Amount: 40
+  - DeckCardData: {fileID: 11400000, guid: da57acb3c7380ce4ba065147f8a5885d, type: 2}
+    Amount: 10
+  - DeckCardData: {fileID: 11400000, guid: f4ded541c65207d44bae4fbe2f3aa8fd, type: 2}
+    Amount: 30

@@ -109,7 +109,13 @@ namespace _Scripts.CoreGame.InteractionSystems.GameSteps
 
             if (ruleTargetablesQueryResults.Count > 1)
             {
-                List<IDanmakuTargetable> ruleTargetables = new List<IDanmakuTargetable>(ruleTargetablesQueryResults.Select(ruleTargetables => ruleTargetables.CardRule).ToList());
+                List<IDanmakuTargetable> ruleTargetables = new List<IDanmakuTargetable>();
+
+                foreach (var ruleTargetable in ruleTargetablesQueryResults)
+                {
+                    ruleTargetables.Add(ruleTargetable.CardRule);
+                }
+                
                 _cardRuleChoice = new DanmakuSessionChoice(
                     _cardSelectedTargetablesMenu,
                     ruleTargetables,

@@ -101,6 +101,25 @@ namespace _Scripts.BaseGame.Views.Basics
                     executionVisualizer.Visualize(activatorGameObject, targetableGameObjects);
                 }
             }
+            else
+            {
+                string path = "DanmakuCardRule/0_Mock_RuleData";
+                CardRuleScriptableData cardRuleData = Resources.Load<CardRuleScriptableData>(path);
+                if (cardRuleData == null || cardRuleData.VisualizerPrefab == null)
+                {
+                    Debug.LogError("Card Rule Data not found");
+                }
+                
+                GameObject activatorGameObject = _viewRepo.GetActivatorView(activator);
+                List<GameObject> targetableGameObjects = _viewRepo.GetTargetableViews(targetables);
+                
+                if (activatorGameObject == null || targetableGameObjects == null) return;
+                
+                var executionVisualizer = Instantiate(cardRuleData.VisualizerPrefab, activatorGameObject.transform.position, Quaternion.identity);
+                executionVisualizer.Visualize(activatorGameObject, targetableGameObjects);
+                
+                
+            }
         }
 
         public void TweenMove(Vector3 moveTo, Vector3 rotateTo, float duration, Ease ease = Ease.InOutCubic, Action onComplete = null)
