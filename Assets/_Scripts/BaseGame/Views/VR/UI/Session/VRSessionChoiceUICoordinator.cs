@@ -34,6 +34,7 @@ namespace _Scripts.BaseGame.Views.Basics.UI
             public PlaceKindEnum PlaceKindEnum;
             public Transform StartingTransform;
             public Vector3 Spacing;
+            public Vector3 Offset;
             [ReadOnly] public int HandlerCount;
         }
         
@@ -114,7 +115,7 @@ namespace _Scripts.BaseGame.Views.Basics.UI
                 {
                     // Calculate offset for the current handler
                     
-                    Vector3 offset = (worldIndex + 0.5f - choiceHandlerData.PlaceKindData.HandlerCount/2) * choiceHandlerData.PlaceKindData.Spacing;
+                    Vector3 offset = (worldIndex + 0.5f - (float)choiceHandlerData.PlaceKindData.HandlerCount/2) * choiceHandlerData.PlaceKindData.Spacing + choiceHandlerData.PlaceKindData.Offset; 
 
                     choiceHandlerData.Handler.transform.position = choiceHandlerData.PlaceKindData.StartingTransform.position;
                     choiceHandlerData.Handler.transform.localPosition += offset;
