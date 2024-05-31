@@ -20,5 +20,5 @@ MonoBehaviour:
   CardRuleValueWithIcons:
   - Value: 1
     CardRuleTextIconEnum: 0
-  VisualizerPrefab: {fileID: 372840726830190813, guid: 2b7519b1e58b0a543bc695b5724502bc,
+  VisualizerPrefab: {fileID: 3391007066995967435, guid: 6f0244b59a1877a448e8536e4a33912e,
     type: 3}
