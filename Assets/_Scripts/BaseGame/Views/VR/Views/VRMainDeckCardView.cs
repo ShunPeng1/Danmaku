@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _Scripts.BaseGame.InteractionSystems.Interfaces;
 using _Scripts.BaseGame.ScriptableData;
+using _Scripts.BaseGame.Views.VR.Visualizers;
 using _Scripts.CoreGame.InteractionSystems;
 using BNG;
 using DG.Tweening;
@@ -72,19 +73,31 @@ namespace _Scripts.BaseGame.Views.Basics
                 GameObject activatorGameObject = _viewRepo.GetActivatorView(activator);
                 List<GameObject> targetableGameObjects = _viewRepo.GetTargetableViews(targetables);
 
-                if (activatorGameObject != null && targetableGameObjects != null)
+                if (activatorGameObject == null || targetableGameObjects == null) return;
+
+
+                if (ruleData.VisualizerPrefab is ProjectileCardExecutionVisualizer)
+                {
+                    foreach (var targetableGameObject in targetableGameObjects)
+                    {
+                        var executionVisualizer = Instantiate(ruleData.VisualizerPrefab, activatorGameObject.transform.position, Quaternion.identity);
+
+                        var activatorCollider = activatorGameObject.GetComponent<Collider>();
+                        var visualizerCollider = executionVisualizer.gameObject.GetComponent<Collider>();
+                        if (activatorCollider != null && visualizerCollider != null)
+                        {
+                            Physics.IgnoreCollision(activatorCollider, visualizerCollider);
+                        }
+
+                        VRCharacterView activatorView = activatorGameObject.GetComponentInChildren<VRCharacterView>();
+                        activatorView.GetModel().GetComponent<ModelAnimController>().OnAttackAnimation();
+                        executionVisualizer.Visualize(activatorGameObject, new List<GameObject>(){targetableGameObject});
+                    }
+                
+                }
+                else if (ruleData.VisualizerPrefab is AuraCardExecutionVisualizer)
                 {
                     var executionVisualizer = Instantiate(ruleData.VisualizerPrefab, activatorGameObject.transform.position, Quaternion.identity);
-
-                    var activatorCollider = activatorGameObject.GetComponent<Collider>();
-                    var visualizerCollider = executionVisualizer.gameObject.GetComponent<Collider>();
-                    if (activatorCollider != null && visualizerCollider != null)
-                    {
-                        Physics.IgnoreCollision(activatorCollider, visualizerCollider);
-                    }
-
-                    VRCharacterView activatorView = activatorGameObject.GetComponentInChildren<VRCharacterView>();
-                    activatorView.GetModel().GetComponent<ModelAnimController>().OnAttackAnimation();
                     executionVisualizer.Visualize(activatorGameObject, targetableGameObjects);
                 }
             }

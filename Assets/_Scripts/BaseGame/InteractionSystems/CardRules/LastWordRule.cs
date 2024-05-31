@@ -7,9 +7,9 @@ using _Scripts.CoreGame.InteractionSystems.CardRules.CombatUltility;
 namespace _Scripts.CoreGame.InteractionSystems.CardRules
 {
     [DanmakuCardRuleClass]
-    public class LazerShotRule : DanmakuCardRuleBase
+    public class LastWordRule : DanmakuCardRuleBase
     {
-        public LazerShotRule(CardRuleScriptableData cardRuleData, IDanmakuCard card, DanmakuInteractionController interactionController) : base(cardRuleData, card, interactionController)
+        public LastWordRule(CardRuleScriptableData cardRuleData, IDanmakuCard card, DanmakuInteractionController interactionController) : base(cardRuleData, card, interactionController)
         {
         }
 
@@ -22,7 +22,6 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
             
             List<TargetableQueryResult> allPossibleTargetables = new ();
             
-            List<IDanmakuTargetable> targetables = new ();
             foreach (var targetPlayerModel in InteractionController.PlayerGroupModel.Players)
             {
                 if (targetPlayerModel == attackerPlayer)
@@ -30,9 +29,10 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
                     continue;
                 }
                 
-                targetables.Add(targetPlayerModel);
+                List<IDanmakuTargetable> targetables = new () { targetPlayerModel };
+                allPossibleTargetables.Add(new TargetableQueryResult(TargetableTypeEnum.Player, targetables));
             }
-            allPossibleTargetables.Add(new TargetableQueryResult(TargetableTypeEnum.Player, targetables));
+            //allPossibleTargetables.Add(new TargetableQueryResult(TargetableTypeEnum.Player, targetables));
 
             return allPossibleTargetables;
             
@@ -50,12 +50,20 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
 
         public override bool CanExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables = null)
         {
-            if (targetables is not { Count: 1 })
+            if (targetables == null)
             {
                 return false;
             }
-            
-            return activator is DanmakuPlayerModel activatorPlayer && targetables[0] is DanmakuPlayerModel targetedPlayer;
+
+            foreach (var targetable in targetables)
+            {
+                if (targetable is not DanmakuPlayerModel)
+                {
+                    return false;
+                }
+            }
+
+            return activator is DanmakuPlayerModel activatorPlayer;
         }
 
         public override void ExecuteRule(IDanmakuActivator activator, List<IDanmakuTargetable> targetables = null)
@@ -66,9 +74,15 @@ namespace _Scripts.CoreGame.InteractionSystems.CardRules
             }
             
             var attackerPlayerModel = activator as DanmakuPlayerModel;
-            var targetedPlayerModel = targetables[0] as DanmakuPlayerModel;
+
+            foreach (var targetable in targetables)
+            {
+                if (targetable is DanmakuPlayerModel targetedPlayerModel)
+                {
+                    AttackCombatUtility.AttackPlayer(attackerPlayerModel, targetedPlayerModel);
+                }
+            }
             
-            AttackCombatUtility.AttackPlayer(attackerPlayerModel, targetedPlayerModel);
             AttackCombatUtility.UseDanmakuCardPlayer(attackerPlayerModel);
         
         }

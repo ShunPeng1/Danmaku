@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bc356c0ee41d2a41c571621f0a879, type: 3}
   m_Name: 12_LastWord_RuleData
   m_EditorClassIdentifier: 
-  CardRuleName: 
+  CardRuleName: LastWordRule
   CardRule: 'Attack all other players, regardless of range.
 
     By default you can
@@ -22,5 +22,5 @@ MonoBehaviour:
   CardRuleValueWithIcons:
   - Value: 1
     CardRuleTextIconEnum: 4
-  VisualizerPrefab: {fileID: 372840726830190813, guid: 2b7519b1e58b0a543bc695b5724502bc,
+  VisualizerPrefab: {fileID: 6685946454415338389, guid: 02636822ffb66e342918f958d9de601e,
     type: 3}
