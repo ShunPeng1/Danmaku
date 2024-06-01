@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+
+using UnityEditor;
 using UnityEngine;
 
 namespace Shun_Utilities
@@ -31,3 +33,5 @@ namespace Shun_Utilities
         }
     }
 }
+
+#endif

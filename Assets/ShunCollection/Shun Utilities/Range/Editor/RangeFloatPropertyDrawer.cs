@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+
+using UnityEditor;
 
 namespace Shun_Utilities
 {
@@ -7,3 +9,5 @@ namespace Shun_Utilities
     {
     }
 }
+
+#endif
